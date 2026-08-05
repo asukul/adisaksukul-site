@@ -1,0 +1,553 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Adisak Sukul — AI Education Builder &amp; Leader · Founder, TheAIProgram.org</title>
+<meta name="description" content="Adisak Sukul — AI education builder & leader. Founder of TheAIProgram.org; Teaching Professor of Computer Science at Iowa State. LLM fine-tuning, RAG + OCR at GPU scale, AI tutors, and auto-grading systems." />
+<meta property="og:title" content="Adisak Sukul — AI Education Builder &amp; Leader" />
+<meta property="og:description" content="Professor, founder, and builder: LLM fine-tuning, RAG at GPU scale, and TheAIProgram.org — a full AI-tutored learning platform." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://adisaksukul.com" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAF7F2;
+    --paper-2:#F1EADD;
+    --ink:#161219;
+    --ink-2:#1C1822;
+    --ink-3:#241F2C;
+    --cardinal:#C8102E;
+    --cardinal-deep:#9E0B23;
+    --gold:#F4B41A;
+    --slate:#56505C;
+    --slate-2:#736C79;
+    --line:#E5DCCC;
+    --line-dk:rgba(255,255,255,.12);
+    --on-dk:#EFE8DC;
+    --muted-dk:#A79FAE;
+    --maxw:1120px;
+    --r:14px;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+
+  body{
+    font-family:"IBM Plex Sans",system-ui,sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    overflow-x:hidden;
+  }
+
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--cardinal);color:#fff}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+  .eyebrow{
+    font-family:"IBM Plex Mono",monospace;
+    font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--cardinal);font-weight:500;
+    display:inline-flex;align-items:center;gap:.6em;
+  }
+  .eyebrow::before{content:"";width:22px;height:1px;background:var(--cardinal);display:inline-block}
+  .serif{font-family:"Fraunces",Georgia,serif}
+
+  /* ---------- NAV ---------- */
+  .nav{
+    position:sticky;top:0;z-index:50;
+    backdrop-filter:saturate(140%) blur(10px);
+    background:rgba(250,247,242,.82);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{display:flex;align-items:baseline;gap:.55rem;font-weight:600;letter-spacing:-.01em}
+  .brand .dot{width:7px;height:7px;border-radius:50%;background:var(--cardinal);align-self:center}
+  .brand small{font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--slate-2);font-weight:400}
+  .nav-links{display:flex;align-items:center;gap:1.6rem;font-size:.92rem}
+  .nav-links a{color:var(--slate);transition:color .2s}
+  .nav-links a:hover{color:var(--ink)}
+  .nav-cta{
+    border:1px solid var(--ink);border-radius:999px;padding:.4rem .95rem;
+    font-size:.85rem;color:var(--ink);transition:.2s;
+  }
+  .nav-cta:hover{background:var(--ink);color:var(--paper)}
+  @media(max-width:720px){.nav-links a:not(.nav-cta){display:none}}
+
+  /* ---------- HERO ---------- */
+  .hero{padding:clamp(56px,9vw,108px) 0 clamp(40px,6vw,70px)}
+  .hero-grid{display:grid;grid-template-columns:1.55fr .95fr;gap:clamp(28px,5vw,68px);align-items:center}
+  @media(max-width:860px){.hero-grid{grid-template-columns:1fr;gap:34px}}
+
+  h1.title{
+    font-family:"Fraunces",serif;font-weight:480;
+    font-size:clamp(2.4rem,5.6vw,4.5rem);line-height:1.02;letter-spacing:-.022em;
+    margin:.55rem 0 0;
+  }
+  h1.title em{font-style:italic;color:var(--cardinal)}
+  .hero-sub{margin-top:1.4rem;font-size:clamp(1.02rem,1.5vw,1.18rem);color:var(--slate);max-width:42ch}
+  .nowline{
+    margin-top:1.6rem;font-family:"IBM Plex Mono",monospace;font-size:.82rem;
+    color:var(--slate-2);display:flex;align-items:center;gap:.6rem;min-height:1.3em;
+  }
+  .nowline .pulse{width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 0 rgba(244,180,26,.6);flex:none}
+  @media (prefers-reduced-motion: no-preference){.nowline .pulse{animation:pulse 2.4s infinite}}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(244,180,26,.55)}70%{box-shadow:0 0 0 9px rgba(244,180,26,0)}100%{box-shadow:0 0 0 0 rgba(244,180,26,0)}}
+  #now-target{color:var(--ink);transition:opacity .35s}
+
+  .portrait-wrap{position:relative;justself:end}
+  .portrait{
+    width:100%;max-width:330px;aspect-ratio:5/6;object-fit:cover;border-radius:var(--r);
+    border:1px solid var(--line);display:block;filter:grayscale(.12);
+    box-shadow:0 26px 60px -34px rgba(22,18,25,.5);
+  }
+  .portrait-fallback{
+    width:100%;max-width:330px;aspect-ratio:5/6;border-radius:var(--r);
+    background:linear-gradient(150deg,var(--ink),var(--cardinal-deep));
+    display:none;align-items:center;justify-content:center;
+    font-family:"Fraunces",serif;font-size:4.4rem;color:var(--paper);
+  }
+  .badge{
+    position:absolute;left:-14px;bottom:18px;background:var(--ink);color:var(--on-dk);
+    border-radius:10px;padding:.5rem .8rem;font-family:"IBM Plex Mono",monospace;
+    font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;line-height:1.5;
+  }
+  .badge b{color:var(--gold);font-weight:500}
+
+  /* ---------- STATS ---------- */
+  .stats{border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:clamp(34px,5vw,56px)}
+  .stats-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+  .stat{padding:24px 0;border-right:1px solid var(--line)}
+  .stat:last-child{border-right:none}
+  .stat .n{font-family:"Fraunces",serif;font-size:clamp(1.7rem,3vw,2.3rem);font-weight:500;letter-spacing:-.02em;line-height:1}
+  .stat .l{font-family:"IBM Plex Mono",monospace;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--slate-2);margin-top:.5rem}
+  @media(max-width:680px){.stats-grid{grid-template-columns:1fr 1fr}.stat:nth-child(2){border-right:none}.stat:nth-child(1),.stat:nth-child(2){border-bottom:1px solid var(--line)}}
+
+  /* ---------- SECTION SHELL ---------- */
+  section{padding:clamp(58px,8vw,96px) 0}
+  .sec-head{max-width:60ch;margin-bottom:clamp(34px,4vw,52px)}
+  .sec-head h2{font-family:"Fraunces",serif;font-weight:500;font-size:clamp(1.75rem,3.4vw,2.7rem);letter-spacing:-.02em;line-height:1.08;margin:.7rem 0 0}
+  .sec-head p{margin-top:1rem;color:var(--slate);font-size:1.06rem}
+
+  /* ---------- FOCUS CHIPS ---------- */
+  .focus{padding-top:clamp(48px,6vw,72px)}
+  .chips{display:flex;flex-wrap:wrap;gap:.7rem}
+  .chip{
+    border:1px solid var(--line);border-radius:999px;padding:.55rem 1.05rem;
+    font-size:.92rem;color:var(--ink);background:#fff;transition:.2s;
+  }
+  .chip b{color:var(--cardinal);font-weight:600}
+  .chip:hover{border-color:var(--ink);transform:translateY(-2px)}
+
+  /* ---------- BUILDS (dark) ---------- */
+  .builds{background:var(--ink);color:var(--on-dk);border-radius:26px;margin:0 14px;padding-left:14px;padding-right:14px}
+  @media(max-width:680px){.builds{margin:0 6px;border-radius:18px}}
+  .builds .eyebrow{color:var(--gold)}
+  .builds .eyebrow::before{background:var(--gold)}
+  .builds .sec-head h2{color:var(--on-dk)}
+  .builds .sec-head p{color:var(--muted-dk)}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:760px){.grid{grid-template-columns:1fr}}
+  .card{
+    background:var(--ink-2);border:1px solid var(--line-dk);border-radius:var(--r);
+    padding:26px 26px 24px;position:relative;transition:.25s;overflow:hidden;
+  }
+  .card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--cardinal);opacity:.0;transition:.25s}
+  .card:hover{border-color:rgba(255,255,255,.22);transform:translateY(-3px);background:var(--ink-3)}
+  .card:hover::before{opacity:1}
+  .card.flag{grid-column:1/-1;background:linear-gradient(135deg,var(--ink-2) 0%,var(--ink-3) 100%);border-color:rgba(244,180,26,.38)}
+  .card.flag::before{background:var(--gold);opacity:1}
+  .card.flag h3{font-size:1.42rem}
+  .pill{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);background:var(--gold);border-radius:5px;padding:.18rem .5rem;margin-left:.6rem;vertical-align:middle;font-weight:500}
+  .cap{font-family:"IBM Plex Mono",monospace;font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:500}
+  .card h3{font-size:1.2rem;font-weight:600;letter-spacing:-.01em;margin:.55rem 0 .5rem;color:#fff}
+  .card .lede{color:var(--muted-dk);font-size:.96rem;margin-bottom:.95rem}
+  .card ul{list-style:none;display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.1rem}
+  .card li{position:relative;padding-left:1.1rem;font-size:.93rem;color:#D8D2DD;line-height:1.55}
+  .card li::before{content:"";position:absolute;left:0;top:.62em;width:5px;height:5px;border-radius:1px;background:var(--cardinal);transform:rotate(45deg)}
+  .tags{display:flex;flex-wrap:wrap;gap:.4rem}
+  .tag{font-family:"IBM Plex Mono",monospace;font-size:.66rem;color:var(--muted-dk);border:1px solid var(--line-dk);border-radius:6px;padding:.22rem .5rem}
+
+  /* ---------- TEACHING ---------- */
+  .note{font-family:"IBM Plex Mono",monospace;font-size:.84rem;color:var(--slate-2);border-left:2px solid var(--gold);padding-left:1rem;margin-top:1.2rem}
+  .courses{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--line)}
+  @media(max-width:680px){.courses{grid-template-columns:1fr}}
+  .course{padding:22px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:auto 1fr;gap:1.1rem;align-items:baseline}
+  .course:nth-child(odd){padding-right:30px;border-right:1px solid var(--line)}
+  .course:nth-child(even){padding-left:30px}
+  @media(max-width:680px){.course:nth-child(odd){padding-right:0;border-right:none}.course:nth-child(even){padding-left:0}}
+  .course .code{font-family:"IBM Plex Mono",monospace;font-size:.78rem;color:var(--cardinal);white-space:nowrap;font-weight:500}
+  .course .cn{font-weight:600;font-size:1.02rem}
+  .course .cd{color:var(--slate);font-size:.92rem;margin-top:.15rem}
+
+  /* ---------- RESEARCH ---------- */
+  .research{background:var(--paper-2)}
+  .pub{padding:18px 0;border-top:1px solid var(--line);display:grid;grid-template-columns:auto 1fr;gap:1.2rem;align-items:baseline}
+  .pub:last-of-type{border-bottom:1px solid var(--line)}
+  .pub .yr{font-family:"IBM Plex Mono",monospace;font-size:.82rem;color:var(--slate-2)}
+  .pub .pt{font-size:1.0rem;line-height:1.45}
+  .pub .pt b{font-weight:600}
+  .pub .venue{display:block;color:var(--slate);font-size:.88rem;margin-top:.25rem;font-style:italic;font-family:"Fraunces",serif}
+  .grant{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:22px 24px;margin-bottom:30px}
+  .grant .gl{font-family:"IBM Plex Mono",monospace;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--cardinal)}
+  .grant h3{font-family:"Fraunces",serif;font-weight:500;font-size:1.18rem;margin:.4rem 0 .35rem;letter-spacing:-.01em}
+  .grant p{color:var(--slate);font-size:.92rem}
+  .morelink{display:inline-flex;align-items:center;gap:.45rem;margin-top:22px;font-family:"IBM Plex Mono",monospace;font-size:.84rem;color:var(--cardinal);border-bottom:1px solid transparent;transition:.2s}
+  .morelink:hover{border-color:var(--cardinal)}
+
+  /* ---------- RECOGNITION ---------- */
+  .awards{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:680px){.awards{grid-template-columns:1fr}}
+  .award{border:1px solid var(--line);border-radius:var(--r);padding:20px 22px;background:#fff;display:flex;gap:1rem;align-items:flex-start}
+  .award .yr{font-family:"Fraunces",serif;font-size:1.5rem;font-weight:500;color:var(--cardinal);line-height:1}
+  .award p{font-size:.96rem;color:var(--ink)}
+  .award span{display:block;color:var(--slate-2);font-size:.82rem;margin-top:.2rem}
+
+  /* ---------- ENGAGE ---------- */
+  .engage{background:var(--paper-2)}
+  .roles{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+  @media(max-width:860px){.roles{grid-template-columns:1fr 1fr}}
+  @media(max-width:560px){.roles{grid-template-columns:1fr}}
+  .role{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:18px 20px}
+  .role .rt{font-weight:600;font-size:.98rem;display:flex;align-items:center;gap:.5rem}
+  .role .rt::before{content:"";width:7px;height:7px;background:var(--gold);border-radius:50%;flex:none}
+  .role p{color:var(--slate);font-size:.88rem;margin-top:.35rem}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--ink);color:var(--on-dk);padding:clamp(56px,7vw,84px) 0 40px}
+  footer .eyebrow{color:var(--gold)}
+  footer .eyebrow::before{background:var(--gold)}
+  footer h2{font-family:"Fraunces",serif;font-weight:500;font-size:clamp(1.9rem,4vw,3rem);letter-spacing:-.02em;margin:.7rem 0 0;color:#fff;max-width:18ch;line-height:1.05}
+  .foot-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:38px;margin-top:48px;border-top:1px solid var(--line-dk);padding-top:38px}
+  @media(max-width:760px){.foot-grid{grid-template-columns:1fr;gap:30px}}
+  .foot-col h4{font-family:"IBM Plex Mono",monospace;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted-dk);margin-bottom:.9rem;font-weight:500}
+  .foot-col a,.foot-col p{display:block;color:var(--on-dk);font-size:.95rem;margin-bottom:.5rem;transition:color .2s}
+  .foot-col a:hover{color:var(--gold)}
+  .foot-col .sub{color:var(--muted-dk);font-size:.86rem;margin-bottom:.1rem}
+  .colophon{margin-top:46px;padding-top:22px;border-top:1px solid var(--line-dk);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--muted-dk)}
+
+  /* ---------- REVEAL ---------- */
+  @media (prefers-reduced-motion: no-preference){
+    .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+    .reveal.in{opacity:1;transform:none}
+  }
+  :focus-visible{outline:2px solid var(--cardinal);outline-offset:3px;border-radius:4px}
+  .builds :focus-visible,footer :focus-visible{outline-color:var(--gold)}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top"><span class="dot"></span>Adisak&nbsp;Sukul <small>· ISU CS</small></a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#builds">Builds</a>
+      <a href="#teaching">Teaching</a>
+      <a href="#research">Research</a>
+      <a class="nav-cta" href="mailto:adisak@iastate.edu">Email</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">AI Education Builder &amp; Leader · Founder, TheAIProgram.org</span>
+        <h1 class="title">I build AI that <em>teaches</em>.</h1>
+        <p class="hero-sub">I'm Adisak Sukul, Teaching Professor of Computer Science at Iowa State. I lead the projects that bring large language models into real classrooms — fine-tuned Socratic tutors, RAG search with OCR at GPU scale, and automated grading — for the 15,000+ students I've taught, and now for Iowa's teachers statewide at <a href="https://theaiprogram.org" target="_blank" rel="noopener" style="border-bottom:1px solid var(--cardinal)">TheAIProgram.org</a>.</p>
+        <div class="nowline"><span class="pulse"></span><span>now building:&nbsp;</span><span id="now-target">the AI Python Tutor</span></div>
+      </div>
+      <div class="portrait-wrap">
+        <img class="portrait" id="portrait"
+             src="portrait.jpg"
+             alt="Adisak Sukul"
+             onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src='https://www.cs.iastate.edu/files/people/profilepictures/sukul_adisak.jpg';}else{this.style.display='none';document.getElementById('pf').style.display='flex';}" />
+        <div class="portrait-fallback" id="pf" aria-hidden="true">AS</div>
+        <div class="badge">Google Cloud<br><b>Faculty Expert</b></div>
+      </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="stats">
+      <div class="wrap stats-grid">
+        <div class="stat"><div class="n">15,000+</div><div class="l">Students taught</div></div>
+        <div class="stat"><div class="n">10+ yrs</div><div class="l">In the classroom</div></div>
+        <div class="stat"><div class="n">4×</div><div class="l">NSF-funded D4 bootcamps led</div></div>
+        <div class="stat"><div class="n">1st</div><div class="l">AI course for Iowa's HS teachers</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOCUS -->
+  <section class="focus">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">What I work in</span>
+        <h2>Applied AI for education — from research to running systems.</h2>
+      </div>
+      <div class="chips reveal">
+        <span class="chip"><b>Applied AI</b></span>
+        <span class="chip"><b>Retrieval-Augmented Generation</b></span>
+        <span class="chip"><b>LLM fine-tuning</b></span>
+        <span class="chip"><b>AI tutors</b></span>
+        <span class="chip"><b>LMS &amp; auto-grading</b></span>
+        <span class="chip"><b>Cloud + local inference</b></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- BUILDS -->
+  <section class="builds" id="builds">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Selected AI builds</span>
+        <h2>Systems I've designed and shipped.</h2>
+        <p>Projects I lead or built — each takes something from the AI frontier (fine-tuning, RAG, OCR, LLM evaluation) and turns it into a tool a classroom can actually use.</p>
+      </div>
+      <div class="grid">
+
+        <article class="card flag reveal">
+          <div class="cap">Flagship · founder &amp; builder<span class="pill">Live · Summer 2026</span></div>
+          <h3>TheAIProgram.org · AI for High School Teachers</h3>
+          <p class="lede">A complete learning platform I built from scratch — now live at <a href="https://theaiprogram.org" target="_blank" rel="noopener" style="color:var(--gold)">TheAIProgram.org</a>, with Iowa's first statewide AI course for teachers as its flagship (Summer 2026 cohort).</p>
+          <ul>
+            <li>Full LMS: enrollment, auto-graded exercises, a Canvas-exportable gradebook, discussions, and course certificates.</li>
+            <li>In-browser Python (Pyodide) with CodeLens line-by-line execution — no install, no setup, built for beginners.</li>
+            <li>A Socratic AI tutor on every step: a three-rung hint ladder (nudge → strategy → worked step) that deliberately withholds full solutions.</li>
+            <li>Anchored to the UNESCO AI Competency Framework — teachers from any subject, statewide, no coding required.</li>
+          </ul>
+          <div class="tags"><span class="tag">TheAIProgram.org</span><span class="tag">Pyodide</span><span class="tag">Socratic AI tutor</span><span class="tag">Full LMS</span><span class="tag">UNESCO framework</span></div>
+        </article>
+
+        <article class="card reveal">
+          <div class="cap">LLM-as-judge · eval</div>
+          <h3>AI Arena</h3>
+          <p class="lede">An automated arena that grades student LLM, RAG, and GenAI projects — the open-ended assignments Kaggle InClass can't score.</p>
+          <ul>
+            <li>LLM-as-judge scoring with a primary evaluator and cross-family re-grades, so results don't inherit one model's bias.</li>
+            <li>Live leaderboard and submission flow on FastAPI + Cloud Run, Firebase Hosting, and Firestore.</li>
+            <li>Built to be reused across AI 2010, data-science courses, and Iowa teacher bootcamps.</li>
+          </ul>
+          <div class="tags"><span class="tag">FastAPI</span><span class="tag">Cloud Run</span><span class="tag">Firestore</span><span class="tag">Claude</span><span class="tag">Gemini</span></div>
+        </article>
+
+        <article class="card reveal">
+          <div class="cap">Project lead · LLM fine-tuning</div>
+          <h3>AI Python Tutor</h3>
+          <p class="lede">I lead this project: an open-weight LLM fine-tuned for Socratic teaching — guiding questions first, never just the answer.</p>
+          <ul>
+            <li>Custom Socratic fine-tune for CS, DS, ML, and AI coursework — SFT + DPO with a pedagogical reward model that favors hint-first responses.</li>
+            <li>Five-benchmark evaluation stack that scores teaching quality, not just answer accuracy.</li>
+            <li>Trained and served on Nova, ISU's GPU research cluster.</li>
+          </ul>
+          <div class="tags"><span class="tag">SFT</span><span class="tag">DPO</span><span class="tag">Reward models</span><span class="tag">Nova GPU</span><span class="tag">Open weights</span></div>
+        </article>
+
+        <article class="card reveal">
+          <div class="cap">Project lead · RAG + OCR</div>
+          <h3>RAG Systems at Scale</h3>
+          <p class="lede">A portfolio of retrieval systems I lead — from expert-finding over ISU's research archive to OCR pipelines that make scanned documents answerable.</p>
+          <ul>
+            <li>Expert-finding RAG over ~120,000 institutional-repository documents (OAI-PMH ingestion → vector index).</li>
+            <li>OCR ingestion that turns scanned PDFs and archives into retrievable, citable knowledge.</li>
+            <li>Embedding and inference jobs scaled across GPU nodes on ISU's Nova cluster; Qdrant, pgvector, and Gemini File Search evaluated head-to-head.</li>
+          </ul>
+          <div class="tags"><span class="tag">RAG</span><span class="tag">OCR</span><span class="tag">Qdrant</span><span class="tag">Nova GPU</span><span class="tag">n8n</span></div>
+        </article>
+
+        <article class="card reveal">
+          <div class="cap">Multi-model · LMS</div>
+          <h3>Multi-Vendor AI Teaching Assistant</h3>
+          <p class="lede">A course AI assistant that runs on several models at once — so students aren't locked to one vendor, and neither is the university.</p>
+          <ul>
+            <li>Deploys open models (Llama 4 Scout, Phi-4, gpt-oss, Gemma, Nemotron) on Azure AI Foundry for ~100 students per course.</li>
+            <li>A Canvas-LTI RAG "living textbook" grounded in each course's own materials and owned by ISU.</li>
+            <li>Multi-vendor by design (Claude / GPT / Gemini) to avoid single-vendor lock-in.</li>
+          </ul>
+          <div class="tags"><span class="tag">Azure AI Foundry</span><span class="tag">Canvas LTI</span><span class="tag">RAG</span><span class="tag">Open models</span></div>
+        </article>
+
+        <article class="card reveal">
+          <div class="cap">LMS automation · auto-grading</div>
+          <h3>Canvas Course Copilot</h3>
+          <p class="lede">Python tooling that auto-generates course content and quizzes, then wires up automated grading inside the LMS.</p>
+          <ul>
+            <li>Generates Canvas modules and QTI 1.2 quizzes straight from lecture slides, using Python + lxml.</li>
+            <li>Gradescope ↔ Canvas grade-sync workflows that hold up at large-course scale.</li>
+            <li>Cuts the manual work of authoring and grading hundreds of assessments.</li>
+          </ul>
+          <div class="tags"><span class="tag">Canvas</span><span class="tag">QTI 1.2</span><span class="tag">Python</span><span class="tag">lxml</span><span class="tag">Gradescope</span></div>
+        </article>
+
+        <article class="card reveal">
+          <div class="cap">Workshop · enablement</div>
+          <h3>Build Your Own AI Assistant</h3>
+          <p class="lede">A hands-on workshop series teaching educators and students to stand up their own RAG assistants — local open-weight models vs. hosted APIs.</p>
+          <ul>
+            <li>Walks through the full local-vs-cloud tradeoff: cost, privacy, latency, and quality.</li>
+            <li>Includes automation patterns with n8n and KNIME for data and grading pipelines.</li>
+            <li>Delivered through ISU's Student Innovation Center and the D4 bootcamp.</li>
+          </ul>
+          <div class="tags"><span class="tag">RAG</span><span class="tag">Local inference</span><span class="tag">APIs</span><span class="tag">n8n</span><span class="tag">KNIME</span></div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TEACHING -->
+  <section class="teaching" id="teaching">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">In the classroom</span>
+        <h2>Courses I teach.</h2>
+        <p>Project-based, Kaggle-aligned, and industry-relevant — designed so students ship real work, not just pass exams.</p>
+        <p class="note">Benchmarked against how MIT, CMU, Stanford & UCLA teach AI — then built ISU-owned, multi-vendor by design.</p>
+      </div>
+      <div class="courses reveal">
+        <div class="course"><span class="code">AI&nbsp;2010X</span><div><div class="cn">Introduction to Applied AI</div><div class="cd">Gateway course for ISU's minor in applied artificial intelligence.</div></div></div>
+        <div class="course"><span class="code">Com&nbsp;S&nbsp;1130</span><div><div class="cn">Spreadsheets &amp; Databases</div><div class="cd">Large-enrollment course — Excel, Access, and Microsoft Power BI.</div></div></div>
+        <div class="course"><span class="code">DS&nbsp;2010</span><div><div class="cn">Introduction to Data Science</div><div class="cd">Foundations of the data-science workflow, hands-on with Python.</div></div></div>
+        <div class="course"><span class="code">DS&nbsp;3010</span><div><div class="cn">Applied Data Modeling &amp; Predictive Analysis</div><div class="cd">Modeling, prediction, and evaluation on real datasets.</div></div></div>
+        <div class="course"><span class="code">DS&nbsp;4010</span><div><div class="cn">Data Science Capstone</div><div class="cd">Team projects bridging coursework and industry practice.</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEARCH -->
+  <section class="research" id="research">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Research &amp; publications</span>
+        <h2>Selected work.</h2>
+        <p>Peer-reviewed research spanning deep text classification, quantification learning, and large-scale media measurement.</p>
+      </div>
+
+      <div class="grant reveal">
+        <div class="gl">NSF Research Grant · Co-PI</div>
+        <h3>Automated collection and coding of online campaign advertising</h3>
+        <p>D. Peterson (PI), W. Tavanapong, A. Sukul, O. Chyzh (Co-PIs) · NSF Award 1729775</p>
+      </div>
+
+      <div class="reveal">
+        <div class="pub"><span class="yr">2022</span><div class="pt"><b>IDC: Quantitative Evaluation Benchmark of Interpretation Methods for Deep Text Classification Models</b><span class="venue">Journal of Big Data — Khaleel, Qi, Tavanapong, Wong, Sukul, Peterson</span></div></div>
+        <div class="pub"><span class="yr">2020</span><div class="pt"><b>A Framework for Deep Quantification Learning</b><span class="venue">ECML PKDD — Qi, Khaleel, Tavanapong, Sukul, Peterson</span></div></div>
+        <div class="pub"><span class="yr">2017</span><div class="pt"><b>Online Video Ad Measurement for Political Science Research</b><span class="venue">IEEE Big Data — Sukul, Gopalakrishnan, Tavanapong, Peterson</span></div></div>
+        <div class="pub"><span class="yr">2016</span><div class="pt"><b>Automated Coding of Political Video Ads for Political Science Research</b><span class="venue">IEEE ISM — Qi, Zhang, Sukul, Tavanapong, Peterson</span></div></div>
+        <div class="pub"><span class="yr">2011</span><div class="pt"><b>Range-Extended Multi-hop Relay Network with Network Coding Relay</b><span class="venue">ICCST — Sukul, Bhattarakosol · Best Paper Award</span></div></div>
+      </div>
+
+      <a class="morelink" href="https://dblp.org/pid/11/11081.html" target="_blank" rel="noopener">All publications on DBLP →</a>
+    </div>
+  </section>
+
+  <!-- RECOGNITION -->
+  <section class="recognition">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Recognition</span>
+        <h2>Awards &amp; honors.</h2>
+      </div>
+      <div class="awards reveal">
+        <div class="award"><div class="yr">'24</div><p>Teaching Excellence Award<span>Department of Computer Science, Iowa State</span></p></div>
+        <div class="award"><div class="yr">'21</div><p>LAS Award for Excellence in Undergraduate Introductory Teaching<span>College of Liberal Arts &amp; Sciences</span></p></div>
+        <div class="award"><div class="yr">'21</div><p>Extension &amp; Outreach Excellence in Research-Based Programming<span>With the DSPG 2020 team</span></p></div>
+        <div class="award"><div class="yr">'20</div><p>ISU Award for Interdisciplinary Team Research<span>With the Data Science for the Public Good team</span></p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENGAGE -->
+  <section class="engage">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Beyond my courses</span>
+        <h2>Workshops, programs &amp; roles.</h2>
+      </div>
+      <div class="roles reveal">
+        <div class="role"><div class="rt">Founder · Staq Technologies</div><p>2ebook.com (2003–present) — Thailand's pioneering e-book library platform; National Library of Thailand + 40 institutions.</p></div>
+        <div class="role"><div class="rt">D4 Bootcamp · NSF-funded</div><p>Instructor &amp; leadership team — led the bootcamp four years running under the NSF traineeship.</p></div>
+        <div class="role"><div class="rt">AI and Data Science Workshop for Energy Solutions</div><p>Led with Ames National Laboratory — third year running.</p></div>
+        <div class="role"><div class="rt">Data Science Club</div><p>Faculty advisor.</p></div>
+        <div class="role"><div class="rt">DSPG Young Scholars</div><p>Faculty curriculum team — Data Science for the Public Good.</p></div>
+        <div class="role"><div class="rt">Google Cloud Faculty Expert</div><p>Helping educators bring cloud into the classroom.</p></div>
+        <div class="role"><div class="rt">Gemini Certified Educator</div><p>Google-certified in generative-AI teaching practice.</p></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="wrap">
+    <span class="eyebrow">Get in touch</span>
+    <h2>Let's build something that teaches.</h2>
+    <div class="foot-grid">
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <a href="mailto:adisak@iastate.edu">adisak@iastate.edu</a>
+        <a href="tel:+15152948933">(515) 294-8933</a>
+        <p class="sub">115 Durham · Iowa State University</p>
+        <p class="sub">Ames, Iowa 50011</p>
+      </div>
+      <div class="foot-col">
+        <h4>Find me</h4>
+        <a href="https://theaiprogram.org" target="_blank" rel="noopener">TheAIProgram.org — my course platform</a>
+        <a href="https://www.linkedin.com/in/adisaksukul/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/asukul" target="_blank" rel="noopener">GitHub — asukul</a>
+        <a href="https://www.kaggle.com/adisak" target="_blank" rel="noopener">Kaggle — adisak</a>
+        <a href="https://www.cs.iastate.edu/people/adisak-sukul" target="_blank" rel="noopener">ISU faculty profile</a>
+        <a href="https://dblp.org/pid/11/11081.html" target="_blank" rel="noopener">DBLP publications</a>
+      </div>
+      <div class="foot-col">
+        <h4>Education</h4>
+        <p class="sub">Ph.D. Computer Science<br>Chulalongkorn University, 2011</p>
+        <p class="sub">M.S. Information Science<br>KMITL, 2003</p>
+        <p class="sub">B.S. Computer Science<br>KMITL, 2000</p>
+      </div>
+    </div>
+    <div class="colophon">
+      <span>Adisak Sukul — Applied AI for Education</span>
+      <span>Iowa State University · Department of Computer Science</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // "now building" cycle
+  (function(){
+    var items=["TheAIProgram.org","the AI Python Tutor","RAG + OCR on Nova GPUs","AI Arena","a multi-vendor AI TA"];
+    var el=document.getElementById("now-target");
+    var reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if(!el) return;
+    if(reduce){el.textContent=items.join("  ·  ");return;}
+    var i=0;
+    setInterval(function(){
+      el.style.opacity=0;
+      setTimeout(function(){i=(i+1)%items.length;el.textContent=items[i];el.style.opacity=1;},350);
+    },2600);
+  })();
+
+  // scroll reveal
+  (function(){
+    var reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var els=document.querySelectorAll(".reveal");
+    if(reduce||!("IntersectionObserver"in window)){els.forEach(function(e){e.classList.add("in");});return;}
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){if(en.isIntersecting){en.target.classList.add("in");io.unobserve(en.target);}});
+    },{threshold:.12,rootMargin:"0px 0px -8% 0px"});
+    els.forEach(function(e){io.observe(e);});
+  })();
+</script>
+</body>
+</html>
