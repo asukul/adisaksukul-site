@@ -1,0 +1,1238 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Using ISU's Azure AI Foundry Models — Setup Guide · Adisak Sukul</title>
+<meta name="description" content="Step-by-step guide for Iowa State CS faculty and students: sign in to ISU's Azure AI Foundry with Entra ID and use the university's LLM deployments from the terminal, Python, VS Code, Codex, OpenCode and more." />
+<meta property="og:title" content="Using ISU's Azure AI Foundry Models — Setup Guide" />
+<meta property="og:description" content="Step-by-step guide for Iowa State CS faculty and students: sign in to ISU's Azure AI Foundry with Entra ID and use the university's LLM deployments from the terminal, Python, VS Code, Codex, OpenCode and more." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://adisaksukul.com/guides/azure-ai-foundry/" />
+<link rel="canonical" href="https://adisaksukul.com/guides/azure-ai-foundry/" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* --- lifted verbatim from adisaksukul.com --- */
+    --paper:#FAF7F2; --paper-2:#F1EADD; --surface:#FFFFFF;
+    --ink:#161219; --ink-2:#1C1822; --ink-3:#241F2C;
+    --cardinal:#C8102E; --cardinal-deep:#9E0B23; --gold:#F4B41A;
+    --slate:#56505C; --slate-2:#736C79;
+    --line:#E5DCCC; --line-dk:rgba(255,255,255,.12);
+    --on-dk:#EFE8DC; --muted-dk:#A79FAE;
+    --maxw:1120px; --r:14px;
+    /* --- status colours: a gap in the portfolio palette, filled to stay warm --- */
+    --go:#2E6B4F; --go-bg:#EAF1EC; --go-line:#B8CFC1;
+    --stop:var(--cardinal); --stop-bg:#FBEAEC; --stop-line:#EFC3C9;
+    --note-bg:#FCF4E2; --note-line:#E8CE8E;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+  body{
+    font-family:"IBM Plex Sans",system-ui,sans-serif;
+    background:var(--paper); color:var(--ink);
+    line-height:1.65; -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility; overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--cardinal);color:#fff}
+  :focus-visible{outline:2px solid var(--cardinal);outline-offset:3px;border-radius:4px}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+
+  /* ---------- NAV (matches the home page) ---------- */
+  .nav{position:sticky;top:0;z-index:60;backdrop-filter:saturate(140%) blur(10px);
+    background:rgba(250,247,242,.82);border-bottom:1px solid var(--line);}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{display:flex;align-items:baseline;gap:.55rem;font-weight:600;letter-spacing:-.01em}
+  .brand .dot{width:7px;height:7px;border-radius:50%;background:var(--cardinal);align-self:center}
+  .brand small{font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--slate-2);font-weight:400}
+  .nav-links{display:flex;align-items:center;gap:1.6rem;font-size:.92rem}
+  .nav-links a{color:var(--slate);transition:color .2s}
+  .nav-links a:hover{color:var(--ink)}
+  .nav-cta{border:1px solid var(--ink);border-radius:999px;padding:.4rem .95rem;
+    font-size:.85rem;color:var(--ink);transition:.2s}
+  .nav-cta:hover{background:var(--ink);color:var(--paper)}
+  @media(max-width:720px){.nav-links a:not(.nav-cta){display:none}}
+
+  /* ---------- HERO ---------- */
+  .hero{padding:clamp(42px,6vw,74px) 0 clamp(26px,3vw,38px);border-bottom:1px solid var(--line)}
+  .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--cardinal);font-weight:500;
+    display:inline-flex;align-items:center;gap:.6em}
+  .eyebrow::before{content:"";width:22px;height:1px;background:var(--cardinal);display:inline-block}
+  .hero h1{font-family:"Fraunces",Georgia,serif;font-weight:480;
+    font-size:clamp(2.1rem,4.8vw,3.6rem);line-height:1.04;letter-spacing:-.022em;
+    margin:.7rem 0 0;max-width:19ch;text-wrap:balance}
+  .hero h1 em{font-style:italic;color:var(--cardinal)}
+  .lede{margin-top:1.3rem;font-size:clamp(1.02rem,1.5vw,1.16rem);color:var(--slate);max-width:56ch}
+  .facts{display:flex;flex-wrap:wrap;gap:.5rem 1.9rem;font-family:"IBM Plex Mono",monospace;
+    font-size:.73rem;color:var(--slate-2);border-top:1px solid var(--line);
+    margin-top:1.7rem;padding-top:1.1rem}
+  .facts b{color:var(--slate);font-weight:500}
+
+  /* ---------- OS SWITCHER ---------- */
+  .osbar{position:sticky;top:64px;z-index:50;background:rgba(250,247,242,.94);
+    backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid var(--line)}
+  .osbar-in{max-width:var(--maxw);margin:0 auto;padding:.55rem 28px;display:flex;
+    align-items:center;gap:.9rem;flex-wrap:wrap}
+  .osbar span.lab{font-family:"IBM Plex Mono",monospace;font-size:.67rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--slate-2)}
+  .ostabs{display:flex;gap:.25rem;background:var(--paper-2);padding:.2rem;border-radius:999px}
+  .ostabs button{font:inherit;font-size:.83rem;font-weight:500;border:0;background:none;
+    color:var(--slate);padding:.3rem .95rem;border-radius:999px;cursor:pointer;line-height:1.5}
+  .ostabs button[aria-selected="true"]{background:var(--ink);color:var(--paper)}
+  .ostabs button:hover{color:var(--ink)}
+  .ostabs button[aria-selected="true"]:hover{color:var(--paper)}
+
+  /* ---------- MAIN / STEPS ---------- */
+  main{max-width:var(--maxw);margin:0 auto;padding:clamp(30px,4vw,48px) 28px clamp(60px,8vw,90px)}
+  main > *, .step > *{max-width:74ch}
+  main > .scroll, .step > .scroll, .step > figure, .step > .clients{max-width:none}
+  .step{position:relative;padding-left:3.7rem;margin-bottom:3.6rem}
+  .step::before{content:"";position:absolute;left:1.22rem;top:2.6rem;bottom:-3.6rem;
+    width:1px;background:var(--line)}
+  .step:last-of-type::before{display:none}
+  .step > .num{position:absolute;left:0;top:.05rem;width:2.5rem;height:2.5rem;border-radius:50%;
+    background:var(--cardinal);color:#fff;display:grid;place-items:center;
+    font-family:"Fraunces",serif;font-weight:500;font-size:1.1rem;
+    box-shadow:0 0 0 5px var(--paper)}
+  .step h2{font-family:"Fraunces",Georgia,serif;font-weight:500;
+    font-size:clamp(1.5rem,3vw,2.1rem);line-height:1.1;letter-spacing:-.02em;
+    margin:.2rem 0 .3rem;scroll-margin-top:8rem;text-wrap:balance}
+  .step .sub{color:var(--slate-2);font-size:.95rem;margin:0 0 1.3rem}
+  @media(max-width:620px){
+    .step{padding-left:0}.step::before{display:none}
+    .step > .num{position:static;margin-bottom:.8rem}
+  }
+  h3{font-family:"Fraunces",Georgia,serif;font-weight:500;font-size:1.22rem;
+    margin:2rem 0 .6rem;letter-spacing:-.012em}
+  h4{font-size:.95rem;font-weight:600;margin:1.3rem 0 .45rem;color:var(--slate)}
+  p{margin:0 0 1rem}
+  ul,ol{margin:0 0 1.1rem;padding-left:1.3rem}
+  li{margin-bottom:.42rem}
+  li::marker{color:var(--cardinal)}
+  main a:not(.nav-cta){color:var(--cardinal);border-bottom:1px solid rgba(200,16,46,.3);
+    transition:border-color .2s}
+  main a:not(.nav-cta):hover{border-color:var(--cardinal)}
+  strong{font-weight:600}
+  hr{border:0;border-top:1px solid var(--line);margin:2.6rem 0;max-width:none}
+  kbd{font-family:"IBM Plex Mono",monospace;font-size:.78em;background:var(--surface);
+    border:1px solid var(--line);border-bottom-width:2px;border-radius:4px;padding:.06em .35em}
+
+  /* ---------- CODE ---------- */
+  code{font-family:"IBM Plex Mono",monospace;font-size:.83em;color:var(--cardinal);
+    font-weight:500;word-break:break-word}
+  .block{position:relative;margin:0 0 1.25rem;max-width:none}
+  .block pre{background:var(--ink);color:var(--on-dk);border-radius:10px;
+    padding:1rem 1.15rem;overflow-x:auto;margin:0;line-height:1.6}
+  .block pre code{color:inherit;font-size:.79rem;white-space:pre;font-weight:400}
+  .block .cap{display:flex;justify-content:space-between;align-items:center;gap:1rem;
+    font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--slate-2);margin-bottom:.4rem}
+  .copy{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.64rem;letter-spacing:.1em;
+    text-transform:uppercase;background:transparent;border:1px solid var(--line);
+    color:var(--slate);padding:.2rem .6rem;border-radius:999px;cursor:pointer;
+    white-space:nowrap;transition:.2s}
+  .copy:hover{border-color:var(--cardinal);color:var(--cardinal)}
+  .copy.done{background:var(--cardinal);border-color:var(--cardinal);color:#fff}
+  .cmt{color:var(--muted-dk)}
+  .ok{color:var(--gold)}
+
+  /* ---------- CALLOUTS ---------- */
+  .box{border:1px solid var(--line);border-left:3px solid var(--slate-2);border-radius:var(--r);
+    padding:1rem 1.2rem;margin:0 0 1.4rem;background:var(--surface);font-size:.97rem}
+  .box > *:last-child{margin-bottom:0}
+  .box .t{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:1rem;
+    margin:0 0 .4rem;display:block;letter-spacing:-.01em}
+  .box.stop{border-left-color:var(--cardinal);background:var(--stop-bg);border-color:var(--stop-line)}
+  .box.stop .t{color:var(--cardinal-deep)}
+  .box.note{border-left-color:var(--gold);background:var(--note-bg);border-color:var(--note-line)}
+  .box.note .t{color:#8A6410}
+  .box.go{border-left-color:var(--go);background:var(--go-bg);border-color:var(--go-line)}
+  .box.go .t{color:var(--go)}
+
+  /* ---------- TABLES ---------- */
+  .scroll{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);margin:0 0 1.5rem}
+  table{border-collapse:collapse;width:100%;font-size:.87rem;background:var(--surface)}
+  th,td{padding:.62rem .85rem;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:var(--paper-2);font-family:"IBM Plex Mono",monospace;font-weight:500;
+    font-size:.67rem;letter-spacing:.1em;text-transform:uppercase;color:var(--slate);white-space:nowrap}
+  tbody tr:last-child td{border-bottom:0}
+  td.c{text-align:center;font-weight:600}
+  .yes{color:var(--go)} .no{color:var(--cardinal)}
+
+  /* ---------- OS VARIANTS ---------- */
+  .os{display:none}
+  body[data-os="win"] .os.win,
+  body[data-os="mac"] .os.mac,
+  body[data-os="linux"] .os.linux{display:block}
+
+  /* ---------- CLIENT CARDS ---------- */
+  .clients{display:grid;gap:14px;grid-template-columns:1fr;margin-bottom:1.6rem}
+  @media(min-width:640px){.clients{grid-template-columns:1fr 1fr}}
+  .client{border:1px solid var(--line);border-radius:var(--r);background:var(--surface);
+    padding:20px 22px;transition:.2s}
+  .client:hover{border-color:var(--slate-2);transform:translateY(-2px)}
+  .client h4{margin:0 0 .3rem;font-family:"Fraunces",Georgia,serif;font-size:1.08rem;
+    font-weight:500;color:var(--ink);letter-spacing:-.01em}
+  .client .verdict{font-family:"IBM Plex Mono",monospace;font-size:.62rem;letter-spacing:.12em;
+    text-transform:uppercase;padding:.18rem .55rem;border-radius:5px;display:inline-block;
+    margin-bottom:.6rem;font-weight:500}
+  .v-go{background:var(--go);color:#fff}
+  .v-warn{background:var(--gold);color:var(--ink)}
+  .client p{font-size:.9rem;margin:0;color:var(--slate)}
+
+  /* ---------- FIGURES ---------- */
+  figure{margin:0 0 1.5rem;max-width:none}
+  figure svg{width:100%;height:auto;display:block;border:1px solid var(--line);
+    border-radius:var(--r);background:var(--surface)}
+  figcaption{font-family:"Fraunces",Georgia,serif;font-style:italic;font-size:.9rem;
+    color:var(--slate);margin-top:.6rem}
+
+  /* ---------- FOOTER (matches the home page) ---------- */
+  footer{background:var(--ink);color:var(--on-dk);padding:clamp(48px,6vw,72px) 0 36px;margin-top:2rem}
+  footer .eyebrow{color:var(--gold)}
+  footer .eyebrow::before{background:var(--gold)}
+  footer h2{font-family:"Fraunces",Georgia,serif;font-weight:500;
+    font-size:clamp(1.6rem,3.4vw,2.4rem);letter-spacing:-.02em;margin:.7rem 0 0;
+    color:#fff;max-width:20ch;line-height:1.08}
+  footer a{color:var(--on-dk);border-bottom:1px solid transparent;transition:.2s}
+  footer a:hover{color:var(--gold)}
+  footer :focus-visible{outline-color:var(--gold)}
+  .foot-note{margin-top:1.5rem;color:var(--muted-dk);font-size:.94rem;max-width:64ch}
+  .colophon{margin-top:40px;padding-top:22px;border-top:1px solid var(--line-dk);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
+    font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--muted-dk)}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="/"><span class="dot"></span>Adisak&nbsp;Sukul <small>· ISU CS</small></a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="/#builds">Builds</a>
+      <a href="/#teaching">Teaching</a>
+      <a href="/#research">Research</a>
+      <a class="nav-cta" href="mailto:adisak@iastate.edu">Email</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Guide for faculty &amp; students</span>
+    <h1>Using ISU's <em>Azure AI Foundry</em> models</h1>
+    <p class="lede">Sign in once with your ISU account, then use the university's LLM deployments
+    from the terminal, from Python, and from the coding tools you already use — VS Code, Codex,
+    OpenCode, AnythingLLM and more.</p>
+    <div class="facts">
+      <span><b>Time</b> about 15 minutes</span>
+      <span><b>Cost</b> free with your ISU account</span>
+      <span><b>Works on</b> Windows, macOS, Linux</span>
+      <span><b>Verified</b> 19 Aug 2026</span>
+    </div>
+  </div>
+</section>
+
+<div class="osbar">
+  <div class="osbar-in">
+    <span class="lab">Show commands for</span>
+    <div class="ostabs" role="tablist" aria-label="Operating system">
+      <button role="tab" data-os="win" aria-selected="true">Windows</button>
+      <button role="tab" data-os="mac" aria-selected="false">macOS</button>
+      <button role="tab" data-os="linux" aria-selected="false">Linux</button>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+
+<div class="box note">
+  <span class="t">What you're connecting to</span>
+  <p>ISU runs a set of large language models on Microsoft's Azure AI Foundry. You reach them at a
+  normal HTTPS endpoint that speaks the <strong>OpenAI API format</strong> — so most tools that work
+  with OpenAI work here, once you point them at ISU's address.</p>
+  <p style="margin-bottom:0"><strong>The one thing that's different:</strong> there is no permanent
+  API key. You sign in with your ISU account and receive a <em>token</em> that expires after about an
+  hour. Step 8 explains how to live with that.</p>
+</div>
+
+<h3 style="margin-top:2rem">The models you can use</h3>
+<div class="scroll">
+<table>
+  <thead><tr><th>Model name (type this exactly)</th><th class="c">Text</th><th class="c">Tools</th><th class="c">Images in</th><th>Use it for</th></tr></thead>
+  <tbody>
+    <tr><td><code>Llama-4-Maverick-17B-128E-Instruct-FP8</code></td><td class="c yes">Yes</td><td class="c yes">Yes</td><td class="c yes">Yes</td><td>The best all-rounder. Start here.</td></tr>
+    <tr><td><code>Llama-4-Scout-17B-16E-Instruct</code></td><td class="c yes">Yes</td><td class="c no">No</td><td class="c yes">Yes</td><td>Images and text. <strong>Tool calling is broken</strong> — see below.</td></tr>
+    <tr><td><code>gpt-oss-120b</code></td><td class="c yes">Yes</td><td class="c yes">Yes</td><td class="c no">No</td><td>Reasoning tasks. Needs a high <code>max_tokens</code>.</td></tr>
+    <tr><td><code>Phi-4-mini-instruct</code></td><td class="c yes">Yes</td><td class="c yes">Yes</td><td class="c no">No</td><td>A small, fast model. Good for comparisons.</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="box stop">
+  <span class="t">Two traps that waste everyone's afternoon</span>
+  <p><strong>1. <code>Llama-4-Scout</code> cannot call tools.</strong> Ask it to use a function and it
+  returns an empty response with no error at all. If you are building an agent, use
+  <code>Llama-4-Maverick</code> or <code>gpt-oss-120b</code> instead.</p>
+  <p style="margin-bottom:0"><strong>2. <code>gpt-oss-120b</code> returns an empty answer if
+  <code>max_tokens</code> is small.</strong> It thinks privately before it writes, and that thinking
+  consumes your token budget. At <code>max_tokens=32</code> you get an empty string and no error. Always
+  give it <strong>at least 512</strong>.</p>
+</div>
+
+<div class="box note">
+  <span class="t">Not available yet</span>
+  <p style="margin-bottom:0">There is currently <strong>no embedding model</strong> and
+  <strong>no speech/audio model</strong> on this endpoint. If your course needs retrieval-augmented
+  generation (RAG) or speech recognition, you will need another source for those pieces for now —
+  ITS has been asked to add them.</p>
+</div>
+
+<hr>
+
+<!-- ============================ STEP 1 ============================ -->
+<section class="step" id="step1">
+  <div class="num">1</div>
+  <h2>Install the Azure CLI</h2>
+  <p class="sub">A small command-line program that handles the ISU sign-in for you.</p>
+
+  <div class="os win">
+    <p>Open <strong>PowerShell</strong> (press <kbd>Win</kbd>, type <em>PowerShell</em>, press Enter) and run:</p>
+    <div class="block">
+      <div class="cap"><span>PowerShell</span><button class="copy">Copy</button></div>
+<pre><code>winget install --exact --id Microsoft.AzureCLI</code></pre>
+    </div>
+    <p>If <code>winget</code> isn't available, download and run the installer instead:</p>
+    <div class="block">
+      <div class="cap"><span>PowerShell &mdash; alternative</span><button class="copy">Copy</button></div>
+<pre><code>Invoke-WebRequest -Uri https://aka.ms/installazurecliwindowsx64 -OutFile .\AzureCLI.msi
+Start-Process msiexec.exe -Wait -ArgumentList '/I', '.\AzureCLI.msi', '/quiet'
+Remove-Item .\AzureCLI.msi</code></pre>
+    </div>
+    <div class="box stop">
+      <span class="t">Close PowerShell and open it again</span>
+      <p style="margin-bottom:0">This step catches almost everyone. The installer adds <code>az</code>
+      to your system path, but any window that was already open still has the old path and will say
+      <code>'az' is not recognized</code>. <strong>Close every PowerShell window and open a fresh
+      one.</strong> You do not need to reinstall anything.</p>
+    </div>
+  </div>
+
+  <div class="os mac">
+    <p>Open <strong>Terminal</strong> (press <kbd>&#8984;</kbd><kbd>Space</kbd>, type <em>Terminal</em>, press Enter).
+    If you don't already have Homebrew, install it first:</p>
+    <div class="block">
+      <div class="cap"><span>Terminal &mdash; only if you lack Homebrew</span><button class="copy">Copy</button></div>
+<pre><code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code></pre>
+    </div>
+    <p>Then install the Azure CLI:</p>
+    <div class="block">
+      <div class="cap"><span>Terminal</span><button class="copy">Copy</button></div>
+<pre><code>brew update &amp;&amp; brew install azure-cli</code></pre>
+    </div>
+    <div class="box note">
+      <span class="t">If az breaks after a Homebrew upgrade</span>
+      <p style="margin-bottom:0">Homebrew's build of <code>az</code> relies on a separately installed
+      Python, so an unrelated <code>brew upgrade</code> can break it with
+      <code>Unable to find Python or installed packages</code>. The fix:
+      <code>brew install python@3.10 &amp;&amp; brew link --overwrite python@3.10</code></p>
+    </div>
+  </div>
+
+  <div class="os linux">
+    <p>On <strong>Ubuntu or Debian</strong>, one command does everything:</p>
+    <div class="block">
+      <div class="cap"><span>Ubuntu / Debian</span><button class="copy">Copy</button></div>
+<pre><code>curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash</code></pre>
+    </div>
+    <p>On <strong>Fedora, RHEL or CentOS Stream</strong>:</p>
+    <div class="block">
+      <div class="cap"><span>Fedora / RHEL</span><button class="copy">Copy</button></div>
+<pre><code>sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+sudo dnf install -y https://packages.microsoft.com/config/rhel/9.0/packages-microsoft-prod.rpm
+sudo dnf install -y azure-cli</code></pre>
+    </div>
+    <div class="box note">
+      <span class="t">Unsupported distribution?</span>
+      <p style="margin-bottom:0">Mint, Pop!_OS and newer Ubuntu releases sometimes report a codename
+      Microsoft's repository doesn't recognise. Set it manually before installing:
+      <code>AZ_REPO=jammy</code> for Ubuntu-based systems, or <code>AZ_REPO=bookworm</code> for
+      Debian-based ones.</p>
+    </div>
+  </div>
+
+  <h3>Check it worked</h3>
+  <div class="block">
+    <div class="cap"><span>Any system</span><button class="copy">Copy</button></div>
+<pre><code>az version</code></pre>
+  </div>
+  <p>You should see a version number, something like <code>2.89.1</code>. If you instead see
+  <em>command not found</em> or <em>not recognized</em>, close the terminal, open a new one, and try again.</p>
+</section>
+
+<!-- ============================ STEP 2 ============================ -->
+<section class="step" id="step2">
+  <div class="num">2</div>
+  <h2>Sign in with your ISU account</h2>
+  <p class="sub">This opens a browser window. Use your full ISU email and approve the usual two-factor prompt.</p>
+
+  <div class="block">
+    <div class="cap"><span><span class="os win">PowerShell</span><span class="os mac">Terminal</span><span class="os linux">Terminal</span></span><button class="copy">Copy</button></div>
+<pre><code>az login --tenant 0347d89a-0174-4dd3-adeb-3339c89c35f5 --allow-no-subscriptions</code></pre>
+  </div>
+
+  <p>That long number is Iowa State's tenant ID. Naming it explicitly matters if you have ever signed
+  into Azure with a personal Microsoft account or with another university — without it, the CLI may
+  quietly log you in as the wrong identity and nothing will work.</p>
+
+  <p><code>--allow-no-subscriptions</code> matters too: most students are granted access to the AI
+  models but not to an Azure subscription. Without this flag the CLI can refuse to finish with
+  <em>No subscriptions found</em>, even though your access is perfectly fine.</p>
+
+  <h3>What success looks like</h3>
+  <div class="block term">
+    <div class="cap"><span>Real output</span></div>
+<pre><code><span class="cmt">Select the account you want to log in with...</span>
+
+[Tenant and subscription selection]
+
+No     Subscription name    Tenant
+-----  -------------------  ---------------------
+[1] *  u-00003-ai-dev-team  Iowa State University
+
+<span class="cmt">The default is marked with an *.</span>
+Select a subscription and tenant (Type a number or Enter for no changes):</code></pre>
+  </div>
+  <p>Press <kbd>Enter</kbd> to accept the default. If you see no subscription listed at all, that is
+  normal for students — carry on to step 3.</p>
+
+  <div class="box stop">
+    <span class="t">If sign-in fails on a managed laptop</span>
+    <p>On some ISU-managed Windows machines the built-in account picker fails with
+    <em>User cancelled the Accounts Control Operation</em>. Turn it off and use the browser instead:</p>
+    <div class="block">
+      <div class="cap"><span>PowerShell</span><button class="copy">Copy</button></div>
+<pre><code>az account clear
+az config set core.enable_broker_on_windows=false
+az login --tenant 0347d89a-0174-4dd3-adeb-3339c89c35f5 --allow-no-subscriptions</code></pre>
+    </div>
+    <p style="margin-bottom:0">If you're on a machine with no browser at all — an SSH session, a
+    remote server — add <code>--use-device-code</code> and it will give you a short code to type
+    into <a href="https://microsoft.com/devicelogin">microsoft.com/devicelogin</a> on your phone.</p>
+  </div>
+</section>
+
+<!-- ============================ STEP 3 ============================ -->
+<section class="step" id="step3">
+  <div class="num">3</div>
+  <h2>Get your access token</h2>
+  <p class="sub">This is the string you'll paste wherever a tool asks for an "API key".</p>
+
+  <div class="os win">
+    <div class="block">
+      <div class="cap"><span>PowerShell</span><button class="copy">Copy</button></div>
+<pre><code>$env:FOUNDRY_TOKEN = (az account get-access-token `
+    --resource https://ai.azure.com `
+    --query accessToken -o tsv).Trim()
+
+<span class="cmt"># Copy it to the clipboard, ready to paste into any app:</span>
+Set-Clipboard $env:FOUNDRY_TOKEN
+Write-Host "Token copied. Length: $($env:FOUNDRY_TOKEN.Length)"</code></pre>
+    </div>
+  </div>
+  <div class="os mac">
+    <div class="block">
+      <div class="cap"><span>Terminal</span><button class="copy">Copy</button></div>
+<pre><code>export FOUNDRY_TOKEN=$(az account get-access-token \
+    --resource https://ai.azure.com \
+    --query accessToken -o tsv)
+
+<span class="cmt"># Copy it to the clipboard, ready to paste into any app:</span>
+echo -n "$FOUNDRY_TOKEN" | pbcopy
+echo "Token copied. Length: ${#FOUNDRY_TOKEN}"</code></pre>
+    </div>
+  </div>
+  <div class="os linux">
+    <div class="block">
+      <div class="cap"><span>Terminal</span><button class="copy">Copy</button></div>
+<pre><code>export FOUNDRY_TOKEN=$(az account get-access-token \
+    --resource https://ai.azure.com \
+    --query accessToken -o tsv)
+
+<span class="cmt"># Copy it to the clipboard (install xclip first if needed):</span>
+echo -n "$FOUNDRY_TOKEN" | xclip -selection clipboard
+echo "Token copied. Length: ${#FOUNDRY_TOKEN}"</code></pre>
+    </div>
+  </div>
+
+  <p>The token is a long string of letters and numbers, usually well over a thousand characters. That
+  is normal — it is a signed document describing who you are, not a password.</p>
+
+  <div class="box stop">
+    <span class="t">Treat this like a password anyway</span>
+    <p style="margin-bottom:0">Your token carries your full ISU identity for about an hour. Do not
+    commit it to GitHub, paste it into a shared document, or include it in a screenshot. If you think
+    you have leaked one, run <code>az logout</code> — and remember it expires on its own shortly anyway.</p>
+  </div>
+
+  <h3>When does it expire?</h3>
+  <div class="block">
+    <div class="cap"><span>Any system</span><button class="copy">Copy</button></div>
+<pre><code>az account get-access-token --resource https://ai.azure.com --query expiresOn -o tsv</code></pre>
+  </div>
+  <p>Typically 60 to 90 minutes from now. When it expires, tools stop working and usually say something
+  unhelpful like <em>401</em> or <em>connection failed</em>. Just run the command in this step again to
+  get a fresh one. <a href="#step8">Step 8</a> shows how to make this painless.</p>
+</section>
+
+<!-- ============================ STEP 4 ============================ -->
+<section class="step" id="step4">
+  <div class="num">4</div>
+  <h2>Make your first request</h2>
+  <p class="sub">Prove the whole chain works before you configure any application.</p>
+
+  <div class="os win">
+    <div class="block">
+      <div class="cap"><span>PowerShell</span><button class="copy">Copy</button></div>
+<pre><code>$body = @{
+    model      = "Llama-4-Maverick-17B-128E-Instruct-FP8"
+    messages   = @(@{ role = "user"; content = "Name the capital of Iowa in two words." })
+    max_tokens = 256
+} | ConvertTo-Json -Depth 5
+
+$r = Invoke-RestMethod -Method Post `
+    -Uri "https://foundry-faculty-instruction.services.ai.azure.com/openai/v1/chat/completions" `
+    -Headers @{ Authorization = "Bearer $env:FOUNDRY_TOKEN" } `
+    -ContentType "application/json" -Body $body
+
+$r.choices[0].message.content</code></pre>
+    </div>
+  </div>
+  <div class="os mac">
+    <div class="block">
+      <div class="cap"><span>Terminal</span><button class="copy">Copy</button></div>
+<pre><code>curl -s https://foundry-faculty-instruction.services.ai.azure.com/openai/v1/chat/completions \
+  -H "Authorization: Bearer $FOUNDRY_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "Llama-4-Maverick-17B-128E-Instruct-FP8",
+    "messages": [{"role": "user", "content": "Name the capital of Iowa in two words."}],
+    "max_tokens": 256
+  }'</code></pre>
+    </div>
+  </div>
+  <div class="os linux">
+    <div class="block">
+      <div class="cap"><span>Terminal</span><button class="copy">Copy</button></div>
+<pre><code>curl -s https://foundry-faculty-instruction.services.ai.azure.com/openai/v1/chat/completions \
+  -H "Authorization: Bearer $FOUNDRY_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "Llama-4-Maverick-17B-128E-Instruct-FP8",
+    "messages": [{"role": "user", "content": "Name the capital of Iowa in two words."}],
+    "max_tokens": 256
+  }'</code></pre>
+    </div>
+  </div>
+
+  <h3>What you should see</h3>
+  <div class="block term">
+    <div class="cap"><span>Real response, trimmed</span></div>
+<pre><code>{
+  "choices": [{
+    "message": { "role": "assistant", "content": <span class="ok">"Des Moines"</span> },
+    "finish_reason": "stop"
+  }],
+  "usage": { "prompt_tokens": 19, "completion_tokens": 3, "total_tokens": 22 }
+}</code></pre>
+  </div>
+  <div class="box go">
+    <span class="t">That's the hard part done</span>
+    <p style="margin-bottom:0">If you got an answer back, everything else on this page is just
+    telling other programs the same two facts: the <strong>address</strong> and the
+    <strong>token</strong>. If you got an error instead, jump to
+    <a href="#trouble">Troubleshooting</a>.</p>
+  </div>
+</section>
+
+<!-- ============================ STEP 5 ============================ -->
+<section class="step" id="step5">
+  <div class="num">5</div>
+  <h2>Look around the Azure dashboard</h2>
+  <p class="sub">Optional, but useful for instructors who want to see what's deployed and how much is being used.</p>
+
+  <p>There are two different web consoles, and knowing which is which saves a lot of confusion:</p>
+  <ul>
+    <li><strong><a href="https://ai.azure.com">ai.azure.com</a></strong> — the <em>Foundry portal</em>.
+    Chat with the models in a browser, and see which ones are deployed. This is the one most people want.</li>
+    <li><strong><a href="https://portal.azure.com">portal.azure.com</a></strong> — the <em>Azure portal</em>.
+    Billing, usage metrics, quota and permissions. Mostly of interest to instructors and ITS.</li>
+  </ul>
+
+  <h3>The Foundry portal: chatting without installing anything</h3>
+  <p>Sign in with your ISU account, pick the <code>foundry-faculty-instruction</code> resource, then open
+  <strong>Playgrounds</strong>. This is the fastest way to let students try a model on day one — no
+  terminal, no token, no setup at all.</p>
+
+  <figure>
+    <svg viewBox="0 0 760 340" role="img" aria-label="Diagram of the Foundry portal showing left navigation with Playgrounds and Deployments, and a list of four deployed models in the main area">
+      <style>
+        .win-bg{fill:var(--surface);} .chrome{fill:var(--paper-2);} .ln{stroke:var(--line);stroke-width:1;fill:none;}
+        .side{fill:var(--paper-2);} .txt{font-family:"IBM Plex Sans",sans-serif;font-size:12px;fill:var(--slate);}
+        .txt-b{font-family:"Fraunces",serif;font-size:13px;font-weight:600;fill:var(--ink);}
+        .txt-s{font-family:"IBM Plex Mono",monospace;font-size:10px;fill:var(--slate-2);}
+        .pill{fill:var(--go-bg);stroke:var(--go-line);stroke-width:1;}
+        .pill-t{font-family:"IBM Plex Sans",sans-serif;font-size:11.5px;font-weight:600;fill:var(--go);}
+        .hl{fill:none;stroke:var(--go);stroke-width:2;stroke-dasharray:5 3;}
+        .dot{fill:var(--slate-2);}
+      </style>
+      <rect class="win-bg" x="1" y="1" width="758" height="338" rx="7"/>
+      <rect class="chrome" x="1" y="1" width="758" height="30" rx="7"/>
+      <rect class="chrome" x="1" y="20" width="758" height="11"/>
+      <circle class="dot" cx="18" cy="16" r="4"/><circle class="dot" cx="32" cy="16" r="4"/><circle class="dot" cx="46" cy="16" r="4"/>
+      <rect x="66" y="8" width="300" height="16" rx="8" fill="var(--paper)" stroke="var(--line)"/>
+      <text class="txt-s" x="76" y="20">ai.azure.com</text>
+      <line class="ln" x1="1" y1="31" x2="759" y2="31"/>
+      <rect class="side" x="1" y="31" width="170" height="308"/>
+      <line class="ln" x1="171" y1="31" x2="171" y2="339"/>
+      <text class="txt-b" x="18" y="56">foundry-faculty-</text>
+      <text class="txt-b" x="18" y="72">instruction</text>
+      <text class="txt" x="18" y="104">Overview</text>
+      <rect class="pill" x="10" y="114" width="150" height="24" rx="5"/>
+      <text class="pill-t" x="18" y="131">Playgrounds</text>
+      <rect class="pill" x="10" y="146" width="150" height="24" rx="5"/>
+      <text class="pill-t" x="18" y="163">Deployments</text>
+      <text class="txt" x="18" y="192">Model catalog</text>
+      <text class="txt" x="18" y="216">Fine-tuning</text>
+      <text class="txt" x="18" y="240">Safety + security</text>
+      <text class="txt-b" x="196" y="58">Deployments</text>
+      <text class="txt-s" x="196" y="78">NAME</text>
+      <text class="txt-s" x="560" y="78">STATUS</text>
+      <line class="ln" x1="196" y1="86" x2="736" y2="86"/>
+      <text class="txt" x="196" y="106">Llama-4-Maverick-17B-128E-Instruct-FP8</text>
+      <text class="txt" x="560" y="106" fill="var(--go)">Succeeded</text>
+      <line class="ln" x1="196" y1="118" x2="736" y2="118"/>
+      <text class="txt" x="196" y="138">Llama-4-Scout-17B-16E-Instruct</text>
+      <text class="txt" x="560" y="138" fill="var(--go)">Succeeded</text>
+      <line class="ln" x1="196" y1="150" x2="736" y2="150"/>
+      <text class="txt" x="196" y="170">gpt-oss-120b</text>
+      <text class="txt" x="560" y="170" fill="var(--go)">Succeeded</text>
+      <line class="ln" x1="196" y1="182" x2="736" y2="182"/>
+      <text class="txt" x="196" y="202">Phi-4-mini-instruct</text>
+      <text class="txt" x="560" y="202" fill="var(--go)">Succeeded</text>
+      <rect class="hl" x="188" y="88" width="556" height="126" rx="6"/>
+      <text class="txt-s" x="196" y="242" fill="var(--go)">copy names from here - they must match exactly</text>
+    </svg>
+    <figcaption>Illustration of the Foundry portal. <strong>Deployments</strong> is the authoritative
+    list of what you can actually call, and the names shown there are exactly what you type as
+    <code>model</code> in your code.</figcaption>
+  </figure>
+
+  <div class="box note">
+    <span class="t">Why you can't get this list from the API</span>
+    <p style="margin-bottom:0">You might expect <code>GET /openai/v1/models</code> to tell you what's
+    deployed. On this endpoint it doesn't — it returns Microsoft's entire catalogue of
+    <strong>403 models</strong>, almost none of which are available to you. Trust the
+    <strong>Deployments</strong> page, or the table at the top of this guide.</p>
+  </div>
+
+  <h3>The Azure portal: usage and quota</h3>
+  <p>Instructors who want to see how much a class is consuming will find it under the resource's
+  <strong>Metrics</strong> blade. Ask ITS for the <em>Cognitive Services Usages Reader</em> and
+  <em>Cost Management Reader</em> roles if these pages are empty for you.</p>
+
+  <figure>
+    <svg viewBox="0 0 760 300" role="img" aria-label="Diagram of the Azure portal Metrics blade showing a token usage chart rising through the day">
+      <rect class="win-bg" x="1" y="1" width="758" height="298" rx="7"/>
+      <rect class="chrome" x="1" y="1" width="758" height="30" rx="7"/>
+      <rect class="chrome" x="1" y="20" width="758" height="11"/>
+      <circle class="dot" cx="18" cy="16" r="4"/><circle class="dot" cx="32" cy="16" r="4"/><circle class="dot" cx="46" cy="16" r="4"/>
+      <rect x="66" y="8" width="300" height="16" rx="8" fill="var(--paper)" stroke="var(--line)"/>
+      <text class="txt-s" x="76" y="20">portal.azure.com</text>
+      <line class="ln" x1="1" y1="31" x2="759" y2="31"/>
+      <rect class="side" x="1" y="31" width="170" height="268"/>
+      <line class="ln" x1="171" y1="31" x2="171" y2="299"/>
+      <text class="txt-b" x="18" y="56">Azure AI Foundry</text>
+      <text class="txt" x="18" y="84">Overview</text>
+      <text class="txt" x="18" y="108">Access control (IAM)</text>
+      <rect class="pill" x="10" y="118" width="150" height="24" rx="5"/>
+      <text class="pill-t" x="18" y="135">Metrics</text>
+      <text class="txt" x="18" y="164">Diagnostic settings</text>
+      <text class="txt" x="18" y="188">Cost analysis</text>
+      <text class="txt" x="18" y="212">Quotas</text>
+      <text class="txt-b" x="196" y="58">Metrics : Processed Inference Tokens</text>
+      <line class="ln" x1="200" y1="250" x2="736" y2="250"/>
+      <line class="ln" x1="200" y1="80" x2="200" y2="250"/>
+      <polyline fill="none" stroke="var(--go)" stroke-width="2.5"
+        points="200,240 240,232 280,210 320,215 360,160 400,148 440,175 480,120 520,132 560,96 600,140 640,110 680,124 720,100"/>
+      <text class="txt-s" x="206" y="268">9am</text>
+      <text class="txt-s" x="440" y="268">12pm</text>
+      <text class="txt-s" x="690" y="268">3pm</text>
+      <text class="txt-s" x="206" y="94">tokens</text>
+    </svg>
+    <figcaption>Illustration of the Azure portal. <strong>Metrics</strong> shows token consumption over
+    time — useful for spotting the spike when a whole lab section runs the same cell at once.</figcaption>
+  </figure>
+</section>
+
+<!-- ============================ STEP 6 ============================ -->
+<section class="step" id="step6">
+  <div class="num">6</div>
+  <h2>Use it from Python</h2>
+  <p class="sub">The recommended approach for coursework — and the only one that never expires mid-session.</p>
+
+  <div class="block">
+    <div class="cap"><span>Install</span><button class="copy">Copy</button></div>
+<pre><code>pip install "openai&gt;=1.106.0" azure-identity</code></pre>
+  </div>
+
+  <p>Here is the pattern to teach. The important detail is subtle but decisive: <code>api_key</code> is
+  given a <strong>function</strong>, not a string. The OpenAI library calls that function before every
+  request, so a fresh token is fetched automatically and <strong>your program never dies of an expired
+  token</strong>.</p>
+
+  <div class="block">
+    <div class="cap"><span>foundry.py</span><button class="copy">Copy</button></div>
+<pre><code>from openai import OpenAI
+from azure.identity import AzureCliCredential, get_bearer_token_provider
+
+<span class="cmt"># Reuses the `az login` you already did. Refreshes silently, forever.</span>
+token_provider = get_bearer_token_provider(
+    AzureCliCredential(),
+    "https://ai.azure.com/.default",
+)
+
+client = OpenAI(
+    base_url="https://foundry-faculty-instruction.services.ai.azure.com/openai/v1/",
+    api_key=token_provider,   <span class="cmt"># a function, not a string. This is the whole trick.</span>
+    max_retries=5,
+    timeout=120.0,
+)
+
+response = client.chat.completions.create(
+    model="Llama-4-Maverick-17B-128E-Instruct-FP8",
+    messages=[{"role": "user", "content": "Explain a hash table in two sentences."}],
+    max_tokens=512,
+)
+
+print(response.choices[0].message.content)</code></pre>
+  </div>
+
+  <div class="box note">
+    <span class="t">No Azure CLI? There's a pure-Python route</span>
+    <p>If a student can't install the CLI — a locked-down laptop, a lab machine, a Chromebook with a
+    Linux container — <code>pip install azure-identity</code> is enough on its own. Swap the credential
+    and it prints a short code to enter at
+    <a href="https://microsoft.com/devicelogin">microsoft.com/devicelogin</a>:</p>
+    <div class="block">
+      <div class="cap"><span>No CLI required</span><button class="copy">Copy</button></div>
+<pre><code>from azure.identity import DeviceCodeCredential, TokenCachePersistenceOptions
+
+credential = DeviceCodeCredential(
+    tenant_id="0347d89a-0174-4dd3-adeb-3339c89c35f5",
+    cache_persistence_options=TokenCachePersistenceOptions(),  <span class="cmt"># sign in once, not every run</span>
+)
+token_provider = get_bearer_token_provider(credential, "https://ai.azure.com/.default")</code></pre>
+    </div>
+    <p style="margin-bottom:0">Nothing else in the program changes.</p>
+  </div>
+
+  <h3>Checking for the silent failures</h3>
+  <p>Two of the traps described at the top of this page produce no error at all. Teach students to
+  check <code>finish_reason</code>:</p>
+  <div class="block">
+    <div class="cap"><span>Worth putting in every assignment template</span><button class="copy">Copy</button></div>
+<pre><code>choice = response.choices[0]
+
+if choice.finish_reason == "length":
+    print("!! Ran out of tokens before finishing. Raise max_tokens.")
+elif choice.finish_reason == "content_filter":
+    print("!! Azure's safety filter blocked this. Rephrase the prompt.")
+elif not choice.message.content:
+    print("!! Empty answer. If this is gpt-oss-120b, raise max_tokens to 512+.")
+else:
+    print(choice.message.content)</code></pre>
+  </div>
+</section>
+
+<!-- ============================ STEP 7 ============================ -->
+<section class="step" id="step7">
+  <div class="num">7</div>
+  <h2>Connect your coding tools</h2>
+  <p class="sub">Almost every tool needs the same two values. Learn the pattern once and the rest is filling in boxes.</p>
+
+  <div class="box go">
+    <span class="t">The universal recipe</span>
+    <p>Whenever an application asks you to configure an AI provider, choose the option called
+    <strong>"OpenAI"</strong>, <strong>"OpenAI Compatible"</strong> or <strong>"Custom Endpoint"</strong>
+    — <em>never</em> the one branded "Azure OpenAI", which expects a different URL shape and will fail.
+    Then enter:</p>
+    <div class="scroll" style="margin-bottom:0">
+    <table>
+      <tbody>
+        <tr><th>Base URL</th><td><code>https://foundry-faculty-instruction.services.ai.azure.com/openai/v1</code></td></tr>
+        <tr><th>API Key</th><td>your token from <a href="#step3">step 3</a> (the whole long string)</td></tr>
+        <tr><th>Model</th><td>a name from the table at the top, e.g. <code>Llama-4-Maverick-17B-128E-Instruct-FP8</code></td></tr>
+        <tr><th>API Version</th><td><strong>leave completely empty</strong> if the app offers this field</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <div class="box stop">
+    <span class="t">Anything you paste a token into will stop working in about an hour</span>
+    <p style="margin-bottom:0">Graphical apps store the token as fixed text; they cannot refresh it.
+    When a tool suddenly returns 401 or "connection failed", the token has simply expired — redo
+    <a href="#step3">step 3</a> and paste the new one. <a href="#step8">Step 8</a> makes this a
+    one-word command. Only Python (step 6) and the two clients marked <em>self-refreshing</em> below
+    avoid this entirely.</p>
+  </div>
+
+  <h3>Which tools work</h3>
+  <div class="clients">
+    <div class="client">
+      <h4>Python / curl</h4>
+      <span class="verdict v-go">Self-refreshing</span>
+      <p>The only fully painless option. Covered in step 6.</p>
+    </div>
+    <div class="client">
+      <h4>Foundry Playground</h4>
+      <span class="verdict v-go">Self-refreshing</span>
+      <p>Browser-based, nothing to install, no token to copy. Best for day one.</p>
+    </div>
+    <div class="client">
+      <h4>VS Code</h4>
+      <span class="verdict v-warn">Token expires</span>
+      <p>Works well via Copilot's Custom Endpoint, Continue, Cline or Roo Code.</p>
+    </div>
+    <div class="client">
+      <h4>Codex CLI</h4>
+      <span class="verdict v-warn">Token expires</span>
+      <p>Works. Needs <code>wire_api = "responses"</code>, which this endpoint supports.</p>
+    </div>
+    <div class="client">
+      <h4>OpenCode</h4>
+      <span class="verdict v-warn">Token expires</span>
+      <p>Works through the generic OpenAI-compatible provider.</p>
+    </div>
+    <div class="client">
+      <h4>AnythingLLM &middot; n8n &middot; Open WebUI &middot; Jan</h4>
+      <span class="verdict v-warn">Token expires</span>
+      <p>All work with the universal recipe above.</p>
+    </div>
+  </div>
+
+  <div class="box stop">
+    <span class="t">Claude Code cannot use these models</span>
+    <p>This one is worth stating plainly because it is asked constantly. Claude Code speaks only
+    Anthropic's own protocol, so it cannot talk to Llama or gpt-oss at all — no configuration will
+    change that.</p>
+    <p style="margin-bottom:0">It <em>does</em> have excellent built-in Azure Foundry support, and it
+    would refresh tokens automatically via <code>az login</code>. It is blocked purely because ISU has
+    not deployed any Claude models. If that changes, the whole setup is three environment variables
+    (shown below). Please don't try to route it through a translation proxy — Anthropic explicitly
+    doesn't support that, and it fails in confusing ways.</p>
+  </div>
+
+  <h3>VS Code &mdash; GitHub Copilot Chat</h3>
+  <p>Open the Chat view, click the model picker, and choose <strong>Manage Models</strong> &rarr;
+  <strong>Custom Endpoint</strong>. Paste your token when prompted, then use this model definition:</p>
+  <div class="block">
+    <div class="cap"><span>VS Code &mdash; Custom Endpoint</span><button class="copy">Copy</button></div>
+<pre><code>[
+  {
+    "name": "ISU Foundry",
+    "vendor": "customendpoint",
+    "apiKey": "${input:isuFoundryToken}",
+    "apiType": "chat-completions",
+    "models": [
+      {
+        "id": "Llama-4-Maverick-17B-128E-Instruct-FP8",
+        "name": "Llama 4 Maverick (ISU)",
+        "url": "https://foundry-faculty-instruction.services.ai.azure.com/openai/v1/chat/completions",
+        "toolCalling": true,
+        "vision": true,
+        "maxInputTokens": 110000,
+        "maxOutputTokens": 16000,
+        "requestHeaders": { "Authorization": "Bearer ${apiKey}" }
+      }
+    ]
+  }
+]</code></pre>
+  </div>
+  <div class="box note">
+    <span class="t">Don't drop the requestHeaders line</span>
+    <p style="margin-bottom:0">VS Code recognises the <code>azure.com</code> address and, left to
+    itself, sends the credential as an <code>api-key</code> header. This endpoint needs
+    <code>Authorization: Bearer</code>. That single line is the difference between working and a
+    baffling 401.</p>
+  </div>
+
+  <h3>VS Code &mdash; Continue, Cline or Roo Code</h3>
+  <p>For <strong>Cline</strong> and <strong>Roo Code</strong>, open their settings and pick provider
+  <strong>OpenAI Compatible</strong>, then fill in the universal recipe. Leave any <em>Azure API
+  Version</em> box empty — filling it switches the extension to a different URL format that this
+  endpoint does not serve.</p>
+  <p>For <strong>Continue</strong>, edit <code>~/.continue/config.yaml</code>
+  (<code>%USERPROFILE%\.continue\config.yaml</code> on Windows):</p>
+  <div class="block">
+    <div class="cap"><span>config.yaml</span><button class="copy">Copy</button></div>
+<pre><code>name: isu-foundry
+version: 0.0.1
+schema: v1
+models:
+  - name: ISU Llama 4 Maverick
+    provider: openai            <span class="cmt"># 'openai', NOT 'azure'</span>
+    model: Llama-4-Maverick-17B-128E-Instruct-FP8
+    apiBase: https://foundry-faculty-instruction.services.ai.azure.com/openai/v1/
+    requestOptions:
+      headers:
+        Authorization: "Bearer PASTE_YOUR_TOKEN_HERE"
+    roles: [chat, edit, apply]
+    defaultCompletionOptions:
+      maxTokens: 4096</code></pre>
+  </div>
+
+  <h3>Codex CLI</h3>
+  <p>Edit <code>~/.codex/config.toml</code> (<code>%USERPROFILE%\.codex\config.toml</code> on Windows).
+  Codex requires the newer "responses" protocol — this endpoint supports it, which I verified directly.</p>
+  <div class="block">
+    <div class="cap"><span>config.toml</span><button class="copy">Copy</button></div>
+<pre><code>model_provider = "isu_foundry"
+model = "gpt-oss-120b"
+
+[model_providers.isu_foundry]
+name = "ISU Azure AI Foundry"
+base_url = "https://foundry-faculty-instruction.services.ai.azure.com/openai/v1"
+wire_api = "responses"          <span class="cmt"># required; "chat" is no longer accepted</span>
+env_key = "FOUNDRY_TOKEN"       <span class="cmt"># reads the variable you set in step 3</span>
+request_max_retries = 4</code></pre>
+  </div>
+  <p>Set <code>FOUNDRY_TOKEN</code> in your shell (step 3) before launching <code>codex</code>. Use
+  <code>gpt-oss-120b</code> or <code>Llama-4-Maverick-17B-128E-Instruct-FP8</code> — Codex is an agent and
+  needs tool calling, so <code>Llama-4-Scout</code> will not work.</p>
+
+  <h3>OpenCode</h3>
+  <p>Edit <code>~/.config/opencode/opencode.json</code>, or drop an <code>opencode.json</code> in your
+  project folder:</p>
+  <div class="block">
+    <div class="cap"><span>opencode.json</span><button class="copy">Copy</button></div>
+<pre><code>{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "isu-foundry": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "ISU Azure AI Foundry",
+      "options": {
+        "baseURL": "https://foundry-faculty-instruction.services.ai.azure.com/openai/v1",
+        "headers": { "Authorization": "Bearer PASTE_YOUR_TOKEN_HERE" }
+      },
+      "models": {
+        "Llama-4-Maverick-17B-128E-Instruct-FP8": {
+          "name": "Llama 4 Maverick (ISU)",
+          "limit": { "context": 131072, "output": 16384 }
+        },
+        "gpt-oss-120b": {
+          "name": "gpt-oss 120b (ISU)",
+          "limit": { "context": 131072, "output": 32768 }
+        }
+      }
+    }
+  }
+}</code></pre>
+  </div>
+
+  <h3>AnythingLLM</h3>
+  <p>Go to <strong>Settings &rarr; LLM Preference</strong> and choose <strong>Generic OpenAI</strong>
+  (not the "Azure OpenAI" option):</p>
+  <div class="block">
+    <div class="cap"><span>AnythingLLM &mdash; Generic OpenAI</span><button class="copy">Copy</button></div>
+<pre><code>Base URL              https://foundry-faculty-instruction.services.ai.azure.com/openai/v1
+API Key               &lt;your token from step 3&gt;
+Chat Model Name       Llama-4-Maverick-17B-128E-Instruct-FP8
+Token context window  131072
+Max Tokens            4096</code></pre>
+  </div>
+  <p>For the <strong>embedder</strong>, keep AnythingLLM's built-in native embedder. ISU has not
+  deployed an embedding model, so pointing the embedder at Foundry will fail.</p>
+
+  <h3>n8n</h3>
+  <p>Create an <strong>OpenAI</strong> credential (not the Azure OpenAI one) and set the Base URL field:</p>
+  <div class="block">
+    <div class="cap"><span>n8n &mdash; OpenAI credential</span><button class="copy">Copy</button></div>
+<pre><code>API Key           &lt;your token from step 3&gt;
+Base URL          https://foundry-faculty-instruction.services.ai.azure.com/openai/v1
+Organization ID   (leave blank)</code></pre>
+  </div>
+  <p>Then in the <em>OpenAI Chat Model</em> node, type the model name by hand. Note that any
+  <strong>scheduled</strong> workflow will break about an hour after you save the credential — n8n has
+  no way to refresh the token. Scheduled automation needs the gateway described at the end of this page.</p>
+
+  <h3>Open WebUI and Jan</h3>
+  <p>Both take the universal recipe. In Open WebUI, go to <strong>Admin Panel &rarr; Settings &rarr;
+  Connections</strong> and add an <strong>OpenAI</strong> connection (not Azure OpenAI). In Jan, add a
+  <strong>Custom (OpenAI-compatible)</strong> provider, then add each model by hand — Jan cannot detect
+  capabilities, so set tools and vision yourself using the table at the top of this guide.</p>
+
+  <h3>Claude Code &mdash; for reference only</h3>
+  <p>This will not work today, but here is the configuration for the moment ISU deploys Claude models,
+  so you can tell at a glance how little is involved:</p>
+  <div class="block">
+    <div class="cap"><span>Only works once Claude models are deployed</span><button class="copy">Copy</button></div>
+<pre><code>az login
+export CLAUDE_CODE_USE_FOUNDRY=1
+export ANTHROPIC_FOUNDRY_RESOURCE=foundry-faculty-instruction
+claude</code></pre>
+  </div>
+  <p>No token copying and no expiry problem — it reads your <code>az login</code> and refreshes by
+  itself. Run <code>/status</code> inside Claude Code and it will report <em>Microsoft Foundry</em> as
+  the provider.</p>
+</section>
+
+<!-- ============================ STEP 8 ============================ -->
+<section class="step" id="step8">
+  <div class="num">8</div>
+  <h2>Make refreshing the token painless</h2>
+  <p class="sub">Add this once and getting a fresh token becomes a single short word.</p>
+
+  <div class="os win">
+    <p>Open your PowerShell profile:</p>
+    <div class="block">
+      <div class="cap"><span>PowerShell</span><button class="copy">Copy</button></div>
+<pre><code>if (-not (Test-Path $PROFILE)) { New-Item -ItemType File -Path $PROFILE -Force }
+notepad $PROFILE</code></pre>
+    </div>
+    <p>Paste this at the bottom, save, then close and reopen PowerShell:</p>
+    <div class="block">
+      <div class="cap"><span>Add to your PowerShell profile</span><button class="copy">Copy</button></div>
+<pre><code>function foundry {
+    $env:FOUNDRY_TOKEN = (az account get-access-token `
+        --resource https://ai.azure.com --query accessToken -o tsv).Trim()
+    $env:OPENAI_API_KEY  = $env:FOUNDRY_TOKEN
+    $env:OPENAI_BASE_URL = "https://foundry-faculty-instruction.services.ai.azure.com/openai/v1"
+    Set-Clipboard $env:FOUNDRY_TOKEN
+    Write-Host "Fresh ISU Foundry token ready (also copied to clipboard)." -ForegroundColor Green
+}</code></pre>
+    </div>
+  </div>
+
+  <div class="os mac">
+    <p>Add this to <code>~/.zshrc</code> (the default shell on macOS), then run
+    <code>source ~/.zshrc</code>:</p>
+    <div class="block">
+      <div class="cap"><span>Add to ~/.zshrc</span><button class="copy">Copy</button></div>
+<pre><code>foundry() {
+  export FOUNDRY_TOKEN=$(az account get-access-token \
+      --resource https://ai.azure.com --query accessToken -o tsv)
+  export OPENAI_API_KEY="$FOUNDRY_TOKEN"
+  export OPENAI_BASE_URL="https://foundry-faculty-instruction.services.ai.azure.com/openai/v1"
+  echo -n "$FOUNDRY_TOKEN" | pbcopy
+  echo "Fresh ISU Foundry token ready (also copied to clipboard)."
+}</code></pre>
+    </div>
+  </div>
+
+  <div class="os linux">
+    <p>Add this to <code>~/.bashrc</code>, then run <code>source ~/.bashrc</code>:</p>
+    <div class="block">
+      <div class="cap"><span>Add to ~/.bashrc</span><button class="copy">Copy</button></div>
+<pre><code>foundry() {
+  export FOUNDRY_TOKEN=$(az account get-access-token \
+      --resource https://ai.azure.com --query accessToken -o tsv)
+  export OPENAI_API_KEY="$FOUNDRY_TOKEN"
+  export OPENAI_BASE_URL="https://foundry-faculty-instruction.services.ai.azure.com/openai/v1"
+  command -v xclip &gt;/dev/null &amp;&amp; echo -n "$FOUNDRY_TOKEN" | xclip -selection clipboard
+  echo "Fresh ISU Foundry token ready."
+}</code></pre>
+    </div>
+  </div>
+
+  <p>Now, whenever anything stops working, type <code>foundry</code> and carry on. It also sets
+  <code>OPENAI_API_KEY</code> and <code>OPENAI_BASE_URL</code>, which many command-line tools read
+  automatically — so tools launched from that terminal often need no configuration at all.</p>
+
+  <div class="box note">
+    <span class="t">You will not have to sign in again</span>
+    <p style="margin-bottom:0">The Azure CLI keeps a longer-lived credential on disk, so refreshing
+    the token is instant and silent. You typically only repeat <a href="#step2">step 2</a> every few
+    weeks.</p>
+  </div>
+</section>
+
+<!-- ============================ TROUBLESHOOTING ============================ -->
+<section class="step" id="trouble">
+  <div class="num">?</div>
+  <h2>When something goes wrong</h2>
+  <p class="sub">Nearly every problem is one of these six.</p>
+
+  <div class="scroll">
+  <table>
+    <thead><tr><th>What you see</th><th>What it means</th><th>Fix</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><code>'az' is not recognized</code><br><code>command not found: az</code></td>
+        <td>The terminal was open before you installed the CLI, so it has a stale search path.</td>
+        <td>Close every terminal window and open a new one. Do not reinstall.</td>
+      </tr>
+      <tr>
+        <td><code>401</code> or <em>connection failed</em>, after it had been working</td>
+        <td>Your token expired. This is the single most common problem.</td>
+        <td>Run <code>foundry</code> (step 8) and paste the new token.</td>
+      </tr>
+      <tr>
+        <td><code>401 Principal does not have access</code></td>
+        <td>You are signed in correctly, but your account hasn't been granted the models yet.</td>
+        <td>Wait 5 minutes if you were just added, then <code>az logout</code> and sign in again. Still failing? Contact your instructor.</td>
+      </tr>
+      <tr>
+        <td><code>404</code></td>
+        <td>The model name is wrong, or the address has <code>/v1</code> twice.</td>
+        <td>Copy the model name exactly from the table at the top. Check for <code>/openai/v1/v1/</code> in the URL — some apps add <code>/v1</code> themselves, so try ending the Base URL at <code>/openai</code>.</td>
+      </tr>
+      <tr>
+        <td><code>429</code></td>
+        <td>Too many requests at once — often a whole lab running the same cell.</td>
+        <td>Wait a few seconds and retry. In Python, <code>max_retries=5</code> handles this for you.</td>
+      </tr>
+      <tr>
+        <td>Empty answer, no error</td>
+        <td>Either <code>gpt-oss-120b</code> with too small a <code>max_tokens</code>, or a tool call on <code>Llama-4-Scout</code>.</td>
+        <td>Raise <code>max_tokens</code> to 512+, or switch to <code>Llama-4-Maverick</code>.</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>Still stuck? Collect this before asking for help</h3>
+  <div class="block">
+    <div class="cap"><span>Any system</span><button class="copy">Copy</button></div>
+<pre><code>az account show --query "{user:user.name, tenant:tenantId}" -o json
+az version
+az account get-access-token --resource https://ai.azure.com --query expiresOn -o tsv</code></pre>
+  </div>
+  <p>Those three outputs — <strong>with the token itself never included</strong> — are enough to
+  diagnose almost anything.</p>
+</section>
+
+<!-- ============================ INSTRUCTORS ============================ -->
+<section class="step" id="instructors">
+  <div class="num">&#9733;</div>
+  <h2>Notes for instructors</h2>
+  <p class="sub">Things worth knowing before you build a course around this.</p>
+
+  <h3>The expiring token is a real problem at class scale</h3>
+  <p>A student in a 75-minute lab will usually hit the expiry once. For a class of 100 that is a
+  meaningful support load, and the workaround — teaching students to paste a credential carrying their
+  full ISU identity into third-party applications — is worse for security than the API keys this
+  system replaced.</p>
+  <p>The durable fix is a small gateway (<a href="https://docs.litellm.ai/docs/simple_proxy">LiteLLM</a>
+  is the usual choice) that holds one service credential, refreshes it automatically, and issues each
+  student a permanent key with their own budget and rate limit. That also gives you per-student usage
+  accounting, which Foundry does not provide on its own. It requires ITS to create a service principal
+  or managed identity for the course.</p>
+
+  <h3>Design assignments around what actually works</h3>
+  <ul>
+    <li><strong>Agents and function calling:</strong> <code>Llama-4-Maverick</code> or
+    <code>gpt-oss-120b</code> only. Never <code>Llama-4-Scout</code>.</li>
+    <li><strong>Images:</strong> <code>Llama-4-Maverick</code> or <code>Llama-4-Scout</code>.</li>
+    <li><strong>Long outputs:</strong> <code>Llama-4-Maverick</code> or <code>gpt-oss-120b</code>.
+    Scout caps at 8,192 output tokens.</li>
+    <li><strong>Retrieval / RAG:</strong> not currently possible on ISU infrastructure — no embedding
+    model is deployed.</li>
+    <li><strong>Speech and audio:</strong> not currently possible either.</li>
+  </ul>
+
+  <h3>Ask ITS for a security group, not individual access</h3>
+  <p>Have ITS assign the role to an Entra security group for your roster rather than to 100 individual
+  accounts. Group membership takes effect immediately, whereas a fresh individual role assignment can
+  take five minutes to work — which is exactly the kind of thing that derails a first lab session.</p>
+
+  <div class="box stop">
+    <span class="t">Don't run red-teaming exercises on this endpoint</span>
+    <p style="margin-bottom:0">Microsoft's abuse monitoring flags repeated jailbreak attempts, and the
+    documented consequence is suspension of access — potentially for the whole university, not just
+    your class. If you want to teach adversarial prompting or safety evaluation, use a locally hosted
+    model instead.</p>
+  </div>
+
+  <h3>Set token budgets in your assignment templates</h3>
+  <p>Azure's rate limiter counts <code>prompt tokens + max_tokens</code>, not the tokens actually
+  produced. A student who leaves <code>max_tokens=4000</code> on a question with a forty-token answer
+  still consumes four thousand tokens of the shared class allowance. Put a sensible
+  <code>max_tokens</code> in every starter file.</p>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="eyebrow">Questions</span>
+    <h2>Something here out of date?</h2>
+    <p class="foot-note">Every command on this page was run against the live ISU endpoint on
+    19 August 2026, and the model capability table reflects tested behaviour rather than vendor
+    documentation — which disagrees with it in several places. Azure moves quickly, so if you hit
+    something that no longer matches, please tell me and I'll correct it.</p>
+    <p class="foot-note"><a href="mailto:adisak@iastate.edu">adisak@iastate.edu</a> ·
+    <a href="/">adisaksukul.com</a></p>
+    <div class="colophon">
+      <span>Adisak Sukul — Applied AI for Education</span>
+      <span>Portal images are labelled illustrations, not screenshots.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var KEY = "isu-foundry-os";
+  var body = document.body;
+  var tabs = Array.prototype.slice.call(document.querySelectorAll(".ostabs button"));
+  function detect() {
+    var p = (navigator.platform || "") + " " + (navigator.userAgent || "");
+    if (/Mac|iPhone|iPad/i.test(p)) return "mac";
+    if (/Linux|X11/i.test(p) && !/Android/i.test(p)) return "linux";
+    return "win";
+  }
+  function apply(os) {
+    body.setAttribute("data-os", os);
+    tabs.forEach(function (t) { t.setAttribute("aria-selected", String(t.dataset.os === os)); });
+    try { localStorage.setItem(KEY, os); } catch (e) {}
+  }
+  var saved = null;
+  try { saved = localStorage.getItem(KEY); } catch (e) {}
+  apply(saved || detect());
+  tabs.forEach(function (t) {
+    t.addEventListener("click", function () { apply(t.dataset.os); });
+  });
+
+  document.querySelectorAll(".copy").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var block = btn.closest(".block");
+      var pre = block && block.querySelector("pre");
+      if (!pre) return;
+      var done = function () {
+        var old = btn.textContent;
+        btn.textContent = "Copied";
+        btn.classList.add("done");
+        setTimeout(function () { btn.textContent = old; btn.classList.remove("done"); }, 1600);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(pre.innerText).then(done, function () {});
+      } else {
+        var ta = document.createElement("textarea");
+        ta.value = pre.innerText; document.body.appendChild(ta); ta.select();
+        try { document.execCommand("copy"); done(); } catch (e) {}
+        document.body.removeChild(ta);
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>
