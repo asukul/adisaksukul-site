@@ -382,7 +382,7 @@ footer .wrap { display: grid; gap: 14px; }
     <div>
       <p class="eyebrow">An educator's proposal to SpaceXAI · October 2026</p>
       <h1>How to bring Grok, Grok Bot and Cursor into the classroom</h1>
-      <p class="lead">I teach computer science and run an applied AI program. I want to teach with Cursor, Grok and Grok Bot, and I cannot yet do it well: there is no classroom credit path, no course material, and no plan a student can afford. This page is what I would ask SpaceXAI to build, in the order I would build it, with the evidence behind each ask. It is a suggestion from a working educator, not a pitch for a job.</p>
+      <p class="lead">I teach computer science and run an applied AI program. I want to teach with Cursor, Grok and Grok Bot, and I cannot yet do it well: there is no classroom credit path, no course material, no answer to how I assess students who may use AI, and no plan a student can afford. This page is what I would ask SpaceXAI to build, in the order I would build it, with the evidence behind each ask. It is a suggestion from a working educator, not a pitch for a job.</p>
       <div class="byline">
         <span><strong>Adisak Sukul</strong>, Teaching Professor of Computer Science, Iowa State University</span>
         <span>Written to start a conversation. Iowa State can be the first test site.</span>
@@ -418,6 +418,7 @@ footer .wrap { display: grid; gap: 14px; }
     <a href="#credits">Classroom credit</a>
     <a href="#tracks">Two tracks</a>
     <a href="#grokbot">Grok Bot in class</a>
+    <a href="#assess">Running the class</a>
     <a href="#scenarios">Scenario library</a>
     <a href="#recognition">Recognition</a>
     <a href="#builders">Build with Grok</a>
@@ -441,7 +442,7 @@ footer .wrap { display: grid; gap: 14px; }
     <div class="parts">
       <div class="part"><span class="eyebrow">Access</span><h3>The educator is the front door</h3><p>Verify the teacher once. The teacher applies for each class, and students redeem a capped coupon. Fraud drops because a named professional is accountable.</p></div>
       <div class="part"><span class="eyebrow">Tracks</span><h3>Cursor builds, Grok does everything else</h3><p>Cursor serves computing, engineering and data. Grok and Grok Bot serve business, agriculture, health, education, media, the sciences and the humanities.</p></div>
-      <div class="part"><span class="eyebrow">Material</span><h3>Written by the faculty who teach it</h3><p>Experts from each discipline write workflow templates, assignments and exams that let students use AI and still do real work by hand.</p></div>
+      <div class="part"><span class="eyebrow">Material</span><h3>Written by the faculty who teach it</h3><p>Experts from each discipline write workflow templates, assignments and exams that let students use AI and still do real work by hand. The hard part is assessment, and it gets its own section.</p></div>
       <div class="part"><span class="eyebrow">Community</span><h3>Recognition educators value</h3><p>Certification, fellowships, speaking invitations and a conference, funded through a nonprofit so that public employees can take part.</p></div>
       <div class="part"><span class="eyebrow">Public</span><h3>Build with Grok</h3><p>A public library where people share workflows built with Grok and Grok Bot. Anyone can reuse them, and creators earn when they do.</p></div>
     </div>
@@ -753,6 +754,109 @@ footer .wrap { display: grid; gap: 14px; }
         </tbody>
       </table></div>
       <p class="note measure">Two cautions carry into the design. Reliance on AI tracks a student's trust and satisfaction more than their competence, in a controlled experiment where the assistant was sometimes deliberately wrong (<a href="https://arxiv.org/abs/2506.13845">Pitts and colleagues, 2025</a>), and a review of 70 studies found less revision and lower post-test scores where AI did the work (<a href="https://arxiv.org/html/2509.21972v2">Delikoura and colleagues, 2025</a>). The ladder is built to counter both: the student's grade comes from what the bot got wrong and what they did about it.</p>
+    </div>
+  </div>
+</section>
+
+<section id="assess">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Running the class</p>
+      <h2>How to teach, assign and examine when students may use AI</h2>
+      <p class="measure">This is the question every department meeting is stuck on, and it is the one an education program from SpaceXAI could actually move. In the 2026 HEPI survey, 94% of UK undergraduates used generative AI for assessed work, and fewer than half felt supported by their teaching staff (<a href="https://www.hepi.ac.uk/2026/03/12/new-hepi-and-kortext-report-student-generative-artificial-intelligence-survey-2026/">HEPI, n = 1,054</a>). Detection failed: Vanderbilt switched off Turnitin's AI detector in 2023 after working out that its claimed 1% false-positive rate would have wrongly flagged about 750 of its 75,000 papers (<a href="https://www.vanderbilt.edu/brightspace/2023/08/16/guidance-on-ai-detection-and-why-were-disabling-turnitins-ai-detector/">Vanderbilt</a>). What works is changing the environment the student works in, and a configured Grok Bot is the first tool that lets an ordinary instructor do that without an engineering team.</p>
+    </div>
+
+    <div class="sub">
+      <h3>Four things universities do today</h3>
+      <div class="scroll tbl-wide"><table>
+        <thead><tr><th>Response</th><th>How it plays out</th><th>Strength</th><th>Weakness</th><th>Verdict</th></tr></thead>
+        <tbody>
+          <tr><th>Ban it</th><td>Syllabus says no AI. Enforcement rests on detectors or suspicion.</td><td>Simple to write.</td><td>Unenforceable at 94% use, and it punishes the honest student who asks.</td><td><span class="pill bad">Fails</span></td></tr>
+          <tr><th>Detect it</th><td>Turnitin-style scores on submitted text.</td><td>Feels like due process.</td><td>False positives land on real students; non-native writers are flagged more. Vanderbilt and others turned it off.</td><td><span class="pill bad">Do not build on it</span></td></tr>
+          <tr><th>Leave it to each instructor</th><td>Every course writes its own rule. Students juggle five policies a term.</td><td>Respects academic freedom.</td><td>Students cannot tell what is allowed, so they guess. This is the default by inertia at most US universities.</td><td><span class="pill warn">Where most campuses are</span></td></tr>
+          <tr class="pick"><th>Redesign on two lanes</th><td>Secure, in-person supervised tasks confirm what each student can do alone. Open tasks are built around AI use and graded on judgment. Sydney adopted this university-wide, with program-level redesign through 2026 (<a href="https://educational-innovation.sydney.edu.au/teaching@sydney/?p=24402">Sydney</a>).</td><td>Honest about what can and cannot be secured. Students learn the tool they will use at work.</td><td>Every instructor has to build the open lane alone: the tutor rules, the logging, the assignment. That is the gap a template library fills.</td><td><span class="pill good">The direction. Give instructors the parts.</span></td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <div class="sub">
+      <h3>One semester, with a class bot in it</h3>
+      <p class="measure" style="color:var(--ink-2)">How I would run a 100-student section. Nothing here needs a feature SpaceXAI does not ship today, except the two marked with an asterisk.</p>
+      <div class="scroll tbl-wide"><table>
+        <thead><tr><th>When</th><th>The instructor</th><th>The students</th><th>The class bot</th><th>What the instructor can see</th></tr></thead>
+        <tbody>
+          <tr><th>Before term</th><td>Copies a discipline template from the library, writes the Auto Review rules for the course, publishes it as a Team Bot, and labels every assignment in the syllabus with its AI level (below).</td><td>Nothing yet.</td><td>Holds the course notes, the rubric, the allowed sites and the list of what it will not do.</td><td>The bot's own configuration. That is the policy, written once.</td></tr>
+          <tr><th>Week 1</th><td>Walks the class through the bot and the levels in one lecture. Students sign an AI-use statement that names the bot as the sanctioned tool.</td><td>Join the course team, open the bot, run the warm-up task.</td><td>Introduces itself, states the rules, refuses the first request for a finished answer and explains why.</td><td>Who has joined. Usage view*, once it exists.</td></tr>
+          <tr><th>In class</th><td>Runs labs with the bot as a lab partner: students work the problem, the bot explains, checks and questions.</td><td>Use the bot in the room, out loud, with the instructor walking.</td><td>Socratic mode: questions, hints, worked examples of a different problem. Never the answer to the one assigned.</td><td>The room. This is where most learning happens, and no logging is needed.</td></tr>
+          <tr><th>Open assignments</th><td>Sets tasks that assume AI: critique, compare, extend, verify, decide. Grades judgment and the process, not just the artifact.</td><td>Work with the bot and submit three things: the artifact, the transcript, and a half-page on what the AI got wrong.</td><td>Logs the session so the transcript exists. On Enterprise the action recording is the log; on Teams the student exports it*.</td><td>The transcript next to the work. A student who cannot explain their transcript has told you what you need to know.</td></tr>
+          <tr><th>Secure assessment</th><td>In-person, supervised. Either no AI, or the bot in a locked exam configuration: course notes only, no web, no plugins, questions answered with questions.</td><td>Show what they can do alone, or with a tool that cannot do it for them.</td><td>Exam template, published for the day and unpublished after.</td><td>What each student knows. This lane is what makes the open lane safe to grade generously.</td></tr>
+          <tr><th>Capstone</th><td>Students build their own bot for a real task in the discipline and defend it.</td><td>Design, configure, test, document, present.</td><td>The student's own work. The instructor's bot becomes the reviewer.</td><td>A working agent, a design document and a live demo.</td></tr>
+          <tr><th>End of term</th><td>Samples about one in ten submissions for a ten-minute conversation about the student's own work, as UCL and Cardiff colleagues have proposed (<a href="https://www.timeshighereducation.com/node/735603">Times Higher Education</a>).</td><td>Explain their work to a person.</td><td>Off.</td><td>Whether the grades mean anything. Ten students at ten minutes each is under two hours per 100-student section.</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <div class="sub">
+      <h3>Five AI levels, and the bot configuration that enforces each</h3>
+      <p class="measure" style="color:var(--ink-2)">The AI Assessment Scale by Perkins, Roe and Furze is the most widely adopted way to label an assignment (<a href="https://arxiv.org/abs/2412.09029">AIAS, 2024 revision</a>). Today the level is a sentence in the syllabus that the student is trusted to follow. With a published bot per level, it becomes a working environment. That is the change.</p>
+      <div class="scroll tbl-wide"><table>
+        <thead><tr><th>Level</th><th>What the student may do</th><th>Bot configuration</th><th>Graded on</th><th>What still has to be secured in person</th></tr></thead>
+        <tbody>
+          <tr><th>1 · No AI</th><td>Nothing. In-person, supervised.</td><td>Unpublished for the task, or not applicable.</td><td>The work.</td><td>Everything. This is the secure lane.</td></tr>
+          <tr><th>2 · AI planning</th><td>Brainstorm, outline, find sources. Drafting is the student's.</td><td>Rules: "Suggest structure and sources. Do not write prose longer than one sentence. Do not write code that compiles." Web on, writing tools off.</td><td>The draft, plus the plan the bot helped make.</td><td>A short in-class write from the plan.</td></tr>
+          <tr class="pick"><th>3 · AI collaboration</th><td>Use AI throughout, but evaluate and revise every output.</td><td>Rules: "Give feedback and alternatives, not final versions. Ask the student to justify changes." Transcript kept and submitted.</td><td>The artifact, the transcript, and the critique of what the AI got wrong.</td><td>A sampled viva, or one timed task on the same skill.</td></tr>
+          <tr><th>4 · Full AI</th><td>Anything, as at work.</td><td>Open bot. Allowed connectors only. Spending cap per student when SpaceXAI ships one.</td><td>The outcome and the decisions, as a client would judge them.</td><td>Nothing here; the secure lane covers the underlying skill.</td></tr>
+          <tr><th>5 · AI exploration</th><td>Student and instructor design new uses together.</td><td>The student builds the bot. The instructor's bot reviews it.</td><td>The agent, its design document and the demo.</td><td>The demo is the viva.</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <div class="sub">
+      <h3>Six marketplace templates I would publish first</h3>
+      <p class="measure" style="color:var(--ink-2)">Each is one configured bot an instructor copies and edits. Together they cover a whole course. The last column is honest about what holds them back today.</p>
+      <div class="scroll tbl-wide"><table>
+        <thead><tr><th>Template</th><th>Runs for</th><th>Auto Review rules, in plain words</th><th>Must not</th><th>Works today</th></tr></thead>
+        <tbody>
+          <tr class="pick"><th>Socratic tutor</th><td>Every student, all term</td><td>Answer with a question or a hint first. Explain a worked example of a different problem. Give the final answer only after three attempts, and then explain it.</td><td>Produce a submission-ready artifact for any assignment in the rubric.</td><td><span class="pill good">Yes, on any plan</span>. The rule is model-enforced, so a determined student can talk around it, which is why the secure lane exists.</td></tr>
+          <tr><th>Lab partner</th><td>In-class sessions</td><td>Use only the practice systems on the allowlist. Explain every action before running it. Stop for approval on anything that writes.</td><td>Touch anything outside the lab environment.</td><td><span class="pill warn">Partly</span>. Approval gates work; a true site allowlist is Enterprise-only.</td></tr>
+          <tr><th>Assignment assistant with process log</th><td>Open-lane assignments</td><td>Keep the session on the assignment. Log every exchange. At the end, produce a summary of what the student decided and what the bot proposed.</td><td>Delete or edit its own log.</td><td><span class="pill warn">Partly</span>. Memory and session history exist; a one-click transcript export to the LMS does not.</td></tr>
+          <tr><th>Peer reviewer</th><td>Draft week</td><td>Review against the rubric the instructor attached. Point to the weakest section first. Give three questions, not rewrites.</td><td>Rewrite the draft.</td><td><span class="pill good">Yes</span></td></tr>
+          <tr><th>Exam configuration</th><td>Secure assessments</td><td>Course notes only. No web, no plugins, no memory of prior sessions. Answer with questions. Session ends at the time limit.</td><td>Reach anything beyond the attached notes.</td><td><span class="pill bad">Not yet</span>. Needs a locked mode and a time box, which are on the asks list.</td></tr>
+          <tr><th>Grader's assistant</th><td>The instructor only</td><td>First-pass feedback against the rubric for every submission. Flag transcripts that do not match the artifact. Never assign a grade; the instructor does.</td><td>Share one student's work with another student's session.</td><td><span class="pill good">Yes</span>, as the instructor's private bot. Student data terms are the open question.</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <div class="grid-2">
+      <div class="panel">
+        <h3>Open-lane assignments that work, by discipline</h3>
+        <p class="panel-sub">The pattern is the same everywhere: the AI produces, the student judges, and the grade is for the judgment.</p>
+        <div class="scroll" style="margin-top:12px"><table>
+          <thead><tr><th>Course</th><th>The task</th><th>The student must show</th></tr></thead>
+          <tbody>
+            <tr><th>Writing</th><td>Get three AI drafts of an argument, then write a fourth that is better, with a note on why.</td><td>The three drafts, the fourth, the note.</td></tr>
+            <tr><th>Programming (Cursor)</th><td>Build the feature with the agent, then explain any commit the grader picks.</td><td>The repository, the prompt history, a live walkthrough.</td></tr>
+            <tr><th>Data analysis</th><td>Have the bot analyse the dataset, then find the two errors planted in it.</td><td>The errors found and the ones missed.</td></tr>
+            <tr><th>Business</th><td>Agent drafts the market entry plan; student presents it to a panel that pushes back.</td><td>The plan and the defence under questions.</td></tr>
+            <tr><th>Nursing</th><td>Bot drafts a care plan from a case; student corrects it against the clinical guideline.</td><td>Every correction, with the guideline cited.</td></tr>
+            <tr><th>History</th><td>Bot summarises a primary source; student checks it against the original and grades the bot.</td><td>The graded summary, with the misreadings marked.</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+      <div class="panel">
+        <h3>What this asks of SpaceXAI, specifically</h3>
+        <p class="panel-sub">Four features would turn the templates above from "mostly" into "yes", and none of them is education-only.</p>
+        <div class="scroll" style="margin-top:12px"><table>
+          <thead><tr><th>Feature</th><th>Why a class needs it</th><th>Size</th></tr></thead>
+          <tbody>
+            <tr><th>Transcript export per student</th><td>Process evidence is how open-lane work gets graded. Today only Enterprise records actions, and nothing exports to Canvas or Blackboard.</td><td>Medium</td></tr>
+            <tr><th>Locked exam configuration</th><td>Notes only, no web, no plugins, no memory, time-boxed. Also useful to any company running a certification.</td><td>Medium</td></tr>
+            <tr><th>Rule enforcement as policy, not persuasion</th><td>"Never produce a finished artifact" should be a hard switch on the bot, not an instruction the model usually follows.</td><td>Large</td></tr>
+            <tr><th>Rubric and notes attached to a template</th><td>So the instructor's copy carries the course documents and updates when the template updates.</td><td>Small</td></tr>
+          </tbody>
+        </table></div>
+        <p class="note" style="margin-top:12px">The limit to be honest about: none of this stops a student using a different AI outside the bot. The point is to make the sanctioned path the easiest one and to put every skill that matters through the secure lane once. That is also why in-person assessment stays in the plan.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -1461,6 +1565,11 @@ var IDEAS = [
   { a: 5, t: "grok", when: "Year 1", e: 3, i: 4, title: "Instructor usage view for class bots", note: "Which students ran the bot, how much, and what it did, as Google shows teachers for Gems." },
   { a: 5, t: "grok", when: "Year 1", e: 3, i: 4, title: "Student data terms for Grok Bot", note: "A FERPA school-official agreement, no training on student work by default, and a sub-processor list that answers HECVAT." },
   { a: 5, t: "grok", when: "Year 1", e: 2, i: 4, title: "Agent supervisor certificate", note: "A proctored practical on the four-rung ladder, for students and working learners." },
+  { a: 5, t: "grok", when: "90 days", e: 2, i: 5, title: "One template per AI level", note: "Five published bots that enforce the five AI Assessment Scale levels, so a syllabus label becomes a working environment." },
+  { a: 5, t: "grok", when: "90 days", e: 1, i: 4, title: "Socratic tutor template", note: "Hints and questions first, the answer only after three attempts. The most reused template in the library." },
+  { a: 5, t: "grok", when: "Year 1", e: 3, i: 5, title: "Transcript export to the LMS", note: "One click sends a student's session log to Canvas or Blackboard next to the submission. Process evidence is how open-lane work gets graded." },
+  { a: 5, t: "grok", when: "Year 1", e: 3, i: 4, title: "Locked exam configuration", note: "Notes only, no web, no plugins, no memory, time-boxed. Published for the day and unpublished after." },
+  { a: 5, t: "grok", when: "Year 2 and later", e: 4, i: 4, title: "Hard rules on a bot", note: "\"Never produce a finished artifact\" as a switch on the bot, not an instruction the model usually follows." },
   { a: 4, t: "grok", when: "Year 2 and later", e: 2, i: 3, title: "Featured creators", note: "Winning templates are showcased, and their creators are invited to speak at events." }
 ];
 
@@ -1494,6 +1603,11 @@ var TIMELINE = [
 ];
 
 var SOURCES = [
+  ["HEPI and Kortext: Student Generative AI Survey 2026", "https://www.hepi.ac.uk/2026/03/12/new-hepi-and-kortext-report-student-generative-artificial-intelligence-survey-2026/"],
+  ["Vanderbilt: why we are disabling Turnitin's AI detector (2023)", "https://www.vanderbilt.edu/brightspace/2023/08/16/guidance-on-ai-detection-and-why-were-disabling-turnitins-ai-detector/"],
+  ["University of Sydney: two-lane assessment, tasks for 2025 and 2026", "https://educational-innovation.sydney.edu.au/teaching@sydney/?p=24402"],
+  ["Perkins, Roe and Furze: the AI Assessment Scale revisited (arXiv 2412.09029)", "https://arxiv.org/abs/2412.09029"],
+  ["Brumby, Cox, Sarkar and Gould: sampled vivas, Times Higher Education", "https://www.timeshighereducation.com/node/735603"],
   ["Cursor forum: new campus community launches (June 2026)", "https://forum.cursor.com/t/new-campus-community-launches/164026"],
   ["Cursor for students", "https://cursor.com/students"],
   ["Grok Bot for teams and enterprises (admin controls)", "https://docs.x.ai/grok-bot/teams-and-enterprises"],
