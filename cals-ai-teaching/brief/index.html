@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI in course syllabi: what higher-ranked universities do (brief)</title>
+<meta name="description" content="A one-page brief for instructors: how universities ranked above Iowa State write AI rules into syllabi, what to disclose, why detectors are out, and how grounded course tutors are checked.">
+<link rel="canonical" href="https://adisaksukul.com/cals-ai-teaching/brief/">
+<meta property="og:title" content="AI in course syllabi: what higher-ranked universities do (brief)"><meta property="og:description" content="A one-page brief for instructors: how universities ranked above Iowa State write AI rules into syllabi, what to disclose, why detectors are out, and how grounded course tutors are checked."><meta property="og:type" content="article"><meta property="og:url" content="https://adisaksukul.com/cals-ai-teaching/brief/">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Besley:wght@500;600&family=JetBrains+Mono:wght@400;600&family=Public+Sans:wght@400;500;600;700&display=swap">
+<style>
+:root{--ink:#17201c;--ink2:#46514b;--muted:#6f7a74;--line:#dfe3df;--board:#143d2e;--board2:#1f5a43;--paper:#fbfaf6;--surface:#fff;--pick:#edf4ee;--quote:#f3f0e6}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+html,body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 "Public Sans",system-ui,-apple-system,Segoe UI,Helvetica,Arial,sans-serif}
+.top{background:var(--board);color:#e9efe9}
+.top .in{max-width:1040px;margin:0 auto;padding:12px 24px;display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;justify-content:space-between}
+.top a{color:#fff;text-decoration:none;font:600 12px/1 "JetBrains Mono",ui-monospace,monospace;letter-spacing:.06em;text-transform:uppercase}
+.top nav{display:flex;gap:16px;flex-wrap:wrap}.top nav a.on{border-bottom:2px solid #9fd3b6;padding-bottom:3px}
+.page{max-width:1040px;margin:0 auto;padding:40px 24px 56px}
+.eyebrow{font:600 12px/1.3 "JetBrains Mono",ui-monospace,monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--board2);margin:0 0 12px}
+h1{font-family:Besley,Georgia,serif;font-size:clamp(28px,4.2vw,40px);line-height:1.12;margin:0 0 14px;font-weight:600;letter-spacing:-.01em}
+h2{font-family:Besley,Georgia,serif;font-size:clamp(21px,2.6vw,26px);line-height:1.2;margin:44px 0 12px;font-weight:600;padding-top:14px;border-top:1px solid var(--line)}
+h3{font-family:Besley,Georgia,serif;font-size:19px;margin:28px 0 8px;font-weight:600}
+p{margin:0 0 14px}li{margin:0 0 6px}ul,ol{padding-left:22px;margin:0 0 14px}
+.lead{font-size:18px;color:var(--ink2);max-width:760px}
+.meta{display:flex;flex-wrap:wrap;gap:6px 22px;font-size:13.5px;color:var(--ink2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:10px 0;margin:18px 0 8px}
+.verified{background:var(--pick);border-left:4px solid var(--board2);padding:12px 16px;border-radius:6px;font-size:14.5px;color:var(--ink2);margin:18px 0}
+.verified p{margin:0}
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:10px 0 18px;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+table{width:100%;border-collapse:collapse;font-size:14px;line-height:1.45;min-width:640px}
+th,td{text-align:left;vertical-align:top;padding:9px 11px;border-bottom:1px solid var(--line)}
+thead th{font:600 11px/1.25 "JetBrains Mono",ui-monospace,monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);border-bottom:2px solid var(--ink);background:#fcfcfa;position:sticky;top:0}
+tbody tr:nth-child(even){background:#fbfbf8}
+tbody tr:last-child td{border-bottom:0}
+blockquote{margin:14px 0 18px;padding:14px 18px;background:var(--quote);border-left:4px solid #c9a227;border-radius:6px}
+blockquote p{margin:0 0 10px}blockquote p:last-child{margin:0}
+a{color:var(--board2);text-underline-offset:2px}a:hover{color:var(--board)}
+strong{font-weight:650}
+hr{border:0;border-top:1px solid var(--line);margin:28px 0}
+.toc{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 18px;margin:18px 0 8px}
+.toc b{font:600 11px/1 "JetBrains Mono",monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.toc ol{margin:8px 0 0;columns:2;column-gap:28px;font-size:14.5px}.toc li{break-inside:avoid}
+.cta{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 26px}
+.btn{display:inline-block;background:var(--board);color:#fff;text-decoration:none;padding:10px 16px;border-radius:8px;font-weight:600;font-size:14.5px}
+.btn.alt{background:transparent;color:var(--board);border:1.5px solid var(--board)}
+.foot{font-size:13px;color:var(--muted);margin-top:40px;border-top:1px solid var(--line);padding-top:16px}
+@media (max-width:640px){.page{padding:26px 16px 40px}.top .in{padding:10px 16px}.toc ol{columns:1}body{font-size:15.5px}}
+@media print{.top,.cta,.toc{display:none}body{background:#fff;font-size:11.5pt}.tw{overflow:visible;border:0}table{min-width:0;font-size:9.5pt}thead th{position:static}h2{break-after:avoid}tr{break-inside:avoid}}
+</style></head><body>
+<header class="top"><div class="in"><a href="/">Adisak Sukul</a><nav><a href="/cals-ai-teaching/brief/" class="on">Brief</a><a href="/cals-ai-teaching/peer-universities-report/" class="">Full report</a></nav></div></header>
+<main class="page">
+<p class="eyebrow">Brief · CALS AI in Teaching · Iowa State University</p>
+<h1>AI in course syllabi: what higher-ranked universities actually do</h1>
+<p class="lead">Seven findings, four quotable syllabus lines and a three-sentence AI statement any instructor can adapt, drawn from 2025–26 syllabi and policies at universities ranked above Iowa State.</p>
+<div class="meta"><span><b>Series</b> CALS AI in Teaching, Iowa State University</span><span><b>Session</b> "Your Course, Your Rules," Oct 26, 2026</span><span><b>Checked</b> against live sources Oct 25, 2026</span><span><b>Scope</b> universities ranked above ISU (#116, U.S. News 2027)</span></div>
+<div class="cta"><a class="btn" href="/cals-ai-teaching/peer-universities-report/">Read the full report</a><a class="btn alt" href="#three-syllabus-sentences">Jump to the three sentences</a></div>
+
+<article>
+
+<p>Universities ranked above Iowa State have not agreed on one AI rule. They have agreed on a process. The institution supplies vocabulary and data rules, the instructor writes a course statement, and the real decisions happen assignment by assignment. In 2025–26 science and quantitative syllabi at MIT, Wharton, UW, UF and UW–Madison, the common pattern is: <strong>AI allowed for practice and learning, banned on proctored quizzes and exams, use disclosed in a line or two, and the student owns every error</strong>. Wherever an institution has set a default for a syllabus that says nothing, that default is <strong>"not allowed"</strong> (Maryland, Rutgers, Michigan State). The best student evidence shows that silence otherwise reads as permission. AI detectors have been switched off or disavowed almost everywhere.</p>
+<p>The frontier is grounded course tutors. The two best-documented ones, Harvard's CS50 Duck and Georgia Tech's Jill Watson, both found that <strong>prompts alone cannot hold the guardrail</strong>, which is exactly what an instructor-run audit of a course tutor checks. No peer agriculture college publishes its own AI-in-teaching policy. No peer publishes an instructor workflow for "answer only from my materials." Instructors who ground a tutor in their own materials and audit it are ahead of the peers, not catching up.</p>
+<h3 id="seven-findings-for-instructors">Seven findings for instructors</h3>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>Finding</th>
+<th>Peer evidence</th>
+<th>What to do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>Silence reads as permission</strong></td>
+<td>Middlebury students' stated likelihood of using AI: 42.2% under no policy, 40.9% under "allowed if cited," 13.4% under a ban (self-reported intent, surveyed Dec 2024–Feb 2025) (<a href="https://arxiv.org/pdf/2508.00717" target="_blank" rel="noopener">Contractor &amp; Reyes</a>)</td>
+<td>A syllabus with no AI policy still tells students something</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Where a default exists, it is "no"</strong></td>
+<td>Maryland (Jan 2025): students "should assume" AI is "not allowed" unless told otherwise (<a href="https://ai-resources.umd.edu/sites/default/files/2025-01/Academic-Guidelines-AI-Tools-at-UMD-Jan2025.pdf" target="_blank" rel="noopener">UMD</a>); Rutgers and MSU say the same (<a href="https://it.rutgers.edu/ai/guidance-on-the-use-of-ai-at-rutgers/" target="_blank" rel="noopener">Rutgers</a>; <a href="https://ctli.msu.edu/resources/generative-ai/gen-ai-syllabus" target="_blank" rel="noopener">MSU</a>). No published ISU default was found</td>
+<td>Add one default line to every syllabus</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Split the rules by assignment, not by tool</strong></td>
+<td>MIT 14.05, Wharton BEPP 6120, UF ANS 3006 and UW CSE 373 all allow AI for practice and ban it on proctored work (<a href="https://ocw.mit.edu/courses/14-05-intermediate-macroeconomics-fall-2025/pages/syllabus/" target="_blank" rel="noopener">MIT</a>; <a href="https://courses.cs.washington.edu/courses/cse373/25wi/genai" target="_blank" rel="noopener">UW</a>)</td>
+<td>Restrictive syllabi can keep exams AI-free and still open study uses</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Short disclosure beats transcripts</strong></td>
+<td>Georgia Tech BIOL 1207L (Fall 2026) asks four questions: tool, how, why, how verified (<a href="https://syllabus.gatech.edu/sites/default/files/2026-04/BIOS%201207%20Lab%20Syllabus%20Fa%2026.pdf" target="_blank" rel="noopener">GT</a>). Only 31.3% of Middlebury students know how to cite AI (<a href="https://arxiv.org/pdf/2508.00717" target="_blank" rel="noopener">arXiv</a>)</td>
+<td>Permissive syllabi can trade "full responses" for a link plus a verification step</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>Detectors are out, and student work is the data risk</strong></td>
+<td>MSU turned off Turnitin's AI detection (<a href="https://help.d2l.msu.edu/msu-docs/other-tools-at-msu/using-assignments-with-turnitin/ai-detection" target="_blank" rel="noopener">MSU</a>). Penn says uploading student work to a detector without consent violates FERPA (<a href="https://cetli.upenn.edu/resources/generative-ai/" target="_blank" rel="noopener">Penn CETLI</a>)</td>
+<td>Build only from your own materials; no student work</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>The prompt is not the guardrail</strong></td>
+<td>The CS50 Duck produced code "up to a quarter of the time" despite instructions not to (<a href="https://news.harvard.edu/gazette/story/2026/09/taming-the-duck-for-starters/" target="_blank" rel="noopener">Harvard Gazette</a>). Jill Watson answers only when verified course material exists: 78.7% accuracy vs 30.7% for a generic assistant (<a href="https://www.cc.gatech.edu/news/georgia-techs-jill-watson-outperforms-chatgpt-real-classrooms" target="_blank" rel="noopener">GT</a>)</td>
+<td>An instructor's five-test audit is the classroom version of their code checks</td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>Structure and coaching produce learning; access alone does not</strong></td>
+<td>Harvard physics tutor: +0.63 SD vs active learning (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12179260/" target="_blank" rel="noopener">Kestin 2025</a>). Access alone had no effect, coaching gave +0.22 SD (<a href="https://docs.iza.org/dp18513.pdf" target="_blank" rel="noopener">Gallegos 2026</a>). Unguarded GPT cut exam scores 17% (<a href="https://ideas.repec.org/a/nas/journl/v122y2025pe2422633122.html" target="_blank" rel="noopener">Bastani 2025</a>)</td>
+<td>Every artifact ships with a three-line "how to use this" note for students</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="four-quotable-peer-lines">Four quotable peer lines</h3>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>School</th>
+<th>Course, year</th>
+<th>Quote</th>
+<th>Use for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UW–Madison</td>
+<td>Biology 151, Fall 2025</td>
+<td>"If the description of an assignment does not include language regarding the use of AI, its use is prohibited." (<a href="https://introbio.biology.wisc.edu/wp-content/uploads/sites/392/2025/09/151-Course-Syllabus-Fall-2025-1.pdf" target="_blank" rel="noopener">syllabus</a>)</td>
+<td>The default line</td>
+</tr>
+<tr>
+<td>MIT</td>
+<td>14.05 Intermediate Macroeconomics, Fall 2025</td>
+<td>"This course allows and, in fact, explicitly encourages the use of AI (such as ChatGPT)" … "The use of AI tools during the in-class exams is not permitted." (<a href="https://ocw.mit.edu/courses/14-05-intermediate-macroeconomics-fall-2025/pages/syllabus/" target="_blank" rel="noopener">syllabus</a>)</td>
+<td>Practice yes, exams no</td>
+</tr>
+<tr>
+<td>Georgia Tech</td>
+<td>BIOL 1207L Project Lab, Fall 2026</td>
+<td>"d) describe what steps you took to verify the AI output." Part of a required "AI Contributions" section; leaving it out costs 10%. (<a href="https://syllabus.gatech.edu/sites/default/files/2026-04/BIOS%201207%20Lab%20Syllabus%20Fa%2026.pdf" target="_blank" rel="noopener">syllabus</a>)</td>
+<td>Disclosure that teaches verification</td>
+</tr>
+<tr>
+<td>UChicago Harris</td>
+<td>PPHA 31202 Advanced Statistics, Fall 2025</td>
+<td>"You are responsible for any errors and other issues (e.g, plagiarism) the program creates." (<a href="https://harris.uchicago.edu/sites/default/files/2025-08/PPHA%2031202_%20Advanced%20Statistics%20for%20Data%20Analysis_Black_2025.pdf" target="_blank" rel="noopener">syllabus</a>)</td>
+<td>AI answers are not authoritative</td>
+</tr>
+</tbody>
+</table></div>
+<p>On refusing questions outside the materials, Penn State Extension's grounded farm assistant Tilva (January 2026) gives the cleanest line, from David Hughes: "Where we feel confident, the AI can answer. Where we don't, we stop it." (<a href="https://www.psu.edu/news/agricultural-sciences/story/penn-state-extension-ai-tool-tilva-expands-access-research-based" target="_blank" rel="noopener">Penn State News</a>)</p>
+<h3 id="three-syllabus-sentences">Three syllabus sentences, assembled from peer language</h3>
+<blockquote>
+<p><strong>May be used for.</strong> You may use ISU-licensed AI tools (logged-in Copilot, Gemini or NotebookLM) or this course's study guide to review concepts, quiz yourself and get feedback on drafts, after you have first attempted the work yourself.</p>
+<p><strong>May not be used for, and why.</strong> You may not use AI on quizzes and exams, or to write the interpretation you submit in lab reports, because those assignments are designed to assess your own understanding and independent thinking.</p>
+<p><strong>Not authoritative.</strong> AI output is not an authoritative source. It can fabricate credible-looking data, references, quotations and calculations, so check anything you use against course materials. You are responsible for every error you submit.</p>
+</blockquote>
+<p>Where each sentence comes from:
+- Sentence 1 draws on UW CSE 373's allow-list, Missouri BIOSC 3750's list of roles (editor, translator, idea generator, data visualization tool, tutor) and Duke STA 199's "first attempt to solve the problem yourself."
+- Sentence 2 draws on MIT 14.05, UF ANS 3006, and UW Econ 200's rationale (<a href="https://econ.washington.edu/sites/econ/files/documents/syllabi/2025/sum/2025_Summer_Econ200_Syllabus.pdf" target="_blank" rel="noopener">UW Econ 200</a>).
+- Sentence 3 draws on Missouri microbiology and Ethan Mollick, both undated entries in <a href="https://docs.google.com/spreadsheets/d/1lM6g4yveQMyWeUbEwBM6FZVxEWCLfvWDh1aWUErWWbQ/edit" target="_blank" rel="noopener">Eaton's repository</a> (Missouri's rank relative to ISU was not verified), plus UChicago Harris.</p>
+<p>Optional fourth line: "If an assignment does not say, assume AI is not allowed. Where it is allowed, add one line: tool, what for, and how you checked it."</p>
+<h3 id="four-common-starting-points-and-one-upgrade-for-each">Four common starting points, and one upgrade for each</h3>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>If your syllabus has…</th>
+<th>Peer example</th>
+<th>One upgrade</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>No AI policy</td>
+<td>5 of 6 publicly posted 2025 UF Animal Sciences syllabi had no AI statement (<a href="https://animal.ifas.ufl.edu/media/animalifasufledu/animal-sciences-website/students/syllabi/2025-fall-syllabi/ANS-3043-Fall-2025.pdf" target="_blank" rel="noopener">UF ANS 3043</a>). ISU's required Fall 2026 template already expects an instructor AI-use policy for undergraduate courses (<a href="https://www.inside.iastate.edu/article/2026/04/27/new-undergraduate-course-syllabus-templates-unveiled-fall-semester" target="_blank" rel="noopener">Inside Iowa State</a>)</td>
+<td>Write the three sentences plus the default line</td>
+</tr>
+<tr>
+<td>A restrictive policy</td>
+<td>UF ECO 3203 department boilerplate (<a href="https://economics.clas.ufl.edu/wp-content/uploads/sites/117/Estevez_ECO-3203.pdf" target="_blank" rel="noopener">UF</a>); Texas A&amp;M ISTM 705 (undated, Eaton)</td>
+<td>Add the reason, plus a four-part permission request (assignment, tool, intended use, reason) and the study uses that stay open</td>
+</tr>
+<tr>
+<td>A permissive policy requiring tool, exact prompts and full responses</td>
+<td>Boston University Computing &amp; Data Sciences: appendix with "the entire exchange" (undated, Eaton)</td>
+<td>Switch to GT BIOL 1207L's four questions or a shared chat link (UW–Madison LIS 408); students keep logs and produce them on request (UMN)</td>
+</tr>
+<tr>
+<td>AI mentioned only in passing</td>
+<td>Georgia Tech CHEM 1211K (Fall 2026): the lecture syllabus never mentions AI (<a href="https://syllabus.gatech.edu/sites/default/files/2026-03/Lecture%20Syllabus%20%281211K%29.pdf" target="_blank" rel="noopener">lecture</a>), while the lab syllabus for the same course has a full policy: AI "can be a useful tool for learning and/or improving your writing, however, it should not serve as a substitute for your own understanding" (<a href="https://syllabus.gatech.edu/sites/default/files/2026-04/CHEM%201211%20Laboratory%20Syllabus%20Fall26.pdf" target="_blank" rel="noopener">lab</a>)</td>
+<td>Grow the passing mention into the lab version: what AI is for, what counts as a violation, and "should be disclosed and cited for transparency"</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>What Iowa State already has.</strong> ISU does publish AI syllabus guidance, with <strong>three</strong> approaches, not four. CELT's "Gen AI Syllabus Considerations," linked from its <a href="https://celt.iastate.edu/prepare-and-teach/design-your-course/ai-in-teaching/" target="_blank" rel="noopener">AI in Teaching page</a>, offers "Permitted and encouraged use," "Limited use" and "Prohibited use." It adds six considerations (approach, tools, conditions, required processes, rationale, alternatives), sample language for each approach, and a step most peers skip: alternatives for students who choose not to use AI (<a href="https://iastate.box.com/s/w1rlseeflz3nec3npy0k0pn1afo27tia" target="_blank" rel="noopener">CELT document</a>). The required Fall 2026 ISU template asks for "Instructor policies for attendance, late work, extra credit and use of AI" (<a href="https://www.inside.iastate.edu/article/2026/04/27/new-undergraduate-course-syllabus-templates-unveiled-fall-semester" target="_blank" rel="noopener">Inside Iowa State</a>). What ISU still lacks: a default when a syllabus is silent, assignment-level labels, and a written stance on AI detectors. Start from the CELT document; the three sentences above fit inside its "Limited use" approach.</p>
+</article>
+<p class="foot">Adisak Sukul · Teaching Professor of Computer Science, Iowa State University · <a href="/">adisaksukul.com</a> · <a href="https://www.linkedin.com/in/adisaksukul" target="_blank" rel="noopener">LinkedIn</a><br>Prepared for the Iowa State CALS AI in Teaching series. Every quote and figure was checked against the live source page on October 25, 2026; university pages change often, so check the linked source before reusing a quote. Views are the author's and do not represent Iowa State University policy.</p>
+</main></body></html>

@@ -1,0 +1,1284 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Peer universities and AI in courses: full report</title>
+<meta name="description" content="Full comparative report: AI syllabus policies, disclosure, detectors, data rules and course-grounded tutors at universities ranked above Iowa State, plus how they teach AI. Every source re-checked Oct 25, 2026.">
+<link rel="canonical" href="https://adisaksukul.com/cals-ai-teaching/peer-universities-report/">
+<meta property="og:title" content="Peer universities and AI in courses: full report"><meta property="og:description" content="Full comparative report: AI syllabus policies, disclosure, detectors, data rules and course-grounded tutors at universities ranked above Iowa State, plus how they teach AI. Every source re-checked Oct 25, 2026."><meta property="og:type" content="article"><meta property="og:url" content="https://adisaksukul.com/cals-ai-teaching/peer-universities-report/">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Besley:wght@500;600&family=JetBrains+Mono:wght@400;600&family=Public+Sans:wght@400;500;600;700&display=swap">
+<style>
+:root{--ink:#17201c;--ink2:#46514b;--muted:#6f7a74;--line:#dfe3df;--board:#143d2e;--board2:#1f5a43;--paper:#fbfaf6;--surface:#fff;--pick:#edf4ee;--quote:#f3f0e6}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+html,body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 "Public Sans",system-ui,-apple-system,Segoe UI,Helvetica,Arial,sans-serif}
+.top{background:var(--board);color:#e9efe9}
+.top .in{max-width:1040px;margin:0 auto;padding:12px 24px;display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;justify-content:space-between}
+.top a{color:#fff;text-decoration:none;font:600 12px/1 "JetBrains Mono",ui-monospace,monospace;letter-spacing:.06em;text-transform:uppercase}
+.top nav{display:flex;gap:16px;flex-wrap:wrap}.top nav a.on{border-bottom:2px solid #9fd3b6;padding-bottom:3px}
+.page{max-width:1040px;margin:0 auto;padding:40px 24px 56px}
+.eyebrow{font:600 12px/1.3 "JetBrains Mono",ui-monospace,monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--board2);margin:0 0 12px}
+h1{font-family:Besley,Georgia,serif;font-size:clamp(28px,4.2vw,40px);line-height:1.12;margin:0 0 14px;font-weight:600;letter-spacing:-.01em}
+h2{font-family:Besley,Georgia,serif;font-size:clamp(21px,2.6vw,26px);line-height:1.2;margin:44px 0 12px;font-weight:600;padding-top:14px;border-top:1px solid var(--line)}
+h3{font-family:Besley,Georgia,serif;font-size:19px;margin:28px 0 8px;font-weight:600}
+p{margin:0 0 14px}li{margin:0 0 6px}ul,ol{padding-left:22px;margin:0 0 14px}
+.lead{font-size:18px;color:var(--ink2);max-width:760px}
+.meta{display:flex;flex-wrap:wrap;gap:6px 22px;font-size:13.5px;color:var(--ink2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:10px 0;margin:18px 0 8px}
+.verified{background:var(--pick);border-left:4px solid var(--board2);padding:12px 16px;border-radius:6px;font-size:14.5px;color:var(--ink2);margin:18px 0}
+.verified p{margin:0}
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:10px 0 18px;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+table{width:100%;border-collapse:collapse;font-size:14px;line-height:1.45;min-width:640px}
+th,td{text-align:left;vertical-align:top;padding:9px 11px;border-bottom:1px solid var(--line)}
+thead th{font:600 11px/1.25 "JetBrains Mono",ui-monospace,monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);border-bottom:2px solid var(--ink);background:#fcfcfa;position:sticky;top:0}
+tbody tr:nth-child(even){background:#fbfbf8}
+tbody tr:last-child td{border-bottom:0}
+blockquote{margin:14px 0 18px;padding:14px 18px;background:var(--quote);border-left:4px solid #c9a227;border-radius:6px}
+blockquote p{margin:0 0 10px}blockquote p:last-child{margin:0}
+a{color:var(--board2);text-underline-offset:2px}a:hover{color:var(--board)}
+strong{font-weight:650}
+hr{border:0;border-top:1px solid var(--line);margin:28px 0}
+.toc{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 18px;margin:18px 0 8px}
+.toc b{font:600 11px/1 "JetBrains Mono",monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.toc ol{margin:8px 0 0;columns:2;column-gap:28px;font-size:14.5px}.toc li{break-inside:avoid}
+.cta{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 26px}
+.btn{display:inline-block;background:var(--board);color:#fff;text-decoration:none;padding:10px 16px;border-radius:8px;font-weight:600;font-size:14.5px}
+.btn.alt{background:transparent;color:var(--board);border:1.5px solid var(--board)}
+.foot{font-size:13px;color:var(--muted);margin-top:40px;border-top:1px solid var(--line);padding-top:16px}
+@media (max-width:640px){.page{padding:26px 16px 40px}.top .in{padding:10px 16px}.toc ol{columns:1}body{font-size:15.5px}}
+@media print{.top,.cta,.toc{display:none}body{background:#fff;font-size:11.5pt}.tw{overflow:visible;border:0}table{min-width:0;font-size:9.5pt}thead th{position:static}h2{break-after:avoid}tr{break-inside:avoid}}
+</style></head><body>
+<header class="top"><div class="in"><a href="/">Adisak Sukul</a><nav><a href="/cals-ai-teaching/brief/" class="">Brief</a><a href="/cals-ai-teaching/peer-universities-report/" class="on">Full report</a></nav></div></header>
+<main class="page">
+<p class="eyebrow">Full report · CALS AI in Teaching · Iowa State University</p>
+<h1>Higher-Ranked Peers Push AI Rules Into Assignments</h1>
+<p class="lead">What universities ranked above Iowa State do with AI in their courses: the syllabus rules, disclosure formats, detector stances and data rules they use, the grounded course tutors they run, and how they teach AI itself. Comparison tables carry a verdict column.</p>
+<div class="meta"><span><b>Series</b> CALS AI in Teaching, Iowa State University</span><span><b>Session</b> "Your Course, Your Rules," Oct 26, 2026</span><span><b>Checked</b> against live sources Oct 25, 2026</span><span><b>Scope</b> universities ranked above ISU (#116, U.S. News 2027)</span></div>
+<div class="cta"><a class="btn alt" href="/cals-ai-teaching/brief/">One-page brief</a></div>
+<nav class="toc"><b>Contents</b><ol><li><a href="#workshop-brief">Workshop brief</a></li><li><a href="#how-far-the-evidence-goes-ranks-dates-and-quote-reliability">How far the evidence goes: ranks, dates and quote reliability</a></li><li><a href="#peers-hand-instructors-a-vocabulary-not-a-rule">Peers hand instructors a vocabulary, not a rule</a></li><li><a href="#silence-is-a-policy-and-peers-that-define-it-choose-no">Silence is a policy, and peers that define it choose &quot;no&quot;</a></li><li><a href="#2025-26-syllabi-split-rules-by-assignment-and-shrink-disclos">2025–26 syllabi split rules by assignment and shrink disclosure</a></li><li><a href="#detectors-are-gone-data-classification-does-the-governing">Detectors are gone; data classification does the governing</a></li><li><a href="#grounded-tutors-work-only-when-someone-audits-them">Grounded tutors work only when someone audits them</a></li><li><a href="#teaching-ai-elite-intro-courses-lag-on-llm-applications">Teaching AI: elite intro courses lag on LLM applications</a></li><li><a href="#ai-for-all-students-purdue-requires-ohio-state-embeds-florid">AI for all students: Purdue requires, Ohio State embeds, Florida credentials</a></li><li><a href="#recommendations">Recommendations</a></li><li><a href="#conclusion">Conclusion</a></li><li><a href="#what-changed-after-the-live-re-check-october-25-2026">What changed after the live re-check (October 25, 2026)</a></li><li><a href="#sources">Sources</a></li></ol></nav>
+<article>
+<div class="verified"><p><em>Every quote, number and "updated" date in this report was re-pulled from the live page on </em><em>October 25, 2026</em><em> and checked word for word against the page text, not a model summary. Items that could not be re-checked are marked. The corrections this check produced are listed in "What changed after the live re-check" at the end.</em></p></div>
+<h2 id="workshop-brief">Workshop brief</h2>
+<p>Universities ranked above Iowa State have not agreed on one AI rule. They have agreed on a process. The institution supplies vocabulary and data rules, the instructor writes a course statement, and the real decisions happen assignment by assignment. In 2025–26 science and quantitative syllabi at MIT, Wharton, UW, UF and UW–Madison, the common pattern is: <strong>AI allowed for practice and learning, banned on proctored quizzes and exams, use disclosed in a line or two, and the student owns every error</strong>. Wherever an institution has set a default for a syllabus that says nothing, that default is <strong>"not allowed"</strong> (Maryland, Rutgers, Michigan State). The best student evidence shows that silence otherwise reads as permission. AI detectors have been switched off or disavowed almost everywhere.</p>
+<p>The frontier is grounded course tutors. The two best-documented ones, Harvard's CS50 Duck and Georgia Tech's Jill Watson, both found that <strong>prompts alone cannot hold the guardrail</strong>, which is exactly what an instructor-run audit of a course tutor checks. No peer agriculture college publishes its own AI-in-teaching policy. No peer publishes an instructor workflow for "answer only from my materials." Instructors who ground a tutor in their own materials and audit it are ahead of the peers, not catching up.</p>
+<h3 id="seven-findings-for-instructors">Seven findings for instructors</h3>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>Finding</th>
+<th>Peer evidence</th>
+<th>What to do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>Silence reads as permission</strong></td>
+<td>Middlebury students' stated likelihood of using AI: 42.2% under no policy, 40.9% under "allowed if cited," 13.4% under a ban (self-reported intent, surveyed Dec 2024–Feb 2025) (<a href="https://arxiv.org/pdf/2508.00717" target="_blank" rel="noopener">Contractor &amp; Reyes</a>)</td>
+<td>A syllabus with no AI policy still tells students something</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Where a default exists, it is "no"</strong></td>
+<td>Maryland (Jan 2025): students "should assume" AI is "not allowed" unless told otherwise (<a href="https://ai-resources.umd.edu/sites/default/files/2025-01/Academic-Guidelines-AI-Tools-at-UMD-Jan2025.pdf" target="_blank" rel="noopener">UMD</a>); Rutgers and MSU say the same (<a href="https://it.rutgers.edu/ai/guidance-on-the-use-of-ai-at-rutgers/" target="_blank" rel="noopener">Rutgers</a>; <a href="https://ctli.msu.edu/resources/generative-ai/gen-ai-syllabus" target="_blank" rel="noopener">MSU</a>). No published ISU default was found</td>
+<td>Add one default line to every syllabus</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Split the rules by assignment, not by tool</strong></td>
+<td>MIT 14.05, Wharton BEPP 6120, UF ANS 3006 and UW CSE 373 all allow AI for practice and ban it on proctored work (<a href="https://ocw.mit.edu/courses/14-05-intermediate-macroeconomics-fall-2025/pages/syllabus/" target="_blank" rel="noopener">MIT</a>; <a href="https://courses.cs.washington.edu/courses/cse373/25wi/genai" target="_blank" rel="noopener">UW</a>)</td>
+<td>Restrictive syllabi can keep exams AI-free and still open study uses</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Short disclosure beats transcripts</strong></td>
+<td>Georgia Tech BIOL 1207L (Fall 2026) asks four questions: tool, how, why, how verified (<a href="https://syllabus.gatech.edu/sites/default/files/2026-04/BIOS%201207%20Lab%20Syllabus%20Fa%2026.pdf" target="_blank" rel="noopener">GT</a>). Only 31.3% of Middlebury students know how to cite AI (<a href="https://arxiv.org/pdf/2508.00717" target="_blank" rel="noopener">arXiv</a>)</td>
+<td>Permissive syllabi can trade "full responses" for a link plus a verification step</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>Detectors are out, and student work is the data risk</strong></td>
+<td>MSU turned off Turnitin's AI detection (<a href="https://help.d2l.msu.edu/msu-docs/other-tools-at-msu/using-assignments-with-turnitin/ai-detection" target="_blank" rel="noopener">MSU</a>). Penn says uploading student work to a detector without consent violates FERPA (<a href="https://cetli.upenn.edu/resources/generative-ai/" target="_blank" rel="noopener">Penn CETLI</a>)</td>
+<td>Build only from your own materials; no student work</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>The prompt is not the guardrail</strong></td>
+<td>The CS50 Duck produced code "up to a quarter of the time" despite instructions not to (<a href="https://news.harvard.edu/gazette/story/2026/09/taming-the-duck-for-starters/" target="_blank" rel="noopener">Harvard Gazette</a>). Jill Watson answers only when verified course material exists: 78.7% accuracy vs 30.7% for a generic assistant (<a href="https://www.cc.gatech.edu/news/georgia-techs-jill-watson-outperforms-chatgpt-real-classrooms" target="_blank" rel="noopener">GT</a>)</td>
+<td>An instructor's five-test audit is the classroom version of their code checks</td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>Structure and coaching produce learning; access alone does not</strong></td>
+<td>Harvard physics tutor: +0.63 SD vs active learning (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12179260/" target="_blank" rel="noopener">Kestin 2025</a>). Access alone had no effect, coaching gave +0.22 SD (<a href="https://docs.iza.org/dp18513.pdf" target="_blank" rel="noopener">Gallegos 2026</a>). Unguarded GPT cut exam scores 17% (<a href="https://ideas.repec.org/a/nas/journl/v122y2025pe2422633122.html" target="_blank" rel="noopener">Bastani 2025</a>)</td>
+<td>Every artifact ships with a three-line "how to use this" note for students</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="four-quotable-peer-lines">Four quotable peer lines</h3>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>School</th>
+<th>Course, year</th>
+<th>Quote</th>
+<th>Use for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UW–Madison</td>
+<td>Biology 151, Fall 2025</td>
+<td>"If the description of an assignment does not include language regarding the use of AI, its use is prohibited." (<a href="https://introbio.biology.wisc.edu/wp-content/uploads/sites/392/2025/09/151-Course-Syllabus-Fall-2025-1.pdf" target="_blank" rel="noopener">syllabus</a>)</td>
+<td>The default line</td>
+</tr>
+<tr>
+<td>MIT</td>
+<td>14.05 Intermediate Macroeconomics, Fall 2025</td>
+<td>"This course allows and, in fact, explicitly encourages the use of AI (such as ChatGPT)" … "The use of AI tools during the in-class exams is not permitted." (<a href="https://ocw.mit.edu/courses/14-05-intermediate-macroeconomics-fall-2025/pages/syllabus/" target="_blank" rel="noopener">syllabus</a>)</td>
+<td>Practice yes, exams no</td>
+</tr>
+<tr>
+<td>Georgia Tech</td>
+<td>BIOL 1207L Project Lab, Fall 2026</td>
+<td>"d) describe what steps you took to verify the AI output." Part of a required "AI Contributions" section; leaving it out costs 10%. (<a href="https://syllabus.gatech.edu/sites/default/files/2026-04/BIOS%201207%20Lab%20Syllabus%20Fa%2026.pdf" target="_blank" rel="noopener">syllabus</a>)</td>
+<td>Disclosure that teaches verification</td>
+</tr>
+<tr>
+<td>UChicago Harris</td>
+<td>PPHA 31202 Advanced Statistics, Fall 2025</td>
+<td>"You are responsible for any errors and other issues (e.g, plagiarism) the program creates." (<a href="https://harris.uchicago.edu/sites/default/files/2025-08/PPHA%2031202_%20Advanced%20Statistics%20for%20Data%20Analysis_Black_2025.pdf" target="_blank" rel="noopener">syllabus</a>)</td>
+<td>AI answers are not authoritative</td>
+</tr>
+</tbody>
+</table></div>
+<p>On refusing questions outside the materials, Penn State Extension's grounded farm assistant Tilva (January 2026) gives the cleanest line, from David Hughes: "Where we feel confident, the AI can answer. Where we don't, we stop it." (<a href="https://www.psu.edu/news/agricultural-sciences/story/penn-state-extension-ai-tool-tilva-expands-access-research-based" target="_blank" rel="noopener">Penn State News</a>)</p>
+<h3 id="three-syllabus-sentences-assembled-from-peer-language">Three syllabus sentences, assembled from peer language</h3>
+<blockquote>
+<p><strong>May be used for.</strong> You may use ISU-licensed AI tools (logged-in Copilot, Gemini or NotebookLM) or this course's study guide to review concepts, quiz yourself and get feedback on drafts, after you have first attempted the work yourself.</p>
+<p><strong>May not be used for, and why.</strong> You may not use AI on quizzes and exams, or to write the interpretation you submit in lab reports, because those assignments are designed to assess your own understanding and independent thinking.</p>
+<p><strong>Not authoritative.</strong> AI output is not an authoritative source. It can fabricate credible-looking data, references, quotations and calculations, so check anything you use against course materials. You are responsible for every error you submit.</p>
+</blockquote>
+<p>Where each sentence comes from:
+- Sentence 1 draws on UW CSE 373's allow-list, Missouri BIOSC 3750's list of roles (editor, translator, idea generator, data visualization tool, tutor) and Duke STA 199's "first attempt to solve the problem yourself."
+- Sentence 2 draws on MIT 14.05, UF ANS 3006, and UW Econ 200's rationale (<a href="https://econ.washington.edu/sites/econ/files/documents/syllabi/2025/sum/2025_Summer_Econ200_Syllabus.pdf" target="_blank" rel="noopener">UW Econ 200</a>).
+- Sentence 3 draws on Missouri microbiology and Ethan Mollick, both undated entries in <a href="https://docs.google.com/spreadsheets/d/1lM6g4yveQMyWeUbEwBM6FZVxEWCLfvWDh1aWUErWWbQ/edit" target="_blank" rel="noopener">Eaton's repository</a> (Missouri's rank relative to ISU was not verified), plus UChicago Harris.</p>
+<p>Optional fourth line: "If an assignment does not say, assume AI is not allowed. Where it is allowed, add one line: tool, what for, and how you checked it."</p>
+<h3 id="four-common-starting-points-and-one-upgrade-for-each">Four common starting points, and one upgrade for each</h3>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>If your syllabus has…</th>
+<th>Peer example</th>
+<th>One upgrade</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>No AI policy</td>
+<td>5 of 6 publicly posted 2025 UF Animal Sciences syllabi had no AI statement (<a href="https://animal.ifas.ufl.edu/media/animalifasufledu/animal-sciences-website/students/syllabi/2025-fall-syllabi/ANS-3043-Fall-2025.pdf" target="_blank" rel="noopener">UF ANS 3043</a>). ISU's required Fall 2026 template already expects an instructor AI-use policy for undergraduate courses (<a href="https://www.inside.iastate.edu/article/2026/04/27/new-undergraduate-course-syllabus-templates-unveiled-fall-semester" target="_blank" rel="noopener">Inside Iowa State</a>)</td>
+<td>Write the three sentences plus the default line</td>
+</tr>
+<tr>
+<td>A restrictive policy</td>
+<td>UF ECO 3203 department boilerplate (<a href="https://economics.clas.ufl.edu/wp-content/uploads/sites/117/Estevez_ECO-3203.pdf" target="_blank" rel="noopener">UF</a>); Texas A&amp;M ISTM 705 (undated, Eaton)</td>
+<td>Add the reason, plus a four-part permission request (assignment, tool, intended use, reason) and the study uses that stay open</td>
+</tr>
+<tr>
+<td>A permissive policy requiring tool, exact prompts and full responses</td>
+<td>Boston University Computing &amp; Data Sciences: appendix with "the entire exchange" (undated, Eaton)</td>
+<td>Switch to GT BIOL 1207L's four questions or a shared chat link (UW–Madison LIS 408); students keep logs and produce them on request (UMN)</td>
+</tr>
+<tr>
+<td>AI mentioned only in passing</td>
+<td>Georgia Tech CHEM 1211K (Fall 2026): the lecture syllabus never mentions AI (<a href="https://syllabus.gatech.edu/sites/default/files/2026-03/Lecture%20Syllabus%20%281211K%29.pdf" target="_blank" rel="noopener">lecture</a>), while the lab syllabus for the same course has a full policy: AI "can be a useful tool for learning and/or improving your writing, however, it should not serve as a substitute for your own understanding" (<a href="https://syllabus.gatech.edu/sites/default/files/2026-04/CHEM%201211%20Laboratory%20Syllabus%20Fall26.pdf" target="_blank" rel="noopener">lab</a>)</td>
+<td>Grow the passing mention into the lab version: what AI is for, what counts as a violation, and "should be disclosed and cited for transparency"</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>What Iowa State already has.</strong> ISU does publish AI syllabus guidance, with <strong>three</strong> approaches, not four. CELT's "Gen AI Syllabus Considerations," linked from its <a href="https://celt.iastate.edu/prepare-and-teach/design-your-course/ai-in-teaching/" target="_blank" rel="noopener">AI in Teaching page</a>, offers "Permitted and encouraged use," "Limited use" and "Prohibited use." It adds six considerations (approach, tools, conditions, required processes, rationale, alternatives), sample language for each approach, and a step most peers skip: alternatives for students who choose not to use AI (<a href="https://iastate.box.com/s/w1rlseeflz3nec3npy0k0pn1afo27tia" target="_blank" rel="noopener">CELT document</a>). The required Fall 2026 ISU template asks for "Instructor policies for attendance, late work, extra credit and use of AI" (<a href="https://www.inside.iastate.edu/article/2026/04/27/new-undergraduate-course-syllabus-templates-unveiled-fall-semester" target="_blank" rel="noopener">Inside Iowa State</a>). What ISU still lacks: a default when a syllabus is silent, assignment-level labels, and a written stance on AI detectors. Start from the CELT document; the three sentences above fit inside its "Limited use" approach.</p>
+<hr>
+<h2 id="how-far-the-evidence-goes-ranks-dates-and-quote-reliability">How far the evidence goes: ranks, dates and quote reliability</h2>
+<p>ISU is <strong>#116 nationally and #55 among publics</strong> in the 2027 U.S. News edition, released September 22, 2026 (<a href="https://www.newsfromthestates.com/article/iowa-universities-see-us-news-world-report-rankings-rise" target="_blank" rel="noopener">Iowa Capital Dispatch via News From The States</a>). The research team did not verify 2027 ranks school by school.</p>
+<p>Nearly every institution discussed here sits, by wide understanding, well above #116: Stanford, MIT, Harvard, Princeton, Yale, Penn, Duke, CMU, Columbia, Cornell, Northwestern, Johns Hopkins, UChicago, Berkeley, Michigan, Washington, Illinois, Wisconsin, UT Austin, Georgia Tech, Florida, Maryland, Purdue, Ohio State, Rutgers, Minnesota, Penn State, Texas A&amp;M, Michigan State, UC San Diego, BU, NYU, Vanderbilt and UConn. Treat that as background, not as verified fact.</p>
+<p><strong>Rank relative to ISU was not verified for Nebraska–Lincoln, Kansas State, Arizona State, Missouri (which the notes flag as a "near-peer") and South Carolina.</strong> They appear as land-grant or design comparators. Other sources serve only as evidence exemplars and are not ranked against ISU:
+- Middlebury, which U.S. News ranks among liberal arts colleges, not national universities
+- the SUNY system
+- community colleges
+- Chile's Universidad Adolfo Ibáñez
+- Turkish high schools</p>
+<p>Several core policy texts are <strong>2023 vintage</strong> and are labeled by date throughout:
+- Stanford's default for a silent syllabus (February 2023)
+- Harvard FAS sample statements (August 2023)
+- Northwestern's statements (retrieved August 2023)
+- CMU's contracts memo (Summer 2023)
+- Vanderbilt's detector shutdown (August 2023)
+- Kansas State's call for sample statements (August 2023)</p>
+<p>On quote reliability (after the October 25, 2026 live re-check):
+- Every quote with a link was compared word for word against the raw text of the live page: HTML pages and PDFs fetched directly, and pages that block scripts (ISU, Columbia, Princeton, Harvard, Michigan, UMD, UF) read in a real browser.
+- Quotes that did not match were corrected to the page's exact wording or removed; the list is at the end of the report.
+- Lance Eaton's crowd-sourced repository was re-exported live (222 entries). It records no dates, so its entries may date from 2023–24.</p>
+<h2 id="peers-hand-instructors-a-vocabulary-not-a-rule">Peers hand instructors a vocabulary, not a rule</h2>
+<p>Every peer leaves the permission decision to instructors. They differ in whether a syllabus statement is mandatory and in how much support the institution publishes. A few require a statement:
+- <strong>UT Austin:</strong> "Every syllabus must include a course AI policy." Instructors declare AI permitted, prohibited or partially permitted, and must give written disclosure instructions whenever AI is allowed (<a href="https://provost.utexas.edu/the-office/academic-affairs/office-of-academic-technology/ai-for-teaching-learning-toolkit/policy-and-recommendations/" target="_blank" rel="noopener">UT Austin Provost</a>).
+- <strong>Nebraska–Lincoln</strong> (rank unverified): the Faculty Senate syllabus policy of November 4, 2025 requires a statement to "Describe whether AI is allowed for use in your course" (<a href="https://facultysenate.unl.edu/sites/unl.edu.academic-affairs.faculty-senate/files/media/file/Syllabus%20policy%20November%202025.pdf" target="_blank" rel="noopener">UNL Faculty Senate</a>).
+- <strong>Duke:</strong> its 2026/2027 syllabus template now carries AI policy guidance from its Office of Undergraduate Education (<a href="https://ctl.duke.edu/ai-and-teaching-at-duke-2/artificial-intelligence-policies-in-syllabi-guidelines-and-considerations/" target="_blank" rel="noopener">Duke CTL</a>).</p>
+<p>ISU joined this small group in Fall 2026. Every undergraduate course must now carry an ISU Canvas template that includes "Instructor policies for attendance, late work, extra credit and use of AI." The provost calls completion "a component with the teaching portion of the faculty Position Responsibility Statement," and says non-compliance "will be reflected in annual reviews" (<a href="https://www.inside.iastate.edu/article/2026/04/27/new-undergraduate-course-syllabus-templates-unveiled-fall-semester" target="_blank" rel="noopener">Inside Iowa State</a>; <a href="https://provost.iastate.edu/academic-programs/syllabus-templates" target="_blank" rel="noopener">ISU Provost</a>).</p>
+<p>Everyone else "strongly encourages" a statement. That includes Berkeley, Michigan, UW–Madison, Minnesota, Penn State, Maryland, Purdue, Harvard, Northwestern and Cornell's College of Agriculture and Life Sciences (CALS). Cornell CALS requires no AI statement and points faculty to Eaton's repository, a reflection worksheet and an "AI Course Policy Generator" (<a href="https://cals.cornell.edu/faculty-staff/office-of-academic-programs/office-of-curriculum-development-instructional-support/faq-for-cals-educators" target="_blank" rel="noopener">Cornell CALS FAQ</a>).</p>
+<p><strong>ISU's gap is narrower than it first looked.</strong> The provost's template page has no AI wording, but CELT's "Gen AI Syllabus Considerations" document (found on the live re-check) supplies a three-approach vocabulary — "Permitted and encouraged use," "Limited use," "Prohibited use" — plus sample language, a list of required processes (verify accuracy, cite, reflect, "Disclose use of AI tools, prompts, generated outputs"), and alternatives for students who opt out (<a href="https://iastate.box.com/s/w1rlseeflz3nec3npy0k0pn1afo27tia" target="_blank" rel="noopener">CELT</a>). That puts ISU level with Berkeley and UF on vocabulary. The remaining gaps are a default for silence, assignment-level labels and a detector stance. CELT also runs a self-paced Canvas course on generative AI that "takes about two hours to complete" (September 12, 2024). In the article about it, Christine Denison's students "provide a disclosure note with every assignment to explain which AI they used, how they used it and affirm they are responsible for the result" (<a href="https://www.inside.iastate.edu/article/2024/09/12/celtai" target="_blank" rel="noopener">Inside Iowa State, 2024</a>).</p>
+<p>The national picture shows why support matters. <strong>Only 32% of institutions have a campus-wide AI policy, and only 23% of faculty consider such policies effective</strong> (<a href="https://www.globenewswire.com/news-release/2026/06/15/3311604/0/en/Tyton-Partners-Releases-2026-Time-for-Class-Report-The-AI-Tipping-Point-From-Monitoring-Students-to-Engaging-Them.html" target="_blank" rel="noopener">Tyton Partners 2026</a>). Globally, 80% of faculty report a lack of clarity about AI in teaching (<a href="https://www.digitaleducationcouncil.com/post/what-faculty-want-key-results-from-the-global-ai-faculty-survey-2025" target="_blank" rel="noopener">Digital Education Council, Jan 2025</a>).</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Level scheme</th>
+<th>Who uses it</th>
+<th>Pros</th>
+<th>Cons</th>
+<th>Verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>3 levels: No / Some / Full AI</strong></td>
+<td>Berkeley Senate 2025: No AI / Some AI / Full AI (<a href="https://academic-senate.berkeley.edu/sites/default/files/genai_guidance_for_instructors_2025.pdf" target="_blank" rel="noopener">PDF</a>); UF Provost guidelines (Version 1, 2023): No AI / Some AI / AI-Permitted (<a href="https://ai.ufl.edu/guidelines/" target="_blank" rel="noopener">UF</a>); UT Austin: "permitted, prohibited, or partially permitted" (<a href="https://provost.utexas.edu/the-office/academic-affairs/office-of-academic-technology/ai-for-teaching-learning-toolkit/policy-and-recommendations/" target="_blank" rel="noopener">UT</a>); Northwestern: Closed / Conditional / Open (<a href="https://www.ai.northwestern.edu/education/use-of-generative-artificial-intelligence-in-courses.html" target="_blank" rel="noopener">NU</a>)</td>
+<td>The standard vocabulary; easy to remember</td>
+<td>"Some AI" means nothing until assignments spell it out</td>
+<td><strong>Use as the course-level vocabulary</strong></td>
+</tr>
+<tr>
+<td><strong>ISU CELT: 3 approaches + six considerations</strong></td>
+<td>Permitted and encouraged / Limited / Prohibited, with sample language and opt-out alternatives (<a href="https://iastate.box.com/s/w1rlseeflz3nec3npy0k0pn1afo27tia" target="_blank" rel="noopener">CELT</a>)</td>
+<td>Already ISU's own; same shape as Berkeley/UF; the opt-out step is rare among peers</td>
+<td>No default for silence, no assignment labels</td>
+<td><strong>Build on it rather than replace it</strong></td>
+</tr>
+<tr>
+<td><strong>4 levels with assignment codes</strong></td>
+<td>Cornell's coded set AI-FREE / AS-UA / ANY-AI-UA / AS, with course icons (<a href="https://teaching.cornell.edu/node/2129" target="_blank" rel="noopener">Cornell CTI</a>). Georgia Tech CTL's 2025 statement documents were cited by researchers but now return "404 Not Found," so they are dropped</td>
+<td>Fits courses that mix labs, writing and exams; codes carry into individual assignments</td>
+<td>One more level to explain</td>
+<td><strong>Best fit for CALS courses; borrow Cornell's codes as assignment labels</strong></td>
+</tr>
+<tr>
+<td><strong>4-step permission ladder</strong></td>
+<td>Duke CTL (Aug 2026): prohibited / prior permission / acknowledgement / freely permitted with no acknowledgement (<a href="https://ctl.duke.edu/ai-and-teaching-at-duke-2/artificial-intelligence-policies-in-syllabi-guidelines-and-considerations/" target="_blank" rel="noopener">Duke</a>); traces to Delaware's samples</td>
+<td>Grades how much disclosure is needed</td>
+<td>Top level drops disclosure, unlike almost every peer</td>
+<td>Use the ladder, drop the "no acknowledgement" level</td>
+</tr>
+<tr>
+<td><strong>Building blocks</strong></td>
+<td>Stanford: "Yes, always allowed," "Yes, but…," "No, but…," "No, never allowed," plus a do-it-yourself workshop kit (<a href="https://teachingcommons.stanford.edu/teaching-guides/artificial-intelligence-teaching-guide/creating-your-course-policy-ai" target="_blank" rel="noopener">Stanford</a>)</td>
+<td>Gives sentence starters, not finished statements</td>
+<td>Rests on a 2023 default</td>
+<td>Good scaffold for a writing exercise</td>
+</tr>
+<tr>
+<td><strong>Design-for vs design-around</strong></td>
+<td>Michigan State: Restrict / Use permitted / <strong>Use required</strong> vs Ban (<a href="https://ctli.msu.edu/resources/generative-ai/gen-ai-syllabus" target="_blank" rel="noopener">MSU</a>)</td>
+<td>Names a "Require" level</td>
+<td>More conceptual than operational</td>
+<td>Use "Require" for assignments built on a course tutor</td>
+</tr>
+<tr>
+<td><strong>Co-created</strong></td>
+<td>UW course-level option (<a href="https://teaching.washington.edu/course-design/ai/sample-ai-syllabus-statements" target="_blank" rel="noopener">UW CTL</a>)</td>
+<td>Student buy-in</td>
+<td>Takes class time; uneven across courses</td>
+<td>Small seminars only</td>
+</tr>
+<tr>
+<td><strong>Modular menu</strong></td>
+<td>Minnesota Statements 1–5 and A–D, including data rules and instructor disclosure (<a href="https://provost.umn.edu/academic-oversight/genai-syllabus-statements" target="_blank" rel="noopener">UMN</a>)</td>
+<td>Covers data, copyright and instructor use</td>
+<td>Long</td>
+<td><strong>Borrow Statement 5 (data) and Statement C (instructor disclosure)</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p>The pattern is consistent. Peers have converged on a three-level course vocabulary, and the work that matters happens one level down. Berkeley's "Full AI" sample shows where grounded tools fit: "This is a GenAI-required course," with instructor-provided tools (<a href="https://academic-senate.berkeley.edu/sites/default/files/genai_guidance_for_instructors_2025.pdf" target="_blank" rel="noopener">Berkeley Senate</a>). Ohio State's Committee on Academic Misconduct and Cornell both push assignment-level icons (<a href="https://cdli.ehe.osu.edu/ai-in-ehe/updates-trends/osu-policy-guidance" target="_blank" rel="noopener">OSU EHE</a>; <a href="https://cte.cornell.edu/node/2251" target="_blank" rel="noopener">Cornell icons</a>). Icons are the lightest way to fill a course-level template field without making it vague.</p>
+<h2 id="silence-is-a-policy-and-peers-that-define-it-choose-no">Silence is a policy, and peers that define it choose "no"</h2>
+<p>When a syllabus is silent, peers fall into four camps. Every institution that sets a crisp default sets it at "not allowed":
+- <strong>Maryland</strong> (approved January 15, 2025): "Students should assume that the use of GenAI tools to complete course assignments and assessments is not allowed unless otherwise specified in the course syllabus or assignment/assessment instructions" (<a href="https://ai-resources.umd.edu/sites/default/files/2025-01/Academic-Guidelines-AI-Tools-at-UMD-Jan2025.pdf" target="_blank" rel="noopener">UMD</a>).
+- <strong>Rutgers</strong> (page modified September 1, 2026): AI tools "should not be considered permissible for coursework unless clearly stated or communicated by instructors" (<a href="https://it.rutgers.edu/ai/guidance-on-the-use-of-ai-at-rutgers/" target="_blank" rel="noopener">Rutgers OIT</a>).</p>
+<p>Stanford is the outlier. Its 2023 Office of Community Standards guidance treats AI "analogously to assistance from another person" and bars using it "to substantially complete an assignment or exam" (<a href="https://communitystandards.stanford.edu/generative-ai-policy-guidance" target="_blank" rel="noopener">Stanford OCS</a>). Duke, CMU and Northwestern let their honor codes do the work: unauthorized assistance is misconduct, so silence leans restrictive. CMU's teaching center warns that unstated policies leave students unable "to effectively interpret what kinds of AI use are authorized" (<a href="https://www.cmu.edu/teaching/technology/aitools/index.html" target="_blank" rel="noopener">CMU Eberly</a>). No ISU default was found.</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Default when a syllabus is silent</th>
+<th>Institutions</th>
+<th>Pros</th>
+<th>Cons</th>
+<th>Verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Not allowed unless stated</strong></td>
+<td>Maryland (Jan 2025); Rutgers (2026); Michigan State, implied (<a href="https://ctli.msu.edu/resources/generative-ai/gen-ai-syllabus" target="_blank" rel="noopener">MSU</a>); UMN template ("If you are unsure whether a particular use of AI is allowed, assume it is not"); Harvard's "mixed" sample (2023)</td>
+<td>Clear; easy to enforce; matches the integrity code</td>
+<td>Overreaches when used alone; Middlebury students called blanket bans unfair</td>
+<td><strong>Recommended, but only as a fallback line inside a specific policy</strong></td>
+</tr>
+<tr>
+<td><strong>Treat AI like another person's help</strong></td>
+<td>Stanford OCS (Feb 2023); UIUC CS 440 at course level (<a href="https://courses.grainger.illinois.edu/cs440/fa2025/syllabus.html" target="_blank" rel="noopener">CS 440</a>)</td>
+<td>Reuses familiar collaboration norms</td>
+<td>Blurs tutoring and ghostwriting; written before enterprise tools existed</td>
+<td>Good analogy, weak rule</td>
+</tr>
+<tr>
+<td><strong>Honor code covers it</strong></td>
+<td>Duke; CMU; Northwestern (<a href="https://www.ai.northwestern.edu/education/use-of-generative-artificial-intelligence-in-courses.html" target="_blank" rel="noopener">NU</a>)</td>
+<td>Legal backstop already exists</td>
+<td>Students cannot tell what "unauthorized" means</td>
+<td>Backstop only</td>
+</tr>
+<tr>
+<td><strong>No default: ask the instructor</strong></td>
+<td>Columbia: absent a clear prohibition, "students should reach out to their instructors for guidance" (<a href="https://provost.columbia.edu/content/office-senior-vice-provost/ai-policy" target="_blank" rel="noopener">Columbia</a>); Yale; Penn; Princeton; JHU; Purdue; Berkeley; UW; UMN</td>
+<td>Full instructor autonomy</td>
+<td>Students guess, and silence reads as permission</td>
+<td><strong>Avoid</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p>The behavioral evidence points the same way, with a caveat: it measures intentions, not behavior. Middlebury surveyed students from December 2024 to February 2025 (analysis n=634). <strong>42.2% said they would likely use AI under no explicit policy, nearly the same as the 40.9% under "allowed if cited."</strong> Under a ban the figure fell to <strong>13.4%</strong>, about 39 points below unrestricted use (<a href="https://arxiv.org/pdf/2508.00717" target="_blank" rel="noopener">Contractor &amp; Reyes, arXiv</a>).</p>
+<p>EDUCAUSE's 2025 student survey found:
+- Students whose instructors prohibit AI are significantly more likely to say they do not use it.
+- Only 51% of students had received any AI guidance.
+- 52% said most or all of their instructors prohibit AI.</p>
+<p>Source: <a href="https://accjc.org/wp-content/uploads/Educause-2025-Students-and-Technology-Report_-Shaping-the-Future-of-Higher-Education-Through-Technology-Flexibility-and-Well-Being-_-EDUCAUSE.pdf" target="_blank" rel="noopener">EDUCAUSE 2025 via ACCJC</a>.</p>
+<p>A default alone is not enough. Middlebury students asked for specific examples of acceptable and unacceptable uses. Interview research found students using more than 20 rationalizations, and found their practice drifting from the instructor's intent at "at least five distinct sites" (<a href="https://arxiv.org/pdf/2605.29090" target="_blank" rel="noopener">Kim et al., arXiv 2026</a>).</p>
+<p>The design that answers both problems pairs a "no unless stated" default with an explicit allow-list. UW–Madison Biology 151 does exactly this, and its policy opens on an encouraging note: "We are excited about the use of AI within the fields of education and biology" (<a href="https://introbio.biology.wisc.edu/wp-content/uploads/sites/392/2025/09/151-Course-Syllabus-Fall-2025-1.pdf" target="_blank" rel="noopener">Bio 151 syllabus</a>).</p>
+<h2 id="2025-26-syllabi-split-rules-by-assignment-and-shrink-disclos">2025–26 syllabi split rules by assignment and shrink disclosure</h2>
+<p>The evidence comes from four sources:
+- Thirteen 2025–26 syllabi fetched directly from biology, animal science, statistics, economics, chemistry and intro CS courses.
+- <strong>Lance Eaton's crowd-sourced repository</strong>: 222 entries as of October 25, 2026. Writing courses dominate (39 entries). STEM, health and agriculture together are only about 15%, and <strong>only one entry is agriculture</strong> (<a href="https://docs.google.com/spreadsheets/d/1lM6g4yveQMyWeUbEwBM6FZVxEWCLfvWDh1aWUErWWbQ/edit" target="_blank" rel="noopener">Eaton sheet</a>).
+- A peer-reviewed coding of 92 instructor policies: 52 allowed restricted use, 27 encouraged use with restrictions, 12 were zero-tolerance and 2 were unrestricted. About 90% placed responsibility for AI competency on the student (<a href="https://www.natcom.org/publications-library/what-are-we-telling-our-students-about-ai-an-exploratory-analysis-of-university-instructors-generative-ai-syllabi-policies/" target="_blank" rel="noopener">Tong et al. 2025 via NCA</a>).
+- A SIGCSE 2025 study of 98 computing syllabi at 54 R1 universities. Most prohibited or restricted AI, and most placed the guidance inside the academic-integrity section (<a href="https://arxiv.org/abs/2410.22281" target="_blank" rel="noopener">arXiv 2410.22281</a>).</p>
+<p>The dominant 2025–26 STEM pattern protects the proctored assessment rather than banning the tool:
+- <strong>MIT 14.05</strong> "explicitly encourages" AI, requires students to cite it, and bans it on in-class exams (<a href="https://ocw.mit.edu/courses/14-05-intermediate-macroeconomics-fall-2025/pages/syllabus/" target="_blank" rel="noopener">MIT OCW</a>).
+- <strong>Wharton BEPP 6120</strong> encourages experimentation, with a "closed book" and "closed computer" final as the backstop (<a href="https://mba-inside.wharton.upenn.edu/wp-content/uploads/2026/05/BEPP-6120-FALL-2025-Syllabus.pdf" target="_blank" rel="noopener">Wharton</a>).
+- <strong>UF ANS 3006 Online</strong>, the one animal-science example with an AI statement, says: "AI should not be used to assist with any quizzes. You can use AI for preliminary brainstorming on written assignments." It asks students to name the platform (<a href="https://animal.ifas.ufl.edu/media/animalifasufledu/animal-sciences-website/students/syllabi/2025-fall-syllabi/ANS-3006-Online-Fall-2025.pdf" target="_blank" rel="noopener">UF ANS 3006</a>).
+- <strong>UW CSE 373</strong> lists allowed uses, for example "Generate code to complete tasks that you have already mastered from previous coursework," alongside banned ones (<a href="https://courses.cs.washington.edu/courses/cse373/25wi/genai" target="_blank" rel="noopener">UW CSE 373</a>).
+- <strong>Duke STA 199</strong> separates code from prose. Students must "first attempt to solve the problem yourself" and may not paste AI-written narrative verbatim. Its principle: "Working with AI should not reduce your thinking ability" (<a href="https://sta199-f25.github.io/course-syllabus.html" target="_blank" rel="noopener">STA 199</a>).
+- <strong>Harvard CS50</strong> permits only its own guarded tools: "Using CS50's own AI-based software, including the CS50 Duck (ddb)" is reasonable, while third-party AI is not (<a href="https://cs50.harvard.edu/college/2025/spring/syllabus/" target="_blank" rel="noopener">CS50 syllabus</a>).</p>
+<p>A restrictive minority persists, usually as department boilerplate. UF ECO 3203 bars AI on all graded work "unless their instructor has expressly granted that permission" (<a href="https://economics.clas.ufl.edu/wp-content/uploads/sites/117/Estevez_ECO-3203.pdf" target="_blank" rel="noopener">UF ECO 3203</a>). UW Econ 200 is short and gives its reason: the assignments "are designed to assess your understanding and independent thinking" (<a href="https://econ.washington.edu/sites/econ/files/documents/syllabi/2025/sum/2025_Summer_Econ200_Syllabus.pdf" target="_blank" rel="noopener">UW Econ 200</a>).</p>
+<p>Silence and passing mentions persist too, sometimes inside one course. Georgia Tech CHEM 1211K's Fall 2026 lecture syllabus never mentions AI, while its lab syllabus says "Assignment submissions containing AI-generated text will be considered a violation of academic integrity" and that AI used to revise writing "should be disclosed and cited for transparency" (<a href="https://syllabus.gatech.edu/sites/default/files/2026-03/Lecture%20Syllabus%20%281211K%29.pdf" target="_blank" rel="noopener">lecture</a>; <a href="https://syllabus.gatech.edu/sites/default/files/2026-04/CHEM%201211%20Laboratory%20Syllabus%20Fall26.pdf" target="_blank" rel="noopener">lab</a>). An earlier section page that researchers quoted now returns "permission is required," so that quote was dropped. Silence is common even in strong agriculture departments. Only one of six publicly posted 2025 UF Animal Sciences syllabi has an AI statement, and the in-person section of ANS 3006, taught by the same instructor in the same term, has none (<a href="https://animal.ifas.ufl.edu/media/animalifasufledu/animal-sciences-website/students/syllabi/2025-fall-syllabi/ANS-3006-Fall-2025.pdf" target="_blank" rel="noopener">UF ANS 3006 in-person</a>). <strong>No 2025–26 top-100 syllabus from food science, agronomy or agricultural economics with fetchable AI text turned up</strong>, so CALS-discipline examples remain a real gap.</p>
+<p>Survey data put restrictive policies in the 2024 mainstream, with the trend moving away from them. In Ithaka S+R's February–March 2024 survey, <strong>42% of US instructors completely prohibited student AI use</strong> (an earlier draft added "45% in the sciences"; the report's 45% figure is humanities faculty skepticism, so it was removed) (<a href="https://sr.ithaka.org/wp-content/uploads/2024/06/SR-Report-Generative-AI-and-Postsecondary-Instructional-Practices-06202024.pdf" target="_blank" rel="noopener">Ithaka S+R, June 2024</a>). Tyton's June 2026 report found <strong>47% of faculty have redesigned assessments</strong>, and 24% are "Integrators" who use oral exams, drafts and student critiques of AI output. Faculty rate AI-embracing policies effective <strong>twice as often</strong> as bans (<a href="https://www.globenewswire.com/news-release/2026/06/15/3311604/0/en/Tyton-Partners-Releases-2026-Time-for-Class-Report-The-AI-Tipping-Point-From-Monitoring-Students-to-Engaging-Them.html" target="_blank" rel="noopener">Tyton 2026</a>). That is a perception, not an outcome measure, but it is persuasive with skeptics.</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Disclosure format</th>
+<th>Exemplar</th>
+<th>Burden (student / grader)</th>
+<th>Best fit</th>
+<th>Verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>One-line acknowledgment</strong></td>
+<td>Berkeley: "I acknowledge the use of [insert AI system(s) and link] to [specific use of GenAI]" (<a href="https://academic-senate.berkeley.edu/sites/default/files/genai_guidance_for_instructors_2025.pdf" target="_blank" rel="noopener">Berkeley</a>); UConn CSE 3500 model sentence (undated, Eaton)</td>
+<td>Low / low</td>
+<td>100+ student sections</td>
+<td>Floor for any course</td>
+</tr>
+<tr>
+<td><strong>Short statement: tool, use, prompts or verification</strong></td>
+<td>UW: tool, how used, how evaluated and verified (<a href="https://teaching.washington.edu/course-design/ai/sample-ai-syllabus-statements" target="_blank" rel="noopener">UW CTL</a>); Northwestern three parts: what for, which tool, what prompts (2023 framework) (<a href="https://www.ai.northwestern.edu/education/use-of-generative-artificial-intelligence-in-courses.html" target="_blank" rel="noopener">NU</a>)</td>
+<td>Low / low</td>
+<td>Most CALS courses</td>
+<td><strong>Recommended default</strong></td>
+</tr>
+<tr>
+<td><strong>Four questions, disclosing use and non-use</strong></td>
+<td>GT BIOL 1207L, Fall 2026, 10% penalty if missing (<a href="https://syllabus.gatech.edu/sites/default/files/2026-04/BIOS%201207%20Lab%20Syllabus%20Fa%2026.pdf" target="_blank" rel="noopener">GT</a>); UW–Madison LIS 408: "Clearly state AI use OR non-use on all assignments. Skipping this step carries a 10% penalty." (Eaton)</td>
+<td>Moderate / moderate</td>
+<td>Writing-intensive labs</td>
+<td><strong>Best for lab and writing courses</strong></td>
+</tr>
+<tr>
+<td><strong>Disclose, don't cite</strong></td>
+<td>Princeton: students "must disclose its use rather than cite or acknowledge the use, since it is an algorithm rather than a source"; a failure to disclose is a violation even where AI is permitted; standard template (<a href="https://scholarlyintegrity.princeton.edu/students/disclosing-generative-ai-use" target="_blank" rel="noopener">Princeton</a>)</td>
+<td>Low / low</td>
+<td>Any</td>
+<td>Strong framing for the room</td>
+</tr>
+<tr>
+<td><strong>Formal citation</strong></td>
+<td>Cornell (prompt, model, date, version); Penn State eLDIG per-sentence citation (<a href="https://eldig.psu.edu/gen-a-i-syllabus-statements/" target="_blank" rel="noopener">PSU</a>)</td>
+<td>High / moderate</td>
+<td>Where the discipline's style guide requires it</td>
+<td>Niche</td>
+</tr>
+<tr>
+<td><strong>Full transcript appendix</strong></td>
+<td>BU Computing &amp; Data Sciences: an appendix showing "the entire exchange, highlighting the most relevant sections" (Eaton)</td>
+<td>High / very high</td>
+<td>Small graduate courses</td>
+<td><strong>Replace with keeping logs and producing them on request</strong> (UMN; MSU "save the AI chat as a PDF")</td>
+</tr>
+<tr>
+<td><strong>Per-assignment reflection</strong></td>
+<td>Berkeley CS 188, Fall 2026 (<a href="https://inst.eecs.berkeley.edu/~cs188/fa26/policies/" target="_blank" rel="noopener">policies</a>); Duke reflective companion</td>
+<td>Moderate / moderate</td>
+<td>Courses that teach AI</td>
+<td><strong>Best for AI 2010</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p>Disclosure now runs both ways:
+- Cornell: "When using material generated from an LLM in course materials or in assignments that students submit, transparency is key, and these instances should be properly referenced" (<a href="https://teaching.cornell.edu/node/2129" target="_blank" rel="noopener">Cornell CTI</a>).
+- Minnesota offers an optional instructor-disclosure statement (Statement C) (<a href="https://provost.umn.edu/academic-oversight/genai-syllabus-statements" target="_blank" rel="noopener">UMN</a>).
+- Yale and Johns Hopkins encourage instructors to tell students when AI helped build course materials (<a href="https://ctei.jhu.edu/teaching-and-ai/" target="_blank" rel="noopener">JHU CTEI</a>).
+- UW Bothell's intro AI course goes furthest. Its student-ratified "Student Bill of AI Rights" requires the instructor to <strong>personally complete any AI-generated assignment before issuing it</strong> (<a href="https://arxiv.org/abs/2608.05175" target="_blank" rel="noopener">Pisan, arXiv 2608.05175</a>).</p>
+<p>That last rule is the five-test audit restated as an ethics commitment, and it belongs on any instructor-built study tool.</p>
+<h2 id="detectors-are-gone-data-classification-does-the-governing">Detectors are gone; data classification does the governing</h2>
+<p>Peers are nearly unanimous on detectors. ISU has no written stance on AI detectors; CELT's guidance mentions only Turnitin Draft Coach as a student plagiarism self-check. Each workshop syllabus should simply leave detectors out.</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Detector stance</th>
+<th>Institutions</th>
+<th>Verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Turned off</strong></td>
+<td>Michigan State: "Turnitin AI Detection is not currently available at MSU" (<a href="https://help.d2l.msu.edu/msu-docs/other-tools-at-msu/using-assignments-with-turnitin/ai-detection" target="_blank" rel="noopener">MSU</a>). Yale: "currently disabled" (undated) (<a href="https://poorvucenter.yale.edu/teaching/canvas-yale/instructional-tools/turnitin" target="_blank" rel="noopener">Yale</a>). Vanderbilt, Aug 2023: at a 1% false-positive rate, about 750 papers could have been wrongly flagged (<a href="https://www.vanderbilt.edu/brightspace/?p=8901" target="_blank" rel="noopener">Vanderbilt</a>)</td>
+<td>The frontier position</td>
+</tr>
+<tr>
+<td><strong>Not endorsed or not licensed</strong></td>
+<td>UT Austin: "does not endorse… holds no central contract" (<a href="https://provost.utexas.edu/the-office/academic-affairs/office-of-academic-technology/ai-for-teaching-learning-toolkit/policy-and-recommendations/" target="_blank" rel="noopener">UT</a>). Harvard FAS: "FAS does not plan to provide/license such a tool for use in courses" (2023-era FAQ, still live at its new address) (<a href="https://oue.fas.harvard.edu/faculty-resources/generative-ai-guidance/" target="_blank" rel="noopener">Harvard OUE</a>). UMN: licenses none</td>
+<td>Mainstream</td>
+</tr>
+<tr>
+<td><strong>Advise against; never the only evidence</strong></td>
+<td>Maryland; Princeton; Penn ("not accurate enough to be treated as evidence of misconduct"); Columbia (running work "through an AI detection tool" on your own "is not encouraged") (<a href="https://provost.columbia.edu/content/office-senior-vice-provost/ai-policy" target="_blank" rel="noopener">Columbia</a>); Cornell; Duke; JHU; CMU; Michigan; UF; Berkeley; UW. Purdue: treat results "with extreme distrust" (<a href="https://purdue.edu/teaching-learning/instructors/ai.php" target="_blank" rel="noopener">Purdue</a>), yet its October 15, 2026 tool list authorizes CopyLeaks "AI Text and Image Detection" (<a href="https://www.purdue.edu/ai/wp-content/uploads/2026/10/AITools.pdf" target="_blank" rel="noopener">Purdue list</a>)</td>
+<td>Mainstream</td>
+</tr>
+<tr>
+<td><strong>Allowed with advance notice</strong></td>
+<td>Stanford OCS (Feb 2023)</td>
+<td>Outdated outlier</td>
+</tr>
+<tr>
+<td><strong>Allowed when AI use is suspected</strong></td>
+<td>Penn State eLDIG (one unit's page)</td>
+<td>Weakest peer position</td>
+</tr>
+<tr>
+<td><strong>Secondary reports, not verified</strong></td>
+<td>A blog reports Northwestern turned off Turnitin's AI detector and cites an Inside Higher Ed count of "at least a dozen" schools (<a href="https://pasqualepillitteri.it/en/news/14726/ai-detector-scores-banned-evidence-universities" target="_blank" rel="noopener">pasqualepillitteri.it</a>). AI Weekly, summarizing the FT, says Yale and JHU allow informal use only (<a href="https://aiweekly.co/alerts/yale-johns-hopkins-waterloo-pull-back-on-ai-detection-tools" target="_blank" rel="noopener">AI Weekly</a>); this conflicts with Yale's primary page</td>
+<td>Do not cite</td>
+</tr>
+</tbody>
+</table></div>
+<p>Penn's guidance adds the most citable line for skeptics. Instructors "should <em>not</em> upload the student's work into an 'AI detector'," and "Uploading a student's work without their consent is a violation of FERPA and Penn's privacy policies" (<a href="https://cetli.upenn.edu/resources/generative-ai/" target="_blank" rel="noopener">Penn CETLI</a>). In place of detection, peers point to assessment design: Berkeley recommends in-person exams and oral explanations (<a href="https://academic-senate.berkeley.edu/sites/default/files/genai_guidance_for_instructors_2025.pdf" target="_blank" rel="noopener">Berkeley Senate</a>).</p>
+<p>Data governance works by approving specific tools for specific data-classification levels. There are four models.</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Data-governance model</th>
+<th>Exemplars</th>
+<th>Strength</th>
+<th>Weakness</th>
+<th>Verdict for ISU CALS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Vendor enterprise tools with a data ceiling</strong></td>
+<td>Harvard: all listed tools up to Level 3, "Not approved for… FERPA" (<a href="https://huit.harvard.edu/ai/tools" target="_blank" rel="noopener">HUIT</a>). Berkeley: ChatGPT Edu, Gemini, NotebookLM at P3 (<a href="https://ai.berkeley.edu/tools-services/licensed-generative-ai-tools" target="_blank" rel="noopener">Berkeley</a>). Ohio State: Copilot S4, Gemini and NotebookLM S3, Claude and ChatGPT Edu unlicensed (<a href="https://ai.osu.edu/approved-tool-quick-reference" target="_blank" rel="noopener">OSU</a>). Purdue list of Oct 15, 2026: Claude, Gemini, NotebookLM and Copilot at "Sensitive," ChatGPT public only (<a href="https://www.purdue.edu/ai/wp-content/uploads/2026/10/AITools.pdf" target="_blank" rel="noopener">Purdue</a>)</td>
+<td>Free and available now</td>
+<td>The same tool gets different ceilings at different schools</td>
+<td><strong>Use now for instructor materials</strong></td>
+</tr>
+<tr>
+<td><strong>University-hosted multi-model gateway</strong></td>
+<td>MIT Parley (<a href="https://ist.mit.edu/ai-tools" target="_blank" rel="noopener">IS&amp;T</a>); PennChat (<a href="https://isc.upenn.edu/ai/tools" target="_blank" rel="noopener">ISC</a>); DukeGPT, which mixes on-premises open models with cloud models (<a href="https://today.duke.edu/2025/05/duke-expands-suite-secure-duke-managed-ai-services-openai" target="_blank" rel="noopener">Duke</a>); Stanford AI Playground; JHU HopGPT; TAMU AI Chat, which accepts some FERPA data (<a href="https://www.it.tamu.edu/services/services-by-category/communication-and-collaboration/tamu-ai-chat.html" target="_blank" rel="noopener">TAMU</a>)</td>
+<td>University governance plus a choice of models</td>
+<td>Costs to build and run</td>
+<td>Medium-term ISU target</td>
+</tr>
+<tr>
+<td><strong>Open-weight models on campus GPUs</strong></td>
+<td>UF NaviGator on HiPerGator (1,120 A100s) (<a href="https://news.ufl.edu/2024/08/navigator" target="_blank" rel="noopener">UF News</a>); Purdue GenAI Studio, cleared for sensitive data but not FERPA (<a href="https://docs.rcac.purdue.edu/services/genai/" target="_blank" rel="noopener">RCAC</a>); Illinois Chat: "all data stored on university resources" (<a href="https://computes.illinois.edu/resources/illinois-chat/" target="_blank" rel="noopener">Illinois</a>)</td>
+<td>Data stays at the university</td>
+<td>Pilot-grade safety; campus hosting is not FERPA approval</td>
+<td><strong>Matches the "ISU-controlled infrastructure" theme; seek classification approval separately</strong></td>
+</tr>
+<tr>
+<td><strong>Consumer accounts</strong></td>
+<td>Public data only at every peer; ISU limits free ChatGPT to "low"</td>
+<td>Everyone has one</td>
+<td>No data protection</td>
+<td>Never for anything beyond public course content</td>
+</tr>
+</tbody>
+</table></div>
+<p>ISU's own rules are the most permissive in this comparison, if read literally. ISU says that when logged in, "you can use it for confidential data" for Copilot, and Gemini and NotebookLM can be used "for confidential data too," while free ChatGPT is limited to data "classified as low" and "The university is working to add a license" (<a href="https://ai.iastate.edu/safely-use-ai" target="_blank" rel="noopener">ai.iastate.edu</a>). ISU's data page defines its four classes as Restricted, <strong>"High. Confidential student information protected by Family Educational Rights and Privacy Act (FERPA),"</strong> Moderate and Low (<a href="https://dataservices.iastate.edu/classification" target="_blank" rel="noopener">ISU Data Services</a>). Read together, "confidential" points at the FERPA class, which Harvard, Illinois and Penn State all exclude from the same tools. The AI page never says so explicitly, so <strong>confirm with ITS before any student work goes into a tool</strong>, and keep instructor-built tools to instructor materials.</p>
+<p>Peers differ on that same tool. UIUC clears Gemini and NotebookLM only for "Internal and Public" data (<a href="https://genai.illinois.edu/ai-apps/" target="_blank" rel="noopener">Illinois</a>). Penn State clears its Gemini Notebook only for Levels 1–2 (<a href="https://ai.psu.edu/ai-services/notebooklm" target="_blank" rel="noopener">PSU</a>).</p>
+<p>Stanford's tool matrix shows how fast these approvals move (checked live October 25, 2026). Claude Code and Claude Cowork are approved when provisioned through "the UIT managed workspace, which was released on June 30, 2026," but the Claude for Education entry reads: "Although Anthropic has redeployed Claude Fable 5, this tool remains disabled in the Stanford enterprise environment as it does not currently align with the university's obligations for data governance, research protection, and institutional risk management" (<a href="https://uit.stanford.edu/ai/matrix" target="_blank" rel="noopener">Stanford UIT</a>). The lesson for ISU: approval is per tool and per data class, and it can change mid-semester.</p>
+<p>Across peers the risk boundary is clear: <strong>an instructor's own syllabus and lectures are rarely the problem; student work is.</strong> Harvard FAS (2023): "Faculty must get documented permission from students before putting original student content into any generative AI tool" (<a href="https://oue.fas.harvard.edu/faculty-resources/generative-ai-guidance/" target="_blank" rel="noopener">Harvard OUE</a>; the page moved from its old address). The same page now announces that "Starting in Fall 2025," faculty can use the Respondus lockdown browser for in-person exams "to ensure that students do not use AI unless the course asks them to do so." CMU says FERPA protection begins once an instructor accepts an assignment for grading (<a href="https://www.cmu.edu/teaching/technology/aitools/index.html" target="_blank" rel="noopener">CMU Eberly</a>).</p>
+<p>Peers have not settled the question of instructor materials. Purdue's teaching guidance says instructor-generated materials "should never be uploaded to any third-party site" (<a href="https://purdue.edu/teaching-learning/instructors/ai.php" target="_blank" rel="noopener">Purdue OVPTL</a>), yet its tool list clears iSeek.ai for "course curricula and materials" (<a href="https://www.purdue.edu/ai/wp-content/uploads/2026/10/AITools.pdf" target="_blank" rel="noopener">Purdue</a>). Yale protects faculty IP from the student side, with a sample clause: "Do not submit instructor-created materials to AI tools without explicit permission" (<a href="https://poorvucenter.yale.edu/teaching/teaching-resource-library/ai-guidance-for-teachers/ai-course-assignment-design/protecting" target="_blank" rel="noopener">Yale Poorvu</a>). No US policy found says who owns or may reuse course materials once faculty upload them to an institutional AI tool.</p>
+<h2 id="grounded-tutors-work-only-when-someone-audits-them">Grounded tutors work only when someone audits them</h2>
+<p>Course-grounded tutors at peer universities fall into three tiers. The middle tier, a campus build-your-own platform with a Canvas connector, is the dominant fall 2026 model and the closest analogue to what an instructor can build today.</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Tier</th>
+<th>Exemplars</th>
+<th>Grounding and guardrails</th>
+<th>Evidence</th>
+<th>Verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Research-built tutors</strong></td>
+<td><strong>Harvard CS50 Duck</strong> retrieves from 30-second lecture-caption segments, strips personal information from queries, runs code that rejects or retries unhelpful answers, guards against prompt injection and rate-limits with "hearts" (<a href="https://cs.harvard.edu/malan/publications/V1fp0567-liu.pdf" target="_blank" rel="noopener">Liu et al., SIGCSE 2024</a>; <a href="https://news.harvard.edu/gazette/story/2026/09/taming-the-duck-for-starters/" target="_blank" rel="noopener">Gazette</a>). <strong>Georgia Tech Jill Watson</strong> "responds only when sufficient verified course material is available" and checks each answer against sources (<a href="https://www.cc.gatech.edu/news/georgia-techs-jill-watson-outperforms-chatgpt-real-classrooms" target="_blank" rel="noopener">GT</a>). <strong>Harvard's physics tutor</strong> embeds instructor-written solutions and enforces step-by-step scaffolding (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12179260/" target="_blank" rel="noopener">Kestin</a>)</td>
+<td>Strongest guardrails; the only published evaluations</td>
+<td>Gold standard, but months of engineering</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Campus build-your-own with Canvas connectors</strong></td>
+<td><strong>U-M Maizey</strong> comes pre-provisioned in Canvas; "Hidden or locked content is not indexed until visible to students," and each academic course gets a "$1,000 allocation per course, per semester" (<a href="https://teamdynamix.umich.edu/TDClient/30/Portal/KB/Article/11416/Getting-Started-with-Maizey-Canvas-Connector" target="_blank" rel="noopener">U-M KB</a>). <strong>UCSD TritonGPT Tutor</strong> lets instructors exclude "assignments or study guides" and pick Socratic or directive mode (<a href="https://tritonai.ucsd.edu/tritongpt/instruction.html" target="_blank" rel="noopener">UCSD</a>). Also Illinois Chat; Duke MyGPT Builder, whose first design step asks "What should it never do?" (<a href="https://ctl.duke.edu/blog/2025/08/building-an-ai-assistant-with-mygpt-builder/" target="_blank" rel="noopener">Duke</a>); ASU CreateAI's roughly 1,000 "Syllabots" (<a href="https://news.asu.edu/20260318-science-and-technology-createai-tool-kit-offers-asu-community-ways-to-customize-ai" target="_blank" rel="noopener">ASU</a>); Purdue GenAI Studio</td>
+<td>Descriptive only: UCSD pilot (n=68) 81% said it helped; Ross self-reported up to 5% higher scores (<a href="https://provost.umich.edu/how-u-ms-ai-services-are-making-a-difference-in-the-classroom" target="_blank" rel="noopener">U-M Provost</a>)</td>
+<td><strong>The model ISU should build toward</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Vendor tools</strong></td>
+<td>NotebookLM / Gemini Notebook (source-grounded; assignable in Canvas) (<a href="https://blog.google/outreach-initiatives/education/gemini-higher-education-benefits/" target="_blank" rel="noopener">Google</a>); ChatGPT Edu custom GPTs plus study mode, which runs on custom system instructions that OpenAI admits produce "some inconsistent behavior and mistakes across conversations," and which students can "Easily toggle... on and off" (<a href="https://openai.com/index/chatgpt-study-mode/" target="_blank" rel="noopener">OpenAI</a>); Claude learning mode (<a href="https://www.anthropic.com/news/introducing-claude-for-education" target="_blank" rel="noopener">Anthropic</a>); Copilot agents</td>
+<td>Students can switch learning modes off, and the guardrails are generic</td>
+<td><strong>Right for a first build (ISU logged-in NotebookLM or Copilot), paired with the audit</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<p>The guardrail lessons are blunt. Malan's team set out to build a "less-helpful version of ChatGPT," found prompting insufficient, and added code that screens every response. Even so, the Duck emitted code blocks "up to a quarter of the time" before fixes, and some students sent about 200 questions each (<a href="https://news.harvard.edu/gazette/story/2026/09/taming-the-duck-for-starters/" target="_blank" rel="noopener">Harvard Gazette, Sept 2026</a>). Kestin's physics team found that "a system prompt could not reliably provide enough structure to scaffold problems with multiple parts," so the platform enforces it (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12179260/" target="_blank" rel="noopener">Kestin et al. 2025</a>). The cheapest guardrail an instructor controls is <strong>what goes into the index</strong>: UCSD lets instructors leave assignments and study guides out, and Maizey defaults to content students can already see.</p>
+<p>The outcome evidence is thin but consistent:
+- <strong>Harvard physics tutor</strong> (crossover RCT, N=194): <strong>0.63 SD</strong> over in-class active learning, with 0.73–1.3 SD by quantile regression. The tutor was heavily structured, built on expert solutions, and had authors who overlapped with the instructors (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12179260/" target="_blank" rel="noopener">Kestin</a>).
+- <strong>Chilean econometrics course</strong> (two pre-registered RCTs, about 300 students): a course-grounded GPT had <strong>no effect when merely offered</strong> (0.05 SD). Coaching students to use it tutor-style produced <strong>+0.22 SD</strong> and raised the pass rate 12.8 points. This is a preliminary working paper (<a href="https://docs.iza.org/dp18513.pdf" target="_blank" rel="noopener">Gallegos, IZA 2026</a>).
+- <strong>Turkish high schools:</strong> unguarded GPT-4 left students <strong>17% lower</strong> on unaided exams, while a hint-first tutor roughly neutralized the harm (<a href="https://ideas.repec.org/a/nas/journl/v122y2025pe2422633122.html" target="_blank" rel="noopener">Bastani et al., PNAS 2025</a>).
+- <strong>Biology-textbook study</strong> (online RCT, N=124): the text-only grounded chat was rated <strong>most engaging but scored lowest</strong> on the post-test (<a href="https://arxiv.org/abs/2604.02221" target="_blank" rel="noopener">Taneja et al. 2026</a>).</p>
+<p>So satisfaction surveys say nothing about learning. <strong>No RCT of an instructor-built Canvas-connector bot exists.</strong></p>
+<p>Each of the five audit tests maps onto a documented peer failure.</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Audit test</th>
+<th>What peers found</th>
+<th>Pass bar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Positive control</strong> (ask something you know is in your materials)</td>
+<td>CS50 Duck: 88% correct on course-content questions but only 77% on administrative questions, with stale syllabus facts a named failure (<a href="https://cs.harvard.edu/malan/publications/V1fp0567-liu.pdf" target="_blank" rel="noopener">SIGCSE 2024</a>)</td>
+<td>Correct answer <strong>and</strong> the correct section cited; include one date or policy question</td>
+</tr>
+<tr>
+<td><strong>Negative control</strong> (ask something outside your materials, or ask for graded answers)</td>
+<td>Jill Watson refuses when verified material is missing; Tilva hands high-risk questions to humans (<a href="https://www.psu.edu/news/agricultural-sciences/story/penn-state-extension-ai-tool-tilva-expands-access-research-based" target="_blank" rel="noopener">Penn State</a>); the Duck still leaked code (<a href="https://news.harvard.edu/gazette/story/2026/09/taming-the-duck-for-starters/" target="_blank" rel="noopener">Gazette</a>)</td>
+<td>Declines or redirects; no answer-key leakage</td>
+</tr>
+<tr>
+<td><strong>Citation pull</strong> (open the cited page)</td>
+<td>Illinois Chat's known-bugs page: "Page number on pdf citation doesn't point to pdf" (updated August 21, 2026) (<a href="https://answers.uillinois.edu/163396" target="_blank" rel="noopener">UIUC KB</a>); UCSD: "students should still check the cited source"</td>
+<td>The quoted text actually appears at the cited location</td>
+</tr>
+<tr>
+<td><strong>Numeric pass</strong> (recompute every number and unit)</td>
+<td>Missouri microbiology warns AI fabrication is "especially true when asking it for… calculations" (Eaton, undated); Mollick: "If it gives you a number… assume it is wrong" (Eaton)</td>
+<td>Every number recomputed by hand</td>
+</tr>
+<tr>
+<td><strong>Coverage check</strong> (probe every unit)</td>
+<td>Jill Watson's retrieval failed <strong>43.2%</strong> of the time, vs 68.3% for a generic assistant (<a href="https://www.cc.gatech.edu/news/georgia-techs-jill-watson-outperforms-chatgpt-real-classrooms" target="_blank" rel="noopener">GT</a>)</td>
+<td>Gaps logged and either fixed or disclosed to students</td>
+</tr>
+</tbody>
+</table></div>
+<p>The agriculture-specific precedent is Extension, not teaching. <strong>Penn State Extension's Tilva</strong> launched in January 2026 after about six months of testing with 29 program teams. More than 260 educators in 67 counties oversee it. It draws preferentially on vetted materials and sends pesticide, food-preservation and animal-medication questions to humans (<a href="https://www.psu.edu/news/agricultural-sciences/story/penn-state-extension-ai-tool-tilva-expands-access-research-based" target="_blank" rel="noopener">Penn State News</a>). Other Extension services publish AI rules: Texas A&amp;M AgriLife Extension's formal procedure (February 2025) (<a href="https://agrilifeas.tamu.edu/documents/290105x001.pdf" target="_blank" rel="noopener">AgriLife</a>), UW–Madison Extension's guiding principles (June 2025) (<a href="https://kb.wisc.edu/extension/151383" target="_blank" rel="noopener">UW Extension</a>) and Illinois Extension's communications guidance (January 2025; its text could not be extracted on the re-check, so the earlier "Always disclose" quote was dropped) (<a href="https://extension.illinois.edu/sites/default/files/2025-01/ai_overview.pdf" target="_blank" rel="noopener">Illinois Extension</a>). Their shared vocabulary of human oversight, research-based content and disclosure transfers directly to course tutors.</p>
+<p>UT Austin supplies a ready "where AI does not belong" example. Under Texas law, AI must not "autonomously make or be a controlling factor in making consequential decisions without meaningful human review," and the university lists grading among those decisions (<a href="https://provost.utexas.edu/the-office/academic-affairs/office-of-academic-technology/ai-for-teaching-learning-toolkit/policy-and-recommendations/" target="_blank" rel="noopener">UT Austin</a>).</p>
+<p>Three gaps matter for the workshop:
+- No peer publishes an instructor workflow for grounding, checking and scoping a tutor. Researchers found none at any of the private universities they covered or at any land-grant ag college.
+- No peer gives guidance on testing the accuracy of an instructor-built tutor.
+- No peer page states how long prompts, indexes or uploaded files are retained.</p>
+<h2 id="teaching-ai-elite-intro-courses-lag-on-llm-applications">Teaching AI: elite intro courses lag on LLM applications</h2>
+<p>Top technical intro-AI courses still teach the canon from Russell and Norvig and Berkeley's Pac-Man projects. They require data structures plus probability and put most of the grade on exams. AI 2010 belongs with a different peer set: any major, no CS prerequisite, sections of about 100, project-based.</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Course design</th>
+<th>Exemplars</th>
+<th>Prerequisites and assessment</th>
+<th>LLM / RAG content</th>
+<th>Verdict for AI 2010</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Classical technical canon</strong></td>
+<td>Stanford CS 221 (HW 40%, exam 60%) (<a href="https://stanford-cs221.github.io/autumn2025/" target="_blank" rel="noopener">CS221</a>); Berkeley CS 188 (exams 55%) (<a href="https://inst.eecs.berkeley.edu/~cs188/fa25/policies/" target="_blank" rel="noopener">CS188</a>); CMU 15-281 (exams 60%) (<a href="https://www.cs.cmu.edu/~15281/" target="_blank" rel="noopener">CMU</a>); UIUC CS 440; UW CSE 473</td>
+<td>Data structures + probability; exam-heavy</td>
+<td>One lecture (for example Berkeley's "ML V: Transformers," on both the <a href="https://inst.eecs.berkeley.edu/~cs188/fa25/" target="_blank" rel="noopener">Fall 2025</a> and <a href="https://inst.eecs.berkeley.edu/~cs188/fa26/" target="_blank" rel="noopener">Fall 2026</a> schedules); no RAG project</td>
+<td>Wrong template for an any-major course</td>
+</tr>
+<tr>
+<td><strong>Conceptual survey for non-majors</strong></td>
+<td>Penn State "Artificial Intelligence: The Very Idea" (assignments 50%, participation 20%, exams 30%) (<a href="https://faculty.ist.psu.edu/vhonavar/Courses/ai100/syllabus.html" target="_blank" rel="noopener">PSU</a>); CMU 07-180 (homework 60%) (<a href="https://www.cs.cmu.edu/~07180/" target="_blank" rel="noopener">CMU</a>); UW CSE 415 (still requires CSE 373)</td>
+<td>None or light; assignment-heavy</td>
+<td>One lecture on LLMs</td>
+<td>Good concepts, little building</td>
+</tr>
+<tr>
+<td><strong>Generative-AI literacy</strong></td>
+<td>Ohio State ENGR 2194, Fall 2025 (<a href="https://alumnimagazine.osu.edu/story/new-course-helps-students-decode-generative-ai" target="_blank" rel="noopener">OSU</a>); Cornell "AI for All," an online summer 2026 course for 14 high school and college students, each completing projects with Codex (<a href="https://www.cs.cornell.edu/news-stories/ai-all-summer-course-teaches-responsible-genai-use" target="_blank" rel="noopener">Cornell</a>); Cornell "Everyday AI" INFO 1720, spring 2027, 275 seats (<a href="https://news.cornell.edu/node/333813" target="_blank" rel="noopener">Cornell Chronicle</a>)</td>
+<td>None; assessments not public</td>
+<td>The whole course</td>
+<td>Strong on use; evaluation unknown</td>
+</tr>
+<tr>
+<td><strong>Gateway applied to students' disciplines</strong></td>
+<td>UF EEL 3872, no programming, 500–700 students per term online (<a href="https://www.eng.ufl.edu/newengineer/magazine/charting-a-path-forward-with-artificial-intelligence" target="_blank" rel="noopener">UF Eng</a>); UMD AGNR 230 (50 seats) (<a href="https://app.testudo.umd.edu/soc/202608/AGNR/AGNR230" target="_blank" rel="noopener">Testudo</a>); Purdue CS 173, final project applies AI to the student's major (<a href="https://www.purdueexponent.org/campus/freshmen-required-to-take-ai-competency-credit-for-graduation/article_93b1c1e3-c498-481d-97db-1ecc53348286.html" target="_blank" rel="noopener">Exponent</a>); MIT 6.S191, includes an LLM fine-tuning lab (<a href="https://introtodeeplearning.com/" target="_blank" rel="noopener">6.S191</a>)</td>
+<td>None; project-weighted</td>
+<td>Varies; no verified RAG project</td>
+<td><strong>AI 2010's real peer set; add a grounded, evaluated build to lead it</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p>AI-use policies inside AI courses show the clearest recent shift at any top program. <strong>Berkeley CS 188 moved from "Absolutely Forbidden" in Fall 2025 to "GenAI is a consulting tool, not an author" in Fall 2026</strong>, with a reflection on AI use in every assignment (<a href="https://inst.eecs.berkeley.edu/~cs188/fa25/policies/" target="_blank" rel="noopener">Fa25</a>; <a href="https://inst.eecs.berkeley.edu/~cs188/fa26/policies/" target="_blank" rel="noopener">Fa26</a>; both re-checked on the live pages October 25, 2026).</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Policy model in AI courses</th>
+<th>Exemplars</th>
+<th>Pros</th>
+<th>Cons</th>
+<th>Verdict for AI 2010</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Ban on submitted work</strong></td>
+<td>CMU 15-281 (Spring 2026): AI "may not be used to generate any part of your assignment submission" (<a href="https://www.cs.cmu.edu/~15281/" target="_blank" rel="noopener">CMU</a>); UW CSE 473 (Autumn 2025); GT CS 3600, Europe section (Spring 2026) (<a href="https://europe.gatech.edu/sites/default/files/2025-09/CS%203600%20Spring2026%20Syllabus.pdf" target="_blank" rel="noopener">GT-Europe</a>); Berkeley CS 188 (Fall 2025)</td>
+<td>Protects practice at implementing algorithms</td>
+<td>Makes no sense in a course where students build with LLMs</td>
+<td><strong>Reject</strong></td>
+</tr>
+<tr>
+<td><strong>AI treated as a collaborator or another person</strong></td>
+<td>Stanford CS 221 (Autumn 2025); UIUC CS 440 (Fall 2025): ChatGPT "is considered to be another person" (<a href="https://courses.grainger.illinois.edu/cs440/fa2025/syllabus.html" target="_blank" rel="noopener">CS 440</a>)</td>
+<td>Reuses collaboration rules</td>
+<td>Vague about how much help is too much</td>
+<td>Partial</td>
+</tr>
+<tr>
+<td><strong>Consulting tool + reflection on every assignment</strong></td>
+<td>Berkeley CS 188 (Fall 2026)</td>
+<td>Scales to 100+ students; turns the policy into metacognition</td>
+<td>Reflections get grading time</td>
+<td><strong>Adopt</strong></td>
+</tr>
+<tr>
+<td><strong>Only the course's own guarded AI</strong></td>
+<td>Harvard CS50 / CS50 AI (<a href="https://cs50.harvard.edu/ai/honesty/" target="_blank" rel="noopener">honesty</a>)</td>
+<td>Policy enforced by the tool itself</td>
+<td>Needs a tutor to exist</td>
+<td><strong>Adopt for an AI 2010 course tutor</strong></td>
+</tr>
+<tr>
+<td><strong>AI required, and must be understood</strong></td>
+<td>UW Bothell CSS 382, 2026 single-cohort experience report: removed exams, added a defended team project and an LLM-from-scratch strand (<a href="https://arxiv.org/abs/2608.05175" target="_blank" rel="noopener">Pisan</a>)</td>
+<td>Coherent for an applied course</td>
+<td>One cohort; no outcome data</td>
+<td><strong>Adopt the principle</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p>LLM content in flagship courses remains incremental: one lecture plus maybe a homework (Berkeley's transformers lecture, Stanford's "Language Models" and "AI Supply Chains"). <strong>No verified top-ranked intro AI course has a RAG or LLM-application project.</strong> RAG appears only in graduate courses, such as Stanford CS 224V, where students reduce hallucination with RAG in a project worth 65% (<a href="https://web.stanford.edu/class/cs224v" target="_blank" rel="noopener">CS 224V</a>). It also appears in Purdue's non-credit AI Forge, whose projects include a course-materials Q&amp;A bot whose answers TAs verify (<a href="https://cs.purdue.edu/academic-programs/ai-forge/index.html" target="_blank" rel="noopener">Purdue AI Forge</a>).</p>
+<p>Ethics is most formalized at Stanford. CS 221 has a graded "AI &amp; Society" homework, two lectures on societal issues and four ethics course assistants (<a href="https://stanford-cs221.github.io/autumn2025/" target="_blank" rel="noopener">CS221</a>). The published course-design literature is mostly single-course experience reports. Pisan's redesign, CS50's SIGCSE 2024 paper and a 2026 interactive intro-AI report (<a href="https://arxiv.org/abs/2603.28679" target="_blank" rel="noopener">Reddig et al.</a>) lead it. EAAI-27 meets February 21–23, 2027 (<a href="https://easychair.org/cfp/EAAI-27" target="_blank" rel="noopener">EAAI-27</a>). A grounded-and-audited AI 2010 project would be ahead of every verified peer.</p>
+<h2 id="ai-for-all-students-purdue-requires-ohio-state-embeds-florid">AI for all students: Purdue requires, Ohio State embeds, Florida credentials</h2>
+<p>Two Big Ten land-grants now require AI of every undergraduate, using opposite designs:
+- <strong>Purdue's "AI working competency"</strong> was approved in December 2025 and applies from Fall 2026 entrants, transfers included. Students take one competency course of 1–4 credits chosen by major. Purdue reports <strong>22 courses developed or revised and 300+ plans of study updated</strong> (<a href="https://www.purdue.edu/newsroom/2026/Q3/purdues-ai-competency-graduation-requirement-begins-in-every-undergraduate-degree-program/" target="_blank" rel="noopener">Purdue, Aug 2026</a>). The 74 reported 35 courses "identified," a discrepancy that remains unresolved (<a href="https://www.the74million.org/article/at-these-universities-using-ai-isnt-shunned-its-a-graduation-requirement/" target="_blank" rel="noopener">The 74</a>). The course list mixes CS 173 AI Competency, SCLA 19560 AI Literacy, FIN 258 and BTNY 110 Introduction to Plant Science (<a href="https://www.purdueexponent.org/campus/freshmen-required-to-take-ai-competency-credit-for-graduation/article_93b1c1e3-c498-481d-97db-1ecc53348286.html" target="_blank" rel="noopener">Exponent</a>).
+- <strong>Ohio State's AI Fluency</strong> puts generative-AI basics into the required General Education Launch Seminar and First Year Success workshops. Every college has a roadmap that builds AI into existing degrees "without adding credits," reaching about <strong>53,000 undergraduates</strong>, starting with the Class of 2029 (<a href="https://oaa.osu.edu/news/2026/01/30/ohio-states-colleges-advance-ai-fluency-roadmaps-undergraduates" target="_blank" rel="noopener">OSU OAA, Jan 2026</a>).</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>AI-requirement model</th>
+<th>Exemplar</th>
+<th>Pros</th>
+<th>Cons</th>
+<th>Verdict for ISU</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Dedicated competency course, chosen by major</strong></td>
+<td>Purdue (Fall 2026)</td>
+<td>Clear accountability; flavored by discipline</td>
+<td>Adds to curriculum load; students called themselves a "guinea pig"</td>
+<td><strong>Best fit: AI 2010 as the general option, plus CALS discipline courses</strong></td>
+</tr>
+<tr>
+<td><strong>Embedded across majors + required first-year touchpoint</strong></td>
+<td>Ohio State (Class of 2029) (<a href="https://news.osu.edu/ohio-state-launches-bold-ai-fluency-initiative-to-redefine-learning-and-innovation/" target="_blank" rel="noopener">OSU News</a>)</td>
+<td>No added credits; reaches everyone</td>
+<td>Diffuse and hard to assess; no outcome data yet</td>
+<td>Strong second; needs heavy faculty development</td>
+</tr>
+<tr>
+<td><strong>College course offered, not required</strong></td>
+<td>ASU, fall 2026 (rank unverified) (<a href="https://news.asu.edu/20260828-university-news-provost-qa-what-endures-ai-transforms-higher-education" target="_blank" rel="noopener">ASU</a>)</td>
+<td>Low friction</td>
+<td>Uneven uptake</td>
+<td>Stepping stone</td>
+</tr>
+<tr>
+<td><strong>Certificate + broad course availability</strong></td>
+<td>UF 9-credit certificate; 230+ AI and data science courses</td>
+<td>Proven demand</td>
+<td>Opt-in reach only</td>
+<td>ISU's minor is already stronger</td>
+</tr>
+<tr>
+<td><strong>Non-credit module or general-education fold-in</strong></td>
+<td>Penn State AI Essentials (<a href="https://ai.psu.edu/ai-literacy/ai-essentials" target="_blank" rel="noopener">PSU</a>); SUNY system, Jan 2025 (<a href="https://www.insidehighered.com/news/tech-innovation/artificial-intelligence/2025/01/16/suny-adds-ai-education-its-information" target="_blank" rel="noopener">IHE</a>)</td>
+<td>Cheap</td>
+<td>Shallow</td>
+<td>Supplement only</td>
+</tr>
+<tr>
+<td><strong>New all-majors course + pending minor</strong></td>
+<td>UMN "Thinking with Machines," fall 2026; minor start date reported inconsistently (<a href="https://cse.umn.edu/college/news/university-minnesota-boost-ai-literacy-new-classes-and-minor" target="_blank" rel="noopener">UMN</a>)</td>
+<td>Fast to launch</td>
+<td>Elective only</td>
+<td>ISU is already past this stage</td>
+</tr>
+</tbody>
+</table></div>
+<p>On minors, ISU compares well. Nationally, the New York Times count cited in July 2026 was 74 AI majors and 89 AI minors at US colleges (<a href="https://www.altoonamirror.com/news/local-news/2026/07/ai-colleges-new-minors-embrace/" target="_blank" rel="noopener">Altoona Mirror</a>).</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Program</th>
+<th>Structure</th>
+<th>Gateway</th>
+<th>Agriculture component</th>
+<th>Where ISU stands</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ISU Applied AI minor</strong></td>
+<td>15 cr: AI 2010 + AI 2020 (ethics) + 9 elective credits (<a href="https://catalog.iastate.edu/collegeofliberalartsandsciences/appliedai" target="_blank" rel="noopener">ISU Catalog</a>)</td>
+<td>AI 2010, 2000-level, no CS prerequisite</td>
+<td>Only ABE 5160 (5000-level)</td>
+<td>Baseline</td>
+</tr>
+<tr>
+<td><strong>UF AI Fundamentals &amp; Applications certificate</strong></td>
+<td>9 cr: EEL 3872 + PHI 3681 ethics + one college course; junior standing (<a href="https://catalog.ufl.edu/UGRD/academic-programs/AI/aicertificate" target="_blank" rel="noopener">UF Catalog</a>)</td>
+<td>EEL 3872, no programming</td>
+<td><strong>ALS 3200C AI in Agricultural and Life Sciences</strong> (<a href="https://cals.ufl.edu/artificial-intelligence" target="_blank" rel="noopener">UF CALS</a>)</td>
+<td>ISU is deeper; UF leads on an ag course and documented scale: <strong>673 certificates since 2021, 1,126 in progress</strong> as of June 2025 (<a href="https://www.eng.ufl.edu/newengineer/magazine/charting-a-path-forward-with-artificial-intelligence" target="_blank" rel="noopener">UF Eng</a>)</td>
+</tr>
+<tr>
+<td><strong>Michigan AI minor</strong> (Winter 2026)</td>
+<td>Majors' AI courses; "open to students across the university" (<a href="https://news.engin.umich.edu/2025/11/new-ai-minor-launches-for-students-across-disciplines/" target="_blank" rel="noopener">Michigan Eng</a>)</td>
+<td>Not stated</td>
+<td>None</td>
+<td>ISU is more accessible</td>
+</tr>
+<tr>
+<td><strong>Georgia Tech Applications of AI &amp; ML minor</strong> (2024)</td>
+<td>Three core courses, including AI ethics; two tracks (<a href="https://coe.gatech.edu/news/2024/04/starting-summer-students-can-minor-applications-artificial-intelligence-and-machine" target="_blank" rel="noopener">GT CoE</a>)</td>
+<td>Not stated</td>
+<td>None</td>
+<td>Even on ethics</td>
+</tr>
+<tr>
+<td><strong>UW interdisciplinary AI minor</strong> (Spring 2027)</td>
+<td>Four pillars, including ethics and a <strong>discipline project compared against a non-AI approach</strong> (<a href="https://www.geekwire.com/2026/not-just-for-coders-uws-upcoming-ai-minor-will-reach-beyond-the-computer-science-school/" target="_blank" rel="noopener">GeekWire</a>)</td>
+<td>Not stated</td>
+<td>None</td>
+<td>Borrow the discipline-project pillar</td>
+</tr>
+<tr>
+<td><strong>Cornell Digital Ag / Purdue Data Driven Agriculture minors</strong></td>
+<td>16+ cr / 21 cr, centered on data (<a href="https://catalog.cornell.edu/programs/digital-agriculture-minor/" target="_blank" rel="noopener">Cornell</a>; <a href="https://ag.purdue.edu/idaas/data-driven-agriculture-minor.html" target="_blank" rel="noopener">Purdue</a>)</td>
+<td>ALS 1110 / data courses</td>
+<td>Yes, but data-focused, not AI</td>
+<td>An AI-in-agriculture track would stand apart</td>
+</tr>
+</tbody>
+</table></div>
+<p>UMD's AGNR 230, "Artificial Intelligence: Transforming Food, Agricultural, and Environmental Systems," shows what a gen-ed agriculture AI course looks like: 3 credits, 50 seats, about 45 enrolled for Fall 2026, co-taught (<a href="https://app.testudo.umd.edu/soc/202608/AGNR/AGNR230" target="_blank" rel="noopener">UMD Testudo</a>). The agricultural AI Institutes' education arms consist of research experiences (REUs), bootcamps such as AIFS AIBridge, K-12 programs and modules (<a href="https://biology.ucdavis.edu/node/8771" target="_blank" rel="noopener">AIBridge</a>; <a href="https://aifarms.illinois.edu/education-outreach/" target="_blank" rel="noopener">AIFARMS</a>). <strong>None operates an undergraduate AI-for-agriculture minor.</strong> ISU hosts AIIRA, the AI Institute for Resilient Agriculture, supported by NSF and USDA-NIFA award #2021-67021-35329 (<a href="https://aiira.iastate.edu/" target="_blank" rel="noopener">AIIRA</a>), an asset UF and UMD lack.</p>
+<p>Faculty-development comparators match the CALS series' intent but not its hands-on, artifact-producing format:
+- <strong>Ohio State's Drake Institute</strong> runs an application-based AI-Infused Course Design Institute and a "Teaching and Learning to Build AI Fluency" endorsement, and the university offers AI Fluency Innovation Microfunds (<a href="https://drakeinstitute.osu.edu/resources-instructors/teaching-support-ai-fluency" target="_blank" rel="noopener">OSU Drake</a>).
+- <strong>ASU's Assessment Design Accelerator</strong> targets faculty in its top-100-enrolled courses (<a href="https://news.asu.edu/20260828-university-news-provost-qa-what-endures-ai-transforms-higher-education" target="_blank" rel="noopener">ASU</a>).
+- <strong>Duke's AY 2024–25 AI Jump Start grants</strong> paid up to $7,500 plus a $1,000 stipend (<a href="https://ctl.duke.edu/research-evaluation-development/ai-jump-start-grants/" target="_blank" rel="noopener">Duke CTL</a>).
+- <strong>Cornell's AI Integration Pilots</strong> embed a graduate student or postdoc in faculty teams from spring 2027, funded by a $2M gift (<a href="https://news.cornell.edu/index%2Ephp/stories/2026/09/ai-education-initiatives-emphasize-experimentation-balanced-use" target="_blank" rel="noopener">Cornell Chronicle</a>).</p>
+<h2 id="recommendations">Recommendations</h2>
+<h3 id="1-for-a-faculty-workshop-on-grounded-course-tools">(1) For a faculty workshop on grounded course tools</h3>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>Recommendation</th>
+<th>Peer basis</th>
+<th>Priority</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Open with two slides: Middlebury's silence ≈ permission numbers, and the UF Animal Sciences audit (5 of 6 syllabi silent). This makes the gap normal and the fix urgent</td>
+<td>Middlebury; UF ANS syllabi</td>
+<td><strong>Must</strong></td>
+</tr>
+<tr>
+<td>2</td>
+<td>Hand out the three-sentence model with the default line and a short disclosure line. Have restrictive syllabi add a reason and a four-part permission request; have permissive syllabi switch from full transcripts to the four questions plus logs kept for review on request</td>
+<td>UW–Madison Bio 151; GT BIOL 1207L; TAMU ISTM 705; UMN</td>
+<td><strong>Must</strong></td>
+</tr>
+<tr>
+<td>3</td>
+<td>Build only in ISU logged-in NotebookLM or Copilot, using instructor materials only. No student work, and leave answer keys and graded prompts out of the index</td>
+<td>ISU AI page; Harvard FAS; Penn; UCSD exclusion control</td>
+<td><strong>Must</strong></td>
+</tr>
+<tr>
+<td>4</td>
+<td>Run the five tests with the pass bars above. Fold an answer-key leakage probe into the negative control</td>
+<td>CS50; Jill Watson; Illinois Chat; Tilva</td>
+<td><strong>Must</strong></td>
+</tr>
+<tr>
+<td>5</td>
+<td>Put an instructor disclosure line on every artifact, for example: "Generated from Dr. X's course materials with ISU NotebookLM; checked by Dr. X on [date]"</td>
+<td>Cornell; UMN Statement C; Yale; JHU; Pisan's bill of rights</td>
+<td>Should</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Ship every artifact with three lines of student-use guidance (attempt first, ask for hints, check the citation)</td>
+<td>Gallegos RCTs; Duke STA 199</td>
+<td>Should</td>
+</tr>
+<tr>
+<td>7</td>
+<td>One slide only on detectors: do not use them, do not mention them in syllabi</td>
+<td>MSU; UT Austin; Penn FERPA line</td>
+<td>Should</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Name ISU's open questions honestly: the AI page clears logged-in tools for "confidential data," and ISU's data page defines "High" as confidential FERPA student information, but no page says plainly whether graded student work may go in; and there is no detector stance</td>
+<td>ISU AI page; ISU data classes</td>
+<td>Should</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="2-ai-2010-s-own-policy-and-design">(2) AI 2010's own policy and design</h3>
+<p>AI 2010 should model "required to use, required to understand." Peers that teach AI while banning it are handling a different problem: protecting practice at implementing algorithms. An applied course for any major is closest to Berkeley's Fall 2026 policy, CS50's sanctioned tutor and Pisan's redesign. One constraint from CMU and Yale applies: required tools must be university-licensed, never personal accounts (<a href="https://www.cmu.edu/teaching/technology/aitools/index.html" target="_blank" rel="noopener">CMU Eberly</a>; <a href="https://poorvucenter.yale.edu/teaching/teaching-resource-library/ai-guidance-for-teachers/ai-course-assignment-design/protecting" target="_blank" rel="noopener">Yale Poorvu</a>). A draft drawn from those peers:</p>
+<blockquote>
+<p><strong>AI in AI 2010.</strong> In this course you are required to use AI and required to understand it. Every required tool is ISU-licensed, so you never need a personal account. Use ISU tools and the AI 2010 course tutor on project work, including code, as a consulting tool, not an author. End each submission with a short AI note (tool, what you used it for, a link to your key prompts, how you checked the output) and one or two sentences on whether AI helped or hurt your learning. In-class checks and your project defense are AI-free, because they show what you can do and explain on your own. AI output is not authoritative: you are responsible for every claim, number and line of code you submit, and you must be able to explain it. We do not use AI detectors; we use conversations, process evidence and your defense.</p>
+</blockquote>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>Design move</th>
+<th>Peer basis</th>
+<th>Verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Make "build and audit a grounded assistant" a graded project, using the five tests as the rubric</td>
+<td>No verified intro AI course has one; Purdue AI Forge and Stanford CS 224V are the closest</td>
+<td><strong>Do it: AI 2010 leads its peers</strong></td>
+</tr>
+<tr>
+<td>2</td>
+<td>Add a graded "where this tool does not belong" deliverable inside the project stream</td>
+<td>Stanford CS 221 HW8; UT Austin human-review rule for grading</td>
+<td>Do it</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Require the project to compare the AI approach with a non-AI baseline</td>
+<td>UW AI minor pillar</td>
+<td>Do it</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Make an AI 2010 course tutor (built on ISU-controlled infrastructure) the sanctioned assistant, and publish its system prompt</td>
+<td>CS50; U-M's published prompts (<a href="https://www.its.umich.edu/computing/ai/system-prompts" target="_blank" rel="noopener">U-M</a>)</td>
+<td>Do it once classification approval is in hand</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Coach tutor-style use in week 1 instead of simply granting access</td>
+<td>Gallegos (access alone did nothing)</td>
+<td>Do it</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Instrument sections (grounded tutor vs open chatbot; reflection effects) for an EAAI or SIGCSE paper</td>
+<td>Thin literature; EAAI-27</td>
+<td>Strong opportunity</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="3-isu-and-cals-positioning">(3) ISU and CALS positioning</h3>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>Move</th>
+<th>Peer basis</th>
+<th>Verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>CALS builds on CELT's three approaches by adding what is missing: a default line for silence, Cornell-style assignment codes, the three sentences, and an audit step for any course tutor. Pilot it in CALS, then offer it back to CELT and the provost</td>
+<td>CELT Considerations; Cornell codes; Maryland default</td>
+<td><strong>Highest leverage; no peer ag college has done this</strong></td>
+</tr>
+<tr>
+<td>2</td>
+<td>Ask ITS for a tool-by-class table that uses ISU's official class names and states where FERPA "High" data may go</td>
+<td>Purdue, OSU, Berkeley and UIUC tables</td>
+<td>High</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Propose a written ISU detector stance</td>
+<td>MSU, UT Austin, Penn, Cornell</td>
+<td>High, and quick</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Push for a campus build-your-own tutor platform with a Canvas connector and controls to exclude content, on ISU-controlled infrastructure, with classification review separate from hosting</td>
+<td>Maizey, TritonGPT, Illinois Chat; Purdue's L2-only pilot</td>
+<td>Medium-term</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Create a 2000–3000-level "AI in Agriculture and Life Sciences" course that counts toward the Applied AI minor and CALS gen-ed, drawing on AIIRA</td>
+<td>UF ALS 3200C; UMD AGNR 230</td>
+<td>High</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Position AI 2010 as ISU's general option on the Purdue model if ISU moves toward an AI requirement</td>
+<td>Purdue's mix of CS 173 and discipline courses</td>
+<td>Strategic</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Turn the CALS series into a course-design institute with $2K–$7.5K microgrants, a showcase obligation and an endorsement. Target the highest-enrollment CALS courses first</td>
+<td>OSU Drake; Duke Jump Start; ASU Accelerator</td>
+<td>High</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Borrow Extension's governance pattern (human oversight, research-based sources, refusal on high-risk topics) for CALS course tutors</td>
+<td>Penn State Tilva; AgriLife; UW–Madison Extension</td>
+<td>Should</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="conclusion">Conclusion</h2>
+<p>The peer frontier has moved past permission and is moving toward verification. Higher-ranked universities have largely settled what to say: a three-level vocabulary, a "no unless stated" fallback, short disclosure, and no detectors. None of them yet tells faculty how to check what an AI built from their own materials actually says. The systems with real evidence behind them, the CS50 Duck, Jill Watson and the Harvard physics tutor, earned it through checks and structure layered on top of prompts. The RCT literature says the same about students: access alone does nothing, and guided use helps. That makes the five-test audit more than a workshop exercise. It is the missing institutional practice, and ISU could standardize it before any peer does.</p>
+<p>ISU's position is unusual. It is one of very few universities that require an AI statement in every undergraduate syllabus, and CELT already supplies a three-approach vocabulary with sample language. What is missing is a default for silence, assignment-level labels, a detector stance and a plain statement of which tools may hold FERPA data. That gap is an opening for CALS rather than an embarrassment. Pairing the Fall 2026 mandate with CELT's language, an honest data table and a verification practice would let ISU lead on the part of AI-in-teaching that peers have not reached. AI 2010 is the place to prove it with students.</p>
+<h2 id="what-changed-after-the-live-re-check-october-25-2026">What changed after the live re-check (October 25, 2026)</h2>
+<p>About 90 linked quotes and 180 figures were compared against the raw text of the live pages. Most matched exactly, including all four quotes and the Tilva line in the workshop brief. These are the items that changed:</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Before</th>
+<th>After the re-check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ISU AI syllabus guidance</td>
+<td>"No published ISU levels or sample wording"; "four-level" claim unverified</td>
+<td><strong>CELT's "Gen AI Syllabus Considerations" exists</strong>: three approaches (Permitted and encouraged / Limited / Prohibited), six considerations, sample language, opt-out alternatives</td>
+</tr>
+<tr>
+<td>ISU template wording</td>
+<td>"instructor policies (attendance, late work, extra credit, and AI use)"</td>
+<td>Exact: "Instructor policies for attendance, late work, extra credit and use of AI"</td>
+</tr>
+<tr>
+<td>ISU tool/data rules</td>
+<td>"Confidential" not mapped to ISU classes</td>
+<td>ISU's data page defines "High" as confidential FERPA student information, so the logged-in tools read as cleared for it; confirm with ITS</td>
+</tr>
+<tr>
+<td>ISU prior-year rank</td>
+<td>"up from #117 and #57"</td>
+<td>Removed (not confirmed); #116 / #55 confirmed</td>
+</tr>
+<tr>
+<td>Georgia Tech CHEM 1211K</td>
+<td>"plagiarism includes the use of AI" (section B02)</td>
+<td>That page now returns "permission is required." Current Fall 2026 lecture syllabus has no AI text; the lab syllabus has a full policy</td>
+</tr>
+<tr>
+<td>Georgia Tech CTL statements</td>
+<td>Cited as a 4-level scheme and a "Limited" disclosure tier</td>
+<td>Both documents now return "404 Not Found"; removed</td>
+</tr>
+<tr>
+<td>Harvard FAS guidance</td>
+<td>Old address</td>
+<td>Page moved; quote confirmed at the new address; Fall 2025 Respondus lockdown note added</td>
+</tr>
+<tr>
+<td>UMD guidelines</td>
+<td>Old address</td>
+<td>Redirects to ai-resources.umd.edu; quote and January 15, 2025 approval confirmed</td>
+</tr>
+<tr>
+<td>UF levels</td>
+<td>"UF v2 2026: No / Some / Full"</td>
+<td>UF Provost guidelines are "Version 1: 2023": No AI / Some AI / AI-Permitted</td>
+</tr>
+<tr>
+<td>Michigan State levels</td>
+<td>Restrict / Permit / Require vs Ban</td>
+<td>Exact labels: Restrict / Use permitted / Use required vs Ban</td>
+</tr>
+<tr>
+<td>Stanford Claude note</td>
+<td>"Undated, unverified"</td>
+<td>Confirmed live, with exact wording</td>
+</tr>
+<tr>
+<td>Columbia default</td>
+<td>Truncated sentence</td>
+<td>Full sentence confirmed; Columbia also discourages instructors running work through AI detectors</td>
+</tr>
+<tr>
+<td>Purdue detectors</td>
+<td>"Extreme distrust" only</td>
+<td>Also lists CopyLeaks AI detection as an authorized tool (October 15, 2026)</td>
+</tr>
+<tr>
+<td>Ithaka S+R</td>
+<td>"42% prohibit, 45% in the sciences"</td>
+<td>42% confirmed; the 45% figure is humanities skepticism, so it was removed</td>
+</tr>
+<tr>
+<td>Cornell instructor disclosure</td>
+<td>"should also acknowledge AI use in course materials they prepare"</td>
+<td>Not on the page; replaced with Cornell's actual sentence</td>
+</tr>
+<tr>
+<td>Berkeley, Princeton, OpenAI, Kestin, Illinois Chat, Duke MyGPT quotes</td>
+<td>Paraphrased inside quotation marks</td>
+<td>Replaced with the exact page wording</td>
+</tr>
+<tr>
+<td>U-M Maizey</td>
+<td>"cites sources"</td>
+<td>Not on the page; replaced with the indexing rule and the $1,000-per-course allocation</td>
+</tr>
+<tr>
+<td>Michigan AI minor</td>
+<td>"open to seven units"</td>
+<td>Exact: "open to students across the university"</td>
+</tr>
+<tr>
+<td>Cornell "AI for All"</td>
+<td>"14 students"</td>
+<td>Online summer course for 14 high school and college students</td>
+</tr>
+<tr>
+<td>Ohio State EHE default</td>
+<td>Listed as "not allowed unless stated"</td>
+<td>Not on the cited page; removed</td>
+</tr>
+<tr>
+<td>Illinois Extension "Always disclose"</td>
+<td>Quoted</td>
+<td>PDF text could not be extracted; quote removed</td>
+</tr>
+<tr>
+<td>AIIRA link</td>
+<td>USDA NIFA record (now 404)</td>
+<td>aiira.iastate.edu, with the NSF/NIFA award number</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Still not re-checkable from outside ISU:</strong> the ISU Canvas syllabus template itself (Box, ISU login), so its AI-use field wording was not re-checked.</p>
+<h2 id="sources">Sources</h2>
+<p><strong>Iowa State baseline</strong>
+- <a href="https://www.newsfromthestates.com/article/iowa-universities-see-us-news-world-report-rankings-rise" target="_blank" rel="noopener">U.S. News 2027 ranks: Iowa Capital Dispatch via News From The States</a>
+- <a href="https://provost.iastate.edu/academic-programs/syllabus-templates" target="_blank" rel="noopener">ISU Provost: Required Syllabus Templates</a>
+- <a href="https://www.inside.iastate.edu/article/2026/04/27/new-undergraduate-course-syllabus-templates-unveiled-fall-semester" target="_blank" rel="noopener">Inside Iowa State: New undergraduate syllabus templates (Apr 2026)</a>
+- <a href="https://ai.iastate.edu/safely-use-ai" target="_blank" rel="noopener">ISU: Safely Use AI</a>
+- <a href="https://dataservices.iastate.edu/classification" target="_blank" rel="noopener">ISU Data Services: Data classification</a>
+- <a href="https://celt.iastate.edu/prepare-and-teach/design-your-course/ai-in-teaching/" target="_blank" rel="noopener">ISU CELT: AI in Teaching and Learning</a>
+- <a href="https://iastate.box.com/s/w1rlseeflz3nec3npy0k0pn1afo27tia" target="_blank" rel="noopener">ISU CELT: Gen AI Syllabus Considerations (Box document)</a>
+- <a href="https://www.inside.iastate.edu/article/2024/09/12/celtai" target="_blank" rel="noopener">Inside Iowa State: CELT course assists faculty with AI (2024)</a>
+- <a href="https://catalog.iastate.edu/collegeofliberalartsandsciences/appliedai" target="_blank" rel="noopener">ISU Catalog: Applied AI minor</a></p>
+<p><strong>Institutional frameworks, defaults and disclosure</strong>
+- <a href="https://provost.utexas.edu/the-office/academic-affairs/office-of-academic-technology/ai-for-teaching-learning-toolkit/policy-and-recommendations/" target="_blank" rel="noopener">UT Austin Provost: AI policy</a>
+- <a href="https://facultysenate.unl.edu/sites/unl.edu.academic-affairs.faculty-senate/files/media/file/Syllabus%20policy%20November%202025.pdf" target="_blank" rel="noopener">UNL Faculty Senate syllabus policy (Nov 2025)</a>
+- <a href="https://ctl.duke.edu/ai-and-teaching-at-duke-2/artificial-intelligence-policies-in-syllabi-guidelines-and-considerations/" target="_blank" rel="noopener">Duke CTL: AI policies in syllabi</a>
+- <a href="https://academic-senate.berkeley.edu/sites/default/files/genai_guidance_for_instructors_2025.pdf" target="_blank" rel="noopener">UC Berkeley Academic Senate GenAI guidance (2025)</a>
+- <a href="https://ai.ufl.edu/guidelines/" target="_blank" rel="noopener">UF Provost: Guidelines for Use of AI at UF (Version 1, 2023)</a>
+- <a href="https://ctlm.wisc.edu/generativeai/ai-statements-for-course-syllabi/" target="_blank" rel="noopener">UW–Madison CTLM AI statements</a>
+- <a href="https://teaching.washington.edu/course-design/ai/sample-ai-syllabus-statements" target="_blank" rel="noopener">UW CTL sample AI statements</a>
+- <a href="https://provost.umn.edu/academic-oversight/genai-syllabus-statements" target="_blank" rel="noopener">UMN Provost GenAI syllabus statements</a>
+- <a href="https://eldig.psu.edu/gen-a-i-syllabus-statements/" target="_blank" rel="noopener">Penn State eLDIG statements</a>
+- <a href="https://teaching.cornell.edu/node/2129" target="_blank" rel="noopener">Cornell CTI: AI &amp; academic integrity</a>
+- <a href="https://cte.cornell.edu/node/2251" target="_blank" rel="noopener">Cornell AI course policy icons</a>
+- <a href="https://cals.cornell.edu/faculty-staff/office-of-academic-programs/office-of-curriculum-development-instructional-support/faq-for-cals-educators" target="_blank" rel="noopener">Cornell CALS FAQ for educators</a>
+- <a href="https://ctli.msu.edu/resources/generative-ai/gen-ai-syllabus" target="_blank" rel="noopener">Michigan State CTLI syllabus guide</a>
+- <a href="https://ai-resources.umd.edu/sites/default/files/2025-01/Academic-Guidelines-AI-Tools-at-UMD-Jan2025.pdf" target="_blank" rel="noopener">Maryland Academic Guidelines (Jan 2025)</a>
+- <a href="https://it.rutgers.edu/ai/guidance-on-the-use-of-ai-at-rutgers/" target="_blank" rel="noopener">Rutgers OIT AI guidance</a>
+- <a href="https://cdli.ehe.osu.edu/ai-in-ehe/updates-trends/osu-policy-guidance" target="_blank" rel="noopener">Ohio State EHE policy guidance</a>
+- <a href="https://purdue.edu/teaching-learning/instructors/ai.php" target="_blank" rel="noopener">Purdue OVPTL AI guidance</a>
+- <a href="https://communitystandards.stanford.edu/generative-ai-policy-guidance" target="_blank" rel="noopener">Stanford OCS generative AI guidance (2023)</a>
+- <a href="https://teachingcommons.stanford.edu/teaching-guides/artificial-intelligence-teaching-guide/creating-your-course-policy-ai" target="_blank" rel="noopener">Stanford Teaching Commons: course AI policy</a>
+- <a href="https://oue.fas.harvard.edu/faculty-resources/generative-ai-guidance/" target="_blank" rel="noopener">Harvard OUE Generative AI Guidance (2023 FAQ, moved; Fall 2025 Respondus note)</a>
+- <a href="https://scholarlyintegrity.princeton.edu/students/disclosing-generative-ai-use" target="_blank" rel="noopener">Princeton Scholarly Integrity: disclosing AI</a>
+- <a href="https://www.ai.northwestern.edu/education/use-of-generative-artificial-intelligence-in-courses.html" target="_blank" rel="noopener">Northwestern AI in courses</a>
+- <a href="https://www.cmu.edu/teaching/technology/aitools/index.html" target="_blank" rel="noopener">CMU Eberly AI tools</a>
+- <a href="https://cetli.upenn.edu/resources/generative-ai/" target="_blank" rel="noopener">Penn CETLI generative AI</a>
+- <a href="https://provost.columbia.edu/content/office-senior-vice-provost/ai-policy" target="_blank" rel="noopener">Columbia Provost AI policy</a>
+- <a href="https://ctei.jhu.edu/teaching-and-ai/" target="_blank" rel="noopener">JHU CTEI teaching and AI</a>
+- <a href="https://poorvucenter.yale.edu/teaching/teaching-resource-library/ai-guidance-for-teachers/ai-course-assignment-design/protecting" target="_blank" rel="noopener">Yale Poorvu: protecting IP and data</a></p>
+<p><strong>Course syllabi and policy banks</strong>
+- <a href="https://syllabus.gatech.edu/sites/default/files/2026-04/BIOS%201207%20Lab%20Syllabus%20Fa%2026.pdf" target="_blank" rel="noopener">Georgia Tech BIOL 1207L (Fall 2026)</a>
+- <a href="https://introbio.biology.wisc.edu/wp-content/uploads/sites/392/2025/09/151-Course-Syllabus-Fall-2025-1.pdf" target="_blank" rel="noopener">UW–Madison Biology 151 (Fall 2025)</a>
+- <a href="https://animal.ifas.ufl.edu/media/animalifasufledu/animal-sciences-website/students/syllabi/2025-fall-syllabi/ANS-3006-Online-Fall-2025.pdf" target="_blank" rel="noopener">UF ANS 3006 Online (Fall 2025)</a>
+- <a href="https://animal.ifas.ufl.edu/media/animalifasufledu/animal-sciences-website/students/syllabi/2025-fall-syllabi/ANS-3006-Fall-2025.pdf" target="_blank" rel="noopener">UF ANS 3006 in-person (Fall 2025)</a>
+- <a href="https://animal.ifas.ufl.edu/media/animalifasufledu/animal-sciences-website/students/syllabi/2025-fall-syllabi/ANS-3043-Fall-2025.pdf" target="_blank" rel="noopener">UF ANS 3043 (Fall 2025)</a>
+- <a href="https://sta199-f25.github.io/course-syllabus.html" target="_blank" rel="noopener">Duke STA 199 (Fall 2025)</a>
+- <a href="https://cs50.harvard.edu/college/2025/spring/syllabus/" target="_blank" rel="noopener">Harvard CS50 syllabus (Spring 2025)</a>
+- <a href="https://courses.cs.washington.edu/courses/cse373/25wi/genai" target="_blank" rel="noopener">UW CSE 373 GenAI policy (Winter 2025)</a>
+- <a href="https://ocw.mit.edu/courses/14-05-intermediate-macroeconomics-fall-2025/pages/syllabus/" target="_blank" rel="noopener">MIT 14.05 (Fall 2025)</a>
+- <a href="https://harris.uchicago.edu/sites/default/files/2025-08/PPHA%2031202_%20Advanced%20Statistics%20for%20Data%20Analysis_Black_2025.pdf" target="_blank" rel="noopener">UChicago Harris PPHA 31202 (Fall 2025)</a>
+- <a href="https://mba-inside.wharton.upenn.edu/wp-content/uploads/2026/05/BEPP-6120-FALL-2025-Syllabus.pdf" target="_blank" rel="noopener">Wharton BEPP 6120 (Fall 2025)</a>
+- <a href="https://economics.clas.ufl.edu/wp-content/uploads/sites/117/Estevez_ECO-3203.pdf" target="_blank" rel="noopener">UF ECO 3203 (Fall 2025)</a>
+- <a href="https://econ.washington.edu/sites/econ/files/documents/syllabi/2025/sum/2025_Summer_Econ200_Syllabus.pdf" target="_blank" rel="noopener">UW Econ 200 (Summer 2025)</a>
+- <a href="https://syllabus.gatech.edu/sites/default/files/2026-03/Lecture%20Syllabus%20%281211K%29.pdf" target="_blank" rel="noopener">Georgia Tech CHEM 1211K lecture syllabus (Fall 2026)</a>
+- <a href="https://syllabus.gatech.edu/sites/default/files/2026-04/CHEM%201211%20Laboratory%20Syllabus%20Fall26.pdf" target="_blank" rel="noopener">Georgia Tech CHEM 1211 lab syllabus (Fall 2026)</a>
+- <a href="https://docs.google.com/spreadsheets/d/1lM6g4yveQMyWeUbEwBM6FZVxEWCLfvWDh1aWUErWWbQ/edit" target="_blank" rel="noopener">Eaton, Syllabi Policies for Generative AI repository</a></p>
+<p><strong>Surveys and behavioral evidence</strong>
+- <a href="https://arxiv.org/pdf/2508.00717" target="_blank" rel="noopener">Contractor &amp; Reyes, Middlebury (arXiv 2508.00717)</a>
+- <a href="https://accjc.org/wp-content/uploads/Educause-2025-Students-and-Technology-Report_-Shaping-the-Future-of-Higher-Education-Through-Technology-Flexibility-and-Well-Being-_-EDUCAUSE.pdf" target="_blank" rel="noopener">EDUCAUSE 2025 Students and Technology Report (ACCJC copy)</a>
+- <a href="https://sr.ithaka.org/wp-content/uploads/2024/06/SR-Report-Generative-AI-and-Postsecondary-Instructional-Practices-06202024.pdf" target="_blank" rel="noopener">Ithaka S+R instructor survey (June 2024)</a>
+- <a href="https://www.globenewswire.com/news-release/2026/06/15/3311604/0/en/Tyton-Partners-Releases-2026-Time-for-Class-Report-The-AI-Tipping-Point-From-Monitoring-Students-to-Engaging-Them.html" target="_blank" rel="noopener">Tyton Partners Time for Class 2026</a>
+- <a href="https://www.digitaleducationcouncil.com/post/what-faculty-want-key-results-from-the-global-ai-faculty-survey-2025" target="_blank" rel="noopener">Digital Education Council faculty survey (Jan 2025)</a>
+- <a href="https://www.natcom.org/publications-library/what-are-we-telling-our-students-about-ai-an-exploratory-analysis-of-university-instructors-generative-ai-syllabi-policies/" target="_blank" rel="noopener">Tong et al. 2025 via NCA</a>
+- <a href="https://arxiv.org/abs/2410.22281" target="_blank" rel="noopener">Computing syllabi at R1s (arXiv 2410.22281)</a>
+- <a href="https://arxiv.org/pdf/2605.29090" target="_blank" rel="noopener">Kim et al., "It's OK Because…" (arXiv 2605.29090)</a></p>
+<p><strong>Detectors and data rules</strong>
+- <a href="https://help.d2l.msu.edu/msu-docs/other-tools-at-msu/using-assignments-with-turnitin/ai-detection" target="_blank" rel="noopener">MSU: Turnitin AI detection</a>
+- <a href="https://poorvucenter.yale.edu/teaching/canvas-yale/instructional-tools/turnitin" target="_blank" rel="noopener">Yale Poorvu: Turnitin</a>
+- <a href="https://www.vanderbilt.edu/brightspace/?p=8901" target="_blank" rel="noopener">Vanderbilt: disabling Turnitin AI detector (2023)</a>
+- <a href="https://aiweekly.co/alerts/yale-johns-hopkins-waterloo-pull-back-on-ai-detection-tools" target="_blank" rel="noopener">AI Weekly secondary report (unverified)</a>
+- <a href="https://pasqualepillitteri.it/en/news/14726/ai-detector-scores-banned-evidence-universities" target="_blank" rel="noopener">pasqualepillitteri.it secondary report (unverified)</a>
+- <a href="https://www.purdue.edu/ai/wp-content/uploads/2026/10/AITools.pdf" target="_blank" rel="noopener">Purdue Authorized AI Tools (Oct 2026)</a>
+- <a href="https://ai.osu.edu/approved-tool-quick-reference" target="_blank" rel="noopener">Ohio State tools by data level</a>
+- <a href="https://ai.berkeley.edu/tools-services/licensed-generative-ai-tools" target="_blank" rel="noopener">Berkeley licensed AI tools</a>
+- <a href="https://genai.illinois.edu/ai-apps/" target="_blank" rel="noopener">Illinois GenAI apps</a>
+- <a href="https://huit.harvard.edu/ai/tools" target="_blank" rel="noopener">Harvard HUIT AI tools</a>
+- <a href="https://ist.mit.edu/ai-tools" target="_blank" rel="noopener">MIT IS&amp;T AI tools</a>
+- <a href="https://uit.stanford.edu/ai/matrix" target="_blank" rel="noopener">Stanford UIT AI matrix</a>
+- <a href="https://isc.upenn.edu/ai/tools" target="_blank" rel="noopener">Penn ISC AI tools</a>
+- <a href="https://www.it.tamu.edu/services/services-by-category/communication-and-collaboration/tamu-ai-chat.html" target="_blank" rel="noopener">TAMU AI Chat</a>
+- <a href="https://today.duke.edu/2025/05/duke-expands-suite-secure-duke-managed-ai-services-openai" target="_blank" rel="noopener">Duke Today: Duke-managed AI services</a>
+- <a href="https://ai.psu.edu/ai-services/notebooklm" target="_blank" rel="noopener">Penn State Gemini Notebook</a></p>
+<p><strong>Course-grounded tutors and evidence</strong>
+- <a href="https://cs.harvard.edu/malan/publications/V1fp0567-liu.pdf" target="_blank" rel="noopener">Liu et al., Teaching CS50 with AI (SIGCSE 2024)</a>
+- <a href="https://news.harvard.edu/gazette/story/2026/09/taming-the-duck-for-starters/" target="_blank" rel="noopener">Harvard Gazette: Taming the Duck (Sept 2026)</a>
+- <a href="https://www.cc.gatech.edu/news/georgia-techs-jill-watson-outperforms-chatgpt-real-classrooms" target="_blank" rel="noopener">Georgia Tech: Jill Watson outperforms ChatGPT</a>
+- <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12179260/" target="_blank" rel="noopener">Kestin et al., Scientific Reports 2025</a>
+- <a href="https://ideas.repec.org/a/nas/journl/v122y2025pe2422633122.html" target="_blank" rel="noopener">Bastani et al., PNAS 2025</a>
+- <a href="https://docs.iza.org/dp18513.pdf" target="_blank" rel="noopener">Gallegos, IZA DP 18513 (2026)</a>
+- <a href="https://arxiv.org/abs/2604.02221" target="_blank" rel="noopener">Taneja, Singh &amp; Goel (arXiv 2604.02221)</a>
+- <a href="https://teamdynamix.umich.edu/TDClient/30/Portal/KB/Article/11416/Getting-Started-with-Maizey-Canvas-Connector" target="_blank" rel="noopener">U-M Maizey Canvas connector KB</a>
+- <a href="https://provost.umich.edu/how-u-ms-ai-services-are-making-a-difference-in-the-classroom" target="_blank" rel="noopener">U-M Provost: AI services in the classroom</a>
+- <a href="https://www.its.umich.edu/computing/ai/system-prompts" target="_blank" rel="noopener">U-M GPT system prompts</a>
+- <a href="https://tritonai.ucsd.edu/tritongpt/instruction.html" target="_blank" rel="noopener">UCSD TritonAI instructional AI</a>
+- <a href="https://answers.uillinois.edu/163396" target="_blank" rel="noopener">UIUC Illinois Chat Canvas KB</a>
+- <a href="https://computes.illinois.edu/resources/illinois-chat/" target="_blank" rel="noopener">Illinois Computes: Illinois Chat</a>
+- <a href="https://ctl.duke.edu/blog/2025/08/building-an-ai-assistant-with-mygpt-builder/" target="_blank" rel="noopener">Duke CTL: MyGPT Builder</a>
+- <a href="https://news.asu.edu/20260318-science-and-technology-createai-tool-kit-offers-asu-community-ways-to-customize-ai" target="_blank" rel="noopener">ASU CreateAI (Mar 2026)</a>
+- <a href="https://news.ufl.edu/2024/08/navigator" target="_blank" rel="noopener">UF NaviGator launch (2024)</a>
+- <a href="https://docs.rcac.purdue.edu/services/genai/" target="_blank" rel="noopener">Purdue RCAC GenAI Studio</a>
+- <a href="https://openai.com/index/chatgpt-study-mode/" target="_blank" rel="noopener">OpenAI study mode (2025)</a>
+- <a href="https://www.anthropic.com/news/introducing-claude-for-education" target="_blank" rel="noopener">Anthropic: Claude for Education (2025)</a>
+- <a href="https://blog.google/outreach-initiatives/education/gemini-higher-education-benefits/" target="_blank" rel="noopener">Google: Gemini for higher education (2025)</a>
+- <a href="https://www.psu.edu/news/agricultural-sciences/story/penn-state-extension-ai-tool-tilva-expands-access-research-based" target="_blank" rel="noopener">Penn State Extension Tilva (Jan 2026)</a>
+- <a href="https://agrilifeas.tamu.edu/documents/290105x001.pdf" target="_blank" rel="noopener">Texas A&amp;M AgriLife Extension AI procedure (2025)</a>
+- <a href="https://kb.wisc.edu/extension/151383" target="_blank" rel="noopener">UW–Madison Extension AI principles (2025)</a>
+- <a href="https://extension.illinois.edu/sites/default/files/2025-01/ai_overview.pdf" target="_blank" rel="noopener">Illinois Extension AI guidelines (2025)</a></p>
+<p><strong>Intro AI courses</strong>
+- <a href="https://stanford-cs221.github.io/autumn2025/" target="_blank" rel="noopener">Stanford CS 221 (Autumn 2025)</a>
+- <a href="https://inst.eecs.berkeley.edu/~cs188/fa25/policies/" target="_blank" rel="noopener">Berkeley CS 188 policies, Fall 2025</a>
+- <a href="https://inst.eecs.berkeley.edu/~cs188/fa26/policies/" target="_blank" rel="noopener">Berkeley CS 188 policies, Fall 2026</a>
+- <a href="https://www.cs.cmu.edu/~15281/" target="_blank" rel="noopener">CMU 15-281</a>
+- <a href="https://www.cs.cmu.edu/~07180/" target="_blank" rel="noopener">CMU 07-180</a>
+- <a href="https://cs50.harvard.edu/ai/honesty/" target="_blank" rel="noopener">CS50 AI honesty</a>
+- <a href="https://courses.grainger.illinois.edu/cs440/fa2025/syllabus.html" target="_blank" rel="noopener">UIUC CS 440 (Fall 2025)</a>
+- <a href="https://europe.gatech.edu/sites/default/files/2025-09/CS%203600%20Spring2026%20Syllabus.pdf" target="_blank" rel="noopener">GT CS 3600, Europe section (Spring 2026)</a>
+- <a href="https://faculty.ist.psu.edu/vhonavar/Courses/ai100/syllabus.html" target="_blank" rel="noopener">Penn State "Artificial Intelligence: The Very Idea"</a>
+- <a href="https://alumnimagazine.osu.edu/story/new-course-helps-students-decode-generative-ai" target="_blank" rel="noopener">Ohio State ENGR 2194</a>
+- <a href="https://introtodeeplearning.com/" target="_blank" rel="noopener">MIT 6.S191</a>
+- <a href="https://web.stanford.edu/class/cs224v" target="_blank" rel="noopener">Stanford CS 224V</a>
+- <a href="https://cs.purdue.edu/academic-programs/ai-forge/index.html" target="_blank" rel="noopener">Purdue AI Forge</a>
+- <a href="https://arxiv.org/abs/2608.05175" target="_blank" rel="noopener">Pisan, UW Bothell CSS 382 redesign (arXiv 2608.05175)</a>
+- <a href="https://arxiv.org/abs/2603.28679" target="_blank" rel="noopener">Reddig et al. (arXiv 2603.28679)</a>
+- <a href="https://easychair.org/cfp/EAAI-27" target="_blank" rel="noopener">EAAI-27 CFP</a></p>
+<p><strong>AI literacy, requirements, minors and faculty development</strong>
+- <a href="https://news.osu.edu/ohio-state-launches-bold-ai-fluency-initiative-to-redefine-learning-and-innovation/" target="_blank" rel="noopener">Ohio State AI Fluency launch (2025)</a>
+- <a href="https://oaa.osu.edu/news/2026/01/30/ohio-states-colleges-advance-ai-fluency-roadmaps-undergraduates" target="_blank" rel="noopener">Ohio State college roadmaps (Jan 2026)</a>
+- <a href="https://www.purdue.edu/newsroom/2026/Q3/purdues-ai-competency-graduation-requirement-begins-in-every-undergraduate-degree-program/" target="_blank" rel="noopener">Purdue AI competency requirement (Aug 2026)</a>
+- <a href="https://www.the74million.org/article/at-these-universities-using-ai-isnt-shunned-its-a-graduation-requirement/" target="_blank" rel="noopener">The 74 on AI graduation requirements (Feb 2026)</a>
+- <a href="https://www.purdueexponent.org/campus/freshmen-required-to-take-ai-competency-credit-for-graduation/article_93b1c1e3-c498-481d-97db-1ecc53348286.html" target="_blank" rel="noopener">Purdue Exponent on AI competency credit (Aug 2026)</a>
+- <a href="https://news.asu.edu/20260828-university-news-provost-qa-what-endures-ai-transforms-higher-education" target="_blank" rel="noopener">ASU Provost Q&amp;A (Aug 2026)</a>
+- <a href="https://catalog.ufl.edu/UGRD/academic-programs/AI/aicertificate" target="_blank" rel="noopener">UF AI certificate catalog</a>
+- <a href="https://www.eng.ufl.edu/newengineer/magazine/charting-a-path-forward-with-artificial-intelligence" target="_blank" rel="noopener">UF Engineering: Charting a path forward with AI (2025)</a>
+- <a href="https://cals.ufl.edu/artificial-intelligence" target="_blank" rel="noopener">UF CALS Artificial Intelligence</a>
+- <a href="https://app.testudo.umd.edu/soc/202608/AGNR/AGNR230" target="_blank" rel="noopener">UMD AGNR 230 (Fall 2026)</a>
+- <a href="https://cse.umn.edu/college/news/university-minnesota-boost-ai-literacy-new-classes-and-minor" target="_blank" rel="noopener">UMN AI literacy courses and minor (Mar 2026)</a>
+- <a href="https://www.geekwire.com/2026/not-just-for-coders-uws-upcoming-ai-minor-will-reach-beyond-the-computer-science-school/" target="_blank" rel="noopener">GeekWire: UW AI minor (June 2026)</a>
+- <a href="https://news.engin.umich.edu/2025/11/new-ai-minor-launches-for-students-across-disciplines/" target="_blank" rel="noopener">Michigan Engineering: AI minor (Nov 2025)</a>
+- <a href="https://coe.gatech.edu/news/2024/04/starting-summer-students-can-minor-applications-artificial-intelligence-and-machine" target="_blank" rel="noopener">Georgia Tech AI &amp; ML minor (2024)</a>
+- <a href="https://catalog.cornell.edu/programs/digital-agriculture-minor/" target="_blank" rel="noopener">Cornell Digital Agriculture minor</a>
+- <a href="https://ag.purdue.edu/idaas/data-driven-agriculture-minor.html" target="_blank" rel="noopener">Purdue Data Driven Agriculture minor</a>
+- <a href="https://www.cs.cornell.edu/news-stories/ai-all-summer-course-teaches-responsible-genai-use" target="_blank" rel="noopener">Cornell AI for All (2026)</a>
+- <a href="https://news.cornell.edu/node/333813" target="_blank" rel="noopener">Cornell Chronicle: Everyday AI course</a>
+- <a href="https://news.cornell.edu/index%2Ephp/stories/2026/09/ai-education-initiatives-emphasize-experimentation-balanced-use" target="_blank" rel="noopener">Cornell Chronicle: AI Integration Pilots (Sept 2026)</a>
+- <a href="https://ai.psu.edu/ai-literacy/ai-essentials" target="_blank" rel="noopener">Penn State AI Essentials</a>
+- <a href="https://www.insidehighered.com/news/tech-innovation/artificial-intelligence/2025/01/16/suny-adds-ai-education-its-information" target="_blank" rel="noopener">Inside Higher Ed: SUNY adds AI to gen ed (2025)</a>
+- <a href="https://www.altoonamirror.com/news/local-news/2026/07/ai-colleges-new-minors-embrace/" target="_blank" rel="noopener">Altoona Mirror: AI majors and minors count (July 2026)</a>
+- <a href="https://biology.ucdavis.edu/node/8771" target="_blank" rel="noopener">AIFS AIBridge Boot Camp</a>
+- <a href="https://aifarms.illinois.edu/education-outreach/" target="_blank" rel="noopener">AIFARMS education and outreach</a>
+- <a href="https://aiira.iastate.edu/" target="_blank" rel="noopener">AIIRA: AI Institute for Resilient Agriculture</a>
+- <a href="https://drakeinstitute.osu.edu/resources-instructors/teaching-support-ai-fluency" target="_blank" rel="noopener">Ohio State Drake Institute AI fluency support</a>
+- <a href="https://ctl.duke.edu/research-evaluation-development/ai-jump-start-grants/" target="_blank" rel="noopener">Duke AI Jump Start Grants (AY 2024–25)</a></p>
+</article>
+<p class="foot">Adisak Sukul · Teaching Professor of Computer Science, Iowa State University · <a href="/">adisaksukul.com</a> · <a href="https://www.linkedin.com/in/adisaksukul" target="_blank" rel="noopener">LinkedIn</a><br>Prepared for the Iowa State CALS AI in Teaching series. Every quote and figure was checked against the live source page on October 25, 2026; university pages change often, so check the linked source before reusing a quote. Views are the author's and do not represent Iowa State University policy.</p>
+</main></body></html>
