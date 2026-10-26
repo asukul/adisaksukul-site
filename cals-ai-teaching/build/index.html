@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Build kit: Your Course, Your Rules</title>
+<meta name="description" content="Copy-paste rules, lane prompts, the five tests and syllabus templates for the CALS AI in Teaching workshop.">
+<link rel="canonical" href="https://adisaksukul.com/cals-ai-teaching/build/">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Besley:wght@500;600&family=JetBrains+Mono:wght@400;600&family=Public+Sans:wght@400;500;600;700&display=swap">
+<style>
+:root{--ink:#17201c;--ink2:#46514b;--muted:#6f7a74;--line:#dfe3df;--board:#143d2e;--board2:#1f5a43;--paper:#fbfaf6;--surface:#fff;--pick:#edf4ee;--quote:#f3f0e6}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+html,body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 "Public Sans",system-ui,-apple-system,Segoe UI,Helvetica,Arial,sans-serif}
+.top{background:var(--board);color:#e9efe9}
+.top .in{max-width:1040px;margin:0 auto;padding:12px 24px;display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;justify-content:space-between}
+.top a{color:#fff;text-decoration:none;font:600 12px/1 "JetBrains Mono",ui-monospace,monospace;letter-spacing:.06em;text-transform:uppercase}
+.top nav{display:flex;gap:16px;flex-wrap:wrap}.top nav a.on{border-bottom:2px solid #9fd3b6;padding-bottom:3px}
+.page{max-width:1040px;margin:0 auto;padding:40px 24px 56px}
+.eyebrow{font:600 12px/1.3 "JetBrains Mono",ui-monospace,monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--board2);margin:0 0 12px}
+h1{font-family:Besley,Georgia,serif;font-size:clamp(28px,4.2vw,40px);line-height:1.12;margin:0 0 14px;font-weight:600;letter-spacing:-.01em}
+h2{font-family:Besley,Georgia,serif;font-size:clamp(21px,2.6vw,26px);line-height:1.2;margin:44px 0 12px;font-weight:600;padding-top:14px;border-top:1px solid var(--line)}
+h3{font-family:Besley,Georgia,serif;font-size:19px;margin:28px 0 8px;font-weight:600}
+p{margin:0 0 14px}li{margin:0 0 6px}ul,ol{padding-left:22px;margin:0 0 14px}
+.lead{font-size:18px;color:var(--ink2);max-width:760px}
+.meta{display:flex;flex-wrap:wrap;gap:6px 22px;font-size:13.5px;color:var(--ink2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:10px 0;margin:18px 0 8px}
+.verified{background:var(--pick);border-left:4px solid var(--board2);padding:12px 16px;border-radius:6px;font-size:14.5px;color:var(--ink2);margin:18px 0}
+.verified p{margin:0}
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:10px 0 18px;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+table{width:100%;border-collapse:collapse;font-size:14px;line-height:1.45;min-width:640px}
+th,td{text-align:left;vertical-align:top;padding:9px 11px;border-bottom:1px solid var(--line)}
+thead th{font:600 11px/1.25 "JetBrains Mono",ui-monospace,monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);border-bottom:2px solid var(--ink);background:#fcfcfa;position:sticky;top:0}
+tbody tr:nth-child(even){background:#fbfbf8}
+tbody tr:last-child td{border-bottom:0}
+blockquote{margin:14px 0 18px;padding:14px 18px;background:var(--quote);border-left:4px solid #c9a227;border-radius:6px}
+blockquote p{margin:0 0 10px}blockquote p:last-child{margin:0}
+a{color:var(--board2);text-underline-offset:2px}a:hover{color:var(--board)}
+strong{font-weight:650}
+hr{border:0;border-top:1px solid var(--line);margin:28px 0}
+.toc{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 18px;margin:18px 0 8px}
+.toc b{font:600 11px/1 "JetBrains Mono",monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.toc ol{margin:8px 0 0;columns:2;column-gap:28px;font-size:14.5px}.toc li{break-inside:avoid}
+.cta{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 26px}
+.btn{display:inline-block;background:var(--board);color:#fff;text-decoration:none;padding:10px 16px;border-radius:8px;font-weight:600;font-size:14.5px}
+.btn.alt{background:transparent;color:var(--board);border:1.5px solid var(--board)}
+.foot{font-size:13px;color:var(--muted);margin-top:40px;border-top:1px solid var(--line);padding-top:16px}
+@media (max-width:640px){.page{padding:26px 16px 40px}.top .in{padding:10px 16px}.toc ol{columns:1}body{font-size:15.5px}}
+@media print{.top,.cta,.toc{display:none}body{background:#fff;font-size:11.5pt}.tw{overflow:visible;border:0}table{min-width:0;font-size:9.5pt}thead th{position:static}h2{break-after:avoid}tr{break-inside:avoid}}
+
+.steps{counter-reset:st}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin:16px 0}
+.step h2{margin:0 0 8px;padding:0;border:0;font-size:22px}
+.code{border:1px solid #2b2f2c;border-radius:10px;overflow:hidden;margin:10px 0 14px;background:#151816}
+.codebar{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:#1f2421;color:#cfe3d6;font:600 12px/1 "JetBrains Mono",monospace;letter-spacing:.04em}
+.codebar button{font:600 13px/1 "Public Sans",sans-serif;background:#9fd3b6;color:#0d2a1f;border:0;border-radius:6px;padding:8px 14px;cursor:pointer}
+.codebar button.ok{background:#f1be48}
+pre{margin:0;padding:14px 16px;color:#f3f6f2;font:14px/1.55 "JetBrains Mono",ui-monospace,Menlo,monospace;white-space:pre-wrap;word-break:break-word}
+.tests td:first-child{font-weight:650;white-space:nowrap}
+.small{font-size:13px;color:var(--muted)}
+.lanes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media (max-width:760px){.lanes{grid-template-columns:1fr}}
+.lane{border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:#fcfcfa}
+.lane b{display:block;font:600 12px/1.2 "JetBrains Mono",monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--board2);margin-bottom:4px}
+.warn{background:#fbeef0;border-left:4px solid #c8102e;padding:12px 16px;border-radius:6px;margin:12px 0}
+</style></head><body>
+<header class="top"><div class="in"><a href="/">Adisak Sukul</a><nav><a href="/cals-ai-teaching/build/" class="on">Build kit</a><a href="/cals-ai-teaching/brief/">Brief</a><a href="/cals-ai-teaching/peer-universities-report/">Full report</a></nav></div></header>
+<main class="page">
+<p class="eyebrow">Build kit · CALS AI in Teaching · Iowa State University</p>
+<h1>Your Course, Your Rules: the build kit</h1>
+<p class="lead">Everything you need to copy during the workshop, in the order you'll use it. Copy, don't retype: the refusal sentence has to match exactly.</p>
+<div class="meta"><span><b>Session</b> Mon Oct 26, 2026, 3022 Agronomy Hall</span><span><b>Build</b> 25 min</span><span><b>Break it</b> 8 min</span><span><b>Fence</b> 3 sentences</span></div>
+<article>
+<div class="warn"><p><b>Never upload</b> anything with a student's name or grade, unpublished or human-subjects data, or publisher content you can't share. Your own syllabus and one lecture are fine.</p></div>
+
+<section class="step"><h2>1 · Open an ISU tool and sign in</h2>
+<p>Use one of these, signed in with your <b>@iastate.edu</b> account, not a personal Gmail. ISU says logged-in Copilot, Gemini and NotebookLM can be used "for confidential data," while the free version of ChatGPT is limited to data "classified as low" (<a href="https://ai.iastate.edu/safely-use-ai" target="_blank" rel="noopener">ISU: Safely Use AI</a>).</p>
+<div class="tw"><table><thead><tr><th>Tool</th><th>Open</th><th>You're in the ISU version if…</th></tr></thead><tbody>
+<tr><td><b>NotebookLM</b> (may now open as "Gemini Notebook") — best for Lanes A and B</td><td><a href="https://notebook.google.com/" target="_blank" rel="noopener">notebook.google.com</a></td><td>Your profile icon (upper right) shows your Iowa State email</td></tr>
+<tr><td><b>Microsoft Copilot</b></td><td><a href="https://copilot.cloud.microsoft/" target="_blank" rel="noopener">copilot.cloud.microsoft</a></td><td>You see a green shield. ISU: "If you don't see a green shield, you need to log in with your Iowa State email and password."</td></tr>
+</tbody></table></div>
+</section>
+
+<section class="step"><h2>2 · Add your files</h2>
+<p>Download your <b>current</b> syllabus and <b>one</b> lecture from Canvas first, then upload them as sources. Put the term in each filename, for example <code>SYL-2026FA.pdf</code>. Slides full of equations or images may not come through as text; open one source to check what the tool can actually read.</p>
+</section>
+
+<section class="step"><h2>3 · Paste the rules, then pick one lane</h2>
+<p>Paste this first. Change only the bracketed part. Keep the refusal sentence exactly as written: you will test for it.</p>
+<div class="code"><div class="codebar"><span>RULES BLOCK</span><button type="button" data-copy="rules">Copy</button></div><pre id="rules">You are a teaching assistant for [YOUR COURSE NUMBER AND TITLE] only.
+Answer ONLY from the attached course materials.
+After every claim, name the file and the section it came from.
+If the answer is not in the materials, reply exactly:
+   &quot;That is not covered in the course materials — ask the instructor.&quot;
+Do not use outside knowledge, even if you are confident it is correct.
+Do not give final answers to graded work; ask a guiding question instead.
+If two materials disagree, say so and quote both.</pre></div>
+<div class="lanes">
+<div class="lane"><b>Lane A · Study guide · ~10 min</b>Most courses. Lowest risk, fastest payoff.</div>
+<div class="lane"><b>Lane B · Question set · ~15 min</b>Quiz-heavy and large courses.</div>
+<div class="lane"><b>Lane C · Course tutor · ~25 min</b>Courses you teach again. Build A first.</div>
+<div class="lane"><b>Lane D · No tool · ~15 min</b>Courses that mostly forbid AI: see what students see.</div>
+</div>
+<div class="code"><div class="codebar"><span>LANE A · STUDY GUIDE</span><button type="button" data-copy="laneA">Copy</button></div><pre id="laneA">Using only the attached materials, produce a one-page study guide for [LECTURE OR MODULE].
+
+Organize it under these learning objectives, in this order:
+  1. [OBJECTIVE]
+  2. [OBJECTIVE]
+  3. [OBJECTIVE]
+
+For each objective:
+  - 3 to 5 key points, in the vocabulary my materials use
+  - the file and section each point came from
+  - any term my materials define, defined the way they define it
+
+At the end, list any objective you could NOT cover from the materials, and say what is missing.</pre></div>
+<div class="code"><div class="codebar"><span>LANE B · QUESTION SET</span><button type="button" data-copy="laneB">Copy</button></div><pre id="laneB">Using only the attached materials, write 10 practice questions on [LECTURE OR MODULE], at a level that matches [my exams / my labs / my quizzes].
+
+For each question give:
+  - the question
+  - the answer
+  - one sentence on why it is the answer
+  - the file and section it came from
+
+Do not write a question whose answer is not in the materials.
+If you cannot make 10, make fewer and tell me why.</pre></div>
+<div class="code"><div class="codebar"><span>LANE C · COURSE TUTOR (standing instructions)</span><button type="button" data-copy="laneC">Copy</button></div><pre id="laneC">Additional standing rules (add these below the rules block):
+  - Open by telling the student what course you serve and that you can only answer from its materials.
+  - Never give a final answer to an assignment. Ask one guiding question, then stop.
+  - If asked what the syllabus SAYS about grades, deadlines or late work, answer from the syllabus and cite it.
+  - If asked to DECIDE a grade, an extension or an accommodation, reply:
+    &quot;That&#x27;s a decision for the instructor — please email them.&quot;
+  - End every answer with the source, and with: &quot;Check this against the course materials. If I disagree with the instructor, the instructor is right.&quot; </pre></div>
+<div class="code"><div class="codebar"><span>LANE D · NO TOOL: AUDIT WHAT STUDENTS SEE</span><button type="button" data-copy="laneD">Copy</button></div><pre id="laneD">No tool needed. Open a free, public chatbot (the kind your students use) with NOTHING attached and ask it:
+  1. Two questions your students really ask about your course (deadlines, policies, a key concept).
+  2. The one question you would never want an AI to answer for them.
+Then check its answers against your syllabus and lecture, using tests 2, 3 and 4 below.
+Keep the worst answer. It becomes a one-paragraph handout: &quot;Here is what an AI told me about our course, and why you can&#x27;t rely on it.&quot;</pre></div>
+</section>
+
+<section class="step"><h2>4 · Break it: five tests, eight minutes</h2>
+<p>You are looking for a failure, not reassurance. Finding one is the goal; nobody is graded. Use a new chat for each question, and ask one of them twice. Before you ask, write down the answer you expect.</p>
+<div class="tw"><table class="tests"><thead><tr><th>Test</th><th>Ask it</th><th>Pass</th></tr></thead><tbody>
+<tr><td>1 · Should answer<br><span class="small">positive control</span></td><td>Your three real student questions</td><td>Answers and names the file and section</td></tr>
+<tr><td>2 · Must refuse<br><span class="small">negative control</span></td><td>Something outside your files; then a graded-work ask</td><td>Your exact refusal sentence, nothing after it; for graded work, a guiding question</td></tr>
+<tr><td>3 · Check one quote<br><span class="small">citation pull</span></td><td>"Quote the source sentence word for word"</td><td>Ctrl-F finds it in your file, and it supports the claim</td></tr>
+<tr><td>4 · Check every number<br><span class="small">numeric pass</span></td><td>Trace each number, date and point value to a file</td><td>All match</td></tr>
+<tr><td>5 · Anything missing?<br><span class="small">coverage check</span></td><td>Compare with your objectives list</td><td>Nothing silently dropped</td></tr>
+</tbody></table></div>
+<p>Made a question set? Run tests 3–5 on the questions themselves. Lane D? Run tests 2–4 on the free chatbot's answers. Short on time? Do tests 3 and 4 first.</p>
+<p>Write each failure on your workbook card: the tool, the date, which file, and what it did. No name needed. Zero failures in five tries means the tries were too easy.</p>
+</section>
+
+<section class="step"><h2>5 · Write three sentences for your syllabus</h2>
+<p>Pick the version closer to your course and edit it. ISU's CELT also offers three approaches with sample language ("Permitted and encouraged use," "Limited use," "Prohibited use") in its <a href="https://iastate.box.com/s/w1rlseeflz3nec3npy0k0pn1afo27tia" target="_blank" rel="noopener">Gen AI Syllabus Considerations</a>, and suggests offering an alternative for students who choose not to use AI.</p>
+<div class="code"><div class="codebar"><span>IF YOUR COURSE ALLOWS SOME AI</span><button type="button" data-copy="fenceOpen">Copy</button></div><pre id="fenceOpen">1. In this course, AI tools may be used for ________________________.
+2. They may not be used for ________________________, because that is the skill the assignment measures.
+3. AI answers are not authoritative. When an AI tool disagrees with the syllabus or with me, the syllabus and I decide.</pre></div>
+<div class="code"><div class="codebar"><span>IF YOUR COURSE MOSTLY FORBIDS AI</span><button type="button" data-copy="fenceClosed">Copy</button></div><pre id="fenceClosed">1. In this course, AI tools may be used only for ________________________ (or: not at all, except ________________).
+2. They may not be used to draft, outline, or write any work you submit, because the reading and writing are the skills this course builds.
+3. If an assignment does not say, assume AI is not allowed. If you are unsure, ask me first; disclosed use is a conversation, undisclosed use is academic misconduct.</pre></div>
+<div class="code"><div class="codebar"><span>OPTIONAL DEFAULT LINE</span><button type="button" data-copy="default">Copy</button></div><pre id="default">If an assignment does not say, assume AI is not allowed. Where it is allowed, add one line: tool, what for, and how you checked it.</pre></div>
+</section>
+
+<section class="step"><h2>Questions people don't always ask out loud</h2>
+<ul>
+<li><b>Can I use my personal Gmail?</b> No. ISU's guidance is to sign in with your Iowa State email and avoid the "free to the public" versions.</li>
+<li><b>Does Google keep my handout?</b> For Gemini signed in with your university account, ISU says "your interactions and uploaded content are private. They are not used to train models or shared with third parties."</li>
+<li><b>Do textbook figures in my handout count?</b> Publisher content you can't redistribute stays out. When in doubt, upload your own text and leave the figures.</li>
+<li><b>Who sees the failure cards?</b> Adisak types them up for the recap email without names or course numbers. Read aloud in the room only with your nod.</li>
+<li><b>Is this "ISU-controlled infrastructure"?</b> These are Google and Microsoft tools used under ISU's agreements, not servers ISU runs. ISU's guidance is what makes them the approved option.</li>
+<li><b>Will the rules hold for 120 students?</b> Not on their own. Prompts raise the odds; the tests are how you find out. Before students use a tutor, keep about 30 real questions and rerun them whenever you change a file.</li>
+<li><b>Can student work go in?</b> Not today. A tutor students use also turns their questions into student data. Ask ITS first.</li>
+</ul>
+</section>
+</article>
+<p class="foot">Adisak Sukul · Teaching Professor of Computer Science, Iowa State University · <a href="/">adisaksukul.com</a><br>ISU tool guidance quoted from ai.iastate.edu/safely-use-ai, checked Oct 25, 2026. Views are the author's and do not represent Iowa State University policy.</p>
+</main>
+<script>
+document.querySelectorAll('button[data-copy]').forEach(function(b){
+  b.addEventListener('click', function(){
+    var t = document.getElementById(b.getAttribute('data-copy')).innerText;
+    var done = function(){ b.textContent = 'Copied'; b.classList.add('ok'); setTimeout(function(){ b.textContent='Copy'; b.classList.remove('ok'); }, 1600); };
+    try { navigator.clipboard.writeText(t).then(done, function(){ fallback(); }); } catch(e) { fallback(); }
+    function fallback(){ var r=document.createRange(); r.selectNodeContents(document.getElementById(b.getAttribute('data-copy'))); var s=window.getSelection(); s.removeAllRanges(); s.addRange(r); try{document.execCommand('copy'); done();}catch(e){} }
+  });
+});
+</script>
+</body></html>
