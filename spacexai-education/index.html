@@ -407,6 +407,12 @@ footer .wrap { display: grid; gap: 14px; }
 .waves rect.pub + .wv-in { fill: var(--chalk); }
 .waves .wv-n { font-family: var(--mono); font-size: 12px; fill: var(--ink-2); }
 .waves .wv-legend text { font-size: 12px; fill: var(--muted); }
+.sizes .rung { padding: 18px 18px 16px; }
+.sizes .rung .k { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.sizes .rung .v { font-family: var(--display); font-size: 20px; font-weight: 600; margin: 6px 0 10px; line-height: 1.2; }
+.sizes .rung p { font-size: 14px; color: var(--ink-2); margin: 0 0 8px; }
+.sizes .rung p.who { font-size: 12.5px; color: var(--muted); margin: 10px 0 0; }
+.sizes .rung.pick { background: var(--pick, var(--bg)); }
 </style>
 </head>
 <body>
@@ -1017,7 +1023,7 @@ footer .wrap { display: grid; gap: 14px; }
 
     <div class="sub">
       <h3>One semester, with a class bot in it</h3>
-      <p class="measure" style="color:var(--ink-2)">How I would run a 100-student section. Nothing here needs a feature SpaceXAI does not ship today, except the two marked with an asterisk.</p>
+      <p class="measure" style="color:var(--ink-2)">How I would run a 150-student section. Nothing here needs a feature SpaceXAI does not ship today, except the two marked with an asterisk.</p>
       <div class="scroll tbl-wide"><table>
         <thead><tr><th>When</th><th>The instructor</th><th>The students</th><th>The class bot</th><th>What the instructor can see</th></tr></thead>
         <tbody>
@@ -1027,7 +1033,7 @@ footer .wrap { display: grid; gap: 14px; }
           <tr><th>Open assignments</th><td>Sets tasks that assume AI: critique, compare, extend, verify, decide. Grades judgment and the process, not just the artifact.</td><td>Work with the bot and submit three things: the artifact, the transcript, and a half-page on what the AI got wrong.</td><td>Logs the session so the transcript exists. On Enterprise the action recording is the log; on Teams the student exports it*.</td><td>The transcript next to the work. A student who cannot explain their transcript has told you what you need to know.</td></tr>
           <tr><th>Secure assessment</th><td>In-person, supervised. Either no AI, or the bot in a locked exam configuration: course notes only, no web, no plugins, questions answered with questions.</td><td>Show what they can do alone, or with a tool that cannot do it for them.</td><td>Exam template, published for the day and unpublished after.</td><td>What each student knows. This lane is what makes the open lane safe to grade generously.</td></tr>
           <tr><th>Capstone</th><td>Students build their own bot for a real task in the discipline and defend it.</td><td>Design, configure, test, document, present.</td><td>The student's own work. The instructor's bot becomes the reviewer.</td><td>A working agent, a design document and a live demo.</td></tr>
-          <tr><th>End of term</th><td>Samples about one in ten submissions for a ten-minute conversation about the student's own work, as UCL and Cardiff colleagues have proposed (<a href="https://www.timeshighereducation.com/node/735603">Times Higher Education</a>).</td><td>Explain their work to a person.</td><td>Off.</td><td>Whether the grades mean anything. Ten students at ten minutes each is under two hours per 100-student section.</td></tr>
+          <tr><th>End of term</th><td>Samples about one in ten submissions for a ten-minute conversation about the student's own work, as UCL and Cardiff colleagues have proposed (<a href="https://www.timeshighereducation.com/node/735603">Times Higher Education</a>).</td><td>Explain their work to a person.</td><td>Off.</td><td>Whether the grades mean anything. Fifteen students at ten minutes each is under three hours per 150-student section.</td></tr>
         </tbody>
       </table></div>
     </div>
@@ -1420,7 +1426,7 @@ footer .wrap { display: grid; gap: 14px; }
     <div class="scroll tbl-wide" style="margin-bottom:22px"><table>
       <thead><tr><th>Phase</th><th>Scope</th><th>What SpaceXAI provides</th><th>What the institution provides</th><th>What it answers</th></tr></thead>
       <tbody>
-        <tr class="pick"><th>0a · One campus, one semester</th><td>Two Iowa State courses, about 200 students: one technical section on Cursor Teams, one non-technical section on Grok Bot Team Bots. Spring 2027.</td><td>One of two things, SpaceXAI's choice: ISU buys about 100 Teams seats for one semester on a purchase order at list price, or SpaceXAI extends a one-semester trial as a marketing decision. There is no education pricing today, and this phase does not ask for one. Plus a named field contact and the standard security documentation. My estimate of SpaceXAI staff time: 15 to 25 hours across the semester.</td><td>Faculty time, ISU IT security review, one tenant with two teams and a named admin, course material written by the instructor, and a public write-up of results that SpaceXAI reviews for factual accuracy before release.</td><td>Whether the admin controls on Teams are enough for a course, how much usage a class generates and when a seat runs out (there is no spend cap, and a section running weekly routines will test that), and what a procurement review asks. No LMS connector, no student email, no submissions in this phase.</td></tr>
+        <tr class="pick"><th>0a · One campus, one semester</th><td>AI 2010, Introduction to Applied AI, spring 2027: 150 students on Grok Bot Team Bots, plus 2 instructors and 4 TAs, so 156 seats. A separate Cursor section (DS 2010) goes through Cursor's own campus credits form.</td><td>One of two things, SpaceXAI's choice: ISU buys 156 Teams seats for one semester on a purchase order at list price, or SpaceXAI extends a one-semester trial as a marketing decision. There is no education pricing today, and this phase does not ask for one. Plus a named field contact and the standard security documentation. My estimate of SpaceXAI staff time: 15 to 25 hours across the semester.</td><td>Faculty time, ISU IT security review, one tenant with one course team and a named admin, course material written by the instructor, and a public write-up of results that SpaceXAI reviews for factual accuracy before release.</td><td>Whether the admin controls on Teams are enough for a course, how much usage a class generates and when a seat runs out (there is no spend cap, and a section running weekly routines will test that), and what a procurement review asks. No LMS connector, no student email, no submissions in this phase.</td></tr>
         <tr><th>0b · Founding educators</th><td>Twenty-five educators in at least six disciplines, about 2,000 students, two starter kits.</td><td>A classroom application flow, capped coupons, and product contacts for the starter kits.</td><td>Educators who write and test material with their own classes.</td><td>Approval time, redemption, cost per student, fraud caught and missed, and whether educators renew.</td></tr>
         <tr><th>Year 1</th><td>What the pilot report supports.</td><td>Decided on the evidence.</td><td>Decided on the evidence.</td><td>Whether to make this a standing program.</td></tr>
       </tbody>
@@ -1455,13 +1461,37 @@ footer .wrap { display: grid; gap: 14px; }
   <div class="wrap">
     <div class="sec-head">
       <p class="eyebrow">Start here</p>
-      <h2>Who decides what, and what I am asking of each</h2>
-      <p class="measure">A proposal this wide dies if it lands on one desk. Most of it belongs to four different owners, and only the first row needs anyone's approval to begin. The one thing I am asking for myself is to be the first classroom you test this in.</p>
+      <h2>Three sizes of conversation</h2>
+      <p class="measure">This page is large on purpose, but the conversation does not have to be. There are three ways to continue, and each one stands on its own. The small plan is the only thing I am asking for; the other two are offers.</p>
+    </div>
+    <div class="ladder trio sizes">
+      <div class="rung pick">
+        <div class="k">Small · the ask</div>
+        <div class="v">Education credit for AI 2010</div>
+        <p>Spring 2027, 150 students, 2 instructors and 4 TAs: 156 Grok Bot seats on Teams for one semester, on a purchase order at list or as a trial. ISU IT in the security review, synthetic data only, a public write-up after. SpaceXAI can count it as one of its pilot classes.</p>
+        <p class="who">Decided by the field and higher-education team. Needs nothing new.</p>
+      </div>
+      <div class="rung">
+        <div class="k">Medium · an offer</div>
+        <div class="v">Help set up an educator program</div>
+        <p>A community of instructors who teach with Cursor and Grok Bot: regular sessions to compare what works, a channel for feedback on what classrooms need, and advocates who bring the tools to their own departments, universities and schools. I have run this loop from the educator side for ten years and can help SpaceXAI build it.</p>
+        <p class="who">Decided by the campus and community team. Low cost, compounding return.</p>
+      </div>
+      <div class="rung">
+        <div class="k">Large · an offer</div>
+        <div class="v">Assist with the full program</div>
+        <p>The two routes on this page: classroom access through verified instructors, and the course-template catalogue, with the recognition that keeps faculty writing. I can assist SpaceXAI's education team on any part of it, starting with the two core course templates.</p>
+        <p class="who">Decided by whoever owns education at SpaceXAI. Sized and sequenced on this page.</p>
+      </div>
+    </div>
+    <div class="sec-head" style="margin-top:34px">
+      <h3>Who decides what, and what I am asking of each</h3>
+      <p class="measure">A proposal this wide dies if it lands on one desk. Most of it belongs to four different owners, and only the first row needs anyone's approval to begin.</p>
     </div>
     <div class="scroll tbl-wide"><table>
       <thead><tr><th>Owner</th><th>The ask</th><th>Smallest version</th><th>Cost to say yes</th></tr></thead>
       <tbody>
-        <tr class="pick"><th>Field and enterprise team</th><td>A one-semester deployment of Cursor Teams and Grok Bot Team Bots in two Iowa State courses, with ISU IT in the security review.</td><td>Trial seats, one contact, one call with our security office.</td><td>Low. Existing products, existing plans.</td></tr>
+        <tr class="pick"><th>Field and enterprise team</th><td>Education credit for AI 2010 in spring 2027: 150 students plus 2 instructors and 4 TAs on Grok Bot Team Bots, with ISU IT in the security review. Treat it as one of your pilot classes.</td><td>156 seats, one contact, one call with our security office.</td><td>Low. Existing products, existing plans.</td></tr>
         <tr><th>Campus and community team</th><td>Scale the educator credits request form into a classroom application: one educator, one course, one roster, a capped coupon per student.</td><td>Add a course roster and a per-class cap to the form that exists today. Pilot with 25 educators.</td><td>Low to medium. Mostly process and a form.</td></tr>
         <tr><th>Product</th><td>A learn mode, a site allowlist and read-only mode per bot, an instructor usage view, and provider visibility when routing reaches classes.</td><td>The instructor usage view.</td><td>Medium. Each is listed with my effort guess in the Grok Bot section.</td></tr>
         <tr><th>Legal and pricing</th><td>Education pricing for a course team, a FERPA school-official agreement, no training on student work by default, and an age policy for Grok Bot.</td><td>A written answer to the five questions a procurement office asks (<a href="https://er.educause.edu/articles/2025/2/hecvat-4-better-than-ever">HECVAT</a>).</td><td>Medium. Needed before any public university can buy at scale.</td></tr>
