@@ -1,0 +1,75 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex"><title>Phase 0a: Grok Bot Team Bots in one Iowa State course</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Besley:wght@500;600&family=JetBrains+Mono:wght@400;600&family=Public+Sans:wght@400;500;600;700&display=swap">
+<style>
+:root{--ink:#17201c;--ink2:#4a5550;--muted:#7b857f;--line:#d9ded9;--board:#143d2e;--paper:#fbfaf6;--surface:#fff;--pick:#edf4ee}
+*{box-sizing:border-box}html,body{margin:0;background:var(--paper);color:var(--ink);font:14px/1.45 "Public Sans",system-ui,-apple-system,Segoe UI,Helvetica,Arial,sans-serif}
+.page{max-width:860px;margin:0 auto;padding:36px 28px 40px}
+.eyebrow{font:600 11px/1 "JetBrains Mono",ui-monospace,Menlo,monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--board);margin:0 0 10px}
+h1{font-family:Besley,Georgia,serif;font-size:27px;line-height:1.15;margin:0 0 10px;font-weight:600}
+h2{font-family:Besley,Georgia,serif;font-size:16px;margin:20px 0 6px;font-weight:600}
+p{margin:0 0 8px}.lead{font-size:15px;color:var(--ink2)}
+.meta{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:12.5px;color:var(--ink2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:8px 0;margin:12px 0 4px}
+table{width:100%;border-collapse:collapse;font-size:12.8px;margin:6px 0 4px;background:var(--surface)}
+th,td{text-align:left;vertical-align:top;padding:6px 8px;border-bottom:1px solid var(--line)}
+thead th{font:600 10.5px/1.2 "JetBrains Mono",ui-monospace,monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);border-bottom:2px solid var(--ink)}
+tbody th{font-weight:600;width:24%}tr.pick{background:var(--pick)}
+ul{margin:4px 0 8px 18px;padding:0}li{margin:0 0 4px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.box{background:var(--board);color:#f3f6f2;border-radius:10px;padding:14px 16px;margin-top:16px}
+.box h2{margin:0 0 6px;color:#fff}.box p{color:#e2e9e3;margin:0 0 4px}.box a{color:#fff}
+.foot{font-size:11.5px;color:var(--muted);margin-top:16px}
+a{color:var(--board)}
+@media print{body{background:#fff;font-size:11.4px}.page{padding:0;max-width:none}h1{font-size:22px;margin-bottom:6px}h2{font-size:14px;margin:12px 0 4px}.lead{font-size:12.5px}table{font-size:10.6px}th,td{padding:3px 6px}.meta{font-size:11px;padding:5px 0;margin:8px 0 2px}.box{padding:10px 12px;margin-top:10px}.foot{margin-top:8px;font-size:10px}li{margin-bottom:2px}ul{margin-bottom:4px}p{margin-bottom:5px}@page{size:letter;margin:10mm 12mm}}
+@media (max-width:600px){.grid{grid-template-columns:1fr}.page{padding:24px 16px}}
+</style></head><body><div class="page">
+<p class="eyebrow">For SpaceXSI's higher-education team · one page · October 2026</p>
+<h1>Phase 0a: one semester of Grok Bot Team Bots in a 150-student Iowa State course</h1>
+<p class="lead">One course, one semester, on products and plans that exist today. No new features, no student data in the bot, and a public write-up of what we learn. SpaceXSI can count it as one of its pilot classes. The Cursor section (DS 2010) goes through Cursor's own campus credits program, not through this request.</p>
+<div class="meta"><span><b>Term</b> Spring 2027, late January to early May</span><span><b>Course</b> AI 2010, Introduction to Applied AI, 150 non-major students</span><span><b>Seats</b> 156: 150 students, 2 instructors, 4 TAs</span><span><b>Plan</b> Grok Bot on Teams, one course team</span><span><b>Your time</b> my estimate, under 20 hours</span></div>
+
+<div class="grid">
+<div>
+<h2>The ask</h2>
+<p>Education credit for 156 Grok Bot seats for one semester, in whatever form is simplest on SpaceXSI's side, plus one named contact. Everything else below is what Iowa State brings.</p>
+<h2>Scope</h2>
+<ul>
+<li><b>One course team, one named ISU admin.</b> Students join with institution accounts.</li>
+<li><b>Synthetic systems only:</b> a sample CRM, a mailbox of synthetic tickets, a demo storefront. No LMS connector, no student email, no submissions, no grader bot.</li>
+<li><b>Team Bots</b> published by the instructor: a Socratic tutor, a lab partner on the sandbox, and one weekly routine. Connector policy set at the team level.</li>
+<li><b>Controls in scope on Teams:</b> template sharing team-only, connector policy, per-bot Auto Review rules. Noted where an Enterprise-only control would have helped, so you learn which one a department would want next.</li>
+</ul>
+<h2>Usage, so nobody is surprised in week 9</h2>
+<p>Plan of record: two bot sessions per student per week plus one shared weekly routine, 14 weeks. Usage counts against each seat, so I will track consumption weekly from week 2 and report where a seat runs out. If a seat exhausts before term end, the remaining labs run instructor-side; the exhaustion point is itself a result.</p>
+</div>
+<div>
+<h2>What Iowa State brings</h2>
+<ul>
+<li>Two instructors and four TAs who have taught the course for years, and a 150-student section to run it in.</li>
+<li>The course material: outline, labs, assessments and the three class bots, written and tested here (<a href="https://adisaksukul.com/spacexsi-education/ai-2010-outline/">course outline</a>).</li>
+<li>A comparison section: the same course taught in fall 2026 without the bots.</li>
+<li>Weekly usage tracking and a mid-term note.</li>
+<li>A public write-up at the end, with a factual review by SpaceXSI before release.</li>
+</ul>
+<h2>What SpaceXSI gets back</h2>
+<ul>
+<li>Usage per seat per week across a real 150-student section.</li>
+<li>Whether Teams-tier controls are enough for a course, and which control a department would want next.</li>
+<li>What students learn with a class bot, against the section taught without one.</li>
+<li>A case study for the higher-education session series, if you want one.</li>
+<li>A tested course template, the first of the catalogue on the full page.</li>
+</ul>
+</div>
+</div>
+
+<h2>Timeline</h2>
+<table>
+<thead><tr><th>When</th><th>Milestone</th></tr></thead>
+<tbody>
+<tr><th>November</th><td>Agree the shape of the credit and the named contact. Instructor starts building the three bots on the sandbox.</td></tr>
+<tr><th>December</th><td>Course team created; bots published; TAs onboarded.</td></tr>
+<tr><th>January to May</th><td>Term runs; weekly usage tracking from week 2; mid-term note in March; draft write-up to you in May for factual review, published two weeks later.</td></tr>
+</tbody></table>
+
+<div class="box"><h2>Beyond this course</h2><p>If the semester goes well, the natural next steps are on the full page: an educator community that gives SpaceXSI a standing channel to the people who choose classroom tools, and a catalogue of complete course templates that make adopting Cursor and Grok Bot the easiest option an instructor has. This page is only the first class. <a href="https://adisaksukul.com/spacexsi-education/">adisaksukul.com/spacexsi-education</a></p></div>
+<p class="foot">Adisak Sukul · Teaching Professor of Computer Science, Iowa State University · adisaksukul.com · linkedin.com/in/adisaksukul · Full proposal and evidence: <a href="https://adisaksukul.com/spacexsi-education/">adisaksukul.com/spacexsi-education</a>. Independent; not affiliated with SpaceX, SpaceXSI or Cursor.</p></div></body></html>
