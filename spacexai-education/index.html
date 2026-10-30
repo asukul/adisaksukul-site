@@ -343,7 +343,7 @@ footer .wrap { display: grid; gap: 14px; }
   .tiles, .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .tiles .tile:nth-child(3), .kpis .tile:nth-child(3) { border-left: 0; }
   .tiles .tile:nth-child(n+3), .kpis .tile:nth-child(n+3) { border-top: 1px solid var(--line); }
-  .parts { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 14px; }
+  .parts, .parts.trio { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 14px; }
   .part:nth-child(2n) { border-right: 0; margin-right: 0; }
   .flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -372,6 +372,41 @@ footer .wrap { display: grid; gap: 14px; }
 @media (prefers-reduced-motion: no-preference) {
   .bar-fill, .stack span { transition: width 0.25s ease; }
 }
+
+/* two-route diagram and build-order chart */
+.routes { margin: 22px 0 6px; overflow-x: auto; }
+.routes svg { width: 100%; height: auto; display: block; min-width: 760px; }
+.routes text { font-family: var(--body); fill: var(--ink); }
+.routes .rt-eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; fill: var(--muted); }
+.routes .rt-c { fill: var(--ink-2); }
+.routes .rt-h { font-family: var(--display); font-size: 17px; font-weight: 600; }
+.routes .rt-s { font-size: 12.5px; fill: var(--ink-2); }
+.routes .rt-muted { fill: var(--muted); font-size: 12.5px; }
+.routes .rt-chalk { fill: var(--chalk); }
+.routes .rt-chalk.rt-eyebrow { fill: var(--chalk-2); }
+.routes .rt-chalk.rt-h { font-size: 15px; }
+.routes .rt-pill rect { fill: var(--bg); stroke: var(--line-strong); }
+.routes .rt-pill text { font-size: 11px; font-weight: 600; fill: var(--ink); }
+.routes .rt-pill.off rect { fill: transparent; stroke: var(--line); stroke-dasharray: 3 3; }
+.routes .rt-pill.off text { fill: var(--muted); font-weight: 500; }
+.parts.trio { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 18px; }
+.bar-val { font-family: var(--mono); font-size: 12.5px; color: var(--ink-2); text-align: right; }
+#templates .grid-2 > .panel { align-content: start; }
+#templates .bars { margin-bottom: 8px; }
+.waves { margin: 16px 0 0; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px 10px; }
+.waves svg { width: 100%; height: auto; display: block; min-width: 640px; }
+.waves { overflow-x: auto; }
+.waves text { font-family: var(--body); font-size: 13px; fill: var(--ink); }
+.waves .wv-axis text { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; fill: var(--muted); text-transform: uppercase; }
+.waves .wv-grid line { stroke: var(--line); }
+.waves rect { fill: var(--data); }
+.waves rect.draft { fill: var(--data-3); }
+.waves rect.pub { fill: var(--board); }
+.waves .wv-in { font-size: 11.5px; fill: var(--heat-ink-hi); }
+.waves rect.draft + .wv-in { fill: var(--ink); }
+.waves rect.pub + .wv-in { fill: var(--chalk); }
+.waves .wv-n { font-family: var(--mono); font-size: 12px; fill: var(--ink-2); }
+.waves .wv-legend text { font-size: 12px; fill: var(--muted); }
 </style>
 </head>
 <body>
@@ -382,7 +417,7 @@ footer .wrap { display: grid; gap: 14px; }
     <div>
       <p class="eyebrow">An educator's proposal to SpaceXAI · October 2026</p>
       <h1>How to bring Grok, Grok Bot and Cursor into the classroom</h1>
-      <p class="lead">I teach computer science and run an applied AI program. I want to teach with Cursor, Grok and Grok Bot, and I cannot yet do it well: there is no classroom credit path, no course material, no answer to how I assess students who may use AI, and no plan a student can afford. This page is what I would ask SpaceXAI to build, in the order I would build it, with the evidence behind each ask. It is a suggestion from a working educator who wants to use the tools well.</p>
+      <p class="lead">I teach computer science and run an applied AI program. I want to teach with Cursor, Grok and Grok Bot, and I cannot yet do it well: there is no classroom credit path, no course material, no answer to how I assess students who may use AI, and no plan a student can afford. This page is what I would ask SpaceXAI to build, in two routes: classroom access through verified instructors, and complete course templates that make adopting the tools the easiest option an instructor has. The evidence sits behind each ask. It is a suggestion from a working educator who wants to use the tools well.</p>
       <div class="byline">
         <span><strong>Adisak Sukul</strong>, Teaching Professor of Computer Science, Iowa State University</span>
         <span>Written to start a conversation. Iowa State can be the first test site.</span>
@@ -417,6 +452,7 @@ footer .wrap { display: grid; gap: 14px; }
     <a href="#instructor">Instructor's view</a>
     <a href="#credits">Classroom credit</a>
     <a href="#tracks">Two tracks</a>
+    <a href="#templates">Course templates</a>
     <a href="#grokbot">Grok Bot in class</a>
     <a href="#assess">Running the class</a>
     <a href="#scenarios">Scenario library</a>
@@ -436,15 +472,45 @@ footer .wrap { display: grid; gap: 14px; }
   <div class="wrap">
     <div class="sec-head">
       <p class="eyebrow">The plan</p>
-      <h2>Five parts, one front door</h2>
-      <p class="measure">SpaceXAI has the products and the capital to become the platform students learn on. What it lacks is the relationship with the people who decide what gets taught. This program builds that relationship and keeps it.</p>
+      <h2>Two routes, one front door</h2>
+      <p class="measure">Everything on this page sorts into two routes. Route 1 gets the tools into a class: a verified instructor applies, and students get capped access for the term. Route 2 gets the course into the instructor's hands: a complete, ready-to-teach template for each kind of class, written so that every assignment runs on Cursor or Grok Bot. Instructors take the path of least resistance, and a complete template is that path.</p>
     </div>
-    <div class="parts">
-      <div class="part"><span class="eyebrow">Access</span><h3>The educator is the front door</h3><p>Verify the teacher once. The teacher applies for each class, and students redeem a capped coupon. Fraud drops because a named professional is accountable.</p></div>
-      <div class="part"><span class="eyebrow">Tracks</span><h3>Cursor builds, Grok does everything else</h3><p>Cursor serves computing, engineering and data. Grok and Grok Bot serve business, agriculture, health, education, media, the sciences and the humanities.</p></div>
-      <div class="part"><span class="eyebrow">Material</span><h3>Written by the faculty who teach it</h3><p>Experts from each discipline write workflow templates, assignments and exams that let students use AI and still do real work by hand. The hard part is assessment, and it gets its own section.</p></div>
-      <div class="part"><span class="eyebrow">Community</span><h3>Recognition educators value</h3><p>Certification, fellowships, speaking invitations and a conference, funded through a nonprofit so that public employees can take part.</p></div>
-      <div class="part"><span class="eyebrow">Public</span><h3>Build with Grok</h3><p>A public library where people share workflows built with Grok and Grok Bot. Anyone can reuse them, and creators earn when they do.</p></div>
+    <figure class="routes" aria-label="Diagram of the two routes: access and course templates">
+      <svg viewBox="0 0 1000 400" role="img">
+        <defs>
+          <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="var(--line-strong)"/></marker>
+        </defs>
+        <rect x="10" y="150" width="200" height="100" rx="10" fill="var(--board)"/>
+        <text x="110" y="184" text-anchor="middle" class="rt-chalk rt-eyebrow">FRONT DOOR</text>
+        <text x="110" y="210" text-anchor="middle" class="rt-chalk rt-h">A verified instructor</text>
+        <text x="110" y="231" text-anchor="middle" class="rt-chalk rt-s">one application per course</text>
+        <path d="M210 185 C 255 185, 255 95, 290 95" fill="none" stroke="var(--line-strong)" stroke-width="2" marker-end="url(#arr)"/>
+        <path d="M210 215 C 255 215, 255 305, 290 305" fill="none" stroke="var(--line-strong)" stroke-width="2" marker-end="url(#arr)"/>
+        <rect x="292" y="40" width="698" height="110" rx="10" fill="var(--surface)" stroke="var(--line)"/>
+        <text x="312" y="66" class="rt-eyebrow rt-c">ROUTE 1 · ACCESS</text>
+        <text x="312" y="92" class="rt-h">Classroom credit for the term</text>
+        <text x="312" y="114" class="rt-s">Vetted course, capped per student, expires at term end.</text>
+        <text x="312" y="133" class="rt-s">Usage visible to the instructor and the program.</text>
+        <g class="rt-pill" transform="translate(690 74)"><rect width="92" height="24" rx="12"/><text x="46" y="16" text-anchor="middle">Cursor seats</text></g>
+        <g class="rt-pill" transform="translate(790 74)"><rect width="104" height="24" rx="12"/><text x="52" y="16" text-anchor="middle">Grok Bot seats</text></g>
+        <g class="rt-pill" transform="translate(690 108)"><rect width="100" height="24" rx="12"/><text x="50" y="16" text-anchor="middle">Small API pool</text></g>
+        <g class="rt-pill off" transform="translate(798 108)"><rect width="140" height="24" rx="12"/><text x="70" y="16" text-anchor="middle">X Premium: separate</text></g>
+        <rect x="292" y="250" width="698" height="110" rx="10" fill="var(--surface)" stroke="var(--line)"/>
+        <text x="312" y="276" class="rt-eyebrow rt-c">ROUTE 2 · COURSE TEMPLATES</text>
+        <text x="312" y="302" class="rt-h">A complete course, ready to teach</text>
+        <text x="312" y="324" class="rt-s">Objectives, slides, readings, labs, quizzes, homework, exams,</text>
+        <text x="312" y="343" class="rt-s">project, instructor guide and class bots. Adopt whole or adapt.</text>
+        <g class="rt-pill" transform="translate(690 284)"><rect width="128" height="24" rx="12"/><text x="64" y="16" text-anchor="middle">Intro to Applied AI</text></g>
+        <g class="rt-pill" transform="translate(826 284)"><rect width="140" height="24" rx="12"/><text x="70" y="16" text-anchor="middle">Programming with AI</text></g>
+        <g class="rt-pill" transform="translate(690 318)"><rect width="198" height="24" rx="12"/><text x="99" y="16" text-anchor="middle">Applied AI for each college</text></g>
+        <path d="M420 152 L420 248" stroke="var(--line-strong)" stroke-width="2" marker-start="url(#arr)" marker-end="url(#arr)"/>
+        <text x="440" y="204" class="rt-s rt-muted">Every assignment in Route 2 runs on the access from Route 1</text>
+      </svg>
+    </figure>
+    <div class="parts trio">
+      <div class="part"><span class="eyebrow">Both routes</span><h3>Cursor builds, Grok Bot does everything else</h3><p>Cursor serves computing, engineering and data. Grok and Grok Bot serve business, agriculture, health, education, media, the sciences and the humanities. Each template names its tool.</p></div>
+      <div class="part"><span class="eyebrow">Both routes</span><h3>Written by the faculty who teach it</h3><p>Templates are written by faculty fellows in each discipline and recognized with certification, fellowships, speaking invitations and a conference, so the material stays current and credible.</p></div>
+      <div class="part"><span class="eyebrow">Beyond the classroom</span><h3>Build with Grok</h3><p>A public library where anyone shares workflows built with Grok and Grok Bot. Course templates and student capstones feed it; it feeds the next term's assignments.</p></div>
     </div>
   </div>
 </section>
@@ -526,6 +592,40 @@ footer .wrap { display: grid; gap: 14px; }
     </div>
 
     <div class="sub">
+      <h3>Route 1, in its simplest form</h3>
+      <p class="measure" style="color:var(--ink-2)">Strip the program down and it is three things: a form on a website, a person who checks it, and a class-sized bundle of the products. Everything else on this page can wait for year one. The bundle deliberately leaves X Premium out: a class needs the tools, not the social account.</p>
+      <div class="grid-2">
+        <div class="panel">
+          <h3>The application</h3>
+          <div class="scroll" style="margin-top:12px"><table>
+            <thead><tr><th>Step</th><th>What happens</th><th>Who</th></tr></thead>
+            <tbody>
+              <tr><th>1 · Apply</th><td>Institution email, faculty directory link, course name, term, enrolment, syllabus link. About ten minutes.</td><td>Instructor</td></tr>
+              <tr><th>2 · Vet</th><td>Automatic checks on the email domain and directory page; a person reviews anything unclear and every class over 150. Target: two working days.</td><td>Program</td></tr>
+              <tr><th>3 · Issue</th><td>A class code and a bundle sized to the roster. Expires at term end.</td><td>Program</td></tr>
+              <tr><th>4 · Redeem</th><td>Class code plus school email. One per student per course.</td><td>Students</td></tr>
+              <tr><th>5 · Renew</th><td>One click for a returning instructor in good standing. Usage from the previous term is the evidence.</td><td>Instructor</td></tr>
+            </tbody>
+          </table></div>
+        </div>
+        <div class="panel">
+          <h3>The class bundle</h3>
+          <p class="panel-sub">Two sizes, mapped onto seat levels that already exist. Prices are SpaceXAI's to set; the point is the shape.</p>
+          <div class="scroll" style="margin-top:12px"><table>
+            <thead><tr><th></th><th>Standard class</th><th>Large or lab-heavy class</th></tr></thead>
+            <tbody>
+              <tr><th>Fits</th><td>Up to about 40 students, one project</td><td>Up to about 150 students, weekly labs</td></tr>
+              <tr><th>Cursor</th><td>A capped seat per student for the term</td><td>Same, higher cap</td></tr>
+              <tr><th>Grok Bot</th><td>A seat per student at the Premium level ($30 today)</td><td>A seat per student at the Super level ($100 today), with a Team Bot for the course</td></tr>
+              <tr><th>API</th><td>A small shared pool for course projects, with a hard cap</td><td>A larger pool, still capped</td></tr>
+              <tr><th>Not included</th><td colspan="2">X Premium or any social account. Students bring nothing but a school email.</td></tr>
+            </tbody>
+          </table></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub">
       <h3>What Cursor already does for campuses</h3>
       <p class="measure" style="color:var(--ink-2)">This proposal does not start from zero. Since June 2026 Cursor has run a campus program (<a href="https://forum.cursor.com/t/new-campus-community-launches/164026">forum post</a>, <a href="https://cursor.com/students">cursor.com/students</a>). The recommendation below is to scale the educator credits form it already has, not to replace it. The channel for any of this is the campus team itself (students@cursor.com and the forum), not a product request.</p>
       <div class="scroll tbl-wide"><table>
@@ -600,6 +700,142 @@ footer .wrap { display: grid; gap: 14px; }
         <tr><th>Students under 18</th><td>Through school-managed accounts, in teacher-led courses</td><td>Teacher-facing first. Student use follows once an education mode and school privacy terms are in place</td></tr>
       </tbody>
     </table></div>
+  </div>
+</section>
+
+<section id="templates">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Route 2 · Course templates</p>
+      <h2>A complete course is the path of least resistance</h2>
+      <p class="measure">When I plan a new course I look for whoever has the most complete package: learning objectives, slides, readings, labs, quizzes, homework, exams and a project, in one place and in a consistent voice. Whoever has that wins the adoption, because it is the least work. No AI company has it today. SpaceXAI could, and every assignment in it would run on Cursor and Grok Bot.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="panel">
+        <h3>Hours to prepare a new 15-week course</h3>
+        <p class="panel-sub">My estimate, from building AI 2010 and DS 2010 and from adopting vendor material for both. The gap between the first and last bar is the whole argument for Route 2.</p>
+        <div class="bars" style="margin-top:14px">
+          <div class="bar-row"><div class="bar-label">From scratch <small>objectives, slides, every assessment, written new</small></div><div class="bar-line"><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><span class="bar-val">160 h</span></div></div>
+          <div class="bar-row"><div class="bar-label">From scattered vendor material <small>free courses and docs, no assessments, reassembled</small></div><div class="bar-line"><div class="bar-track"><div class="bar-fill" style="width:56%"></div></div><span class="bar-val">90 h</span></div></div>
+          <div class="bar-row"><div class="bar-label">From a complete template, adapted <small>swap a module, retune the project to the discipline</small></div><div class="bar-line"><div class="bar-track"><div class="bar-fill" style="width:19%"></div></div><span class="bar-val">30 h</span></div></div>
+          <div class="bar-row"><div class="bar-label">From a complete template, adopted whole <small>read it, set dates, publish the class bot</small></div><div class="bar-line"><div class="bar-track"><div class="bar-fill" style="width:8%"></div></div><span class="bar-val">12 h</span></div></div>
+        </div>
+      </div>
+      <div class="panel">
+        <h3>What "complete" means</h3>
+        <p class="panel-sub">Every template ships all ten. A template missing any of them is a resource, not a course.</p>
+        <div class="scroll" style="margin-top:12px"><table>
+          <thead><tr><th>Component</th><th>What ships</th><th>Runs on</th></tr></thead>
+          <tbody>
+            <tr><th>Learning objectives</th><td>Measurable, mapped to each week and each assessment</td><td></td></tr>
+            <tr><th>Lecture slides</th><td>Fourteen decks with speaker notes, editable</td><td></td></tr>
+            <tr><th>Readings and references</th><td>Curated pages, docs and short videos per week, with dates</td><td>Grok</td></tr>
+            <tr><th>Labs</th><td>Weekly, with starter files and synthetic data</td><td>Cursor or Grok Bot</td></tr>
+            <tr><th>Quizzes</th><td>Bank of 10 to 15 questions per week, with answers</td><td></td></tr>
+            <tr><th>Homework</th><td>One per week, with a rubric and an AI level</td><td>Cursor or Grok Bot</td></tr>
+            <tr><th>Exams</th><td>Two midterms and a final, secure-lane versions and open-lane versions</td><td></td></tr>
+            <tr><th>Project</th><td>Brief, milestones, rubric and a demo-day format</td><td>Cursor or Grok Bot</td></tr>
+            <tr><th>Instructor guide</th><td>Week-by-week notes, common student errors, the AI policy text</td><td></td></tr>
+            <tr><th>Class bots</th><td>Tutor, lab partner and grader's assistant, configured for the course</td><td>Grok Bot</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+    </div>
+
+    <div class="sub">
+      <h3>The catalogue: two core courses, then one per college</h3>
+      <p class="measure" style="color:var(--ink-2)">The two core courses are the ones I would write first and teach myself. The discipline courses share a common spine (what AI is, how to supervise it, how to judge its output) and swap every example, dataset, assignment and project for the discipline's own. The business course talks about margins and forecasts; the agriculture course talks about yields and weather; nothing generic survives.</p>
+      <div class="scroll tbl-wide"><table>
+        <thead><tr><th>Course template</th><th>For</th><th>Primary tool</th><th>What is tailored</th><th>Example project</th><th>Wave</th></tr></thead>
+        <tbody>
+          <tr class="pick"><th>Introduction to Applied AI with Grok Bot and Cursor</th><td>Any major, first or second year. The university-wide elective.</td><td><span class="chip grok">Grok Bot</span> with a Cursor week</td><td>Nothing: this is the spine every other template is built on</td><td>Design, configure and defend a bot for a real task</td><td><span class="pill good">1 · Spring 2027</span></td></tr>
+          <tr class="pick"><th>Programming and Software Development with AI</th><td>Computer science, software engineering, computer engineering, MIS</td><td><span class="chip cursor">Cursor</span></td><td>Everything is code: inherit a repo, ship a feature, find the agent's bug, defend the pull request</td><td>A tested feature in an unfamiliar codebase, reviewed live</td><td><span class="pill good">1 · Spring 2027</span></td></tr>
+          <tr><th>Applied AI for Business</th><td>Business, finance, marketing, supply chain</td><td><span class="chip grok">Grok Bot</span></td><td>Market research routines, forecast critique, agents on a synthetic CRM, AI in finance and risk</td><td>A market-entry plan drafted by an agent and defended to a panel</td><td><span class="pill">2 · Fall 2027</span></td></tr>
+          <tr><th>Applied AI for Agriculture</th><td>Agronomy, animal science, ag business, ag engineering</td><td><span class="chip grok">Grok Bot</span></td><td>Yield and weather data, field-trial analysis, extension-style reporting, equipment and supply routines</td><td>A season plan from synthetic farm data, with the bot's errors found</td><td><span class="pill">2 · Fall 2027</span></td></tr>
+          <tr><th>Applied AI for Engineering</th><td>Mechanical, civil, electrical, industrial</td><td><span class="chip cursor">Cursor</span> and Grok Bot</td><td>Simulation scripts, spec and standards lookup, design review by agent, lab data pipelines</td><td>A design review the agent runs and the student audits</td><td><span class="pill">2 · Fall 2027</span></td></tr>
+          <tr><th>Applied AI for Health and Human Sciences</th><td>Nursing, kinesiology, nutrition, family and consumer sciences</td><td><span class="chip grok">Grok Bot</span></td><td>Care plans against guidelines, patient-education drafts, program evaluation, no real patient data</td><td>A care plan the bot drafts and the student corrects against the guideline</td><td><span class="pill">3 · Spring 2028</span></td></tr>
+          <tr><th>Applied AI for Social Science and Law</th><td>Political science, sociology, psychology, pre-law, public policy</td><td><span class="chip grok">Grok Bot</span></td><td>Survey design and critique, policy memos, case summaries checked against sources, bias audits</td><td>A policy brief with every claim traced to a source</td><td><span class="pill">3 · Spring 2028</span></td></tr>
+          <tr><th>Applied AI for the Humanities and Literature</th><td>English, history, languages, philosophy</td><td><span class="chip grok">Grok</span></td><td>Argument from three AI drafts, primary-source checks, translation critique, archival research routines</td><td>A fourth draft better than the AI's three, with the reasoning</td><td><span class="pill">3 · Spring 2028</span></td></tr>
+          <tr><th>Applied AI for Chemistry and Biology</th><td>Chemistry, biology, biochemistry, pre-med</td><td><span class="chip cursor">Cursor</span> and Grok Bot</td><td>Literature watch routines, lab-notebook agents, data analysis in notebooks, protocol critique</td><td>Two planted errors in a dataset, found and explained</td><td><span class="pill">3 · Spring 2028</span></td></tr>
+          <tr><th>Applied AI for Education</th><td>Teacher preparation, instructional design</td><td><span class="chip grok">Grok Bot</span></td><td>Lesson planning with AI, assessment design on the five levels, the class-bot setup itself</td><td>A unit plan with its own tutor bot, taught to peers</td><td><span class="pill">3 · Spring 2028</span></td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <div class="sub">
+      <h3>Three ways an instructor uses a template</h3>
+      <div class="scroll tbl-wide"><table>
+          <thead><tr><th>Mode</th><th>What changes</th><th>Time to first class</th><th>Who it suits</th></tr></thead>
+          <tbody>
+            <tr class="pick"><th>Adopt whole</th><td>Dates, institution name, the class bot's rules</td><td>About 12 hours</td><td>A new course, an adjunct, a department filling a gap</td></tr>
+            <tr><th>Adapt a module</th><td>Swap two to four weeks and the project for the local discipline or dataset</td><td>About 30 hours</td><td>Most instructors with an existing course</td></tr>
+            <tr><th>Pick assignments</th><td>Take the labs, quiz bank and exam versions; keep your own lectures</td><td>A few hours</td><td>Experienced instructors who want the assessments, not the slides</td></tr>
+          </tbody>
+        </table></div>
+    </div>
+    <div class="grid-2">
+      <div class="panel">
+        <h3>Rules that keep the catalogue trusted</h3>
+        <ul class="rules">
+          <li><strong>Faculty authorship.</strong> Each template is written by a faculty fellow who teaches that course, named on the cover, and paid through the program. SpaceXAI staff review for product accuracy, not pedagogy.</li>
+          <li><strong>Open licence.</strong> Creative Commons BY, so a department can adapt it without asking and the material outlives any one program.</li>
+          <li><strong>Versioned every term.</strong> Products change monthly; a template carries a "tested with" line and a changelog, and a dead link is a bug.</li>
+          <li><strong>Assessment is never thinner than the slides.</strong> Every week has its quiz, every assignment its rubric and AI level, every exam its secure-lane version.</li>
+          <li><strong>Taught before published.</strong> A template ships after one full semester in a real section, with the instructor's notes on what broke.</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h3>What the catalogue does for SpaceXAI</h3>
+        <ul class="rules">
+          <li><strong>Every assignment is a product session.</strong> A template with 14 labs and a project puts each student in Cursor or Grok Bot 20 to 30 times a term, on work that is graded.</li>
+          <li><strong>The tool dependency is the moat.</strong> The material is open; the labs run on SpaceXAI's products. A department that adopts the course adopts the tools.</li>
+          <li><strong>One template, many campuses.</strong> The business course written once at one university is taught at every business school that picks it up. That is the leverage no credit program has.</li>
+          <li><strong>It answers the question sales gets asked.</strong> "What would we teach with it?" becomes a link.</li>
+          <li><strong>It is cheap next to credit.</strong> Ten templates by paid faculty fellows cost less than one semester of seats for a single large university.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sub">
+      <h3>Build order</h3>
+      <p class="measure" style="color:var(--ink-2)">Two courses taught by their authors in spring 2027, three more written over the summer and taught in the fall, the rest in 2028. Each wave is taught before it is published, so the catalogue never lists a course no one has run.</p>
+      <figure class="waves" aria-label="Build order for the course templates across four terms">
+        <svg viewBox="0 0 1000 250" role="img">
+          <g class="wv-grid">
+            <line x1="200" y1="30" x2="200" y2="215"/><line x1="400" y1="30" x2="400" y2="215"/><line x1="600" y1="30" x2="600" y2="215"/><line x1="800" y1="30" x2="800" y2="215"/><line x1="1000" y1="30" x2="1000" y2="215"/>
+          </g>
+          <g class="wv-axis">
+            <text x="300" y="22" text-anchor="middle">Spring 2027</text><text x="500" y="22" text-anchor="middle">Summer 2027</text><text x="700" y="22" text-anchor="middle">Fall 2027</text><text x="900" y="22" text-anchor="middle">Spring 2028</text>
+          </g>
+          <g class="wv-row" transform="translate(0 50)">
+            <text x="190" y="16" text-anchor="end">Wave 1 · two core courses</text>
+            <rect class="w1" x="204" y="0" width="192" height="24" rx="4"/><text class="wv-in" x="300" y="16" text-anchor="middle">taught at Iowa State</text>
+            <rect class="w1 pub" x="404" y="0" width="192" height="24" rx="4"/><text class="wv-in" x="500" y="16" text-anchor="middle">revised, published</text>
+          </g>
+          <g class="wv-row" transform="translate(0 95)">
+            <text x="190" y="16" text-anchor="end">Wave 2 · three colleges</text>
+            <rect class="w2 draft" x="404" y="0" width="192" height="24" rx="4"/><text class="wv-in" x="500" y="16" text-anchor="middle">written by fellows</text>
+            <rect class="w2" x="604" y="0" width="192" height="24" rx="4"/><text class="wv-in" x="700" y="16" text-anchor="middle">taught, 3 campuses</text>
+            <rect class="w2 pub" x="804" y="0" width="192" height="24" rx="4"/><text class="wv-in" x="900" y="16" text-anchor="middle">published</text>
+          </g>
+          <g class="wv-row" transform="translate(0 140)">
+            <text x="190" y="16" text-anchor="end">Wave 3 · five more</text>
+            <rect class="w3 draft" x="604" y="0" width="192" height="24" rx="4"/><text class="wv-in" x="700" y="16" text-anchor="middle">written by fellows</text>
+            <rect class="w3" x="804" y="0" width="192" height="24" rx="4"/><text class="wv-in" x="900" y="16" text-anchor="middle">taught, published fall 2028</text>
+          </g>
+          <g class="wv-row" transform="translate(0 185)">
+            <text x="190" y="16" text-anchor="end">Faculty fellows at work</text>
+            <text x="300" y="16" text-anchor="middle" class="wv-n">2 authors</text><text x="500" y="16" text-anchor="middle" class="wv-n">6 authors</text><text x="700" y="16" text-anchor="middle" class="wv-n">14 authors</text><text x="900" y="16" text-anchor="middle" class="wv-n">20 authors</text>
+          </g>
+          <g class="wv-legend" transform="translate(204 228)">
+            <rect class="draft w2" width="14" height="10" rx="2"/><text x="20" y="9">drafting</text>
+            <rect class="w2" x="90" width="14" height="10" rx="2"/><text x="110" y="9">taught in a real section</text>
+            <rect class="w2 pub" x="270" width="14" height="10" rx="2"/><text x="290" y="9">published to the catalogue</text>
+          </g>
+        </svg>
+      </figure>
+    </div>
   </div>
 </section>
 
@@ -1521,6 +1757,11 @@ var IDEAS = [
   { a: 0, t: "all", when: "Year 1", e: 2, i: 4, title: "Priority queue for community colleges and high-need districts", note: "Their instructors get the least vendor support today." },
   { a: 0, t: "grok", when: "Year 1", e: 3, i: 4, title: "Provider controls for classes", note: "If Grok Bot routes work to outside models, an educator can see and limit which companies receive student work." },
   { a: 0, t: "grok", when: "Year 2 and later", e: 4, i: 4, title: "School-managed accounts for students under 18", note: "Only after an education mode and school privacy terms are in place." },
+  { a: 1, t: "all", when: "90 days", e: 3, i: 5, title: "Two core course templates, taught before published", note: "Introduction to Applied AI with Grok Bot and Cursor, and Programming with AI. Written and taught by their authors in spring 2027, published after one real semester." },
+  { a: 1, t: "all", when: "Year 1", e: 4, i: 5, title: "One Applied AI template per college", note: "Business, agriculture, engineering first; health, social science, humanities, natural science and education next. Same spine, every example and assignment swapped for the discipline." },
+  { a: 1, t: "all", when: "Year 1", e: 2, i: 4, title: "The ten-component rule", note: "A template is not listed until it has objectives, slides, readings, labs, quizzes, homework, exams, project, instructor guide and class bots." },
+  { a: 1, t: "all", when: "Year 1", e: 1, i: 4, title: "Creative Commons BY on every template", note: "Departments adapt without asking, and the material outlives any one program. The tool dependency is the moat, not the licence." },
+  { a: 1, t: "grok", when: "Year 1", e: 2, i: 3, title: "Template versions tied to product releases", note: "Each template carries a tested-with line; a product change opens a revision ticket for its author." },
   { a: 1, t: "all", when: "90 days", e: 1, i: 5, title: "No lesson requires a paid plan", note: "Every published lesson must run on the credit a student actually receives. Access and material are designed together." },
   { a: 1, t: "all", when: "Year 1", e: 4, i: 5, title: "A sequenced curriculum for each level", note: "Ordered units, each with slides, a lab, an assignment and an assessment, from school courses to professional ones. Not a pile of tutorials." },
   { a: 1, t: "all", when: "90 days", e: 3, i: 5, title: "Starter kit for each track", note: "A syllabus insert, an AI-use policy template, five assignments and one mixed-mode exam." },
