@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>6 Dense retrieval and embeddings · RAG from Scratch to TREC</title>
+<meta name="author" content="Adisak Sukul">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Source+Sans+3:wght@400;600;700&family=Zilla+Slab:wght@600;700&display=swap">
+<link rel="stylesheet" href="book.css">
+</head>
+<body>
+<div class="shell">
+<details class="toc" id="toc" open><summary>Contents</summary><a class="brand" href="index.html">RAG from Scratch to TREC<small>Adisak Sukul · Iowa State University</small></a><ul><li><a class="ch" href="contents.html">Full contents</a></li></ul><h2>Start here</h2><ul><li><a class="ch" href="index.html">0.1 How to use this book</a></li><li><a class="ch" href="big-picture.html">0.2 The big picture on one page</a></li><li><a class="ch" href="our-trec.html">0.3 Our TREC 2026 in five minutes</a></li><li><a class="ch" href="agent-first.html">0.4 The 2026 shift: agent-first</a></li></ul><h2>Part 1 · Foundations</h2><ul><li><a class="ch" href="ch1-why-lookup.html">1 Why language models need to look things up</a></li><li><a class="ch" href="ch2-what-is-rag.html">2 What RAG is</a></li><li><a class="ch" href="ch3-search.html">3 Search in one chapter</a></li><li><a class="ch" href="ch4-measures.html">4 How we know a system is good</a></li></ul><h2>Part 2 · Finding the evidence</h2><ul><li><a class="ch" href="ch5-bm25.html">5 Keyword search and BM25</a></li><li><a class="ch" aria-current="page" href="ch6-dense.html">6 Dense retrieval and embeddings</a></li><li><a class="ch" href="ch7-queries.html">7 Asking the question better</a></li><li><a class="ch" href="ch8-fusion.html">8 Combining lists: fusion</a></li><li><a class="ch" href="ch9-rerank.html">9 Reranking</a></li><li><a class="ch" href="ch10-depth.html">10 How many documents?</a></li><li><a class="ch" href="ch11-languages.html">11 Many languages</a></li></ul><h2>Part 3 · Writing the answer</h2><ul><li><a class="ch" href="ch12-generate.html">12 From documents to an answer</a></li><li><a class="ch" href="ch13-evidence.html">13 How much evidence to show the model</a></li><li><a class="ch" href="ch14-budget.html">14 Fitting a word budget</a></li><li><a class="ch" href="ch15-generator.html">15 Choosing the generator</a></li><li><a class="ch" href="ch16-reports.html">16 Long reports</a></li></ul><h2>Part 4 · Judging RAG</h2><ul><li><span class="ch">17 Why judging RAG is hard</span></li><li><span class="ch">18 Nuggets</span></li><li><span class="ch">19 Support and citation checking</span></li><li><span class="ch">20 LLM as a judge</span></li><li><span class="ch">21 Judging the judge</span></li><li><span class="ch">22 Experiments you can trust</span></li></ul><h2>Part 5 · TREC and the 2026 tracks</h2><ul><li><a class="ch" href="ch23-trec.html">23 What TREC is, and why it matters</a></li><li><span class="ch">24 The TREC RAG track</span></li><li><span class="ch">25 The new corpus: NVIDIA ClimbMix-400b</span></li><li><span class="ch">26 Agents and skills in the 2026 track</span></li><li><span class="ch">27 The sister tracks: RAGTIME and Auto-Judge</span></li><li><span class="ch">28 How to enter TREC with a student team</span></li></ul><h2>Part 6 · Case studies: our submissions</h2><ul><li><span class="ch">29 RAG retrieval task</span></li><li><span class="ch">30 RAG generation: does more evidence help?</span></li><li><span class="ch">31 RAGTIME</span></li><li><span class="ch">32 Auto-Judge</span></li><li><span class="ch">33 Lessons and ten project ideas</span></li></ul><h2>Part 7 · Beyond text: video</h2><ul><li><span class="ch">34 From text RAG to video</span></li><li><span class="ch">35 The TREC Video QA track</span></li><li><span class="ch">36 Answering from video</span></li><li><span class="ch">37 Calibration and fusion of several models</span></li><li><span class="ch">38 Case study: our Video QA submission</span></li></ul><h2>Part 8 · Streams and advanced RAG</h2><ul><li><span class="ch">39 Retrieval over a news stream: Change Detection</span></li><li><span class="ch">40 Indexing and chunking in practice</span></li><li><span class="ch">41 Advanced RAG patterns</span></li><li><span class="ch">42 RAG in the real world</span></li></ul><h2>Back matter</h2><ul><li><a class="ch" href="glossary.html">A Glossary</a></li><li><span class="ch">B Run catalogue</span></li><li><span class="ch">C Resource library</span></li><li><span class="ch">D Labs</span></li><li><span class="ch">E For instructors</span></li></ul></details>
+<main>
+<article id="view-ch6-dense" data-nav="6 Dense retrieval and embeddings">
+<p class="eyebrow">Part 2 · Finding the evidence · Chapter 6</p>
+<h1>Dense retrieval and embeddings</h1>
+<p class="lede"><strong>In one sentence:</strong> an embedding model turns a text into a list of numbers so that texts with similar meaning get similar numbers, and dense retrieval finds the documents whose numbers are closest to the query's.</p>
+
+<section>
+<h2>Why you should care</h2>
+<p>Keyword search fails when the question and the answer use different words. Embeddings match on meaning, so “car” can find “automobile”, and with the right model an English question can find a Chinese document. Most RAG tutorials begin here. You should know both what this buys and what it costs.</p>
+</section>
+
+<section>
+<h2>Words you need</h2>
+<dl class="terms">
+  <dt>Vector</dt><dd>A list of numbers. Here, usually several hundred to a few thousand of them.</dd>
+  <dt>Embedding</dt><dd>The vector a model produces for a text.</dd>
+  <dt>Embedding model</dt><dd>A neural network trained so that related texts get vectors that point the same way.</dd>
+  <dt>Cosine similarity</dt><dd>A number from −1 to 1 that says how closely two vectors point in the same direction.</dd>
+  <dt>Dense retrieval</dt><dd>Search by nearest vectors. “Dense” because almost every number in the vector is non-zero.</dd>
+  <dt>Bi-encoder</dt><dd>A model that embeds the query and the document separately. Document vectors can be computed once, ahead of time.</dd>
+  <dt>Vector index</dt><dd>A data structure that finds the nearest vectors quickly without comparing against all of them.</dd>
+  <dt>Hybrid search</dt><dd>Keyword search and dense search used together.</dd>
+</dl>
+</section>
+
+<section>
+<h2><span class="tag core">Core</span> The idea</h2>
+<h3>Texts as points</h3>
+<p>Think of each text as a point in space. An embedding model is trained on a very large number of text pairs that belong together, such as a question and its answer. Training pulls such pairs close and pushes unrelated texts apart. After training, closeness in the space stands for closeness in meaning.</p>
+<p>Search then has two phases:</p>
+<ol class="steps">
+  <li><strong>Ahead of time:</strong> embed every document and store the vectors in a vector index.</li>
+  <li><strong>At question time:</strong> embed the query with the same model and return the documents whose vectors are closest.</li>
+</ol>
+
+<h3>Measuring closeness</h3>
+<p>The usual measure is cosine similarity. Multiply the two vectors number by number, add up, and divide by the two lengths.</p>
+<div class="formula">
+  <div class="f">cosine(a, b) = (a · b) / (|a| × |b|)</div>
+</div>
+<p>A toy example with three numbers per vector. Real vectors are much longer, and the arithmetic is the same.</p>
+<div class="tablewrap"><table class="num">
+<thead><tr><th>Text</th><th>Vector</th><th>Cosine with the query</th></tr></thead>
+<tbody>
+<tr><td>Query: “Was the crossing fixed?”</td><td>(0.9, 0.1, 0.3)</td><td></td></tr>
+<tr class="hl"><td>Document 1: “Crews finished repairs on the bridge.”</td><td>(0.8, 0.2, 0.4)</td><td>0.86 / (0.954 × 0.917) = 0.984</td></tr>
+<tr><td>Document 2: “The bakery opens at six.”</td><td>(0.1, 0.9, 0.2)</td><td>0.24 / (0.954 × 0.927) = 0.271</td></tr>
+</tbody></table></div>
+<p>Document 1 shares no content word with the query, and it still scores close to 1. BM25 would give it zero.</p>
+
+<h3>What it costs</h3>
+<div class="tablewrap"><table>
+<thead><tr><th></th><th>BM25</th><th>Dense retrieval</th></tr></thead>
+<tbody>
+<tr><td>Matches</td><td>Words</td><td>Meaning</td></tr>
+<tr><td>Exact names, codes, numbers</td><td>Strong</td><td>Often weak</td></tr>
+<tr><td>Different wording or language</td><td>Weak</td><td>Strong</td></tr>
+<tr><td>Setup</td><td>Build an inverted index. Minutes to hours on a processor.</td><td>Run a neural network over every document. Usually needs a graphics card.</td></tr>
+<tr><td>Can you explain a score?</td><td>Yes, term by term</td><td>Hardly</td></tr>
+<tr><td>New kinds of text</td><td>Works the same everywhere</td><td>Can drop on text unlike its training data</td></tr>
+</tbody></table></div>
+<p>The two fail in different places. That is the reason for hybrid search: run both and fuse the results (<a href="ch8-fusion.html">Chapter 8</a>).</p>
+</section>
+
+<section>
+<h2>Watch and read</h2>
+<ul class="links">
+  <li><span class="kind video">Video</span><a href="https://www.youtube.com/watch?v=ISPId9Lhc1g">The Illustrated Word2vec: A Gentle Intro to Word Embeddings in Machine Learning</a> Jay Alammar. How words become vectors, with pictures. <span class="checked">Link checked 15 Nov 2026</span></li>
+  <li><span class="kind video">Video</span><a href="https://www.youtube.com/watch?v=wjZofJX0v4M">Transformers, the tech behind LLMs</a> 3Blue1Brown. The first half shows embeddings as directions in space. <span class="checked">Link checked 15 Nov 2026</span></li>
+  <li><span class="kind article">Article</span><a href="https://sbert.net/examples/sentence_transformer/applications/retrieve_rerank/README.html">Retrieve &amp; Re-Rank</a> Sentence Transformers documentation. Bi-encoder search with working code. Also used in Chapter 9. <span class="checked">Read 15 Nov 2026</span></li>
+  <li><span class="kind paper">Paper</span><a href="https://arxiv.org/abs/2004.04906">Dense Passage Retrieval for Open-Domain Question Answering</a> Karpukhin and others, 2020. The paper that showed a trained two-encoder model beating BM25 for question answering. <span class="checked">Checked 15 Nov 2026</span></li>
+  <li><span class="kind paper">Paper</span><a href="https://arxiv.org/abs/2402.03216">M3-Embedding</a> Chen and others, 2024. The bge-m3 model we used: more than 100 languages, inputs up to 8,192 tokens. <span class="checked">Checked 15 Nov 2026</span></li>
+</ul>
+<p class="fine">For the two videos we confirmed that the link opens and the title and channel match. We have not watched them through.</p>
+</section>
+
+<section class="ours">
+<h2>How we did it at TREC 2026</h2>
+<p>We used embeddings in two tracks, and not in the third. All three choices have a reason.</p>
+<div class="tablewrap"><table>
+<thead><tr><th>Track</th><th>First-stage search</th><th>Why</th></tr></thead>
+<tbody>
+<tr><td>RAG</td><td>BM25 only, through the track's search service</td><td>We did not hold the collection. We searched it through the hosted service and put our effort into queries, fusion and reranking.</td></tr>
+<tr><td>RAGTIME</td><td>Dense only, through the track's search service, which uses Qwen3 embeddings</td><td>The documents are in four languages. Meaning-based search crosses languages; word matching does not (<a href="ch11-languages.html">Chapter 11</a>).</td></tr>
+<tr><td>Change Detection</td><td>Our own BM25 in five runs. Hybrid, BM25 plus bge-m3 embeddings, in two runs.</td><td>We held the news collection, so we could index it and embed it ourselves on the university's GPU cluster.</td></tr>
+</tbody></table></div>
+<p>In the two hybrid Change Detection runs, <code>fx40</code> and <code>fburst</code>, each document gets two scores for each question: a BM25 score scaled to the range 0 to 1, and the cosine between the bge-m3 vectors of the question and the document. The final score is half of one plus half of the other.</p>
+<div class="formula">
+  <div class="f">hybrid score = 0.5 × BM25 (scaled) + 0.5 × cosine</div>
+  <div class="fnote">A document found by only one of the two searches gets a low stand-in value for the other: 0.02 for BM25, 0.30 for cosine. So it is damped, not dropped.</div>
+</div>
+<p>Why 0.30 for the missing cosine and not zero? Cosine scores from an embedding model seldom come near zero, even for unrelated texts. A zero would punish a document far more than “not in the dense top list” deserves. This is a small detail that matters whenever you add scores from two different systems.</p>
+</section>
+
+<section>
+<h2>What surprised us</h2>
+<div class="note warn">
+  <strong>Adding embeddings helped, but we cannot say by how much.</strong> In Change Detection our hybrid run <code>fx40</code> scored higher than our best BM25 run <code>exp35</code> on the track's ranked measure (NDCG&prime;): 0.5895 against 0.4792, and higher on all 31 topics. But the two runs also use different decision thresholds, 0.40 and 0.35. Two things changed at once, so the gain cannot be assigned to the embeddings alone. We also never submitted a run with embeddings only. And in the RAG track we never ran a dense first stage, so we cannot say whether it would have helped there. Our choices show what we could build with the access we had. They do not prove those choices were the best ones.
+</div>
+</section>
+
+<section>
+<h2>Try it</h2>
+<ol class="steps">
+  <li>Compute the cosine of (1, 2, 0) and (2, 1, 1) by hand. You should get 0.730.</li>
+  <li>With the <code>sentence-transformers</code> package and a small model, embed the twenty sentences from the Chapter 5 lab. Search them with the query you saved, the one that shares no word with its answer. Does dense search find it?</li>
+  <li>Now find a query where BM25 wins. A product code or a rare family name is a good place to look.</li>
+  <li>Print the cosine between two unrelated sentences. How far from zero is it?</li>
+</ol>
+</section>
+
+<section>
+<h2>Check yourself</h2>
+<ol class="quiz">
+  <li>What does “dense” mean in dense retrieval?</li>
+  <li>Why can document vectors be computed before any question arrives?</li>
+  <li>Give one query type where dense search is likely to beat BM25, and one where it is likely to lose.</li>
+  <li>In our hybrid formula, why does a missing cosine score become 0.30 and not 0?</li>
+  <li>Why did we use BM25 only in the RAG track?</li>
+</ol>
+<details class="answers"><summary>Answers</summary>
+<ol>
+  <li>Almost every number in the vector is non-zero, unlike word-count vectors, which are mostly zeros.</li>
+  <li>A bi-encoder embeds the document without looking at the query.</li>
+  <li>Wins: a question worded differently from the answer, or in another language. Loses: an exact name, code or number.</li>
+  <li>Cosine scores of unrelated texts are usually well above zero, so zero would be an unfairly heavy penalty.</li>
+  <li>The collection was reached through a hosted search service. We used its BM25 search and spent our effort on later steps.</li>
+</ol></details>
+</section>
+
+<section class="deeper">
+<h2><span class="tag deep">Go deeper</span></h2>
+<ul>
+  <li><strong>How the models are trained.</strong> Contrastive learning: for each query, one matching passage and many non-matching ones. The hard part is choosing non-matching passages that are difficult but truly wrong, called hard negatives.</li>
+  <li><strong>Finding neighbours fast.</strong> Comparing a query with every vector is too slow at scale. Approximate nearest-neighbour indexes such as HNSW and IVF trade a little accuracy for a large gain in speed. Quantization shrinks each vector to save memory.</li>
+  <li><strong>One vector or many.</strong> ColBERT keeps one vector per token and compares them all (“late interaction”). It is more accurate and needs far more storage. bge-m3 can produce dense, sparse and multi-vector outputs from one model.</li>
+  <li><strong>Long documents.</strong> A single vector for a long document blurs its topics. This is one reason for chunking (Chapter 40).</li>
+  <li><strong>Out-of-domain drop.</strong> The BEIR benchmark showed that dense models trained on one kind of data can fall below BM25 on another. Test on your own data before you trust a leaderboard.</li>
+  <li><strong>Project idea.</strong> On one public collection, run BM25, one dense model and their RRF fusion. Report on which topics each one wins, not only the averages.</li>
+</ul>
+</section>
+</article>
+<nav class="pager" aria-label="Previous and next page"><a href="ch5-bm25.html">← 5 Keyword search and BM25</a><a href="ch7-queries.html">Next: 7 Asking the question better</a></nav>
+<footer class="bookfoot"><span><strong>RAG from Scratch to TREC</strong> · Adisak Sukul, Iowa State University</span><span>Draft of 15 November 2026</span></footer>
+</main>
+</div>
+<script>if(window.matchMedia('(max-width:860px)').matches)document.getElementById('toc').open=false;</script>
+</body>
+</html>

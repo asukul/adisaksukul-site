@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>23 What TREC is · RAG from Scratch to TREC</title>
+<meta name="author" content="Adisak Sukul">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Source+Sans+3:wght@400;600;700&family=Zilla+Slab:wght@600;700&display=swap">
+<link rel="stylesheet" href="book.css">
+</head>
+<body>
+<div class="shell">
+<details class="toc" id="toc" open><summary>Contents</summary><a class="brand" href="index.html">RAG from Scratch to TREC<small>Adisak Sukul · Iowa State University</small></a><ul><li><a class="ch" href="contents.html">Full contents</a></li></ul><h2>Start here</h2><ul><li><a class="ch" href="index.html">0.1 How to use this book</a></li><li><a class="ch" href="big-picture.html">0.2 The big picture on one page</a></li><li><a class="ch" href="our-trec.html">0.3 Our TREC 2026 in five minutes</a></li><li><a class="ch" href="agent-first.html">0.4 The 2026 shift: agent-first</a></li></ul><h2>Part 1 · Foundations</h2><ul><li><a class="ch" href="ch1-why-lookup.html">1 Why language models need to look things up</a></li><li><a class="ch" href="ch2-what-is-rag.html">2 What RAG is</a></li><li><a class="ch" href="ch3-search.html">3 Search in one chapter</a></li><li><a class="ch" href="ch4-measures.html">4 How we know a system is good</a></li></ul><h2>Part 2 · Finding the evidence</h2><ul><li><a class="ch" href="ch5-bm25.html">5 Keyword search and BM25</a></li><li><a class="ch" href="ch6-dense.html">6 Dense retrieval and embeddings</a></li><li><a class="ch" href="ch7-queries.html">7 Asking the question better</a></li><li><a class="ch" href="ch8-fusion.html">8 Combining lists: fusion</a></li><li><a class="ch" href="ch9-rerank.html">9 Reranking</a></li><li><a class="ch" href="ch10-depth.html">10 How many documents?</a></li><li><a class="ch" href="ch11-languages.html">11 Many languages</a></li></ul><h2>Part 3 · Writing the answer</h2><ul><li><a class="ch" href="ch12-generate.html">12 From documents to an answer</a></li><li><a class="ch" href="ch13-evidence.html">13 How much evidence to show the model</a></li><li><a class="ch" href="ch14-budget.html">14 Fitting a word budget</a></li><li><a class="ch" href="ch15-generator.html">15 Choosing the generator</a></li><li><a class="ch" href="ch16-reports.html">16 Long reports</a></li></ul><h2>Part 4 · Judging RAG</h2><ul><li><span class="ch">17 Why judging RAG is hard</span></li><li><span class="ch">18 Nuggets</span></li><li><span class="ch">19 Support and citation checking</span></li><li><span class="ch">20 LLM as a judge</span></li><li><span class="ch">21 Judging the judge</span></li><li><span class="ch">22 Experiments you can trust</span></li></ul><h2>Part 5 · TREC and the 2026 tracks</h2><ul><li><a class="ch" aria-current="page" href="ch23-trec.html">23 What TREC is, and why it matters</a></li><li><span class="ch">24 The TREC RAG track</span></li><li><span class="ch">25 The new corpus: NVIDIA ClimbMix-400b</span></li><li><span class="ch">26 Agents and skills in the 2026 track</span></li><li><span class="ch">27 The sister tracks: RAGTIME and Auto-Judge</span></li><li><span class="ch">28 How to enter TREC with a student team</span></li></ul><h2>Part 6 · Case studies: our submissions</h2><ul><li><span class="ch">29 RAG retrieval task</span></li><li><span class="ch">30 RAG generation: does more evidence help?</span></li><li><span class="ch">31 RAGTIME</span></li><li><span class="ch">32 Auto-Judge</span></li><li><span class="ch">33 Lessons and ten project ideas</span></li></ul><h2>Part 7 · Beyond text: video</h2><ul><li><span class="ch">34 From text RAG to video</span></li><li><span class="ch">35 The TREC Video QA track</span></li><li><span class="ch">36 Answering from video</span></li><li><span class="ch">37 Calibration and fusion of several models</span></li><li><span class="ch">38 Case study: our Video QA submission</span></li></ul><h2>Part 8 · Streams and advanced RAG</h2><ul><li><span class="ch">39 Retrieval over a news stream: Change Detection</span></li><li><span class="ch">40 Indexing and chunking in practice</span></li><li><span class="ch">41 Advanced RAG patterns</span></li><li><span class="ch">42 RAG in the real world</span></li></ul><h2>Back matter</h2><ul><li><a class="ch" href="glossary.html">A Glossary</a></li><li><span class="ch">B Run catalogue</span></li><li><span class="ch">C Resource library</span></li><li><span class="ch">D Labs</span></li><li><span class="ch">E For instructors</span></li></ul></details>
+<main>
+<article id="view-ch23-trec" data-nav="23 What TREC is">
+<p class="eyebrow">Part 5 · TREC and the 2026 tracks · Chapter 23</p>
+<h1>What TREC is, and why it matters</h1>
+<p class="lede"><strong>In one sentence:</strong> TREC, the Text REtrieval Conference, is a yearly evaluation run by the US National Institute of Standards and Technology (NIST) in which research teams test their search and AI systems on the same data, under the same rules, and are scored by a neutral referee.</p>
+
+<section>
+<h2>Why you should care</h2>
+<p>Anyone can say “our system is better”. TREC is one of the places where that claim gets tested fairly. For a student it is also one of the few places where an undergraduate project and a large company's system answer the same questions and appear in the same table.</p>
+</section>
+
+<section>
+<h2>Words you need</h2>
+<dl class="terms">
+  <dt>NIST</dt><dd>The National Institute of Standards and Technology, a US government science agency. It works on measurement: how to measure something fairly and in a way others can repeat.</dd>
+  <dt>Track</dt><dd>One themed competition inside TREC, with its own tasks, data and organizers.</dd>
+  <dt>Topic</dt><dd>One question or information need in a track's test set.</dd>
+  <dt>Run</dt><dd>One file of system output for all topics of a task.</dd>
+  <dt>Test collection</dt><dd>Documents, topics and relevance judgments together. With these three things, anyone can score a system later.</dd>
+  <dt>Relevance judgment</dt><dd>A person's decision that a document does or does not answer a topic.</dd>
+  <dt>Pooling</dt><dd>Judging only the documents that the submitted systems ranked highly, because nobody can judge a whole collection.</dd>
+  <dt>Assessor</dt><dd>A person, trained by NIST, who makes the relevance judgments.</dd>
+  <dt>Notebook paper</dt><dd>The paper each team writes before the workshop to describe what it did.</dd>
+</dl>
+</section>
+
+<section>
+<h2><span class="tag core">Core</span> The idea</h2>
+<p>TREC started in 1992. It is co-sponsored by NIST and the US Department of Defense, and it began as part of a government research program called TIPSTER. TREC 2026 is the 35th edition.</p>
+<p>The name says “conference”, but TREC is better understood as a yearly exam for systems, followed by a workshop where everyone compares notes. Nobody wins a prize. The point is to learn what works.</p>
+
+<h3>One TREC year</h3>
+<ol class="pipeline">
+  <li><span class="pn">1</span><strong>Call</strong><span>NIST announces the tracks. Teams register, usually in spring.</span><em class="where">spring</em></li>
+  <li><span class="pn">2</span><strong>Data</strong><span>Organizers release the document collection, development data and then the test topics.</span><em class="where">summer</em></li>
+  <li><span class="pn">3</span><strong>Runs</strong><span>Teams run their systems on the test topics and upload runs before the deadline. They do not know the right answers.</span><em class="where">late summer</em></li>
+  <li><span class="pn">4</span><strong>Judging</strong><span>NIST pools the results. Assessors, and now also automatic judges, score them.</span><em class="where">autumn</em></li>
+  <li><span class="pn">5</span><strong>Scores</strong><span>Each team gets its own scores and the track's statistics, such as the median.</span><em class="where">autumn</em></li>
+  <li><span class="pn">6</span><strong>Workshop</strong><span>Teams write notebook papers and present what they learned.</span><em class="where">November</em></li>
+</ol>
+
+<h3>TREC's four goals</h3>
+<p>NIST states four goals. In short:</p>
+<ol class="steps">
+  <li>Encourage research based on large test collections.</li>
+  <li>Increase communication among industry, universities and government.</li>
+  <li>Speed up the move of technology from research labs into products.</li>
+  <li>Make good evaluation methods available to everyone.</li>
+</ol>
+
+<h3>The key trick: a blind test with a neutral referee</h3>
+<p>Three things make a TREC result trustworthy:</p>
+<ul>
+  <li><strong>Everyone gets the same questions and the same documents.</strong> So a difference in score comes from the system, not from the data.</li>
+  <li><strong>Teams submit before the answers exist.</strong> You cannot tune your system to the test, even by accident.</li>
+  <li><strong>The judge is not a competitor.</strong> NIST and the track organizers do the judging. The team that built a system does not grade it.</li>
+</ul>
+<p>Chapter 22 comes back to these three points. Most broken experiments break one of them.</p>
+</section>
+
+<section>
+<h2>Why TREC is important</h2>
+<div class="cards">
+  <div class="card"><h3>It made search better</h3><p>NIST reports that retrieval effectiveness about doubled in the first six years of TREC, and that most commercial search engines include technology first developed there.</p></div>
+  <div class="card"><h3>It paid for itself</h3><p>An economic study prepared for NIST in 2010 credited TREC-related improvements with about one third of the advances in web search between 1999 and 2009. It estimated a return of roughly three to five dollars for each dollar invested.</p></div>
+  <div class="card"><h3>It opened new fields</h3><p>TREC ran the first large evaluations of open-domain question answering, of retrieval in Spanish and Chinese, of speech recordings and of video search. Question answering at TREC is a direct ancestor of today's RAG track.</p></div>
+  <div class="card"><h3>Its data outlives it</h3><p>The test collections and scoring software are public. Researchers still test new systems on collections built years ago, so results stay comparable over time.</p></div>
+</div>
+<p>There is one more reason, and it matters most for AI today. Language models are now good enough that their answers <em>sound</em> right whether or not they are. A fluent answer cannot be checked by reading it once. Fair, careful evaluation is the scarce thing, and that is what TREC produces.</p>
+</section>
+
+<section>
+<h2>TREC in 2026</h2>
+<p>TREC 2026 has seven tracks on its submission system: RAG, RAGTIME (multilingual reports), AutoJudge, Change Detection, Video Question Answering, Million LLM and User Simulation. This book covers the first five, the ones we entered.</p>
+<p>Two changes are visible across the tracks. First, the systems being tested are no longer only search engines. They write answers and reports, and they answer questions about video. Second, part of the judging is itself done by language models, which is why a track now exists to evaluate the judges (Chapter 21).</p>
+</section>
+
+<section>
+<h2>Watch and read</h2>
+<ul class="links">
+  <li><span class="kind site">Site</span><a href="https://trec.nist.gov/overview.html">TREC overview</a> NIST. The official short description: sponsors, goals, how a cycle works. Five minutes. <span class="checked">Read 14 Nov 2026</span></li>
+  <li><span class="kind site">Site</span><a href="https://trec.nist.gov/">TREC home page</a> NIST. The current call, the tracks and the past proceedings. <span class="checked">Checked 14 Nov 2026</span></li>
+  <li><span class="kind article">Article</span><a href="https://www.nist.gov/news-events/news/2012/01/text-retrieval-conference-2012-seeks-information-retrieval-experts-data">Text Retrieval Conference 2012 seeks information retrieval experts</a> NIST news. A short notice that quotes the economic study's findings. <span class="checked">Read 14 Nov 2026</span></li>
+  <li><span class="kind paper">Report</span><a href="https://rti.org/publication/economic-impact-assessment-nist-text-retrieval-conference-trec-program-final-report">Economic impact assessment of NIST's Text REtrieval Conference (TREC) program</a> Rowe, Wood, Link and Simoni, RTI International, 2010. The full study, for graduate readers. <span class="checked">Link checked 14 Nov 2026</span></li>
+</ul>
+<p class="fine">The “three to five dollars” figure is from NIST's summaries of the RTI report. We have not yet read the full report to confirm the exact range.</p>
+</section>
+
+<section class="ours">
+<h2>How we did it at TREC 2026</h2>
+<p>Team <code>iastate</code> registered for five tracks and submitted 55 runs to 10 tasks. The list is in <a href="our-trec.html">Our TREC 2026 in five minutes</a>. Three habits from this year are worth copying:</p>
+<ul>
+  <li><strong>Write the plan before the results.</strong> In several tracks we recorded which run was the primary one and what we expected, before any score arrived. A prediction you wrote down is worth more than an explanation you found afterwards.</li>
+  <li><strong>Plan pairs of runs.</strong> A track lets you send several runs. We used them as experiments: two runs that differ in one thing. One of those pairs failed as an experiment because two things differed. That story is in <a href="agent-first.html">The 2026 shift</a>.</li>
+  <li><strong>Keep the track's rules about data.</strong> Scores marked preliminary stay out of public pages. Development data is for building, and test data is never used to tune.</li>
+</ul>
+</section>
+
+<section>
+<h2>Try it</h2>
+<ol class="steps">
+  <li>Open the TREC overview page. Find the sentence that describes pooling. Explain in two sentences why NIST does not judge every document.</li>
+  <li>Pick one 2026 track from its home page. Write down: the task in one sentence, the document collection, the deadline, and how runs are scored.</li>
+  <li>Discuss: a company reports that its new model beats all others on the company's own test. Which of the three protections of a blind test is missing?</li>
+</ol>
+</section>
+
+<section>
+<h2>Check yourself</h2>
+<ol class="quiz">
+  <li>Who runs TREC, and what kind of organization is it?</li>
+  <li>What three things make up a test collection?</li>
+  <li>Why must teams submit runs before the judgments exist?</li>
+  <li>What is pooling, and what problem does it solve?</li>
+  <li>Name two reasons TREC results are still useful years later.</li>
+</ol>
+<details class="answers"><summary>Answers</summary>
+<ol>
+  <li>NIST, a US government agency for measurement science, with co-sponsorship from the Department of Defense.</li>
+  <li>Documents, topics and relevance judgments.</li>
+  <li>So that no system can be tuned to the test answers, on purpose or by accident.</li>
+  <li>Only the top documents of the submitted runs are judged. It makes judging possible on collections far too large to read in full.</li>
+  <li>The collections and scoring tools are public, so new systems can be scored on old data, and all past results were produced under the same rules.</li>
+</ol></details>
+</section>
+
+<section class="deeper">
+<h2><span class="tag deep">Go deeper</span></h2>
+<ul>
+  <li><strong>The Cranfield method.</strong> The idea of a fixed collection, fixed topics and relevance judgments comes from experiments at Cranfield, England, in the 1960s. TREC scaled it up to collections too large to judge in full, and pooling is what made that possible.</li>
+  <li><strong>The weakness of pooling.</strong> A document that no submitted system retrieved is never judged. A new kind of system that finds such documents can be scored unfairly low. This matters again in 2026, when retrieval lists have no fixed length (Chapter 10).</li>
+  <li><strong>Who judges the judges?</strong> When language models do part of the judging, the judge can prefer systems that resemble it. Chapter 21 covers how the Auto-Judge track measures this.</li>
+  <li><strong>Project idea.</strong> Take an old TREC collection with public judgments. Score a modern system on it, and count how many of its top ten documents were never judged.</li>
+</ul>
+</section>
+</article>
+<nav class="pager" aria-label="Previous and next page"><a href="ch16-reports.html">← 16 Long reports</a><a href="glossary.html">Next: A Glossary</a></nav>
+<footer class="bookfoot"><span><strong>RAG from Scratch to TREC</strong> · Adisak Sukul, Iowa State University</span><span>Draft of 15 November 2026</span></footer>
+</main>
+</div>
+<script>if(window.matchMedia('(max-width:860px)').matches)document.getElementById('toc').open=false;</script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Glossary · RAG from Scratch to TREC</title>
+<meta name="author" content="Adisak Sukul">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Source+Sans+3:wght@400;600;700&family=Zilla+Slab:wght@600;700&display=swap">
+<link rel="stylesheet" href="book.css">
+</head>
+<body>
+<div class="shell">
+<details class="toc" id="toc" open><summary>Contents</summary><a class="brand" href="index.html">RAG from Scratch to TREC<small>Adisak Sukul · Iowa State University</small></a><ul><li><a class="ch" href="contents.html">Full contents</a></li></ul><h2>Start here</h2><ul><li><a class="ch" href="index.html">0.1 How to use this book</a></li><li><a class="ch" href="big-picture.html">0.2 The big picture on one page</a></li><li><a class="ch" href="our-trec.html">0.3 Our TREC 2026 in five minutes</a></li><li><a class="ch" href="agent-first.html">0.4 The 2026 shift: agent-first</a></li></ul><h2>Part 1 · Foundations</h2><ul><li><a class="ch" href="ch1-why-lookup.html">1 Why language models need to look things up</a></li><li><a class="ch" href="ch2-what-is-rag.html">2 What RAG is</a></li><li><a class="ch" href="ch3-search.html">3 Search in one chapter</a></li><li><a class="ch" href="ch4-measures.html">4 How we know a system is good</a></li></ul><h2>Part 2 · Finding the evidence</h2><ul><li><a class="ch" href="ch5-bm25.html">5 Keyword search and BM25</a></li><li><a class="ch" href="ch6-dense.html">6 Dense retrieval and embeddings</a></li><li><a class="ch" href="ch7-queries.html">7 Asking the question better</a></li><li><a class="ch" href="ch8-fusion.html">8 Combining lists: fusion</a></li><li><a class="ch" href="ch9-rerank.html">9 Reranking</a></li><li><a class="ch" href="ch10-depth.html">10 How many documents?</a></li><li><a class="ch" href="ch11-languages.html">11 Many languages</a></li></ul><h2>Part 3 · Writing the answer</h2><ul><li><a class="ch" href="ch12-generate.html">12 From documents to an answer</a></li><li><a class="ch" href="ch13-evidence.html">13 How much evidence to show the model</a></li><li><a class="ch" href="ch14-budget.html">14 Fitting a word budget</a></li><li><a class="ch" href="ch15-generator.html">15 Choosing the generator</a></li><li><a class="ch" href="ch16-reports.html">16 Long reports</a></li></ul><h2>Part 4 · Judging RAG</h2><ul><li><span class="ch">17 Why judging RAG is hard</span></li><li><span class="ch">18 Nuggets</span></li><li><span class="ch">19 Support and citation checking</span></li><li><span class="ch">20 LLM as a judge</span></li><li><span class="ch">21 Judging the judge</span></li><li><span class="ch">22 Experiments you can trust</span></li></ul><h2>Part 5 · TREC and the 2026 tracks</h2><ul><li><a class="ch" href="ch23-trec.html">23 What TREC is, and why it matters</a></li><li><span class="ch">24 The TREC RAG track</span></li><li><span class="ch">25 The new corpus: NVIDIA ClimbMix-400b</span></li><li><span class="ch">26 Agents and skills in the 2026 track</span></li><li><span class="ch">27 The sister tracks: RAGTIME and Auto-Judge</span></li><li><span class="ch">28 How to enter TREC with a student team</span></li></ul><h2>Part 6 · Case studies: our submissions</h2><ul><li><span class="ch">29 RAG retrieval task</span></li><li><span class="ch">30 RAG generation: does more evidence help?</span></li><li><span class="ch">31 RAGTIME</span></li><li><span class="ch">32 Auto-Judge</span></li><li><span class="ch">33 Lessons and ten project ideas</span></li></ul><h2>Part 7 · Beyond text: video</h2><ul><li><span class="ch">34 From text RAG to video</span></li><li><span class="ch">35 The TREC Video QA track</span></li><li><span class="ch">36 Answering from video</span></li><li><span class="ch">37 Calibration and fusion of several models</span></li><li><span class="ch">38 Case study: our Video QA submission</span></li></ul><h2>Part 8 · Streams and advanced RAG</h2><ul><li><span class="ch">39 Retrieval over a news stream: Change Detection</span></li><li><span class="ch">40 Indexing and chunking in practice</span></li><li><span class="ch">41 Advanced RAG patterns</span></li><li><span class="ch">42 RAG in the real world</span></li></ul><h2>Back matter</h2><ul><li><a class="ch" aria-current="page" href="glossary.html">A Glossary</a></li><li><span class="ch">B Run catalogue</span></li><li><span class="ch">C Resource library</span></li><li><span class="ch">D Labs</span></li><li><span class="ch">E For instructors</span></li></ul></details>
+<main>
+<article id="view-glossary" data-nav="A Glossary">
+<p class="eyebrow">Back matter · Appendix A</p>
+<h1>Glossary</h1>
+<p class="lede">Every term used so far, in one line, in alphabetical order. The list grows with each chapter. The full book will have about 150 terms.</p>
+<dl class="terms gloss">
+  <dt>Ablation</dt><dd>An experiment that changes one part of a system and keeps the rest fixed. <a href="ch15-generator.html">Ch 15</a></dd>
+  <dt>Agent (coding agent)</dt><dd>A language model that reads files, runs commands and calls services over many steps toward a goal a person set. <a href="agent-first.html">0.4</a></dd>
+  <dt>Audience conditioning</dt><dd>Telling the writer who the reader is, so it can choose and order the facts for that reader. <a href="ch16-reports.html">Ch 16</a></dd>
+  <dt>Bi-encoder</dt><dd>A model that embeds the query and the document separately and compares the two vectors. <a href="ch6-dense.html">Ch 6</a></dd>
+  <dt>BM25</dt><dd>The standard keyword ranking formula. It rewards documents that contain the query's rarer words, with a correction for document length. <a href="ch5-bm25.html">Ch 5</a></dd>
+  <dt>Calibration</dt><dd>Choosing a setting, such as a threshold, on questions where the right answers are known. <a href="ch10-depth.html">Ch 10</a></dd>
+  <dt>Candidates</dt><dd>The documents the first stage of a search hands to the reranker. <a href="ch9-rerank.html">Ch 9</a></dd>
+  <dt>Citation</dt><dd>A pointer from a sentence in the answer to the document that supports it. <a href="big-picture.html">0.2</a></dd>
+  <dt>Citation drift</dt><dd>After a rewrite, a sentence cites a document that no longer supports what it says. <a href="ch14-budget.html">Ch 14</a></dd>
+  <dt>ClimbMix-400b</dt><dd>The document collection of the TREC RAG 2026 track. It replaced MS MARCO V2.1 and is reached through a hosted search service. <a href="agent-first.html">0.4</a></dd>
+  <dt>CombSUM</dt><dd>Score fusion: normalize each list's scores, then add them. <a href="ch8-fusion.html">Ch 8</a></dd>
+  <dt>Compression</dt><dd>Rewriting an answer in fewer words while trying to keep its facts. <a href="ch14-budget.html">Ch 14</a></dd>
+  <dt>Confound</dt><dd>Two things changed at once between two runs, so a difference in score cannot be assigned to either. <a href="agent-first.html">0.4</a>, Chapter 22.</dd>
+  <dt>Context window</dt><dd>The most text a model can take in at once, counted in tokens. <a href="ch13-evidence.html">Ch 13</a></dd>
+  <dt>Corpus</dt><dd>The collection of documents a system searches.</dd>
+  <dt>Cosine similarity</dt><dd>A number from −1 to 1 that says how closely two vectors point in the same direction. <a href="ch6-dense.html">Ch 6</a></dd>
+  <dt>Cross-encoder</dt><dd>A model that reads the query and one document together and outputs one relevance score. <a href="ch9-rerank.html">Ch 9</a></dd>
+  <dt>Cross-language retrieval (CLIR)</dt><dd>Search where the query is in one language and the documents are in another. <a href="ch11-languages.html">Ch 11</a></dd>
+  <dt>Dense retrieval</dt><dd>Search by nearest embedding vectors, which matches on meaning. <a href="ch6-dense.html">Ch 6</a></dd>
+  <dt>Depth (k)</dt><dd>How many documents a system returns for one question. <a href="ch10-depth.html">Ch 10</a></dd>
+  <dt>Development (dev) set</dt><dd>Questions with known answers used to tune a system before the real test. <a href="ch10-depth.html">Ch 10</a></dd>
+  <dt>Embedding</dt><dd>The vector of numbers a model produces for a text. Texts with similar meaning get similar vectors. <a href="ch6-dense.html">Ch 6</a></dd>
+  <dt>Evalbase</dt><dd>NIST's web system where teams upload runs and later download their scores. <a href="our-trec.html">0.3</a></dd>
+  <dt>Evidence selection</dt><dd>A step between retrieval and writing that decides which retrieved documents the writer will see. <a href="ch16-reports.html">Ch 16</a></dd>
+  <dt>F1</dt><dd>One number that combines precision and recall. It is high only when both are high. <a href="ch10-depth.html">Ch 10</a></dd>
+  <dt>Fusion</dt><dd>Merging several ranked lists into one. <a href="ch8-fusion.html">Ch 8</a></dd>
+  <dt>Gate</dt><dd>A test a change must pass before it is allowed to ship. <a href="ch14-budget.html">Ch 14</a></dd>
+  <dt>Generator</dt><dd>The language model that writes the answer in a RAG system. <a href="ch2-what-is-rag.html">Ch 2</a></dd>
+  <dt>Grounding</dt><dd>Tying each statement in an answer to a source the reader can check. <a href="ch1-why-lookup.html">Ch 1</a></dd>
+  <dt>Hallucination</dt><dd>A fluent, confident statement that is not true or not supported by the sources. <a href="ch1-why-lookup.html">Ch 1</a></dd>
+  <dt>Hybrid search</dt><dd>Keyword search and embedding search run together and fused. <a href="ch8-fusion.html">Ch 8</a></dd>
+  <dt>HyDE</dt><dd>Hypothetical document embeddings. A language model writes a made-up answer, and the search uses it as the query. <a href="ch7-queries.html">Ch 7</a></dd>
+  <dt>IDF</dt><dd>Inverse document frequency. A weight that is high for rare words and low for common ones. <a href="ch5-bm25.html">Ch 5</a></dd>
+  <dt>Inverted index</dt><dd>A table from each word to the documents that contain it. <a href="ch3-search.html">Ch 3</a></dd>
+  <dt>k (in RRF)</dt><dd>The constant in the RRF formula. Usually 60. <a href="ch8-fusion.html">Ch 8</a></dd>
+  <dt>Knowledge cutoff</dt><dd>The date after which a model has seen no text. <a href="ch1-why-lookup.html">Ch 1</a></dd>
+  <dt>Language bias</dt><dd>A system favouring documents in one language whatever their content. <a href="ch11-languages.html">Ch 11</a></dd>
+  <dt>Length normalization</dt><dd>The part of BM25 that keeps long documents from winning only by their size. <a href="ch5-bm25.html">Ch 5</a></dd>
+  <dt>Listwise reranking</dt><dd>Showing a model several documents at once and asking for their order. <a href="ch9-rerank.html">Ch 9</a></dd>
+  <dt>LLM</dt><dd>Large language model. A program trained on a very large amount of text to predict the next piece of text. <a href="ch1-why-lookup.html">Ch 1</a></dd>
+  <dt>Lost in the middle</dt><dd>The finding that models use facts at the start and end of a long input better than facts in the middle. <a href="ch13-evidence.html">Ch 13</a></dd>
+  <dt>Multilingual retrieval (MLIR)</dt><dd>Search over documents in several languages that returns one ranked list. <a href="ch11-languages.html">Ch 11</a></dd>
+  <dt>Narrative</dt><dd>The long-form description of an information need that serves as the question in TREC RAG 2026. There are 119 of them. <a href="big-picture.html">0.2</a></dd>
+  <dt>nDCG</dt><dd>A ranked measure from 0 to 1 that rewards putting the most relevant documents first. <a href="ch4-measures.html">Ch 4</a></dd>
+  <dt>NIST</dt><dd>The US National Institute of Standards and Technology, which runs TREC. <a href="ch23-trec.html">Ch 23</a></dd>
+  <dt>Nugget</dt><dd>One key fact that a good answer should contain. Answers are scored by how many nuggets they cover. Chapter 18.</dd>
+  <dt>Nugget gain</dt><dd>For a set of documents: the share of the nuggets that the documents contain. <a href="ch8-fusion.html">Ch 8</a></dd>
+  <dt>Paired runs</dt><dd>Two runs built to differ in one thing only, so a difference in score can be traced to it. <a href="ch13-evidence.html">Ch 13</a></dd>
+  <dt>Pool</dt><dd>The set of candidate documents passed to the next step of a pipeline. <a href="ch8-fusion.html">Ch 8</a></dd>
+  <dt>Pooling</dt><dd>Judging only the documents that submitted systems ranked highly. <a href="ch23-trec.html">Ch 23</a></dd>
+  <dt>Post-processing</dt><dd>Code that cleans, checks and reshapes a model's output. <a href="ch12-generate.html">Ch 12</a></dd>
+  <dt>Precision</dt><dd>Of the documents returned, the share that are relevant. <a href="ch4-measures.html">Ch 4</a></dd>
+  <dt>Prompt</dt><dd>Everything sent to the model: instructions, the question and the evidence. <a href="ch12-generate.html">Ch 12</a></dd>
+  <dt>Qrels</dt><dd>The file of relevance judgments for a test collection. <a href="ch3-search.html">Ch 3</a></dd>
+  <dt>Query rewriting</dt><dd>Turning a person's words into a query that searches better. <a href="ch7-queries.html">Ch 7</a></dd>
+  <dt>Query variant</dt><dd>One of several different queries written for the same information need. <a href="ch7-queries.html">Ch 7</a></dd>
+  <dt>RAG</dt><dd>Retrieval-augmented generation. A search step fetches documents, and a language model writes the answer from them, with citations. <a href="big-picture.html">0.2</a></dd>
+  <dt>Rank</dt><dd>A document's position in a ranked list, counted from 1.</dd>
+  <dt>Recall</dt><dd>Of all the relevant documents that exist, the share that were returned. <a href="ch4-measures.html">Ch 4</a></dd>
+  <dt>Reciprocal Rank Fusion (RRF)</dt><dd>Fusion by positions: each list gives a document 1 / (k + rank) points. <a href="ch8-fusion.html">Ch 8</a></dd>
+  <dt>Report request</dt><dd>A description of what a report should cover and who it is for. <a href="ch16-reports.html">Ch 16</a></dd>
+  <dt>Reranker</dt><dd>A slower, more accurate model that re-sorts a short candidate list. <a href="ch9-rerank.html">Ch 9</a></dd>
+  <dt>Retriever</dt><dd>The search part of a RAG system. <a href="ch2-what-is-rag.html">Ch 2</a></dd>
+  <dt>Run</dt><dd>One file of system output for all the questions of a task, submitted under a run tag. <a href="our-trec.html">0.3</a></dd>
+  <dt>Saturation</dt><dd>In BM25, each extra repeat of a word adds less than the one before. <a href="ch5-bm25.html">Ch 5</a></dd>
+  <dt>Sentence-level citation</dt><dd>Each sentence of the answer lists the documents that support it. <a href="ch12-generate.html">Ch 12</a></dd>
+  <dt>Sign test</dt><dd>A check that counts on how many topics one system beats another. <a href="ch4-measures.html">Ch 4</a></dd>
+  <dt>Skill</dt><dd>A folder of instructions, reference files and scripts that an agent loads on demand. <a href="agent-first.html">0.4</a></dd>
+  <dt>Snippet</dt><dd>A short piece of a document, such as its first 500 characters. <a href="ch13-evidence.html">Ch 13</a></dd>
+  <dt>Sparse retrieval</dt><dd>Search that matches words, such as BM25. <a href="ch5-bm25.html">Ch 5</a></dd>
+  <dt>Structured output</dt><dd>An answer in a fixed machine-readable form, such as JSON. <a href="ch12-generate.html">Ch 12</a></dd>
+  <dt>Temperature</dt><dd>A setting that controls how much chance enters a model's word choices. <a href="ch12-generate.html">Ch 12</a></dd>
+  <dt>Term frequency (tf)</dt><dd>How many times a word appears in one document. <a href="ch5-bm25.html">Ch 5</a></dd>
+  <dt>Test collection</dt><dd>Documents, topics and relevance judgments together. <a href="ch3-search.html">Ch 3</a></dd>
+  <dt>Threshold</dt><dd>A score value. Documents that score above it are kept. <a href="ch10-depth.html">Ch 10</a></dd>
+  <dt>Token</dt><dd>The unit a model reads and writes: a word or a piece of a word. <a href="ch1-why-lookup.html">Ch 1</a></dd>
+  <dt>Track</dt><dd>One themed competition inside TREC, with its own tasks, data and organizers.</dd>
+  <dt>Track median</dt><dd>The middle score among all runs in a task. Half the runs are above it.</dd>
+  <dt>TREC</dt><dd>The Text REtrieval Conference, a yearly evaluation series run by NIST since 1992. <a href="our-trec.html">0.3</a></dd>
+  <dt>Trimming</dt><dd>Removing whole sentences until an answer fits its length limit. <a href="ch14-budget.html">Ch 14</a></dd>
+  <dt>Validation</dt><dd>Checking that output obeys the required format and rules. <a href="ch12-generate.html">Ch 12</a></dd>
+  <dt>Variable depth</dt><dd>Returning a different number of documents for each question. <a href="ch10-depth.html">Ch 10</a></dd>
+  <dt>Vocabulary mismatch</dt><dd>The question and the relevant document use different words for the same thing. <a href="ch5-bm25.html">Ch 5</a></dd>
+</dl>
+</article>
+<nav class="pager" aria-label="Previous and next page"><a href="ch23-trec.html">← 23 What TREC is</a></nav>
+<footer class="bookfoot"><span><strong>RAG from Scratch to TREC</strong> · Adisak Sukul, Iowa State University</span><span>Draft of 15 November 2026</span></footer>
+</main>
+</div>
+<script>if(window.matchMedia('(max-width:860px)').matches)document.getElementById('toc').open=false;</script>
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>8 Combining lists: fusion · RAG from Scratch to TREC</title>
+<meta name="author" content="Adisak Sukul">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Source+Sans+3:wght@400;600;700&family=Zilla+Slab:wght@600;700&display=swap">
+<link rel="stylesheet" href="book.css">
+</head>
+<body>
+<div class="shell">
+<details class="toc" id="toc" open><summary>Contents</summary><a class="brand" href="index.html">RAG from Scratch to TREC<small>Adisak Sukul · Iowa State University</small></a><ul><li><a class="ch" href="contents.html">Full contents</a></li></ul><h2>Start here</h2><ul><li><a class="ch" href="index.html">0.1 How to use this book</a></li><li><a class="ch" href="big-picture.html">0.2 The big picture on one page</a></li><li><a class="ch" href="our-trec.html">0.3 Our TREC 2026 in five minutes</a></li><li><a class="ch" href="agent-first.html">0.4 The 2026 shift: agent-first</a></li></ul><h2>Part 1 · Foundations</h2><ul><li><a class="ch" href="ch1-why-lookup.html">1 Why language models need to look things up</a></li><li><a class="ch" href="ch2-what-is-rag.html">2 What RAG is</a></li><li><a class="ch" href="ch3-search.html">3 Search in one chapter</a></li><li><a class="ch" href="ch4-measures.html">4 How we know a system is good</a></li></ul><h2>Part 2 · Finding the evidence</h2><ul><li><a class="ch" href="ch5-bm25.html">5 Keyword search and BM25</a></li><li><a class="ch" href="ch6-dense.html">6 Dense retrieval and embeddings</a></li><li><a class="ch" href="ch7-queries.html">7 Asking the question better</a></li><li><a class="ch" aria-current="page" href="ch8-fusion.html">8 Combining lists: fusion</a></li><li><a class="ch" href="ch9-rerank.html">9 Reranking</a></li><li><a class="ch" href="ch10-depth.html">10 How many documents?</a></li><li><a class="ch" href="ch11-languages.html">11 Many languages</a></li></ul><h2>Part 3 · Writing the answer</h2><ul><li><a class="ch" href="ch12-generate.html">12 From documents to an answer</a></li><li><a class="ch" href="ch13-evidence.html">13 How much evidence to show the model</a></li><li><a class="ch" href="ch14-budget.html">14 Fitting a word budget</a></li><li><a class="ch" href="ch15-generator.html">15 Choosing the generator</a></li><li><a class="ch" href="ch16-reports.html">16 Long reports</a></li></ul><h2>Part 4 · Judging RAG</h2><ul><li><span class="ch">17 Why judging RAG is hard</span></li><li><span class="ch">18 Nuggets</span></li><li><span class="ch">19 Support and citation checking</span></li><li><span class="ch">20 LLM as a judge</span></li><li><span class="ch">21 Judging the judge</span></li><li><span class="ch">22 Experiments you can trust</span></li></ul><h2>Part 5 · TREC and the 2026 tracks</h2><ul><li><a class="ch" href="ch23-trec.html">23 What TREC is, and why it matters</a></li><li><span class="ch">24 The TREC RAG track</span></li><li><span class="ch">25 The new corpus: NVIDIA ClimbMix-400b</span></li><li><span class="ch">26 Agents and skills in the 2026 track</span></li><li><span class="ch">27 The sister tracks: RAGTIME and Auto-Judge</span></li><li><span class="ch">28 How to enter TREC with a student team</span></li></ul><h2>Part 6 · Case studies: our submissions</h2><ul><li><span class="ch">29 RAG retrieval task</span></li><li><span class="ch">30 RAG generation: does more evidence help?</span></li><li><span class="ch">31 RAGTIME</span></li><li><span class="ch">32 Auto-Judge</span></li><li><span class="ch">33 Lessons and ten project ideas</span></li></ul><h2>Part 7 · Beyond text: video</h2><ul><li><span class="ch">34 From text RAG to video</span></li><li><span class="ch">35 The TREC Video QA track</span></li><li><span class="ch">36 Answering from video</span></li><li><span class="ch">37 Calibration and fusion of several models</span></li><li><span class="ch">38 Case study: our Video QA submission</span></li></ul><h2>Part 8 · Streams and advanced RAG</h2><ul><li><span class="ch">39 Retrieval over a news stream: Change Detection</span></li><li><span class="ch">40 Indexing and chunking in practice</span></li><li><span class="ch">41 Advanced RAG patterns</span></li><li><span class="ch">42 RAG in the real world</span></li></ul><h2>Back matter</h2><ul><li><a class="ch" href="glossary.html">A Glossary</a></li><li><span class="ch">B Run catalogue</span></li><li><span class="ch">C Resource library</span></li><li><span class="ch">D Labs</span></li><li><span class="ch">E For instructors</span></li></ul></details>
+<main>
+<article id="view-ch8-fusion" data-nav="8 Combining lists: fusion">
+<p class="eyebrow">Part 2 · Finding the evidence · Chapter 8</p>
+<h1>Combining lists: fusion</h1>
+<p class="lede"><strong>In one sentence:</strong> when several searches each return a ranked list, fusion merges them into one list, and the simplest good way to do it uses only the positions of the documents.</p>
+
+<section>
+<h2>Why you should care</h2>
+<p>No single search finds everything. A keyword search misses documents that use other words. An embedding search misses exact names and numbers. A long question can be searched in many ways, and each way finds a slightly different set. If you can merge the lists well, you keep the strengths of each search. Almost every modern RAG system has a fusion step, and in ours it is one line of arithmetic.</p>
+</section>
+
+<section>
+<h2>Words you need</h2>
+<dl class="terms">
+  <dt>Ranked list</dt><dd>The documents a search returns, best first. Position 1 is the top.</dd>
+  <dt>Rank</dt><dd>A document's position in one list: 1, 2, 3 and so on.</dd>
+  <dt>Fusion</dt><dd>Merging several ranked lists into one.</dd>
+  <dt>Reciprocal Rank Fusion (RRF)</dt><dd>A fusion method that gives each document 1 / (k + rank) points from every list it appears in, and adds the points up.</dd>
+  <dt>k</dt><dd>The constant in RRF. A larger k makes the top positions matter less. The usual value is 60.</dd>
+  <dt>Score fusion</dt><dd>Fusion that adds the searches' scores instead of using positions. CombSUM is the best-known kind.</dd>
+  <dt>Hybrid search</dt><dd>Keyword search and embedding search run together, then fused.</dd>
+  <dt>Pool</dt><dd>The set of candidate documents that goes on to the next step.</dd>
+</dl>
+</section>
+
+<section>
+<h2><span class="tag core">Core</span> The idea</h2>
+<p>Suppose three friends each give you a ranked list of restaurants. You want one list. You could ask each friend for marks out of ten and add them up. But one friend gives everything a nine, and another never goes above six. Their marks are not on the same scale, so the generous friend decides the result.</p>
+<p>Positions do not have this problem. “Second on my list” means the same thing for every friend. Reciprocal Rank Fusion uses only positions:</p>
+<div class="formula">
+  <div class="f">score(document) = sum over all lists of &nbsp; 1 / (k + rank in that list)</div>
+  <div class="fnote">A document that is missing from a list gets nothing from that list. Sort by score, highest first.</div>
+</div>
+<p>With k = 60, first place in a list is worth 1/61, second place 1/62, and place 100 is worth 1/160. The points fall slowly. So one first place is worth less than two decent places, and a document that several searches agree on rises to the top.</p>
+
+<h3>A worked example</h3>
+<p>Three searches for the same question each return four documents. This is a toy example, made up to show the arithmetic.</p>
+<div class="tablewrap"><table class="num">
+<thead><tr><th>Rank</th><th>List A · keywords</th><th>List B · first sentence</th><th>List C · rewritten question</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>d3</td><td>d1</td><td>d5</td></tr>
+<tr><td>2</td><td>d1</td><td>d5</td><td>d1</td></tr>
+<tr><td>3</td><td>d7</td><td>d3</td><td>d8</td></tr>
+<tr><td>4</td><td>d2</td><td>d9</td><td>d3</td></tr>
+</tbody></table></div>
+<p>Now add the points, with k = 60.</p>
+<div class="tablewrap"><table class="num">
+<thead><tr><th>Fused rank</th><th>Document</th><th>Points</th><th>Total</th></tr></thead>
+<tbody>
+<tr class="hl"><td>1</td><td>d1</td><td>1/62 + 1/61 + 1/62</td><td>0.0487</td></tr>
+<tr><td>2</td><td>d3</td><td>1/61 + 1/63 + 1/64</td><td>0.0479</td></tr>
+<tr><td>3</td><td>d5</td><td>1/62 + 1/61</td><td>0.0325</td></tr>
+<tr><td>4</td><td>d7</td><td>1/63</td><td>0.0159</td></tr>
+<tr><td>4</td><td>d8</td><td>1/63</td><td>0.0159</td></tr>
+<tr><td>6</td><td>d2</td><td>1/64</td><td>0.0156</td></tr>
+<tr><td>6</td><td>d9</td><td>1/64</td><td>0.0156</td></tr>
+</tbody></table></div>
+<p>Three things to notice:</p>
+<ul>
+  <li><strong>d1 wins without being first twice.</strong> It is in all three lists, near the top each time. Agreement beats one high place.</li>
+  <li><strong>d5 is first in one list and second in another, and still comes third.</strong> It is missing from list A, and a missing list gives zero points.</li>
+  <li><strong>There are ties.</strong> d7 and d8 have the same score. A real system needs a fixed tie-break rule, or two runs of the same code can give different lists. Ours breaks ties by document ID.</li>
+</ul>
+
+<h3>What fusion cannot do</h3>
+<p>Fusion only re-orders what the searches found. If no list contains a document, fusion cannot add it. To find more, you need a different search or a deeper one, not a better fusion formula.</p>
+</section>
+
+<section>
+<h2>Watch and read</h2>
+<ul class="links">
+  <li><span class="kind video">Video</span><a href="https://www.youtube.com/watch?v=6dDvfGrxFns">Understanding Reciprocal Rank Fusion in Hybrid Search</a> TechViz - The Data Science Guy. RRF inside a hybrid search pipeline. <span class="checked">Link checked 14 Nov 2026</span></li>
+  <li><span class="kind video">Video</span><a href="https://www.youtube.com/watch?v=GkPq1YGGu1g">Reciprocal Rank Fusion (RRF) Algorithm</a> Mahaboob Ali shaik. The algorithm on its own. <span class="checked">Link checked 14 Nov 2026</span></li>
+  <li><span class="kind article">Article</span><a href="https://redis.io/blog/reciprocal-rank-fusion/">Reciprocal rank fusion: why combining search results is harder than it looks</a> Redis. Explains clearly why BM25 scores and cosine similarities should not be added. It is a company blog, so skip the product section at the end. <span class="checked">Read 14 Nov 2026</span></li>
+  <li><span class="kind paper">Paper</span><a href="https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf">Reciprocal Rank Fusion Outperforms Condorcet and Individual Rank Learning Methods</a> Cormack, Clarke and Büttcher, SIGIR 2009. The original paper. It is two pages long, and it is where k = 60 comes from. <span class="checked">Link checked 14 Nov 2026</span></li>
+</ul>
+<p class="fine">For the two videos we confirmed that the link opens and the title and channel match. We have not yet watched them through, so the notes describe the topic, not the quality.</p>
+</section>
+
+<section class="ours">
+<h2>How we did it at TREC 2026</h2>
+<p>Fusion appears in four of our five tracks, in three different forms.</p>
+<div class="tablewrap"><table>
+<thead><tr><th>Track</th><th>What was fused</th><th>How</th><th>Run</th></tr></thead>
+<tbody>
+<tr><td>RAG</td><td>Seven BM25 lists, one for each version of the narrative, 100 documents each</td><td>RRF, k = 60. Top 100 kept.</td><td>the pool behind every generation run</td></tr>
+<tr><td>RAG, deeper</td><td>The same seven searches, 1,000 documents each</td><td>RRF, k = 60. The whole union goes to the reranker.</td><td><code>isu-bm25-rrf7-deep</code> and the deep-pool runs</td></tr>
+<tr><td>RAGTIME</td><td>Ten lists: the title and the problem statement, each sent to five language pipelines</td><td>RRF, k = 60</td><td><code>isu-mlir-base</code></td></tr>
+<tr><td>RAGTIME</td><td>The same ten lists</td><td>CombSUM on min-max normalized scores</td><td><code>isu-mlir-csum</code></td></tr>
+<tr><td>Change Detection</td><td>A BM25 score and a bge-m3 embedding score for each document</td><td>Half and half, on the scores</td><td><code>fx40</code>, <code>fburst</code></td></tr>
+</tbody></table></div>
+<p>In the RAG track, each narrative is a long paragraph. We wrote seven versions of it as queries, such as the full narrative, its first sentence and two keyword versions (<a href="ch7-queries.html">Chapter 7</a>). No language model was used to write them. Each version went to BM25 on the ClimbMix corpus. RRF merged the seven lists, and the top 100 became the evidence pool for all our generation runs.</p>
+<p>The two RAGTIME retrieval runs are a planned pair. They use the same ten lists and differ only in the fusion method. In the top 20 documents, the two methods agree on 74%. So the choice of fusion formula changes about a quarter of what a reader would see first.</p>
+
+<h3>What the scores say</h3>
+<p>The RAG retrieval task scored document sets with automatic judgments. It did not look at the order.</p>
+<div class="tablewrap"><table class="num">
+<thead><tr><th>Document set</th><th>Documents per narrative</th><th>Set precision</th><th>Set recall</th><th>Nugget gain (AutoNuggetizer)</th></tr></thead>
+<tbody>
+<tr><td>Track median</td><td>100</td><td>0.3499</td><td>0.1002</td><td>0.6268</td></tr>
+<tr class="hl"><td>BM25 + RRF, top 100</td><td>100</td><td>0.2004</td><td>0.0840</td><td>0.7139</td></tr>
+<tr><td>Deep pool, reranked top 100</td><td>100</td><td>0.3130</td><td>0.1332</td><td>0.6291</td></tr>
+</tbody></table></div>
+<p class="fine">Field: 114 runs from 27 teams. Precision and recall on 82 narratives, nugget gain on 25. Source: the RAG tab of our <a class="private" href="https://claude.ai/artifact/PfLURQ1N9pKPqERLkN2Foz">results dashboard</a> and the retrieval slide of the <a class="private" href="https://claude.ai/artifact/JGikTiDeMBzXSB89pp3pZs">RAG talk</a>.</p>
+</section>
+
+<section>
+<h2>What surprised us</h2>
+<div class="note warn">
+  <strong>Fusion bought coverage, not precision.</strong> The plain fused list has fewer relevant documents than the median run: set precision 0.2004 against 0.3499. Yet it covers more of the key facts: nugget gain 0.7139 against 0.6268. Seven different views of the question pull in documents on many sides of the topic, including many that are off target. For a RAG system that is often the right trade, because the writer needs every key fact once and does not need the same fact ten times. But we cannot say why the deep pool, which has more relevant documents, covers fewer nuggets. The data to test that has not been released.
+</div>
+<p>A second lesson came from our own logs. In the first pool, each of the seven searches returned 100 documents. That made 28,256 different narrative-document pairs, but only the fused top 100 per narrative, 11,872 pairs, ever reached the reranker. Nothing below fused rank 100 could be rescued. Fusion followed by a hard cut can throw away documents that a better model would have liked.</p>
+</section>
+
+<section>
+<h2>Try it</h2>
+<p><strong>Lab 3, part 1.</strong> RRF fits in ten lines of Python. Type it in, then check it against the worked example above.</p>
+<pre><code>from collections import defaultdict
+
+def rrf(lists, k=60):
+    """lists: several ranked lists of document ids, best first."""
+    score = defaultdict(float)
+    for one_list in lists:
+        for rank, doc in enumerate(one_list, start=1):
+            score[doc] += 1.0 / (k + rank)
+    # highest score first; ties broken by document id
+    return sorted(score.items(), key=lambda kv: (-kv[1], kv[0]))
+
+A = ["d3", "d1", "d7", "d2"]
+B = ["d1", "d5", "d3", "d9"]
+C = ["d5", "d1", "d8", "d3"]
+for doc, s in rrf([A, B, C]):
+    print(doc, round(s, 4))</code></pre>
+<ol class="steps">
+  <li>Run it. Do you get d1, d3, d5 at the top with 0.0487, 0.0479 and 0.0325?</li>
+  <li>Change k to 1. The order of this example stays the same, but look at the scores: first place is now worth much more than fourth. Build a small example where k = 1 and k = 60 give a different winner.</li>
+  <li>Remove the tie-break (<code>kv[0]</code>) and explain why that is risky for a submission that must be reproducible.</li>
+  <li>With an agent: ask a coding agent to write RRF without showing it this code. Then audit it. Does it start ranks at 0 or at 1? What does it do with ties and with duplicates inside one list?</li>
+</ol>
+</section>
+
+<section>
+<h2>Check yourself</h2>
+<ol class="quiz">
+  <li>Why is it unsafe to add a BM25 score to a cosine similarity?</li>
+  <li>With k = 60, which is worth more: one first place, or two places at rank 70?</li>
+  <li>A document is ranked 1 by one search and is missing from six others. Where will it land after RRF over all seven, roughly?</li>
+  <li>Your fused top 100 misses a document you know is relevant. Name two different reasons this can happen.</li>
+  <li>Our fused list had lower precision but higher nugget gain than the median. What does each number measure, in plain words?</li>
+</ol>
+<details class="answers"><summary>Answers</summary>
+<ol>
+  <li>They are on different scales. BM25 has no fixed range and cosine similarity stays between −1 and 1, so the larger numbers decide the sum.</li>
+  <li>One first place, but only just: 1/61 = 0.0164 against 2 × 1/130 = 0.0154. That closeness is the point of a large k.</li>
+  <li>It keeps only 1/61 = 0.0164. Any document that appears in two or more lists near the top will pass it, so it usually drops well down the list.</li>
+  <li>No search returned it at all, or it was returned low in few lists and fell below the cut.</li>
+  <li>Precision: the share of the returned documents that are relevant. Nugget gain: the share of the key facts that the returned documents contain.</li>
+</ol></details>
+</section>
+
+<section class="deeper">
+<h2><span class="tag deep">Go deeper</span></h2>
+<ul>
+  <li><strong>Why 60?</strong> Cormack, Clarke and Büttcher chose k = 60 in a pilot study and reported that the result is not sensitive to the exact value. Treat it as a default, not a law. Test k on development data if you have any.</li>
+  <li><strong>Score fusion.</strong> CombSUM adds normalized scores, and CombMNZ also multiplies by the number of lists that returned the document. Score fusion keeps the size of the gap between documents, which RRF throws away. It needs careful normalization, and one outlier score can squeeze all the others together. Our <code>isu-mlir-csum</code> run exists to test this against RRF on the same lists.</li>
+  <li><strong>Weighted RRF.</strong> Multiply each list's points by a weight if you trust one search more. With labelled queries you can learn the weights.</li>
+  <li><strong>Fusion and depth interact.</strong> Fusing lists of 100 and fusing lists of 1,000 give different top 100s. Our deep pool is the experiment for this. See Chapter 10.</li>
+  <li><strong>Fusion of answers, not documents.</strong> In Video QA we fused the answers of several models. The problem is different, because the things being merged are a handful of options and not ranked documents. See Chapter 37.</li>
+  <li><strong>Project idea.</strong> Take the seven-list pool for ten narratives. Compare RRF at k = 1, 10, 60 and 200 with CombSUM. Measure how much the top 20 changes, then judge by hand which version you would rather give to a writer.</li>
+</ul>
+</section>
+</article>
+<nav class="pager" aria-label="Previous and next page"><a href="ch7-queries.html">← 7 Asking the question better</a><a href="ch9-rerank.html">Next: 9 Reranking</a></nav>
+<footer class="bookfoot"><span><strong>RAG from Scratch to TREC</strong> · Adisak Sukul, Iowa State University</span><span>Draft of 15 November 2026</span></footer>
+</main>
+</div>
+<script>if(window.matchMedia('(max-width:860px)').matches)document.getElementById('toc').open=false;</script>
+</body>
+</html>

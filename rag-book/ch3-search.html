@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>3 Search in one chapter · RAG from Scratch to TREC</title>
+<meta name="author" content="Adisak Sukul">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Source+Sans+3:wght@400;600;700&family=Zilla+Slab:wght@600;700&display=swap">
+<link rel="stylesheet" href="book.css">
+</head>
+<body>
+<div class="shell">
+<details class="toc" id="toc" open><summary>Contents</summary><a class="brand" href="index.html">RAG from Scratch to TREC<small>Adisak Sukul · Iowa State University</small></a><ul><li><a class="ch" href="contents.html">Full contents</a></li></ul><h2>Start here</h2><ul><li><a class="ch" href="index.html">0.1 How to use this book</a></li><li><a class="ch" href="big-picture.html">0.2 The big picture on one page</a></li><li><a class="ch" href="our-trec.html">0.3 Our TREC 2026 in five minutes</a></li><li><a class="ch" href="agent-first.html">0.4 The 2026 shift: agent-first</a></li></ul><h2>Part 1 · Foundations</h2><ul><li><a class="ch" href="ch1-why-lookup.html">1 Why language models need to look things up</a></li><li><a class="ch" href="ch2-what-is-rag.html">2 What RAG is</a></li><li><a class="ch" aria-current="page" href="ch3-search.html">3 Search in one chapter</a></li><li><a class="ch" href="ch4-measures.html">4 How we know a system is good</a></li></ul><h2>Part 2 · Finding the evidence</h2><ul><li><a class="ch" href="ch5-bm25.html">5 Keyword search and BM25</a></li><li><a class="ch" href="ch6-dense.html">6 Dense retrieval and embeddings</a></li><li><a class="ch" href="ch7-queries.html">7 Asking the question better</a></li><li><a class="ch" href="ch8-fusion.html">8 Combining lists: fusion</a></li><li><a class="ch" href="ch9-rerank.html">9 Reranking</a></li><li><a class="ch" href="ch10-depth.html">10 How many documents?</a></li><li><a class="ch" href="ch11-languages.html">11 Many languages</a></li></ul><h2>Part 3 · Writing the answer</h2><ul><li><a class="ch" href="ch12-generate.html">12 From documents to an answer</a></li><li><a class="ch" href="ch13-evidence.html">13 How much evidence to show the model</a></li><li><a class="ch" href="ch14-budget.html">14 Fitting a word budget</a></li><li><a class="ch" href="ch15-generator.html">15 Choosing the generator</a></li><li><a class="ch" href="ch16-reports.html">16 Long reports</a></li></ul><h2>Part 4 · Judging RAG</h2><ul><li><span class="ch">17 Why judging RAG is hard</span></li><li><span class="ch">18 Nuggets</span></li><li><span class="ch">19 Support and citation checking</span></li><li><span class="ch">20 LLM as a judge</span></li><li><span class="ch">21 Judging the judge</span></li><li><span class="ch">22 Experiments you can trust</span></li></ul><h2>Part 5 · TREC and the 2026 tracks</h2><ul><li><a class="ch" href="ch23-trec.html">23 What TREC is, and why it matters</a></li><li><span class="ch">24 The TREC RAG track</span></li><li><span class="ch">25 The new corpus: NVIDIA ClimbMix-400b</span></li><li><span class="ch">26 Agents and skills in the 2026 track</span></li><li><span class="ch">27 The sister tracks: RAGTIME and Auto-Judge</span></li><li><span class="ch">28 How to enter TREC with a student team</span></li></ul><h2>Part 6 · Case studies: our submissions</h2><ul><li><span class="ch">29 RAG retrieval task</span></li><li><span class="ch">30 RAG generation: does more evidence help?</span></li><li><span class="ch">31 RAGTIME</span></li><li><span class="ch">32 Auto-Judge</span></li><li><span class="ch">33 Lessons and ten project ideas</span></li></ul><h2>Part 7 · Beyond text: video</h2><ul><li><span class="ch">34 From text RAG to video</span></li><li><span class="ch">35 The TREC Video QA track</span></li><li><span class="ch">36 Answering from video</span></li><li><span class="ch">37 Calibration and fusion of several models</span></li><li><span class="ch">38 Case study: our Video QA submission</span></li></ul><h2>Part 8 · Streams and advanced RAG</h2><ul><li><span class="ch">39 Retrieval over a news stream: Change Detection</span></li><li><span class="ch">40 Indexing and chunking in practice</span></li><li><span class="ch">41 Advanced RAG patterns</span></li><li><span class="ch">42 RAG in the real world</span></li></ul><h2>Back matter</h2><ul><li><a class="ch" href="glossary.html">A Glossary</a></li><li><span class="ch">B Run catalogue</span></li><li><span class="ch">C Resource library</span></li><li><span class="ch">D Labs</span></li><li><span class="ch">E For instructors</span></li></ul></details>
+<main>
+<article id="view-ch3-search" data-nav="3 Search in one chapter">
+<p class="eyebrow">Part 1 · Foundations · Chapter 3</p>
+<h1>Search in one chapter</h1>
+<p class="lede"><strong>In one sentence:</strong> a search system builds an index so that it can find candidate documents fast, gives each a score for the query, and returns them best first, and researchers test it with a fixed set of questions and human judgments.</p>
+
+<section>
+<h2>Why you should care</h2>
+<p>The “R” in RAG is a search engine. People who come to RAG from machine learning often treat it as a black box, and then cannot tell why their system fails. An hour on the basics of search, the field called information retrieval, pays back quickly.</p>
+</section>
+
+<section>
+<h2>Words you need</h2>
+<dl class="terms">
+  <dt>Information retrieval (IR)</dt><dd>The science of finding the documents that satisfy a need, in a large collection.</dd>
+  <dt>Document</dt><dd>One unit that can be returned: a web page, a passage, a news article.</dd>
+  <dt>Query</dt><dd>What is sent to the search system. It may be shorter than, or different from, the user's full question.</dd>
+  <dt>Inverted index</dt><dd>A table from each word to the list of documents that contain it.</dd>
+  <dt>Posting list</dt><dd>The list of documents for one word in the index.</dd>
+  <dt>Ranking</dt><dd>Ordering documents by a score, best first.</dd>
+  <dt>Relevance</dt><dd>Whether a document helps with the need. Decided by a person, not by the system.</dd>
+  <dt>Qrels</dt><dd>The file of relevance judgments: for each topic, which documents were judged, and how relevant.</dd>
+  <dt>Run file</dt><dd>A system's output: for each topic, a ranked list of document ids.</dd>
+</dl>
+</section>
+
+<section>
+<h2><span class="tag core">Core</span> The idea</h2>
+<h3>Step 1: build an index before anyone asks</h3>
+<p>You cannot read a hundred million documents each time a question comes in. So a search engine reads them once, in advance, and builds an index. The most common kind is the same as the index at the back of a textbook: for each word, where it appears.</p>
+<p>Take three tiny documents:</p>
+<div class="tablewrap"><table>
+<thead><tr><th>Id</th><th>Text</th></tr></thead>
+<tbody>
+<tr><td>D1</td><td>the council approved the bridge repair</td></tr>
+<tr><td>D2</td><td>the bridge lane was postponed</td></tr>
+<tr><td>D3</td><td>the library extended its hours</td></tr>
+</tbody></table></div>
+<p>The inverted index turns this around. It goes from words to documents:</p>
+<div class="tablewrap"><table>
+<thead><tr><th>Word</th><th>Posting list</th></tr></thead>
+<tbody>
+<tr><td>bridge</td><td>D1, D2</td></tr>
+<tr><td>council</td><td>D1</td></tr>
+<tr><td>library</td><td>D3</td></tr>
+<tr><td>repair</td><td>D1</td></tr>
+<tr><td>the</td><td>D1, D2, D3</td></tr>
+</tbody></table></div>
+<p>For the query “bridge repair”, the engine looks up two posting lists and never touches D3. That is why search is fast.</p>
+
+<h3>Step 2: score and rank</h3>
+<p>D1 and D2 both contain “bridge”. Which is better? The engine gives each candidate a score. A good score follows two simple ideas:</p>
+<ul>
+  <li><strong>Rare words matter more.</strong> “repair” is in one document, “the” is in all three. A match on “repair” says more.</li>
+  <li><strong>More matches are better, up to a point.</strong> A document that mentions “bridge” five times is probably more about bridges than one that mentions it once, but not five times more.</li>
+</ul>
+<p>D1 matches both query words, so it ranks first. The standard formula built on these two ideas is BM25, the subject of Chapter 5.</p>
+
+<h3>Two families of search</h3>
+<div class="levels">
+  <div class="level core"><span class="tag core">Keyword search</span><p>Matches the words themselves, through an inverted index. Exact, fast, easy to explain. Misses synonyms: “fix” does not match “repair”. Chapter 5.</p></div>
+  <div class="level deep"><span class="tag deep">Embedding search</span><p>A model turns text into a list of numbers that captures meaning. Similar meanings land close together. Finds synonyms, can miss exact names and numbers. Chapter 6.</p></div>
+</div>
+
+<h3>Step 3: how researchers test a search system</h3>
+<p>To compare two systems fairly you need a <strong>test collection</strong>. It has three parts:</p>
+<ol class="steps">
+  <li><strong>Documents:</strong> a fixed corpus that every system searches.</li>
+  <li><strong>Topics:</strong> a fixed set of questions.</li>
+  <li><strong>Relevance judgments:</strong> for each topic, people have marked which documents are relevant. The file is called the qrels.</li>
+</ol>
+<p>Each system produces a <strong>run file</strong>. In TREC format, every line names one document for one topic:</p>
+<pre><code>rag2026-0   Q0   doc_48213   1   0.04865   my-run-tag
+rag2026-0   Q0   doc_10977   2   0.04789   my-run-tag
+rag2026-0   Q0   doc_70301   3   0.03252   my-run-tag</code></pre>
+<p>The six columns are: the topic id, a fixed “Q0”, the document id, the rank, the score, and the name of the run. A scoring program compares the run file with the qrels and prints numbers such as precision and recall (Chapter 4). The document ids in this example are invented.</p>
+<p>Because the documents, topics and judgments are fixed, a system built ten years later can be scored on the same collection. This method is the heart of TREC (<a href="ch23-trec.html">Chapter 23</a>).</p>
+</section>
+
+<section>
+<h2>Watch and read</h2>
+<ul class="links">
+  <li><span class="kind video">Video</span><a href="https://www.youtube.com/watch?v=tG2kXCs0oE0">Inverted Index &amp; TF-IDF Explained Step by Step</a> LatentQuest. Builds an index by hand and scores documents. <span class="checked">Link checked 14 Nov 2026</span></li>
+  <li><span class="kind code">Code</span><a href="https://github.com/castorini/pyserini">Pyserini</a> University of Waterloo. A Python toolkit for reproducible search research, with keyword and embedding search. The TREC RAG 2026 search service is built on it. <span class="checked">Read 14 Nov 2026</span></li>
+  <li><span class="kind site">Site</span><a href="https://github.com/TREC-RAG/trec-rag-skills/blob/main/skills/trec-rag-2026-track-guidelines/references/retrieval-task.md">TREC RAG 2026, the retrieval task</a>. The run-file format a team must submit. <span class="checked">Linked from the track page, 14 Nov 2026</span></li>
+</ul>
+<p class="fine">The classic free textbook is “Introduction to Information Retrieval” by Manning, Raghavan and Schütze. Its website did not respond when we checked on 14 November 2026, so the link will be added later.</p>
+</section>
+
+<section class="ours">
+<h2>How we did it at TREC 2026</h2>
+<p>In the RAG track we never built an index ourselves. The organizers host the ClimbMix collection behind a search service, and a team sends queries to it with an access token and gets ranked document ids and text back. For teaching, this is good news: a student team can take part without a large server.</p>
+<p>The test set has 119 topics, called narratives, with ids <code>rag2026-0</code> to <code>rag2026-118</code>. Our retrieval runs are files in the format shown above, one for each of our eight submitted runs. Each line was written by a short script with the run tag in the last column, for example <code>isu-bm25-rrf7-deep</code>.</p>
+<p>One thing is different from the textbook picture. In 2026 the retrieval task asks for “all and only” the relevant documents, so the number of lines per topic is the system's own choice. Chapter 10 is about that choice.</p>
+</section>
+
+<section>
+<h2>What surprised us</h2>
+<div class="note warn">
+  <strong>The query is not the question.</strong> A narrative in this track is a full paragraph. Sent as it is to a keyword search, it is a long bag of words, and its common words pull in off-topic documents. We ended up writing seven different queries for each narrative. The step from “what the user asked” to “what we send to the index” is a design decision of its own (Chapter 7).
+</div>
+</section>
+
+<section>
+<h2>Try it</h2>
+<ol class="steps">
+  <li>On paper, build the inverted index for five sentences of your own. Use it to answer a two-word query without rereading the sentences.</li>
+  <li>In Python, build the index as a dictionary from word to a set of document ids. Write a function that returns documents containing <em>all</em> query words, and another for <em>any</em> query word.</li>
+  <li>Write three lines of a run file by hand for one topic. Then explain to a classmate what each column means.</li>
+</ol>
+</section>
+
+<section>
+<h2>Check yourself</h2>
+<ol class="quiz">
+  <li>What does an inverted index map from, and to?</li>
+  <li>Why does a match on a rare word count for more?</li>
+  <li>Give one query that keyword search handles better than embedding search, and one the other way round.</li>
+  <li>What are the three parts of a test collection?</li>
+  <li>In a TREC run file, which column holds the rank?</li>
+</ol>
+<details class="answers"><summary>Answers</summary>
+<ol>
+  <li>From each word to the list of documents that contain it.</li>
+  <li>It separates documents better. A word that is in every document tells you nothing about which one to pick.</li>
+  <li>Keyword: an exact product code or a person's name. Embedding: a question phrased in words that the document does not use.</li>
+  <li>Documents, topics and relevance judgments.</li>
+  <li>The fourth.</li>
+</ol></details>
+</section>
+
+<section class="deeper">
+<h2><span class="tag deep">Go deeper</span></h2>
+<ul>
+  <li><strong>Text processing changes results.</strong> Lower-casing, removing very common words and cutting words to their stems all happen before indexing. Two engines with the same formula can disagree because of these steps alone.</li>
+  <li><strong>First-stage and later stages.</strong> Modern systems are cascades: a fast first stage finds a few hundred candidates from millions, and slower, better models re-order them (Chapter 9). The first stage sets the ceiling.</li>
+  <li><strong>Judgments are incomplete.</strong> Nobody judges every document for every topic. An unjudged document is usually counted as not relevant, which can punish a new system that finds new things.</li>
+  <li><strong>Project idea.</strong> Index 10,000 documents with Pyserini. Run the same 20 queries with and without stemming, and count how many of the top ten change.</li>
+</ul>
+</section>
+</article>
+<nav class="pager" aria-label="Previous and next page"><a href="ch2-what-is-rag.html">← 2 What RAG is</a><a href="ch4-measures.html">Next: 4 How we know a system is good</a></nav>
+<footer class="bookfoot"><span><strong>RAG from Scratch to TREC</strong> · Adisak Sukul, Iowa State University</span><span>Draft of 15 November 2026</span></footer>
+</main>
+</div>
+<script>if(window.matchMedia('(max-width:860px)').matches)document.getElementById('toc').open=false;</script>
+</body>
+</html>

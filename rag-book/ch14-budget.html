@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>14 Fitting a word budget · RAG from Scratch to TREC</title>
+<meta name="author" content="Adisak Sukul">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Source+Sans+3:wght@400;600;700&family=Zilla+Slab:wght@600;700&display=swap">
+<link rel="stylesheet" href="book.css">
+</head>
+<body>
+<div class="shell">
+<details class="toc" id="toc" open><summary>Contents</summary><a class="brand" href="index.html">RAG from Scratch to TREC<small>Adisak Sukul · Iowa State University</small></a><ul><li><a class="ch" href="contents.html">Full contents</a></li></ul><h2>Start here</h2><ul><li><a class="ch" href="index.html">0.1 How to use this book</a></li><li><a class="ch" href="big-picture.html">0.2 The big picture on one page</a></li><li><a class="ch" href="our-trec.html">0.3 Our TREC 2026 in five minutes</a></li><li><a class="ch" href="agent-first.html">0.4 The 2026 shift: agent-first</a></li></ul><h2>Part 1 · Foundations</h2><ul><li><a class="ch" href="ch1-why-lookup.html">1 Why language models need to look things up</a></li><li><a class="ch" href="ch2-what-is-rag.html">2 What RAG is</a></li><li><a class="ch" href="ch3-search.html">3 Search in one chapter</a></li><li><a class="ch" href="ch4-measures.html">4 How we know a system is good</a></li></ul><h2>Part 2 · Finding the evidence</h2><ul><li><a class="ch" href="ch5-bm25.html">5 Keyword search and BM25</a></li><li><a class="ch" href="ch6-dense.html">6 Dense retrieval and embeddings</a></li><li><a class="ch" href="ch7-queries.html">7 Asking the question better</a></li><li><a class="ch" href="ch8-fusion.html">8 Combining lists: fusion</a></li><li><a class="ch" href="ch9-rerank.html">9 Reranking</a></li><li><a class="ch" href="ch10-depth.html">10 How many documents?</a></li><li><a class="ch" href="ch11-languages.html">11 Many languages</a></li></ul><h2>Part 3 · Writing the answer</h2><ul><li><a class="ch" href="ch12-generate.html">12 From documents to an answer</a></li><li><a class="ch" href="ch13-evidence.html">13 How much evidence to show the model</a></li><li><a class="ch" aria-current="page" href="ch14-budget.html">14 Fitting a word budget</a></li><li><a class="ch" href="ch15-generator.html">15 Choosing the generator</a></li><li><a class="ch" href="ch16-reports.html">16 Long reports</a></li></ul><h2>Part 4 · Judging RAG</h2><ul><li><span class="ch">17 Why judging RAG is hard</span></li><li><span class="ch">18 Nuggets</span></li><li><span class="ch">19 Support and citation checking</span></li><li><span class="ch">20 LLM as a judge</span></li><li><span class="ch">21 Judging the judge</span></li><li><span class="ch">22 Experiments you can trust</span></li></ul><h2>Part 5 · TREC and the 2026 tracks</h2><ul><li><a class="ch" href="ch23-trec.html">23 What TREC is, and why it matters</a></li><li><span class="ch">24 The TREC RAG track</span></li><li><span class="ch">25 The new corpus: NVIDIA ClimbMix-400b</span></li><li><span class="ch">26 Agents and skills in the 2026 track</span></li><li><span class="ch">27 The sister tracks: RAGTIME and Auto-Judge</span></li><li><span class="ch">28 How to enter TREC with a student team</span></li></ul><h2>Part 6 · Case studies: our submissions</h2><ul><li><span class="ch">29 RAG retrieval task</span></li><li><span class="ch">30 RAG generation: does more evidence help?</span></li><li><span class="ch">31 RAGTIME</span></li><li><span class="ch">32 Auto-Judge</span></li><li><span class="ch">33 Lessons and ten project ideas</span></li></ul><h2>Part 7 · Beyond text: video</h2><ul><li><span class="ch">34 From text RAG to video</span></li><li><span class="ch">35 The TREC Video QA track</span></li><li><span class="ch">36 Answering from video</span></li><li><span class="ch">37 Calibration and fusion of several models</span></li><li><span class="ch">38 Case study: our Video QA submission</span></li></ul><h2>Part 8 · Streams and advanced RAG</h2><ul><li><span class="ch">39 Retrieval over a news stream: Change Detection</span></li><li><span class="ch">40 Indexing and chunking in practice</span></li><li><span class="ch">41 Advanced RAG patterns</span></li><li><span class="ch">42 RAG in the real world</span></li></ul><h2>Back matter</h2><ul><li><a class="ch" href="glossary.html">A Glossary</a></li><li><span class="ch">B Run catalogue</span></li><li><span class="ch">C Resource library</span></li><li><span class="ch">D Labs</span></li><li><span class="ch">E For instructors</span></li></ul></details>
+<main>
+<article id="view-ch14-budget" data-nav="14 Fitting a word budget">
+<p class="eyebrow">Part 3 · Writing the answer · Chapter 14</p>
+<h1>Fitting a word budget</h1>
+<p class="lede"><strong>In one sentence:</strong> when an answer must fit a length limit, you either cut sentences by rule or have a model rewrite the answer shorter, and each way loses something different.</p>
+
+<section>
+<h2>Why you should care</h2>
+<p>Real answers have limits: a screen, a reader's patience, a contest rule. A model asked for full coverage will often write too much. What you do with the overflow decides which facts survive. It can also quietly break citations, which is worse than losing a fact.</p>
+</section>
+
+<section>
+<h2>Words you need</h2>
+<dl class="terms">
+  <dt>Word budget</dt><dd>The most words an answer may have.</dd>
+  <dt>Trimming</dt><dd>Removing whole sentences until the answer fits. Nothing is rewritten.</dd>
+  <dt>Compression</dt><dd>Rewriting the answer in fewer words while trying to keep its facts.</dd>
+  <dt>Extractive</dt><dd>Built only from sentences that already exist. Trimming is extractive.</dd>
+  <dt>Abstractive</dt><dd>Newly written text. Compression is abstractive.</dd>
+  <dt>Redundant sentence</dt><dd>A sentence that adds nothing new. In our rule: one whose cited documents were all cited earlier.</dd>
+  <dt>Citation drift</dt><dd>After a rewrite, a sentence cites a document that no longer supports what the sentence says.</dd>
+  <dt>Gate</dt><dd>A test a change must pass before it is allowed to ship.</dd>
+</dl>
+</section>
+
+<section>
+<h2><span class="tag core">Core</span> The idea</h2>
+<p>Suppose the limit is 1,000 words and the draft has 1,400. There are three options.</p>
+<div class="tablewrap"><table>
+<thead><tr><th>Option</th><th>How</th><th>Keeps</th><th>Risks</th></tr></thead>
+<tbody>
+<tr><td>Ask for less</td><td>Put the limit in the prompt</td><td>One step, no extra cost</td><td>Models count words poorly. Drafts still run over, or stop early and miss parts.</td></tr>
+<tr><td>Trim</td><td>Delete sentences by a fixed rule</td><td>Every remaining sentence is exactly as written, with its citations</td><td>Whole facts vanish. Which ones depends on the rule.</td></tr>
+<tr><td>Compress</td><td>A model rewrites the draft to fit</td><td>More facts in fewer words</td><td>The rewrite can change a fact or attach it to the wrong source.</td></tr>
+</tbody></table></div>
+<h3>A trimming rule</h3>
+<p>A good trimming rule deletes the least valuable sentences first. Ours works in three passes, each from the end of the answer backwards, and stops as soon as the answer fits:</p>
+<ol class="steps">
+  <li>Remove sentences that have no citation.</li>
+  <li>Remove sentences whose cited documents were all cited by an earlier sentence.</li>
+  <li>Remove sentences from the tail.</li>
+</ol>
+<p>Pass 2 rests on a guess: a sentence that draws on no new document probably adds little. The guess is cheap to compute and sometimes wrong, since one document can hold many facts.</p>
+<h3>Compression needs a gate</h3>
+<p>Compression merges and rewrites sentences. When two sentences with different sources become one, which sources should the new sentence cite? A model can get this wrong without any sign in the text. So a compressed answer must be tested: sample sentences, open the cited documents, and check that each one still supports its sentence. Set the pass mark before you look.</p>
+</section>
+
+<section>
+<h2>Watch and read</h2>
+<ul class="links">
+  <li><span class="kind article">Site</span><a href="https://trec-rag.github.io/">TREC RAG 2026 track page</a> The answer length limit and the citation rules. <span class="checked">Read 14 Nov 2026</span></li>
+  <li><span class="kind paper">Paper</span><a href="https://arxiv.org/abs/2305.14627">Enabling Large Language Models to Generate Text with Citations</a> Gao and others, 2023. How to measure whether a citation supports its sentence. <span class="checked">Checked 15 Nov 2026</span></li>
+</ul>
+<p class="fine">We have not found a video or a plain-language article on this exact topic that we would recommend. The textbook name for the general problem is “summarization”, with the two kinds named above.</p>
+</section>
+
+<section class="ours">
+<h2>How we did it at TREC 2026</h2>
+<p>Our prompt asked for 45 to 70 sentences, and a draft of that size can run past the limit. We first built the trimming rule above and applied it to all six runs at 1,000 words. A copy of the rule, written again from scratch for our checks, reproduces every trimmed file exactly.</p>
+<p>In the last two days before we submitted, we tried compression. A model was asked to rewrite each raw draft into at most 980 words, keeping every distinct fact and the document identifiers of the sentences it came from. Each compressed answer then went through the same trim, assembly and repair as before.</p>
+<p>We set a gate: a compressed run would replace the trimmed one only if at least 95% of sampled citations still supported their sentences.</p>
+<div class="tablewrap"><table class="num">
+<thead><tr><th>Run</th><th>Draft written by</th><th>Passed the gate?</th><th>What we submitted</th><th>Mean words</th></tr></thead>
+<tbody>
+<tr><td><code>isu-cov2-ft</code></td><td>gpt-5-mini</td><td>Yes</td><td>Compressed</td><td>887.9</td></tr>
+<tr><td><code>isu-cov2-gpt5mini</code></td><td>gpt-5-mini</td><td>Yes</td><td>Compressed</td><td>854.1</td></tr>
+<tr><td><code>isu-cov2-gemini3f</code></td><td>gemini-3-flash</td><td>Yes</td><td>Compressed</td><td>666.9</td></tr>
+<tr><td><code>isu-cov2-gen-dsv32</code></td><td>deepseek-v3.2</td><td>No</td><td>Trimmed</td><td>946.8</td></tr>
+<tr><td><code>isu-cov2-qwen36p</code></td><td>qwen-3.6-plus</td><td>No</td><td>Trimmed</td><td>954.1</td></tr>
+<tr><td><code>isu-cov2-gen-haiku45</code></td><td>claude-haiku-4.5</td><td>No</td><td>Trimmed</td><td>920.6</td></tr>
+</tbody></table></div>
+<p class="fine">Mean words per answer on the 42 evaluated narratives, counted as space-separated words. No submitted answer is above 1,000.</p>
+<p>The compression script used gpt-5-mini, whatever model wrote the draft. Our notes from that week record what happened when it rewrote other models' drafts: the citations drifted. Three runs failed the gate and kept their trimmed files.</p>
+</section>
+
+<section>
+<h2>What surprised us</h2>
+<div class="note warn">
+  <strong>The gate protected the answers and damaged the experiment.</strong> The six runs were meant to compare generators on the same evidence. After the gate, three runs carry answers rewritten by gpt-5-mini and three carry answers cut by rule. So a difference between, say, the gpt-5-mini run and the DeepSeek run now mixes three things: who wrote the draft, how it was shortened, and who shortened it. Each decision was sound on its own. Together they broke the comparison (<a href="ch15-generator.html">Chapter 15</a>).
+</div>
+<p>Two smaller surprises:</p>
+<ul>
+  <li><strong>A compressor can refuse quietly.</strong> On one narrative the compression came back at 1,452 words, far over its limit of 980. The trim then removed 18 sentences. That answer is mostly the original draft, cut by rule, inside a run we describe as compressed.</li>
+  <li><strong>Compressed answers came out shorter than they had to be.</strong> The Gemini run averages 667 words against a limit of 1,000. Unused budget is room where more facts could have gone.</li>
+</ul>
+</section>
+
+<section>
+<h2>Try it</h2>
+<ol class="steps">
+  <li>Write the three-pass trimming rule as a function. Test it on an answer of fifteen cited sentences with a limit of 150 words.</li>
+  <li>Ask a model to compress the same answer to 150 words and keep the citations. Count the words it returns.</li>
+  <li>For five compressed sentences, open the cited documents. Does each one still support its sentence?</li>
+  <li>Which facts did trimming lose that compression kept, and the other way round?</li>
+</ol>
+</section>
+
+<section>
+<h2>Check yourself</h2>
+<ol class="quiz">
+  <li>What is the difference between trimming and compression?</li>
+  <li>What does pass 2 of our trimming rule assume?</li>
+  <li>What is citation drift, and why is it hard to see?</li>
+  <li>Why set the pass mark of a gate before looking at the results?</li>
+  <li>How did the gate harm our comparison of generators?</li>
+</ol>
+<details class="answers"><summary>Answers</summary>
+<ol>
+  <li>Trimming deletes whole sentences and rewrites nothing. Compression rewrites the answer in fewer words.</li>
+  <li>That a sentence citing only documents already cited adds little that is new.</li>
+  <li>A rewritten sentence cites a document that no longer supports it. The text reads well, so only opening the document shows the error.</li>
+  <li>So the decision cannot be bent to favour the result you hoped for.</li>
+  <li>Some runs were then shortened by a model and others by rule, so the runs no longer differ in the generator alone.</li>
+</ol></details>
+</section>
+
+<section class="deeper">
+<h2><span class="tag deep">Go deeper</span></h2>
+<ul>
+  <li><strong>Budget inside the prompt.</strong> Models follow “about 40 sentences” better than “at most 1,000 words”. A sentence target plus a hard check afterwards is a workable pair.</li>
+  <li><strong>Value per word.</strong> A better trimming rule would score each sentence by the key facts it adds per word and drop the lowest. That needs an estimate of the facts, which Chapter 18 provides.</li>
+  <li><strong>Compress per part.</strong> Compressing each part of the answer on its own keeps sources closer to their facts and lowers the risk of drift.</li>
+  <li><strong>Check all citations, not a sample.</strong> With an automatic support checker, every sentence of a compressed answer can be tested and only the failing sentences sent back.</li>
+  <li><strong>Length and score.</strong> Longer answers can cover more nuggets. When runs differ in length, a score difference may partly be a length difference. Report mean words next to every score, as the table above does.</li>
+  <li><strong>Project idea.</strong> On one set of drafts, compare three shorteners: our rule, a value-per-word rule, and model compression. Report nugget coverage and citation support for each.</li>
+</ul>
+</section>
+</article>
+<nav class="pager" aria-label="Previous and next page"><a href="ch13-evidence.html">← 13 How much evidence to show the model</a><a href="ch15-generator.html">Next: 15 Choosing the generator</a></nav>
+<footer class="bookfoot"><span><strong>RAG from Scratch to TREC</strong> · Adisak Sukul, Iowa State University</span><span>Draft of 15 November 2026</span></footer>
+</main>
+</div>
+<script>if(window.matchMedia('(max-width:860px)').matches)document.getElementById('toc').open=false;</script>
+</body>
+</html>

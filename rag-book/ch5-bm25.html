@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>5 Keyword search and BM25 · RAG from Scratch to TREC</title>
+<meta name="author" content="Adisak Sukul">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Source+Sans+3:wght@400;600;700&family=Zilla+Slab:wght@600;700&display=swap">
+<link rel="stylesheet" href="book.css">
+</head>
+<body>
+<div class="shell">
+<details class="toc" id="toc" open><summary>Contents</summary><a class="brand" href="index.html">RAG from Scratch to TREC<small>Adisak Sukul · Iowa State University</small></a><ul><li><a class="ch" href="contents.html">Full contents</a></li></ul><h2>Start here</h2><ul><li><a class="ch" href="index.html">0.1 How to use this book</a></li><li><a class="ch" href="big-picture.html">0.2 The big picture on one page</a></li><li><a class="ch" href="our-trec.html">0.3 Our TREC 2026 in five minutes</a></li><li><a class="ch" href="agent-first.html">0.4 The 2026 shift: agent-first</a></li></ul><h2>Part 1 · Foundations</h2><ul><li><a class="ch" href="ch1-why-lookup.html">1 Why language models need to look things up</a></li><li><a class="ch" href="ch2-what-is-rag.html">2 What RAG is</a></li><li><a class="ch" href="ch3-search.html">3 Search in one chapter</a></li><li><a class="ch" href="ch4-measures.html">4 How we know a system is good</a></li></ul><h2>Part 2 · Finding the evidence</h2><ul><li><a class="ch" aria-current="page" href="ch5-bm25.html">5 Keyword search and BM25</a></li><li><a class="ch" href="ch6-dense.html">6 Dense retrieval and embeddings</a></li><li><a class="ch" href="ch7-queries.html">7 Asking the question better</a></li><li><a class="ch" href="ch8-fusion.html">8 Combining lists: fusion</a></li><li><a class="ch" href="ch9-rerank.html">9 Reranking</a></li><li><a class="ch" href="ch10-depth.html">10 How many documents?</a></li><li><a class="ch" href="ch11-languages.html">11 Many languages</a></li></ul><h2>Part 3 · Writing the answer</h2><ul><li><a class="ch" href="ch12-generate.html">12 From documents to an answer</a></li><li><a class="ch" href="ch13-evidence.html">13 How much evidence to show the model</a></li><li><a class="ch" href="ch14-budget.html">14 Fitting a word budget</a></li><li><a class="ch" href="ch15-generator.html">15 Choosing the generator</a></li><li><a class="ch" href="ch16-reports.html">16 Long reports</a></li></ul><h2>Part 4 · Judging RAG</h2><ul><li><span class="ch">17 Why judging RAG is hard</span></li><li><span class="ch">18 Nuggets</span></li><li><span class="ch">19 Support and citation checking</span></li><li><span class="ch">20 LLM as a judge</span></li><li><span class="ch">21 Judging the judge</span></li><li><span class="ch">22 Experiments you can trust</span></li></ul><h2>Part 5 · TREC and the 2026 tracks</h2><ul><li><a class="ch" href="ch23-trec.html">23 What TREC is, and why it matters</a></li><li><span class="ch">24 The TREC RAG track</span></li><li><span class="ch">25 The new corpus: NVIDIA ClimbMix-400b</span></li><li><span class="ch">26 Agents and skills in the 2026 track</span></li><li><span class="ch">27 The sister tracks: RAGTIME and Auto-Judge</span></li><li><span class="ch">28 How to enter TREC with a student team</span></li></ul><h2>Part 6 · Case studies: our submissions</h2><ul><li><span class="ch">29 RAG retrieval task</span></li><li><span class="ch">30 RAG generation: does more evidence help?</span></li><li><span class="ch">31 RAGTIME</span></li><li><span class="ch">32 Auto-Judge</span></li><li><span class="ch">33 Lessons and ten project ideas</span></li></ul><h2>Part 7 · Beyond text: video</h2><ul><li><span class="ch">34 From text RAG to video</span></li><li><span class="ch">35 The TREC Video QA track</span></li><li><span class="ch">36 Answering from video</span></li><li><span class="ch">37 Calibration and fusion of several models</span></li><li><span class="ch">38 Case study: our Video QA submission</span></li></ul><h2>Part 8 · Streams and advanced RAG</h2><ul><li><span class="ch">39 Retrieval over a news stream: Change Detection</span></li><li><span class="ch">40 Indexing and chunking in practice</span></li><li><span class="ch">41 Advanced RAG patterns</span></li><li><span class="ch">42 RAG in the real world</span></li></ul><h2>Back matter</h2><ul><li><a class="ch" href="glossary.html">A Glossary</a></li><li><span class="ch">B Run catalogue</span></li><li><span class="ch">C Resource library</span></li><li><span class="ch">D Labs</span></li><li><span class="ch">E For instructors</span></li></ul></details>
+<main>
+<article id="view-ch5-bm25" data-nav="5 Keyword search and BM25">
+<p class="eyebrow">Part 2 · Finding the evidence · Chapter 5</p>
+<h1>Keyword search and BM25</h1>
+<p class="lede"><strong>In one sentence:</strong> BM25 scores a document by the query words it contains, giving more credit to rare words, less and less credit for each repeat, and a correction so that long documents do not win just by being long.</p>
+
+<section>
+<h2>Why you should care</h2>
+<p>BM25 dates from the 1990s and is still the first thing to try. It needs no training, no graphics card and no labelled data. It is fast on hundreds of millions of documents, and you can explain every score by hand. Every retrieval run we submitted to the TREC 2026 RAG track started with BM25.</p>
+</section>
+
+<section>
+<h2>Words you need</h2>
+<dl class="terms">
+  <dt>Term</dt><dd>One word of the query or the document, after the text is split and cleaned.</dd>
+  <dt>Term frequency (tf)</dt><dd>How many times a term appears in one document.</dd>
+  <dt>Document frequency (df)</dt><dd>How many documents in the collection contain the term.</dd>
+  <dt>IDF</dt><dd>Inverse document frequency. A weight that is high for rare terms and low for common ones.</dd>
+  <dt>Saturation</dt><dd>Each extra repeat of a term adds less than the one before.</dd>
+  <dt>Length normalization</dt><dd>A correction for document length, so a long document is not favoured only for its size.</dd>
+  <dt>k1 and b</dt><dd>The two settings of BM25. k1 controls saturation. b controls length normalization.</dd>
+  <dt>Sparse retrieval</dt><dd>Search that matches words. The name comes from the word-count vectors, which are mostly zeros.</dd>
+</dl>
+</section>
+
+<section>
+<h2><span class="tag core">Core</span> The idea</h2>
+<p><a href="ch3-search.html">Chapter 3</a> showed the inverted index: for each word, the list of documents that contain it. BM25 is the rule that turns those lists into a ranking. It rests on three ideas.</p>
+<ol class="steps">
+  <li><strong>Rare words tell you more.</strong> If the query is “bridge repair” and almost every document says “bridge”, the word “repair” does most of the work. BM25 gives each term a weight, the IDF, that grows as fewer documents contain it.</li>
+  <li><strong>Repeats count, but less each time.</strong> A document that says “repair” five times is probably more about repair than one that says it once. It is not five times more about it. The credit for repeats flattens out.</li>
+  <li><strong>Long documents get a handicap.</strong> A long document has more chances to contain any word. BM25 compares each document's length with the average and lowers the credit for long ones.</li>
+</ol>
+<p>The score of a document is the sum, over the query terms, of the term's IDF times its repeat credit.</p>
+<div class="formula">
+  <div class="f">score(D, Q) = sum over query terms t of IDF(t) × tf × (k1 + 1) / (tf + k1 × (1 − b + b × length / average length))</div>
+  <div class="f">IDF(t) = ln( (N − df + 0.5) / (df + 0.5) + 1 )</div>
+  <div class="fnote">N is the number of documents. Common settings are k1 = 1.2 and b = 0.75.</div>
+</div>
+
+<h3>A worked example</h3>
+<p>A collection has 1,000 documents. The query is “bridge repair”. The word “bridge” is in 100 documents and “repair” is in 10.</p>
+<div class="formula">
+  <div class="f">IDF(bridge) = ln(900.5 / 100.5 + 1) = 2.299</div>
+  <div class="f">IDF(repair) = ln(990.5 / 10.5 + 1) = 4.557</div>
+</div>
+<p>The rarer word weighs about twice as much. Now the repeat credit, for a document of average length with k1 = 1.2:</p>
+<div class="tablewrap"><table class="num">
+<thead><tr><th>Times the term appears</th><th>1</th><th>2</th><th>3</th><th>5</th><th>10</th><th>20</th></tr></thead>
+<tbody><tr><td>Repeat credit</td><td>1.000</td><td>1.375</td><td>1.571</td><td>1.774</td><td>1.964</td><td>2.075</td></tr></tbody>
+</table></div>
+<p>That is saturation. The credit can never pass k1 + 1 = 2.2, however often the word appears. Now score two documents of average length:</p>
+<div class="tablewrap"><table class="num">
+<thead><tr><th>Document</th><th>“bridge”</th><th>“repair”</th><th>Score</th></tr></thead>
+<tbody>
+<tr class="hl"><td>A</td><td>3 times: 2.299 × 1.571 = 3.612</td><td>once: 4.557 × 1.000 = 4.557</td><td>8.169</td></tr>
+<tr><td>B</td><td>10 times: 2.299 × 1.964 = 4.515</td><td>never: 0</td><td>4.515</td></tr>
+</tbody></table></div>
+<p>Document A wins clearly. One use of the rare word beats ten uses of the common one.</p>
+<p>Last, length. If document A were twice the average length, with the same word counts, its score would fall from 8.169 to 6.209. The same words in a longer text are a weaker signal.</p>
+
+<h3>What BM25 cannot do</h3>
+<p>BM25 matches words, not meanings. A query for “car” does not find a document that only says “automobile”. A query in English does not find a document in Spanish. This gap is called the vocabulary mismatch problem. <a href="ch6-dense.html">Chapter 6</a> and <a href="ch7-queries.html">Chapter 7</a> are two different answers to it.</p>
+</section>
+
+<section>
+<h2>Watch and read</h2>
+<ul class="links">
+  <li><span class="kind video">Video</span><a href="https://www.youtube.com/watch?v=TW9vHU1GpU4">A no nonsense intro to BM25</a> Abhishek Thakur. A plain walk through the formula. <span class="checked">Link checked 15 Nov 2026</span></li>
+  <li><span class="kind video">Video</span><a href="https://www.youtube.com/watch?v=YL-3G5-xVYU">BM25 Algorithm: Overcoming the Limitations of TF-IDF</a> MLWorks. BM25 set against the older TF-IDF weighting. <span class="checked">Link checked 15 Nov 2026</span></li>
+  <li><span class="kind article">Article</span><a href="https://www.elastic.co/blog/practical-bm25-part-2-the-bm25-algorithm-and-its-variables">Practical BM25, Part 2: The BM25 Algorithm and its variables</a> Shane Connelly, Elastic. Each part of the formula, with experiments on k1 and b. <span class="checked">Read 15 Nov 2026</span></li>
+  <li><span class="kind article">Article</span><a href="https://en.wikipedia.org/wiki/Okapi_BM25">Okapi BM25</a> Wikipedia. The formula as we write it above, and its history. <span class="checked">Checked 15 Nov 2026</span></li>
+  <li><span class="kind tool">Tool</span><a href="https://github.com/castorini/pyserini">Pyserini</a> The Python toolkit behind the TREC RAG 2026 search service. <span class="checked">Checked 14 Nov 2026</span></li>
+</ul>
+<p class="fine">For the two videos we confirmed that the link opens and the title and channel match. We have not watched them through.</p>
+</section>
+
+<section class="ours">
+<h2>How we did it at TREC 2026</h2>
+<p>In the RAG track we did not build an index. The organizers host the ClimbMix-400b collection behind a search service built on Pyserini, and every team sends queries to it. Our first-stage search was BM25 through that service, for every run.</p>
+<ul>
+  <li><strong>One query was not enough.</strong> Each narrative is a paragraph, not a short query. We sent seven versions of it to BM25 and fused the seven lists (<a href="ch7-queries.html">Chapter 7</a>, <a href="ch8-fusion.html">Chapter 8</a>).</li>
+  <li><strong>Our baseline run is BM25 only.</strong> The run <code>isu-bm25-rrf7</code> uses no language model at any step. It is the floor that every other run of ours must beat.</li>
+  <li><strong>Depth is a choice.</strong> First we asked for 100 documents per query, later for 1,000. The service returned 1,000 documents in about four seconds, so depth was cheap.</li>
+  <li><strong>We followed the pacing rule.</strong> The track's search skill tells clients to send a new request only after the last one has come back, with about a dozen workers at most. Our script does that and backs off when the service says it is busy.</li>
+</ul>
+<p>In the Change Detection track we did build our own BM25, over a news stream, and paired it with an embedding model (<a href="ch6-dense.html">Chapter 6</a>).</p>
+<div class="tablewrap"><table class="num">
+<thead><tr><th>Document set</th><th>Set precision</th><th>Set recall</th><th>Nugget gain</th></tr></thead>
+<tbody>
+<tr><td>Track median</td><td>0.3499</td><td>0.1002</td><td>0.6268</td></tr>
+<tr class="hl"><td>Our BM25 baseline, seven queries fused, top 100</td><td>0.2004</td><td>0.0840</td><td>0.7139</td></tr>
+</tbody></table></div>
+<p class="fine">Official scores, 114 runs from 27 teams. Precision and recall on 82 narratives, nugget gain (AutoNuggetizer nuggets) on 25. Source: the RAG tab of our <a class="private" href="https://claude.ai/artifact/PfLURQ1N9pKPqERLkN2Foz">results dashboard</a>.</p>
+</section>
+
+<section>
+<h2>What surprised us</h2>
+<div class="note warn">
+  <strong>The plain baseline covered the most facts per document.</strong> Among our three sets of 100 documents, the BM25 baseline has the lowest precision and the highest nugget gain. A stronger model picked “better” documents, and they covered fewer key facts (<a href="ch9-rerank.html">Chapter 9</a>). We kept the baseline in our submission as run number six of eight. Without it we would not have seen this at all. Always submit your baseline.
+</div>
+</section>
+
+<section>
+<h2>Try it</h2>
+<ol class="steps">
+  <li>Redo the worked example by hand for a document C with “bridge” once and “repair” twice, at average length. Does it beat document A?</li>
+  <li>Install the <code>rank_bm25</code> package, index twenty sentences of your own and search them. Find a query where the top result is wrong, and say which of the three ideas caused it.</li>
+  <li>Set b to 0 and then to 1 and run the same queries. Which documents move?</li>
+  <li>Write a query whose best answer shares no word with it. Keep it for the lab in Chapter 6.</li>
+</ol>
+</section>
+
+<section>
+<h2>Check yourself</h2>
+<ol class="quiz">
+  <li>Why does “repair” weigh more than “bridge” in the example?</li>
+  <li>A document repeats a query word 200 times. What stops it from getting a huge score?</li>
+  <li>What does setting b = 0 do?</li>
+  <li>Name one kind of query where BM25 fails however well it is tuned.</li>
+  <li>Why keep a BM25-only run when you have stronger models?</li>
+</ol>
+<details class="answers"><summary>Answers</summary>
+<ol>
+  <li>It appears in fewer documents, so its IDF is higher.</li>
+  <li>Saturation. The repeat credit can never pass k1 + 1.</li>
+  <li>It turns length normalization off. Long and short documents are treated alike.</li>
+  <li>A query that uses different words from the relevant documents, or a different language.</li>
+  <li>It is the reference point. Without it you cannot tell what the stronger models added or lost.</li>
+</ol></details>
+</section>
+
+<section class="deeper">
+<h2><span class="tag deep">Go deeper</span></h2>
+<ul>
+  <li><strong>Where the formula comes from.</strong> BM25 grew out of the probabilistic relevance framework of Robertson, Spärck Jones and colleagues, and was tested in the early TREC years on the Okapi system. “BM” stands for “best match”, and 25 was the number of the variant.</li>
+  <li><strong>Tuning.</strong> k1 and b should be tuned on held-out topics for your collection. Software packages ship different defaults, so two “BM25” runs may not be the same system. Report the values you used.</li>
+  <li><strong>Query expansion with RM3.</strong> Run the query, take the frequent words of the top documents, add them to the query and search again. It helps with vocabulary mismatch and it can also drift off topic.</li>
+  <li><strong>Fields.</strong> BM25F scores the title and the body separately with different weights.</li>
+  <li><strong>Learned sparse retrieval.</strong> Models such as SPLADE learn which words to add to a document and how much each word should weigh, and still use an inverted index.</li>
+  <li><strong>Project idea.</strong> On a public test collection, sweep k1 and b over a grid and plot nDCG at 10. How flat is the surface near the best point?</li>
+</ul>
+</section>
+</article>
+<nav class="pager" aria-label="Previous and next page"><a href="ch4-measures.html">← 4 How we know a system is good</a><a href="ch6-dense.html">Next: 6 Dense retrieval and embeddings</a></nav>
+<footer class="bookfoot"><span><strong>RAG from Scratch to TREC</strong> · Adisak Sukul, Iowa State University</span><span>Draft of 15 November 2026</span></footer>
+</main>
+</div>
+<script>if(window.matchMedia('(max-width:860px)').matches)document.getElementById('toc').open=false;</script>
+</body>
+</html>
