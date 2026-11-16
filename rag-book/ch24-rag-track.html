@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>24 The TREC RAG track · RAG from Scratch to TREC</title>
+<meta name="author" content="Adisak Sukul">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Source+Sans+3:wght@400;600;700&family=Zilla+Slab:wght@600;700&display=swap">
+<link rel="stylesheet" href="book.css">
+</head>
+<body>
+<div class="shell">
+<details class="toc" id="toc" open><summary>Contents</summary><a class="brand" href="index.html">RAG from Scratch to TREC<small>Adisak Sukul · Iowa State University</small></a><ul><li><a class="ch" href="contents.html">Full contents</a></li></ul><h2>Start here</h2><ul><li><a class="ch" href="index.html">0.1 How to use this book</a></li><li><a class="ch" href="big-picture.html">0.2 The big picture on one page</a></li><li><a class="ch" href="our-trec.html">0.3 Our TREC 2026 in five minutes</a></li><li><a class="ch" href="agent-first.html">0.4 The 2026 shift: agent-first</a></li></ul><h2>Part 1 · Foundations</h2><ul><li><a class="ch" href="ch1-why-lookup.html">1 Why language models need to look things up</a></li><li><a class="ch" href="ch2-what-is-rag.html">2 What RAG is</a></li><li><a class="ch" href="ch3-search.html">3 Search in one chapter</a></li><li><a class="ch" href="ch4-measures.html">4 How we know a system is good</a></li></ul><h2>Part 2 · Finding the evidence</h2><ul><li><a class="ch" href="ch5-bm25.html">5 Keyword search and BM25</a></li><li><a class="ch" href="ch6-dense.html">6 Dense retrieval and embeddings</a></li><li><a class="ch" href="ch7-queries.html">7 Asking the question better</a></li><li><a class="ch" href="ch8-fusion.html">8 Combining lists: fusion</a></li><li><a class="ch" href="ch9-rerank.html">9 Reranking</a></li><li><a class="ch" href="ch10-depth.html">10 How many documents?</a></li><li><a class="ch" href="ch11-languages.html">11 Many languages</a></li></ul><h2>Part 3 · Writing the answer</h2><ul><li><a class="ch" href="ch12-generate.html">12 From documents to an answer</a></li><li><a class="ch" href="ch13-evidence.html">13 How much evidence to show the model</a></li><li><a class="ch" href="ch14-budget.html">14 Fitting a word budget</a></li><li><a class="ch" href="ch15-generator.html">15 Choosing the generator</a></li><li><a class="ch" href="ch16-reports.html">16 Long reports</a></li></ul><h2>Part 4 · Judging RAG</h2><ul><li><a class="ch" href="ch17-judging-hard.html">17 Why judging RAG is hard</a></li><li><a class="ch" href="ch18-nuggets.html">18 Nuggets</a></li><li><a class="ch" href="ch19-support.html">19 Support and citation checking</a></li><li><a class="ch" href="ch20-llm-judge.html">20 LLM as a judge</a></li><li><a class="ch" href="ch21-judge-the-judge.html">21 Judging the judge</a></li><li><a class="ch" href="ch22-experiments.html">22 Experiments you can trust</a></li></ul><h2>Part 5 · TREC and the 2026 tracks</h2><ul><li><a class="ch" href="ch23-trec.html">23 What TREC is, and why it matters</a></li><li><a class="ch" aria-current="page" href="ch24-rag-track.html">24 The TREC RAG track</a></li><li><a class="ch" href="ch25-climbmix.html">25 The new corpus: NVIDIA ClimbMix-400b</a></li><li><a class="ch" href="ch26-agents.html">26 Agents and skills in the 2026 track</a></li><li><a class="ch" href="ch27-sister-tracks.html">27 The sister tracks: RAGTIME and Auto-Judge</a></li><li><a class="ch" href="ch28-enter-trec.html">28 How to enter TREC with a student team</a></li></ul><h2>Part 6 · Case studies: our submissions</h2><ul><li><span class="ch">29 RAG retrieval task</span></li><li><span class="ch">30 RAG generation: does more evidence help?</span></li><li><span class="ch">31 RAGTIME</span></li><li><span class="ch">32 Auto-Judge</span></li><li><span class="ch">33 Lessons and ten project ideas</span></li></ul><h2>Part 7 · Beyond text: video</h2><ul><li><span class="ch">34 From text RAG to video</span></li><li><span class="ch">35 The TREC Video QA track</span></li><li><span class="ch">36 Answering from video</span></li><li><span class="ch">37 Calibration and fusion of several models</span></li><li><span class="ch">38 Case study: our Video QA submission</span></li></ul><h2>Part 8 · Streams and advanced RAG</h2><ul><li><span class="ch">39 Retrieval over a news stream: Change Detection</span></li><li><span class="ch">40 Indexing and chunking in practice</span></li><li><span class="ch">41 Advanced RAG patterns</span></li><li><span class="ch">42 RAG in the real world</span></li></ul><h2>Back matter</h2><ul><li><a class="ch" href="glossary.html">A Glossary</a></li><li><span class="ch">B Run catalogue</span></li><li><span class="ch">C Resource library</span></li><li><span class="ch">D Labs</span></li><li><span class="ch">E For instructors</span></li></ul></details>
+<main>
+<article id="view-ch24-rag-track" data-nav="24 The TREC RAG track">
+<p class="eyebrow">Part 5 · TREC and the 2026 tracks · Chapter 24</p>
+<h1>The TREC RAG track</h1>
+<p class="lede"><strong>In one sentence:</strong> the TREC RAG track gives every team the same long questions and the same collection, asks for the relevant documents and for a cited answer of up to 1,024 words, and scores both in several ways.</p>
+
+<section>
+<h2>Why you should care</h2>
+<p>This is the track the book is built around. Parts 2 to 4 taught the steps one at a time. This chapter shows the rules those steps had to fit: what goes in, what must come out, and how it is marked. If you plan to enter next year, read it twice. Most lost points in a first entry come from a rule the team did not read, not from a weak model.</p>
+</section>
+
+<section>
+<h2>Words you need</h2>
+<dl class="terms">
+  <dt>Narrative</dt><dd>The track's kind of question: one complete, long information need, usually two or three sentences.</dd>
+  <dt>Retrieval task (R)</dt><dd>Return the documents that are relevant to the narrative.</dd>
+  <dt>RAG task</dt><dd>Return a written answer with citations to documents in the collection.</dd>
+  <dt>Answer object</dt><dd>One piece of the answer, usually a sentence, with its own list of citations.</dd>
+  <dt>Run tag</dt><dd>The short name of a run, such as <code>isu-cov2-ft</code>.</dd>
+  <dt>Priority</dt><dd>The order in which you ask the organizers to judge your runs. Human judging goes to the runs you rank first.</dd>
+  <dt>Battle</dt><dd>A comparison in which an assessor sees two anonymous answers to the same narrative and says which is better.</dd>
+  <dt>Median</dt><dd>The score of the middle run when all runs are sorted. Half of the field is above it.</dd>
+</dl>
+</section>
+
+<section>
+<h2><span class="tag core">Core</span> The idea</h2>
+<h3>Three years of the track</h3>
+<div class="tablewrap"><table class="compare">
+<thead><tr><th></th><th>2024</th><th>2025</th><th>2026</th></tr></thead>
+<tbody>
+<tr><th>Collection</th><td colspan="2">MS MARCO V2.1, cut into segments: about 11 million web documents in about 114 million pieces</td><td>ClimbMix-400b, whole documents (<a href="ch25-climbmix.html">Chapter 25</a>)</td></tr>
+<tr><th>Tasks</th><td colspan="2">Retrieval, generation from a given list of segments, and full RAG</td><td>Retrieval and RAG</td></tr>
+<tr><th>Questions</th><td>301 topics</td><td>105 narratives</td><td>119 narratives</td></tr>
+<tr><th>Answer limit</th><td>—</td><td>400 words</td><td>1,024 words</td></tr>
+<tr><th>Retrieval list</th><td>—</td><td>top 100 segments</td><td>“all and only” the relevant documents</td></tr>
+<tr><th>Rules written for</th><td colspan="2">people</td><td>people and coding agents (<a href="ch26-agents.html">Chapter 26</a>)</td></tr>
+</tbody></table></div>
+<p class="fine">Sources: the track's pages for each year and the 2026 guidelines skill, read 16 November 2026. A dash means we did not check that cell.</p>
+<p>The track was proposed in 2024 by researchers at the University of Waterloo and Microsoft. The 2026 organizers come from Waterloo, Microsoft Research, Databricks and Zipf AI.</p>
+<h3>The 2026 retrieval task</h3>
+<p>For each narrative, return a ranked list of documents. The guidelines ask for a list “containing all and only” the documents that the system predicts are relevant and useful as evidence. They add: do not add documents merely to reach a conventional cutoff such as 10, 100 or 1,000. So the length of the list is your decision, narrative by narrative (<a href="ch10-depth.html">Chapter 10</a>).</p>
+<p>The file is plain text with six columns per line: narrative ID, the fixed text <code>Q0</code>, document ID, rank, score, run tag. This six-column layout is the classic TREC run format and is decades old.</p>
+<h3>The 2026 RAG task</h3>
+<p>For each narrative, return one record with three parts:</p>
+<ul>
+  <li><strong>Metadata</strong>: team, narrative ID, the narrative text, run tag and a description of the run.</li>
+  <li><strong>References</strong>: the list of document IDs the answer uses.</li>
+  <li><strong>Answer</strong>: a list of answer objects. Each has a text and zero to three citations. A citation is a position in the reference list, or the document ID itself.</li>
+</ul>
+<p>The whole answer may have up to 1,024 words. The guidelines even give the counting rule: split each text on spaces and add up the pieces. A team may send up to 10 runs per task, each with a priority.</p>
+<h3>The year in dates</h3>
+<ol class="pipeline">
+  <li><span class="pn">1</span><strong>Guidelines</strong><span>The rules arrive.</span><em class="where">29 May</em></li>
+  <li><span class="pn">2</span><strong>Development narratives</strong><span>Practice questions.</span><em class="where">12 June</em></li>
+  <li><span class="pn">3</span><strong>Test narratives</strong><span>The 119 real questions.</span><em class="where">6 July</em></li>
+  <li><span class="pn">4</span><strong>Baselines</strong><span>The organizers' own runs, free to build on.</span><em class="where">week of 19 July</em></li>
+  <li><span class="pn">5</span><strong>Runs due</strong><span>Upload to Evalbase.</span><em class="where">8 August</em></li>
+  <li><span class="pn">6</span><strong>Scores</strong><span>Sent to each team by e-mail.</span><em class="where">2 and 3 November</em></li>
+</ol>
+<p>Count the weeks. From test narratives to deadline is less than five. Everything in Parts 2 and 3 of this book had to be built, tested and run inside that window.</p>
+<h3>How retrieval runs were scored</h3>
+<div class="tablewrap"><table>
+<thead><tr><th>View</th><th>Who judged</th><th>Measures</th><th>Narratives</th></tr></thead>
+<tbody>
+<tr><td>Documents</td><td>A language-model judge (UMBRELA). Grade 2 or higher counts as relevant.</td><td>Set precision and set recall over the whole list you sent, and the number of documents returned</td><td>82</td></tr>
+<tr><td>Nuggets</td><td>Nuggets written by NIST assessors, and again nuggets written by AutoNuggetizer</td><td>Gain and effort. A vital nugget weighs 1, an okay nugget 0.5. Repeating a nugget earns nothing.</td><td>25</td></tr>
+</tbody></table></div>
+<p>Set precision is the share of your list that is relevant. Set recall is the share of all relevant documents that your list holds. Because the list has no fixed length, a long list buys recall and pays in precision.</p>
+<h3>How RAG answers were scored</h3>
+<div class="tablewrap"><table>
+<thead><tr><th>View</th><th>How</th><th>Narratives</th></tr></thead>
+<tbody>
+<tr><td>Battles, batch 1</td><td>Assessors first wrote down what a good answer needs, then chose between pairs of answers. The choices were turned into one rating per run.</td><td>17</td></tr>
+<tr><td>Battles, batch 2</td><td>Assessors first pulled nuggets from documents, then used them to choose between pairs.</td><td>25</td></tr>
+<tr><td>Assessor nuggets</td><td>Vital strict and all strict (<a href="ch18-nuggets.html">Chapter 18</a>). A language model assigned the nuggets to the answers.</td><td>25</td></tr>
+<tr><td>Automatic nuggets</td><td>The same two measures with nuggets written by AutoNuggetizer.</td><td>25</td></tr>
+</tbody></table></div>
+<p class="fine">Source: the notes sent with the scores by the track organizers on 2 and 3 November 2026. Only each team's two highest-priority runs were put into the battles.</p>
+<p>The rating method for battles is the one used to rank chess players and chatbots: a run that wins against strong runs gets a high rating. <a href="ch17-judging-hard.html">Chapter 17</a> shows our runs under all four views.</p>
+</section>
+
+<section>
+<h2>Watch and read</h2>
+<ul class="links">
+  <li><span class="kind site">Site</span><a href="https://trec-rag.github.io/">TREC RAG track</a> The 2026 home page, with links to earlier years. <span class="checked">Checked 16 Nov 2026</span></li>
+  <li><span class="kind code">Code</span><a href="https://github.com/TREC-RAG/trec-rag-skills/tree/main/skills/trec-rag-2026-track-guidelines">The 2026 track guidelines</a> The rules for both tasks, in small files. Read <code>retrieval-task.md</code> and <code>rag-task.md</code> in full. <span class="checked">Checked 16 Nov 2026</span></li>
+  <li><span class="kind paper">Paper</span><a href="https://arxiv.org/abs/2406.16828">Ragnarök: A Reusable RAG Framework and Baselines for TREC 2024 Retrieval-Augmented Generation Track</a> Pradeep and others, 2024. The paper that proposed the track, with its first baselines. <span class="checked">Checked 16 Nov 2026</span></li>
+  <li><span class="kind paper">Paper</span><a href="https://arxiv.org/abs/2411.09607">Initial Nugget Evaluation Results for the TREC 2024 RAG Track with the AutoNuggetizer Framework</a> Pradeep and others, 2024. How the first year was scored. <span class="checked">Checked 16 Nov 2026</span></li>
+</ul>
+<p class="fine">We have not found a short video on the track that we would recommend. One will be added when we do.</p>
+</section>
+
+<section class="ours">
+<h2>How we did it at TREC 2026</h2>
+<p>We sent eight retrieval runs and six RAG runs. Seven of the retrieval runs went in on 7 August and one on 8 August.</p>
+<div class="tablewrap"><table class="num">
+<thead><tr><th></th><th>Ours</th><th>The field</th></tr></thead>
+<tbody>
+<tr><td>Retrieval runs scored</td><td>7 of 8</td><td>114 runs from 27 teams</td></tr>
+<tr><td>Best set recall</td><td>0.2927, with about 710 documents per narrative</td><td>median 0.1002, median list 100 documents</td></tr>
+<tr><td>RAG runs in the battles</td><td>2 of 6, the two we ranked first</td><td>two per team</td></tr>
+<tr><td>Assessor nuggets, vital strict, best run</td><td>0.6563</td><td>median 0.4879</td></tr>
+</tbody></table></div>
+<p class="fine">Source: scores e-mailed by the track organizers on 2 and 3 November 2026. The notes for the RAG task do not say how many runs or teams were scored.</p>
+<p>Three rules shaped what we did.</p>
+<ul>
+  <li><strong>Priority decides who gets human judging.</strong> Only our two first-ranked RAG runs entered the battles. The other four have nugget scores and no ratings. Decide your priorities as carefully as you build the runs.</li>
+  <li><strong>“All and only” is a real rule.</strong> Our long list won on recall and lost on precision. Every one of our lists was below the median on set precision (<a href="ch10-depth.html">Chapter 10</a>).</li>
+  <li><strong>One run was left unscored on purpose.</strong> We declared one retrieval run as a pool of candidates, not as a list for the table, and it was not scored.</li>
+</ul>
+</section>
+
+<section>
+<h2>What surprised us</h2>
+<div class="note warn">
+  <strong>Our own checker said “all pass”, and it was checking the wrong rules.</strong> Three weeks before the deadline, all eight runs passed our validator. Then we compared the validator with the guidelines. It tested rules we had assumed, not the rules as written, and it would have rejected files that were legal. A closer look at the answers found worse. Four narratives had answers with no references at all. In others the writer had invented citation markers, and in more than half of the answer objects a raw document ID sat in the middle of the sentence. All of it was repaired and regenerated before upload. A validator is only as good as its reading of the rules, so build it from the guidelines text, line by line, and then read some of the output with your own eyes.
+</div>
+<p>A second surprise came with the scores. The guidelines announced citation precision and recall. The score files we received hold battles and nuggets, and no citation scores yet. More scores are expected after the workshop.</p>
+</section>
+
+<section>
+<h2>Try it</h2>
+<ol class="steps">
+  <li>Open <code>rag-task.md</code> in the guidelines. Write a validator for one answer: the word limit with the track's own counting rule, at most three citations per answer object, and every citation pointing into the reference list.</li>
+  <li>Write one valid record by hand for a narrative of your own.</li>
+  <li>Break the record in three ways, one at a time. Does your validator catch each one?</li>
+  <li>You may send ten runs, and only two will get human judging. Which two would you choose, and why?</li>
+</ol>
+</section>
+
+<section>
+<h2>Check yourself</h2>
+<ol class="quiz">
+  <li>What are the two tasks of the 2026 track?</li>
+  <li>What does “all and only” ask of a retrieval list?</li>
+  <li>How long may an answer be, and how many citations may one answer object carry?</li>
+  <li>Why does the priority of a run matter?</li>
+  <li>Name two of the four views under which RAG answers were scored.</li>
+</ol>
+<details class="answers"><summary>Answers</summary>
+<ol>
+  <li>Retrieval and RAG. The task that generated from a given list was removed.</li>
+  <li>Return every document you predict is relevant and none that you predict is not. The system picks the length of each list.</li>
+  <li>Up to 1,024 words, and zero to three citations.</li>
+  <li>Human judging is limited. In 2026 only each team's two first-ranked runs entered the battles.</li>
+  <li>Any two of: battles after written rubrics, battles after nuggets, assessor nuggets, automatic nuggets.</li>
+</ol></details>
+</section>
+
+<section class="deeper">
+<h2><span class="tag deep">Go deeper</span></h2>
+<ul>
+  <li><strong>From pairs to ratings.</strong> The battles are turned into ratings with the Bradley–Terry model, fitted separately for each batch. Ratings from different batches are on different scales and must not be compared.</li>
+  <li><strong>A model judged the documents.</strong> Relevance at document level came from a language-model judge, not from people. The track's own earlier studies are the reason it trusts this for ranking systems. <a href="ch20-llm-judge.html">Chapter 20</a> gives the cautions.</li>
+  <li><strong>Gain and effort.</strong> The nugget measures for retrieval reward a list for the nuggets its documents contain and charge it for the reading it asks of the user. A second document that repeats a nugget adds effort and no gain.</li>
+  <li><strong>The track's research goals.</strong> The overview file in the guidelines lists them. One is to generate deep research questions automatically from a collection. Another is to align the test collection with the data language models are trained on.</li>
+  <li><strong>Where the narratives came from.</strong> We could not find a statement of how the 119 test narratives were written. Look for it in the track overview paper when it appears.</li>
+  <li><strong>Project idea.</strong> Take the organizers' BM25 baseline. For each narrative, choose a cut-off with one simple rule of your own. Can you beat “always 100” on both set precision and set recall?</li>
+</ul>
+</section>
+</article>
+<nav class="pager" aria-label="Previous and next page"><a href="ch23-trec.html">← 23 What TREC is</a><a href="ch25-climbmix.html">Next: 25 The new corpus: ClimbMix-400b</a></nav>
+<footer class="bookfoot"><span><strong>RAG from Scratch to TREC</strong> · Adisak Sukul, Iowa State University</span><span>Draft of 16 November 2026</span></footer>
+</main>
+</div>
+<script>if(window.matchMedia('(max-width:860px)').matches)document.getElementById('toc').open=false;</script>
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>28 Entering TREC with students · RAG from Scratch to TREC</title>
+<meta name="author" content="Adisak Sukul">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Source+Sans+3:wght@400;600;700&family=Zilla+Slab:wght@600;700&display=swap">
+<link rel="stylesheet" href="book.css">
+</head>
+<body>
+<div class="shell">
+<details class="toc" id="toc" open><summary>Contents</summary><a class="brand" href="index.html">RAG from Scratch to TREC<small>Adisak Sukul · Iowa State University</small></a><ul><li><a class="ch" href="contents.html">Full contents</a></li></ul><h2>Start here</h2><ul><li><a class="ch" href="index.html">0.1 How to use this book</a></li><li><a class="ch" href="big-picture.html">0.2 The big picture on one page</a></li><li><a class="ch" href="our-trec.html">0.3 Our TREC 2026 in five minutes</a></li><li><a class="ch" href="agent-first.html">0.4 The 2026 shift: agent-first</a></li></ul><h2>Part 1 · Foundations</h2><ul><li><a class="ch" href="ch1-why-lookup.html">1 Why language models need to look things up</a></li><li><a class="ch" href="ch2-what-is-rag.html">2 What RAG is</a></li><li><a class="ch" href="ch3-search.html">3 Search in one chapter</a></li><li><a class="ch" href="ch4-measures.html">4 How we know a system is good</a></li></ul><h2>Part 2 · Finding the evidence</h2><ul><li><a class="ch" href="ch5-bm25.html">5 Keyword search and BM25</a></li><li><a class="ch" href="ch6-dense.html">6 Dense retrieval and embeddings</a></li><li><a class="ch" href="ch7-queries.html">7 Asking the question better</a></li><li><a class="ch" href="ch8-fusion.html">8 Combining lists: fusion</a></li><li><a class="ch" href="ch9-rerank.html">9 Reranking</a></li><li><a class="ch" href="ch10-depth.html">10 How many documents?</a></li><li><a class="ch" href="ch11-languages.html">11 Many languages</a></li></ul><h2>Part 3 · Writing the answer</h2><ul><li><a class="ch" href="ch12-generate.html">12 From documents to an answer</a></li><li><a class="ch" href="ch13-evidence.html">13 How much evidence to show the model</a></li><li><a class="ch" href="ch14-budget.html">14 Fitting a word budget</a></li><li><a class="ch" href="ch15-generator.html">15 Choosing the generator</a></li><li><a class="ch" href="ch16-reports.html">16 Long reports</a></li></ul><h2>Part 4 · Judging RAG</h2><ul><li><a class="ch" href="ch17-judging-hard.html">17 Why judging RAG is hard</a></li><li><a class="ch" href="ch18-nuggets.html">18 Nuggets</a></li><li><a class="ch" href="ch19-support.html">19 Support and citation checking</a></li><li><a class="ch" href="ch20-llm-judge.html">20 LLM as a judge</a></li><li><a class="ch" href="ch21-judge-the-judge.html">21 Judging the judge</a></li><li><a class="ch" href="ch22-experiments.html">22 Experiments you can trust</a></li></ul><h2>Part 5 · TREC and the 2026 tracks</h2><ul><li><a class="ch" href="ch23-trec.html">23 What TREC is, and why it matters</a></li><li><a class="ch" href="ch24-rag-track.html">24 The TREC RAG track</a></li><li><a class="ch" href="ch25-climbmix.html">25 The new corpus: NVIDIA ClimbMix-400b</a></li><li><a class="ch" href="ch26-agents.html">26 Agents and skills in the 2026 track</a></li><li><a class="ch" href="ch27-sister-tracks.html">27 The sister tracks: RAGTIME and Auto-Judge</a></li><li><a class="ch" aria-current="page" href="ch28-enter-trec.html">28 How to enter TREC with a student team</a></li></ul><h2>Part 6 · Case studies: our submissions</h2><ul><li><span class="ch">29 RAG retrieval task</span></li><li><span class="ch">30 RAG generation: does more evidence help?</span></li><li><span class="ch">31 RAGTIME</span></li><li><span class="ch">32 Auto-Judge</span></li><li><span class="ch">33 Lessons and ten project ideas</span></li></ul><h2>Part 7 · Beyond text: video</h2><ul><li><span class="ch">34 From text RAG to video</span></li><li><span class="ch">35 The TREC Video QA track</span></li><li><span class="ch">36 Answering from video</span></li><li><span class="ch">37 Calibration and fusion of several models</span></li><li><span class="ch">38 Case study: our Video QA submission</span></li></ul><h2>Part 8 · Streams and advanced RAG</h2><ul><li><span class="ch">39 Retrieval over a news stream: Change Detection</span></li><li><span class="ch">40 Indexing and chunking in practice</span></li><li><span class="ch">41 Advanced RAG patterns</span></li><li><span class="ch">42 RAG in the real world</span></li></ul><h2>Back matter</h2><ul><li><a class="ch" href="glossary.html">A Glossary</a></li><li><span class="ch">B Run catalogue</span></li><li><span class="ch">C Resource library</span></li><li><span class="ch">D Labs</span></li><li><span class="ch">E For instructors</span></li></ul></details>
+<main>
+<article id="view-ch28-enter-trec" data-nav="28 Entering TREC with students">
+<p class="eyebrow">Part 5 · TREC and the 2026 tracks · Chapter 28</p>
+<h1>How to enter TREC with a student team</h1>
+<p class="lede"><strong>In one sentence:</strong> entering TREC means registering in spring, building in early summer, uploading valid runs before a fixed deadline, writing a paper in autumn and giving a talk in November, and most of what goes wrong is paperwork and logging, not modelling.</p>
+
+<section>
+<h2>Why you should care</h2>
+<p>TREC is open to anyone, and it costs almost nothing to enter. A class project can become a scored run in the same table as large research labs (<a href="ch23-trec.html">Chapter 23</a>). The barrier is not skill. It is knowing the steps, the dates and the small traps. This chapter is the checklist we wish we had been given, written from one team's year.</p>
+</section>
+
+<section>
+<h2>Words you need</h2>
+<dl class="terms">
+  <dt>Evalbase</dt><dd>NIST's website for registering a team, uploading runs and uploading papers.</dd>
+  <dt>Dissemination agreement</dt><dd>A form an organization signs once a year. It sets the rules for how TREC results may be used and shared.</dd>
+  <dt>Run cap</dt><dd>The largest number of runs a team may send to one task.</dd>
+  <dt>Run description</dt><dd>The form you fill in with each upload: what the system does, which data and models it used, and its priority.</dd>
+  <dt>Validator</dt><dd>A program that checks a run file against the format rules.</dd>
+  <dt>Manifest</dt><dd>Your own list of every run you sent, with file name, date, and a fingerprint of the file.</dd>
+  <dt>Notebook paper</dt><dd>The paper each team writes before the workshop.</dd>
+  <dt>Checksum</dt><dd>A short fingerprint computed from a file. If the file changes, the fingerprint changes.</dd>
+</dl>
+</section>
+
+<section>
+<h2><span class="tag core">Core</span> The idea</h2>
+<h3>The year on one page</h3>
+<ol class="pipeline">
+  <li><span class="pn">1</span><strong>Register</strong><span>Create the team on Evalbase, choose tracks, and have your organization sign the agreement. Do it early. Nothing can be uploaded before it.</span><em class="where">spring</em></li>
+  <li><span class="pn">2</span><strong>Read</strong><span>Read each track's guidelines to the end. Join the track's mailing list or chat.</span><em class="where">May, June</em></li>
+  <li><span class="pn">3</span><strong>Build on development data</strong><span>Get one complete, valid run early, even a weak one. Then improve it.</span><em class="where">June, July</em></li>
+  <li><span class="pn">4</span><strong>Run on the test topics</strong><span>Freeze the system. Run. Validate. Upload with a description and a priority.</span><em class="where">July to October</em></li>
+  <li><span class="pn">5</span><strong>Wait</strong><span>Scores arrive by e-mail, track by track.</span><em class="where">autumn</em></li>
+  <li><span class="pn">6</span><strong>Write</strong><span>Upload the notebook paper and sign the copyright form.</span><em class="where">early November</em></li>
+  <li><span class="pn">7</span><strong>Present</strong><span>Give a talk or a poster at the workshop, in person or online.</span><em class="where">mid November</em></li>
+</ol>
+<h3>Three rules to know before you start</h3>
+<ul>
+  <li><strong>A submitted run cannot be withdrawn.</strong> Check before you upload, not after.</li>
+  <li><strong>Every team that submits must write a paper.</strong> Plan the time for it.</li>
+  <li><strong>Before the workshop, share only your own results.</strong> A preprint may contain the scores of your own system and nobody else's. Some tracks ask for more care still, and mark early scores as preliminary.</li>
+</ul>
+<h3>Every track has its own small rules</h3>
+<div class="tablewrap"><table>
+<thead><tr><th>Track, 2026</th><th>Runs allowed</th><th>Something easy to miss</th></tr></thead>
+<tbody>
+<tr><td>RAG</td><td>10 per task</td><td>Only the two runs you rank first get human judging</td></tr>
+<tr><td>RAGTIME</td><td>No limit</td><td>Only the first three per task are sure to be scored</td></tr>
+<tr><td>Auto-Judge</td><td>Ten named runs</td><td>The judge program must be handed in as well</td></tr>
+<tr><td>Video QA</td><td>5 per task</td><td>The form asks for the base model, the training data and the compute used</td></tr>
+<tr><td>Change Detection</td><td>Raised during the upload window</td><td>Rules can change while the window is open, so read the list mail</td></tr>
+</tbody></table></div>
+<p class="fine">As we met them in 2026. Check each track's current guidelines.</p>
+<h3>What to log, from the first day</h3>
+<ul>
+  <li>For every run: the file, its checksum, the date, and the exact text you typed into the description form.</li>
+  <li>The prompts and instructions, the model names with versions, and every setting.</li>
+  <li>Every single verdict of every judge you run, not only the averages.</li>
+  <li>The costs: money, tokens and hours.</li>
+  <li>A dated note of what you decided and what you expected, written before the scores (<a href="ch22-experiments.html">Chapter 22</a>).</li>
+</ul>
+<h3>What it costs</h3>
+<p>Entering is free. The data is free for participants. What you pay for is model calls and computing time, and your team decides how much. A team with open models and a university computer can enter for almost nothing.</p>
+</section>
+
+<section>
+<h2>Watch and read</h2>
+<ul class="links">
+  <li><span class="kind site">Site</span><a href="https://trec.nist.gov/">TREC home page</a> The call for participation appears here early in the year. <span class="checked">Checked 14 Nov 2026</span></li>
+  <li><span class="kind site">Site</span><a href="https://ir.nist.gov/evalbase/conf/trec-2026">Evalbase, TREC 2026</a> Where teams register and upload. <span class="checked">Checked 14 Nov 2026</span></li>
+  <li><span class="kind site">Site</span><a href="https://trec-rag.github.io/">TREC RAG track</a> A good first track: clear guidelines, released baselines and a search service. <span class="checked">Checked 16 Nov 2026</span></li>
+  <li><span class="kind site">Site</span><a href="https://www.cos.io/initiatives/prereg">Preregistration</a> Center for Open Science. How to write the plan before the results. <span class="checked">Read 16 Nov 2026</span></li>
+</ul>
+</section>
+
+<section class="ours">
+<h2>How we did it at TREC 2026</h2>
+<h3>Our calendar</h3>
+<div class="tablewrap"><table>
+<thead><tr><th>When</th><th>What happened</th></tr></thead>
+<tbody>
+<tr><td>23 March</td><td>RAGTIME guidelines, version 1</td></tr>
+<tr><td>18 May</td><td>Welcome message from NIST to registered teams</td></tr>
+<tr><td>29 May, 12 June, 6 July</td><td>RAG guidelines, development narratives, test narratives</td></tr>
+<tr><td>29 and 31 July</td><td>Change Detection: 7 runs</td></tr>
+<tr><td>7 and 8 August</td><td>RAG: 14 runs</td></tr>
+<tr><td>11 and 12 August</td><td>RAGTIME: 12 runs in about 33 hours, from topics we had saved on 10 August</td></tr>
+<tr><td>17 to 20 August</td><td>Video QA, answer generation: 5 runs, two of them late with permission</td></tr>
+<tr><td>26 August</td><td>Auto-Judge test data released</td></tr>
+<tr><td>11 to 18 September</td><td>Video QA, multiple choice: 5 runs</td></tr>
+<tr><td>28 September</td><td>Video QA results</td></tr>
+<tr><td>14 October</td><td>Auto-Judge deadline, moved from 30 September. Change Detection results the same day.</td></tr>
+<tr><td>2 to 4 November</td><td>RAG scores, then RAGTIME preliminary scores</td></tr>
+<tr><td>9 to 11 November</td><td>Notebook papers due</td></tr>
+<tr><td>13 November</td><td>Auto-Judge results</td></tr>
+<tr><td>16 to 18 November</td><td>Workshop: five talks, all online</td></tr>
+</tbody></table></div>
+<p>Look at the first half of August: 26 runs for two tracks in six days. Five tracks was too many for a small team. The dates of different tracks are set independently, and they collide.</p>
+<h3>What it cost us</h3>
+<div class="tablewrap"><table class="num">
+<thead><tr><th>Item</th><th>Recorded cost</th></tr></thead>
+<tbody>
+<tr><td>RAG development, paid model calls in total</td><td>about $23</td></tr>
+<tr><td>One round of a judge panel, about 536 calls</td><td>$6.16</td></tr>
+<tr><td>GPU time for reranking</td><td>free, on the university's cluster</td></tr>
+<tr><td>Workshop registration, online speaker</td><td>$60</td></tr>
+</tbody></table></div>
+<p class="fine">From our own notes. We did not record a full cost for every track, which is itself a lesson. Some runs used model subscriptions, which have limits by time and not by dollar.</p>
+</section>
+
+<section>
+<h2>What surprised us</h2>
+<div class="note warn">
+  <strong>Almost every problem was a process problem.</strong> Here is the list, so that you can skip it.
+  <ul>
+    <li><strong>New data, old runs.</strong> The Video QA organizers released a corrected data file after we had uploaded five runs. With the new file, about half of each old run would have scored zero, with no error message. The notice came by e-mail, and the runs were redone. Read every message from the organizers on the day it arrives.</li>
+    <li><strong>The wrong file had the right name.</strong> The file named exactly as the guidelines suggest was, in our folder, the weakest baseline. A manifest with checksums is what stops you from uploading it.</li>
+    <li><strong>A validator that warns is not a validator that stops.</strong> The RAGTIME checker only warned about reports over the length limit unless a strict option was set. We had not set it.</li>
+    <li><strong>What you type into a form is data.</strong> One run's description existed only in the text typed into the upload form, and that run was missing from our own list. Priorities typed as free text were later out of date. Save the form text with the run.</li>
+    <li><strong>We did not keep what we could not rebuild.</strong> Judge verdicts, the instructions given to agents, and the exact model name in some outputs were not saved (<a href="ch19-support.html">Chapter 19</a>).</li>
+    <li><strong>Papers have their own route.</strong> One paper was first sent by e-mail and had to be uploaded to Evalbase instead. Another went in one day late. The upload page gave no receipt, so we recorded the file's checksum and the time ourselves.</li>
+    <li><strong>Websites have quirks.</strong> One edit page returned an error, and one delete button did nothing. Leave a day for the upload itself.</li>
+  </ul>
+</div>
+<p>And one thing went better than expected. Organizers answer. Every time we wrote with a clear question, about a late run, a data rule or a talk slot, a person replied.</p>
+</section>
+
+<section>
+<h2>Try it</h2>
+<ol class="steps">
+  <li>Choose one track from this year's TREC call. Write its timeline on one page: guidelines, test data, deadline, paper, workshop.</li>
+  <li>List what your team would need for it: data, computing, models, people, hours per week.</li>
+  <li>Write a manifest template: one line per run, with the columns you would need to rebuild that run a year later.</li>
+  <li>Write the five-line plan from <a href="ch22-experiments.html">Chapter 22</a> for the two runs you would send first.</li>
+  <li>Find the track's validator. Run it on a file you break on purpose. Does it stop, or only warn?</li>
+</ol>
+</section>
+
+<section>
+<h2>Check yourself</h2>
+<ol class="quiz">
+  <li>What must be signed before a team can upload anything?</li>
+  <li>Name two obligations a team accepts when it submits a run.</li>
+  <li>Why should the first goal be one complete, valid run, even a weak one?</li>
+  <li>Name four things to save for every run.</li>
+  <li>Why is it risky to rely on a validator's warnings?</li>
+</ol>
+<details class="answers"><summary>Answers</summary>
+<ol>
+  <li>The organization's dissemination agreement, once per year. Some tracks need a separate data agreement too.</li>
+  <li>The run cannot be withdrawn, and the team must write a paper. Also: only its own results may be shared before the workshop.</li>
+  <li>It proves the whole path works, from data to upload, while there is still time. Format and process problems appear early and not on the last night.</li>
+  <li>Any four of: the file, its checksum, the date, the description text, the prompts, the model names and versions, the settings, the judge verdicts, the cost.</li>
+  <li>A warning does not stop the upload, and nobody reads a long log at midnight. Make every rule a hard failure.</li>
+</ol></details>
+</section>
+
+<section class="deeper">
+<h2><span class="tag deep">Go deeper</span></h2>
+<ul>
+  <li><strong>How many tracks?</strong> For a first year, one track with two tasks is plenty. Choose one with released baselines and development data, so that the first valid run takes days and not weeks.</li>
+  <li><strong>Roles in a team.</strong> Give one person the rules and the calendar, one the validator and the manifest, and keep one away from the test data until upload. Rotate the roles each year.</li>
+  <li><strong>The paper.</strong> Write the system description while you build, not in November. The notebook paper is not peer reviewed, and it is where your failed ideas can be recorded honestly.</li>
+  <li><strong>Subscriptions and limits.</strong> Model subscriptions and free tiers are limited by time windows. A run that needs 100 hours of them cannot be started three days before a deadline.</li>
+  <li><strong>Data rules as part of the method.</strong> Write down, per track, what may be looked at and by whom, including your coding agents (<a href="ch26-agents.html">Chapter 26</a>).</li>
+  <li><strong>Project idea.</strong> Run a small TREC inside your class: one collection, twenty topics, a deadline, a validator, blind judging by another group, and a ten-minute talk from each team.</li>
+</ul>
+</section>
+</article>
+<nav class="pager" aria-label="Previous and next page"><a href="ch27-sister-tracks.html">← 27 The sister tracks</a><a href="glossary.html">Next: A Glossary</a></nav>
+<footer class="bookfoot"><span><strong>RAG from Scratch to TREC</strong> · Adisak Sukul, Iowa State University</span><span>Draft of 16 November 2026</span></footer>
+</main>
+</div>
+<script>if(window.matchMedia('(max-width:860px)').matches)document.getElementById('toc').open=false;</script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>20 LLM as a judge · RAG from Scratch to TREC</title>
+<meta name="author" content="Adisak Sukul">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Source+Sans+3:wght@400;600;700&family=Zilla+Slab:wght@600;700&display=swap">
+<link rel="stylesheet" href="book.css">
+</head>
+<body>
+<div class="shell">
+<details class="toc" id="toc" open><summary>Contents</summary><a class="brand" href="index.html">RAG from Scratch to TREC<small>Adisak Sukul · Iowa State University</small></a><ul><li><a class="ch" href="contents.html">Full contents</a></li></ul><h2>Start here</h2><ul><li><a class="ch" href="index.html">0.1 How to use this book</a></li><li><a class="ch" href="big-picture.html">0.2 The big picture on one page</a></li><li><a class="ch" href="our-trec.html">0.3 Our TREC 2026 in five minutes</a></li><li><a class="ch" href="agent-first.html">0.4 The 2026 shift: agent-first</a></li></ul><h2>Part 1 · Foundations</h2><ul><li><a class="ch" href="ch1-why-lookup.html">1 Why language models need to look things up</a></li><li><a class="ch" href="ch2-what-is-rag.html">2 What RAG is</a></li><li><a class="ch" href="ch3-search.html">3 Search in one chapter</a></li><li><a class="ch" href="ch4-measures.html">4 How we know a system is good</a></li></ul><h2>Part 2 · Finding the evidence</h2><ul><li><a class="ch" href="ch5-bm25.html">5 Keyword search and BM25</a></li><li><a class="ch" href="ch6-dense.html">6 Dense retrieval and embeddings</a></li><li><a class="ch" href="ch7-queries.html">7 Asking the question better</a></li><li><a class="ch" href="ch8-fusion.html">8 Combining lists: fusion</a></li><li><a class="ch" href="ch9-rerank.html">9 Reranking</a></li><li><a class="ch" href="ch10-depth.html">10 How many documents?</a></li><li><a class="ch" href="ch11-languages.html">11 Many languages</a></li></ul><h2>Part 3 · Writing the answer</h2><ul><li><a class="ch" href="ch12-generate.html">12 From documents to an answer</a></li><li><a class="ch" href="ch13-evidence.html">13 How much evidence to show the model</a></li><li><a class="ch" href="ch14-budget.html">14 Fitting a word budget</a></li><li><a class="ch" href="ch15-generator.html">15 Choosing the generator</a></li><li><a class="ch" href="ch16-reports.html">16 Long reports</a></li></ul><h2>Part 4 · Judging RAG</h2><ul><li><a class="ch" href="ch17-judging-hard.html">17 Why judging RAG is hard</a></li><li><a class="ch" href="ch18-nuggets.html">18 Nuggets</a></li><li><a class="ch" href="ch19-support.html">19 Support and citation checking</a></li><li><a class="ch" aria-current="page" href="ch20-llm-judge.html">20 LLM as a judge</a></li><li><a class="ch" href="ch21-judge-the-judge.html">21 Judging the judge</a></li><li><a class="ch" href="ch22-experiments.html">22 Experiments you can trust</a></li></ul><h2>Part 5 · TREC and the 2026 tracks</h2><ul><li><a class="ch" href="ch23-trec.html">23 What TREC is, and why it matters</a></li><li><a class="ch" href="ch24-rag-track.html">24 The TREC RAG track</a></li><li><a class="ch" href="ch25-climbmix.html">25 The new corpus: NVIDIA ClimbMix-400b</a></li><li><a class="ch" href="ch26-agents.html">26 Agents and skills in the 2026 track</a></li><li><a class="ch" href="ch27-sister-tracks.html">27 The sister tracks: RAGTIME and Auto-Judge</a></li><li><a class="ch" href="ch28-enter-trec.html">28 How to enter TREC with a student team</a></li></ul><h2>Part 6 · Case studies: our submissions</h2><ul><li><span class="ch">29 RAG retrieval task</span></li><li><span class="ch">30 RAG generation: does more evidence help?</span></li><li><span class="ch">31 RAGTIME</span></li><li><span class="ch">32 Auto-Judge</span></li><li><span class="ch">33 Lessons and ten project ideas</span></li></ul><h2>Part 7 · Beyond text: video</h2><ul><li><span class="ch">34 From text RAG to video</span></li><li><span class="ch">35 The TREC Video QA track</span></li><li><span class="ch">36 Answering from video</span></li><li><span class="ch">37 Calibration and fusion of several models</span></li><li><span class="ch">38 Case study: our Video QA submission</span></li></ul><h2>Part 8 · Streams and advanced RAG</h2><ul><li><span class="ch">39 Retrieval over a news stream: Change Detection</span></li><li><span class="ch">40 Indexing and chunking in practice</span></li><li><span class="ch">41 Advanced RAG patterns</span></li><li><span class="ch">42 RAG in the real world</span></li></ul><h2>Back matter</h2><ul><li><a class="ch" href="glossary.html">A Glossary</a></li><li><span class="ch">B Run catalogue</span></li><li><span class="ch">C Resource library</span></li><li><span class="ch">D Labs</span></li><li><span class="ch">E For instructors</span></li></ul></details>
+<main>
+<article id="view-ch20-llm-judge" data-nav="20 LLM as a judge">
+<p class="eyebrow">Part 4 · Judging RAG · Chapter 20</p>
+<h1>LLM as a judge</h1>
+<p class="lede"><strong>In one sentence:</strong> a language model can do the reading that judging needs, at a tiny share of the cost of a person, and it brings habits of its own that you must design around.</p>
+
+<section>
+<h2>Why you should care</h2>
+<p>The last two chapters each ended with a reading job: does this answer contain this nugget, does this document support this sentence. A track has hundreds of thousands of such questions. Today most of them go to a language model. You will use one as a judge in almost any RAG project, because the other choice is to judge very little. The skill is to use it in a way that gives stable, honest numbers.</p>
+</section>
+
+<section>
+<h2>Words you need</h2>
+<dl class="terms">
+  <dt>LLM judge</dt><dd>A language model asked to grade or compare system output.</dd>
+  <dt>Pointwise judging</dt><dd>The judge sees one answer and gives it a grade.</dd>
+  <dt>Pairwise judging</dt><dd>The judge sees two answers and picks the better one.</dd>
+  <dt>Rubric</dt><dd>The written rules the judge must follow, with the meaning of each grade.</dd>
+  <dt>Position bias</dt><dd>A judge's habit of favouring the answer shown first, or the one shown second.</dd>
+  <dt>Self-preference</dt><dd>A judge's habit of favouring text written by itself or by a model from the same maker.</dd>
+  <dt>Panel</dt><dd>Several judges whose verdicts are combined.</dd>
+  <dt>Model family</dt><dd>The models made by one developer.</dd>
+</dl>
+</section>
+
+<section>
+<h2><span class="tag core">Core</span> The idea</h2>
+<h3>Three ways to ask</h3>
+<div class="tablewrap"><table>
+<thead><tr><th>Way</th><th>The judge is asked</th><th>Good for</th><th>Weak point</th></tr></thead>
+<tbody>
+<tr><td>Against a list</td><td>Does this answer contain this nugget? Does this document support this sentence?</td><td>Narrow questions with a clear yes or no</td><td>Only as good as the list</td></tr>
+<tr><td>Pointwise with a rubric</td><td>Grade this answer from 0 to 3 by these rules</td><td>A quick overall view</td><td>Grades drift, and many answers get the same grade</td></tr>
+<tr><td>Pairwise</td><td>Which of these two answers is better?</td><td>Telling close systems apart</td><td>Needs many pairs, and gives a winner but no reason</td></tr>
+</tbody></table></div>
+<p>The narrower the question, the more reliable the judge. “Is this a good answer?” invites the judge's taste. “Does the answer state that the bridge closed in March?” leaves little room for it.</p>
+<h3>Habits to design around</h3>
+<ul>
+  <li><strong>Position.</strong> In a pair, many judges lean toward one slot. Judge every pair twice with the answers swapped, and count a win only when the same answer wins both times.</li>
+  <li><strong>Length.</strong> Longer answers tend to win, even when the extra text adds nothing. Control length, or report it.</li>
+  <li><strong>Style.</strong> Confident, well-formatted text earns higher grades than plain text with the same facts.</li>
+  <li><strong>Self-preference.</strong> A judge may favour answers from its own family. Studies have found that models can recognize their own writing and tend to rate it higher.</li>
+  <li><strong>Wording.</strong> A small change to the judge's prompt can move the grades. Fix the prompt before you look at results, and keep it.</li>
+</ul>
+<h3>A checklist for using a judge</h3>
+<ol class="steps">
+  <li>Ask narrow questions. Break one broad grade into several small checks.</li>
+  <li>Hide what the judge does not need: the system's name, its citation marks if you judge content.</li>
+  <li>Swap the order in every pair.</li>
+  <li>Set the temperature to zero and use a fixed reply format, so a program can read the verdicts.</li>
+  <li>Decide in advance what happens when a reply is broken.</li>
+  <li>Save every verdict with the prompt that produced it.</li>
+  <li>Compare systems under one judge. Do not quote a judge's grades as absolute levels.</li>
+</ol>
+<h3>More than one judge</h3>
+<p>A panel of judges from different makers evens out the habits of each. For it to help, the members must differ. Two models from the same maker tend to share training data and style, so they count for less than two models from two makers. One simple rule is to give each family one vote, however many of its models sit on the panel.</p>
+</section>
+
+<section>
+<h2>Watch and read</h2>
+<ul class="links">
+  <li><span class="kind video">Video</span><a href="https://www.youtube.com/watch?v=trfUBIDeI1Y">LLM as a Judge: Scaling AI Evaluation Strategies</a> IBM Technology, 6 minutes. A short introduction to grading one answer and comparing two. <span class="checked">Page checked 16 Nov 2026</span></li>
+  <li><span class="kind paper">Paper</span><a href="https://arxiv.org/abs/2306.05685">Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena</a> Zheng and others, 2023. Strong model judges agreed with people about as often as people agree with each other, and the paper names the position and length habits. <span class="checked">Checked 16 Nov 2026</span></li>
+  <li><span class="kind paper">Paper</span><a href="https://arxiv.org/abs/2309.10621">Large language models can accurately predict searcher preferences</a> Thomas and others, 2023. The study from Bing that started the wide use of models for relevance labels. <span class="checked">Checked 16 Nov 2026</span></li>
+  <li><span class="kind paper">Paper</span><a href="https://arxiv.org/abs/2404.13076">LLM Evaluators Recognize and Favor Their Own Generations</a> Panickssery, Bowman and Feng, 2024. Evidence for self-preference. <span class="checked">Checked 16 Nov 2026</span></li>
+</ul>
+</section>
+
+<section class="ours">
+<h2>How we did it at TREC 2026</h2>
+<h3>The track's own judge</h3>
+<p>In the RAG track, a language model decided which rubric items and nuggets each answer supports. The organizers' notes name the model and its setting. So a model judge stands between every team and its nugget score, which is one reason the Auto-Judge track exists (<a href="ch21-judge-the-judge.html">Chapter 21</a>).</p>
+<h3>Our duels during development</h3>
+<p>For the RAGTIME reports we compared pairs of runs with a model judge. Each pair of reports was judged twice with the order swapped, and a win counted only when the same report won both times. On 24 topics, selected evidence beat the plain top 18 on 7 topics and lost on 1, with 16 ties (<a href="ch16-reports.html">Chapter 16</a>). The many ties are the swap rule at work: a judge that changes its mind when the order changes has not really chosen.</p>
+<h3>Our judge for the Auto-Judge track</h3>
+<p>In the Auto-Judge track the judge itself is the submission. Ours follows the checklist above.</p>
+<ol class="pipeline">
+  <li><span class="pn">1</span><strong>Write the list</strong><span>Three open-weight models from three makers each draft nuggets from the topic text. One model merges the drafts. The merge may not add an item that is in no draft.</span><em class="where">Ch 18</em></li>
+  <li><span class="pn">2</span><strong>Grade content</strong><span>Each panel member grades every answer against the merged list: 2, 1 or 0 per nugget. The judge sees the sentences without their citation marks.</span><em class="where">Ch 18</em></li>
+  <li><span class="pn">3</span><strong>Grade support</strong><span>A sample of cited sentences is checked against the first cited document: full, partial or no.</span><em class="where">Ch 19</em></li>
+  <li><span class="pn">4</span><strong>Add checks with no model</strong><span>Word overlap and citation validity, computed by a program.</span><em class="where">Ch 19</em></li>
+  <li><span class="pn">5</span><strong>Combine</strong><span>Each family's signals are averaged first. Then the families are averaged. The model-free checks count as one family.</span><em class="where">this chapter</em></li>
+</ol>
+<p>The panel was gpt-oss-120b, Qwen3-235B and Llama-3.3-70B. A family means the developer, fixed in a table beforehand, so two Qwen models count once. A health gate drops a member whose signal fails or comes out the same for every answer. One of our ten runs added pairwise battles, judged in both orders, on top of the panel.</p>
+<p class="fine">How well this judge did is in the Auto-Judge results, which arrived on 13 November. They go into this book once the organizers agree.</p>
+</section>
+
+<section>
+<h2>What surprised us</h2>
+<div class="note warn">
+  <strong>The judge from one maker chose the other maker's reports, 12 to 0, and we still cannot call it fair.</strong> In one development duel, a gpt-5.2 judge compared reports written by a GPT model with reports written by Claude, on 24 topics. With the order swapped, the Claude reports won 12 topics, the GPT reports none, and 12 were ties. That is the opposite of self-preference. But the judge had been asked to count distinct responsive facts, and the Claude reports were about 20% longer. We never measured how much length alone moves this judge. So the result may show better reports, or longer ones. Swapping the order controlled one habit and left another one open.
+</div>
+</section>
+
+<section>
+<h2>Try it</h2>
+<ol class="steps">
+  <li>Take 10 questions and two systems. Write a pairwise judge prompt that asks which answer covers more of the facts a reader needs.</li>
+  <li>Judge every pair twice with the order swapped. Count how often the verdict flips.</li>
+  <li>Pad the losing answers with two empty sentences each and judge again. Does anything change?</li>
+  <li>Run the same pairs with a judge from another maker. On how many pairs do the two judges agree?</li>
+</ol>
+</section>
+
+<section>
+<h2>Check yourself</h2>
+<ol class="quiz">
+  <li>What are the three ways to ask a model to judge?</li>
+  <li>Why is each pair judged twice with the order swapped?</li>
+  <li>What is self-preference, and how does a panel reduce it?</li>
+  <li>Why does our panel give one vote per model family and not one per model?</li>
+  <li>In our 12 to 0 duel, which habit was controlled and which was not?</li>
+</ol>
+<details class="answers"><summary>Answers</summary>
+<ol>
+  <li>Against a list of nuggets or documents, pointwise with a rubric, and pairwise.</li>
+  <li>To cancel position bias. A win counts only if it does not depend on the order.</li>
+  <li>A judge favouring text from its own family. A panel mixes families, so no single family's taste decides.</li>
+  <li>Models from one maker share habits, so two of them are less than two independent opinions.</li>
+  <li>Position was controlled by the swap. Length was not.</li>
+</ol></details>
+</section>
+
+<section class="deeper">
+<h2><span class="tag deep">Go deeper</span></h2>
+<ul>
+  <li><strong>From pairs to a ranking.</strong> A Bradley–Terry model turns pairwise wins into one rating per system. With few pairs per system, add a small penalty that keeps ratings from running to extremes.</li>
+  <li><strong>Reasoning before the verdict.</strong> Asking the judge to explain first and decide second often helps on hard cases. It also costs tokens, and a reply cut off by a token limit can be read as a wrong verdict. Check for empty replies.</li>
+  <li><strong>Open-weight judges.</strong> A judge whose weights you can download gives the same verdicts next year. A hosted model may be replaced without notice. For a reusable evaluation this matters more than a small gain in accuracy.</li>
+  <li><strong>Does a panel beat its best member?</strong> Not always. A panel is safer when you cannot know in advance which member is best. On our pilot data we could not show that the panel beat its best single member.</li>
+  <li><strong>Seen it before.</strong> If the test answers or the reference nuggets are public, a judge model may have met them in training. Prefer fresh data for evaluating a judge.</li>
+  <li><strong>Project idea.</strong> Build a three-family panel for nugget assignment. Measure how often each member disagrees with the majority, by topic.</li>
+</ul>
+</section>
+</article>
+<nav class="pager" aria-label="Previous and next page"><a href="ch19-support.html">← 19 Support and citations</a><a href="ch21-judge-the-judge.html">Next: 21 Judging the judge</a></nav>
+<footer class="bookfoot"><span><strong>RAG from Scratch to TREC</strong> · Adisak Sukul, Iowa State University</span><span>Draft of 16 November 2026</span></footer>
+</main>
+</div>
+<script>if(window.matchMedia('(max-width:860px)').matches)document.getElementById('toc').open=false;</script>
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>25 The new corpus: ClimbMix-400b · RAG from Scratch to TREC</title>
+<meta name="author" content="Adisak Sukul">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Source+Sans+3:wght@400;600;700&family=Zilla+Slab:wght@600;700&display=swap">
+<link rel="stylesheet" href="book.css">
+</head>
+<body>
+<div class="shell">
+<details class="toc" id="toc" open><summary>Contents</summary><a class="brand" href="index.html">RAG from Scratch to TREC<small>Adisak Sukul · Iowa State University</small></a><ul><li><a class="ch" href="contents.html">Full contents</a></li></ul><h2>Start here</h2><ul><li><a class="ch" href="index.html">0.1 How to use this book</a></li><li><a class="ch" href="big-picture.html">0.2 The big picture on one page</a></li><li><a class="ch" href="our-trec.html">0.3 Our TREC 2026 in five minutes</a></li><li><a class="ch" href="agent-first.html">0.4 The 2026 shift: agent-first</a></li></ul><h2>Part 1 · Foundations</h2><ul><li><a class="ch" href="ch1-why-lookup.html">1 Why language models need to look things up</a></li><li><a class="ch" href="ch2-what-is-rag.html">2 What RAG is</a></li><li><a class="ch" href="ch3-search.html">3 Search in one chapter</a></li><li><a class="ch" href="ch4-measures.html">4 How we know a system is good</a></li></ul><h2>Part 2 · Finding the evidence</h2><ul><li><a class="ch" href="ch5-bm25.html">5 Keyword search and BM25</a></li><li><a class="ch" href="ch6-dense.html">6 Dense retrieval and embeddings</a></li><li><a class="ch" href="ch7-queries.html">7 Asking the question better</a></li><li><a class="ch" href="ch8-fusion.html">8 Combining lists: fusion</a></li><li><a class="ch" href="ch9-rerank.html">9 Reranking</a></li><li><a class="ch" href="ch10-depth.html">10 How many documents?</a></li><li><a class="ch" href="ch11-languages.html">11 Many languages</a></li></ul><h2>Part 3 · Writing the answer</h2><ul><li><a class="ch" href="ch12-generate.html">12 From documents to an answer</a></li><li><a class="ch" href="ch13-evidence.html">13 How much evidence to show the model</a></li><li><a class="ch" href="ch14-budget.html">14 Fitting a word budget</a></li><li><a class="ch" href="ch15-generator.html">15 Choosing the generator</a></li><li><a class="ch" href="ch16-reports.html">16 Long reports</a></li></ul><h2>Part 4 · Judging RAG</h2><ul><li><a class="ch" href="ch17-judging-hard.html">17 Why judging RAG is hard</a></li><li><a class="ch" href="ch18-nuggets.html">18 Nuggets</a></li><li><a class="ch" href="ch19-support.html">19 Support and citation checking</a></li><li><a class="ch" href="ch20-llm-judge.html">20 LLM as a judge</a></li><li><a class="ch" href="ch21-judge-the-judge.html">21 Judging the judge</a></li><li><a class="ch" href="ch22-experiments.html">22 Experiments you can trust</a></li></ul><h2>Part 5 · TREC and the 2026 tracks</h2><ul><li><a class="ch" href="ch23-trec.html">23 What TREC is, and why it matters</a></li><li><a class="ch" href="ch24-rag-track.html">24 The TREC RAG track</a></li><li><a class="ch" aria-current="page" href="ch25-climbmix.html">25 The new corpus: NVIDIA ClimbMix-400b</a></li><li><a class="ch" href="ch26-agents.html">26 Agents and skills in the 2026 track</a></li><li><a class="ch" href="ch27-sister-tracks.html">27 The sister tracks: RAGTIME and Auto-Judge</a></li><li><a class="ch" href="ch28-enter-trec.html">28 How to enter TREC with a student team</a></li></ul><h2>Part 6 · Case studies: our submissions</h2><ul><li><span class="ch">29 RAG retrieval task</span></li><li><span class="ch">30 RAG generation: does more evidence help?</span></li><li><span class="ch">31 RAGTIME</span></li><li><span class="ch">32 Auto-Judge</span></li><li><span class="ch">33 Lessons and ten project ideas</span></li></ul><h2>Part 7 · Beyond text: video</h2><ul><li><span class="ch">34 From text RAG to video</span></li><li><span class="ch">35 The TREC Video QA track</span></li><li><span class="ch">36 Answering from video</span></li><li><span class="ch">37 Calibration and fusion of several models</span></li><li><span class="ch">38 Case study: our Video QA submission</span></li></ul><h2>Part 8 · Streams and advanced RAG</h2><ul><li><span class="ch">39 Retrieval over a news stream: Change Detection</span></li><li><span class="ch">40 Indexing and chunking in practice</span></li><li><span class="ch">41 Advanced RAG patterns</span></li><li><span class="ch">42 RAG in the real world</span></li></ul><h2>Back matter</h2><ul><li><a class="ch" href="glossary.html">A Glossary</a></li><li><span class="ch">B Run catalogue</span></li><li><span class="ch">C Resource library</span></li><li><span class="ch">D Labs</span></li><li><span class="ch">E For instructors</span></li></ul></details>
+<main>
+<article id="view-ch25-climbmix" data-nav="25 The new corpus: ClimbMix-400b">
+<p class="eyebrow">Part 5 · TREC and the 2026 tracks · Chapter 25</p>
+<h1>The new corpus: NVIDIA ClimbMix-400b</h1>
+<p class="lede"><strong>In one sentence:</strong> ClimbMix-400b is a 400-billion-token collection of text that NVIDIA built for training language models, and in 2026 the RAG track used it as the place where every answer must be found.</p>
+
+<section>
+<h2>Why you should care</h2>
+<p>A RAG system can only be as good as the collection behind it, and every collection has a character. This one is unusual in three ways. It was made to train models, not to be searched. Its documents are whole texts with no title and no web address. And it is far too large for most student teams to index, so you reach it through a search service. Each of these changes how you build.</p>
+</section>
+
+<section>
+<h2>Words you need</h2>
+<dl class="terms">
+  <dt>Corpus</dt><dd>The collection of documents a system searches. Plural: corpora.</dd>
+  <dt>Token</dt><dd>The unit a language model reads, roughly three quarters of an English word.</dd>
+  <dt>Pre-training data</dt><dd>The large body of text a language model learns from before any fine-tuning.</dd>
+  <dt>Shard</dt><dd>One file of a collection that has been split into many files.</dd>
+  <dt>Document ID</dt><dd>The name of one document. In ClimbMix it is the shard name and the row number, such as <code>shard_01789_3390</code>.</dd>
+  <dt>Hosted index</dt><dd>A search index that someone else runs and that you query over the network.</dd>
+  <dt>Baseline run</dt><dd>A run released by the organizers that any team may start from.</dd>
+  <dt>Evidence pool</dt><dd>The set of documents you collected for one question, before choosing which ones the writer will see.</dd>
+</dl>
+</section>
+
+<section>
+<h2><span class="tag core">Core</span> The idea</h2>
+<h3>Where it comes from</h3>
+<p>NVIDIA researchers started from two large public collections of web and educational text. They grouped the text by topic, scored it with two classifiers, one for advertisements and one for educational value, and removed the low-scoring material. The result of the search for a good mixture was a 1.2-trillion-token collection called ClimbLab and a smaller, 400-billion-token one called ClimbMix. The “400b” in the name is that token count.</p>
+<p>The track uses a public copy of ClimbMix stored as 6,543 files of plain text, about 600 gigabytes in all. The copy has one column, the text. So the track defined the document ID itself: the file name and the row number. Its rules for rebuilding the collection are strict for that reason. Do not reshuffle, deduplicate, filter or reorder before you assign IDs, or your IDs will not match anyone else's.</p>
+<h3>How it differs from the earlier collection</h3>
+<div class="tablewrap"><table class="compare">
+<thead><tr><th></th><th>MS MARCO V2.1, segmented (2024 and 2025)</th><th>ClimbMix-400b (2026)</th></tr></thead>
+<tbody>
+<tr><th>Made for</th><td>Search research</td><td>Training language models</td></tr>
+<tr><th>Unit</th><td>A segment of about 500 to 1,000 characters</td><td>A whole document</td></tr>
+<tr><th>Fields</th><td>Web address, title, headings, text</td><td>Text only</td></tr>
+<tr><th>What you cite</th><td>A segment</td><td>A document</td></tr>
+<tr><th>How teams reach it</th><td>Download and index</td><td>A hosted search service, or rebuild it yourself</td></tr>
+</tbody></table></div>
+<p>Three things follow for a RAG builder.</p>
+<ul>
+  <li><strong>Documents are long.</strong> In the part of the collection we stored, a document averaged about 18,000 characters, and nearly half reached the 24,000-character limit of our store. You must decide how much of each document the writer sees (<a href="ch13-evidence.html">Chapter 13</a>).</li>
+  <li><strong>There is no title or address.</strong> You cannot show the reader a source name, and you cannot use the title as a search field. A citation is an ID and nothing more.</li>
+  <li><strong>The model may have seen it.</strong> This is training data. One of the track's stated goals is to align its test collection with what language models are trained on, because then we know what the model has seen. It makes a new question possible: does a model answer better from a document it met in training?</li>
+</ul>
+<h3>Reaching it without downloading it</h3>
+<p>The organizers run a search service. You ask for a personal token once, and then send two kinds of request: search an index with a query and a number of hits, or fetch one document by its ID. The search is BM25 over the text (<a href="ch5-bm25.html">Chapter 5</a>). The query is treated as plain words. Special search syntax is not supported.</p>
+<p>The service is shared by all teams, so it comes with manners, written into the track's skill:</p>
+<ul>
+  <li>Each worker has at most one request in flight. Send the next one when the last one has returned, not on a timer.</li>
+  <li>Around a dozen workers is acceptable. Use fewer if errors or slow replies appear.</li>
+  <li>When the service answers “too many requests”, wait as long as it says, or wait 1, 2, 4 seconds and so on, up to a minute.</li>
+  <li>Never print the token, paste it into a chat, or commit it to a repository.</li>
+</ul>
+<h3>The released baselines</h3>
+<p>You do not have to search at all to begin. The organizers released a BM25 run with 5,000 documents per narrative, and the top 1,000 again as a file that includes the full text of every document. They also released several reranked runs and one run made by a search agent, which returned only 4 to 15 documents per narrative. A team with one laptop can build a complete RAG entry from these files.</p>
+</section>
+
+<section>
+<h2>Watch and read</h2>
+<ul class="links">
+  <li><span class="kind site">Data</span><a href="https://huggingface.co/datasets/nvidia/Nemotron-ClimbMix">nvidia/Nemotron-ClimbMix</a> NVIDIA's dataset card: what the data is, how it was filtered, and its licence. <span class="checked">Checked 16 Nov 2026</span></li>
+  <li><span class="kind paper">Paper</span><a href="https://arxiv.org/abs/2504.13161">Nemotron-CLIMB: CLustering-based Iterative Data Mixture Bootstrapping for Language Model Pre-training</a> Diao and others, 2025. How the mixture was searched for. For graduate readers. <span class="checked">Checked 16 Nov 2026</span></li>
+  <li><span class="kind code">Code</span><a href="https://github.com/TREC-RAG/trec-rag-skills/tree/main/skills">TREC-RAG/trec-rag-skills</a> The search service skill and the corpus creation skill, with the document ID rule. <span class="checked">Checked 16 Nov 2026</span></li>
+  <li><span class="kind code">Code</span><a href="https://github.com/castorini/pyserini">Pyserini</a> The search toolkit behind the service. Use it to build your own index of a smaller collection. <span class="checked">Checked 16 Nov 2026</span></li>
+</ul>
+<p class="fine">NVIDIA's card gives the licence as CC BY-NC 4.0. The public text copy the track uses carries a different licence tag. Check both before you use the data outside the track.</p>
+</section>
+
+<section class="ours">
+<h2>How we did it at TREC 2026</h2>
+<p>We never downloaded the collection. Every run started from the search service and the released baseline files.</p>
+<ol class="pipeline">
+  <li><span class="pn">1</span><strong>Seven queries per narrative</strong><span>The full narrative and six shorter forms made by simple rules (<a href="ch7-queries.html">Chapter 7</a>).</span><em class="where">no model</em></li>
+  <li><span class="pn">2</span><strong>1,000 hits for each</strong><span>Sent to the service with 8 workers, each waiting for its reply before the next request.</span><em class="where">under an hour</em></li>
+  <li><span class="pn">3</span><strong>Fuse</strong><span>The seven lists were joined with reciprocal rank fusion, k = 60 (<a href="ch8-fusion.html">Chapter 8</a>).</span><em class="where">the deep pool</em></li>
+  <li><span class="pn">4</span><strong>Rerank and cut</strong><span>The top 2,000 per narrative went to the rerankers. The best 100 became the evidence pool (<a href="ch9-rerank.html">Chapter 9</a>).</span><em class="where">GPU</em></li>
+  <li><span class="pn">5</span><strong>Store the text</strong><span>Full texts were kept in one local database file, so the writer could be given snippets or long passages.</span><em class="where">2 GB</em></li>
+</ol>
+<div class="tablewrap"><table class="num">
+<thead><tr><th>The deep pool</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>Narratives</td><td>119</td></tr>
+<tr><td>Documents per narrative, smallest</td><td>1,457</td></tr>
+<tr><td>Documents per narrative, median</td><td>4,462</td></tr>
+<tr><td>Documents per narrative, largest</td><td>6,263</td></tr>
+<tr><td>Median before, with 100 hits per query</td><td>239</td></tr>
+<tr><td>Unique documents in the local text store</td><td>109,388</td></tr>
+</tbody></table></div>
+<p class="fine">Source: our pool statistics and build logs. Seven queries of 1,000 hits could give 7,000 different documents. A median of 4,462 shows how much the seven lists overlap.</p>
+<p>The store let us run the experiment in our talk title. The first version of our answers saw exactly 500 characters of each document, about 8,300 words of evidence per narrative. The second saw up to 1,000 words of each of 100 documents, about 90,000 words per narrative (<a href="ch13-evidence.html">Chapter 13</a>).</p>
+</section>
+
+<section>
+<h2>What surprised us</h2>
+<div class="note warn">
+  <strong>“OK” with nothing inside.</strong> Under load, the search service sometimes answered with a success code and an empty list of results. Nothing in the reply said that anything was wrong. A script that trusts the success code would record “no documents for this query” and move on, and a narrative would quietly lose part of its pool. Our script treats an empty list as a failure and asks again. The general rule: check the content of a reply, not only its status.
+</div>
+<p>A second surprise came when we looked inside the store for this chapter. We found 432 groups of documents with exactly the same text under different IDs, covering 1,052 IDs. In a collection built by mixing sources, copies are to be expected, and the rule against deduplicating keeps them in. For a RAG system it means that two of your top ten documents may be one document. We did not remove copies from our evidence, and we have not measured near-copies.</p>
+</section>
+
+<section>
+<h2>Try it</h2>
+<ol class="steps">
+  <li>Open the released baseline file with full text. For one narrative, read the first three documents from start to end. How long are they? Where in each document is the useful part?</li>
+  <li>Write three shorter queries for the same narrative by rule: the first sentence, the last sentence, and the ten rarest words.</li>
+  <li>If you have a token, send the three queries with 100 hits each, one request at a time. If not, use any search library on the baseline file's documents.</li>
+  <li>Fuse the lists and keep 100 documents. How many came from only one of the queries?</li>
+  <li>Look for exact copies in your 100. Did you find any?</li>
+</ol>
+</section>
+
+<section>
+<h2>Check yourself</h2>
+<ol class="quiz">
+  <li>What does “400b” in the name stand for?</li>
+  <li>What was ClimbMix made for, and why does that matter for RAG research?</li>
+  <li>How is a ClimbMix document ID formed, and why must nobody reorder the files first?</li>
+  <li>State two of the service's pacing rules.</li>
+  <li>Why should a script check for an empty result list even when the reply says success?</li>
+</ol>
+<details class="answers"><summary>Answers</summary>
+<ol>
+  <li>400 billion tokens.</li>
+  <li>For training language models. A model under test may have seen the documents in training, which the track wants to study.</li>
+  <li>The shard file name plus the row number. Reordering would give documents different IDs from the official ones, and runs could not be scored.</li>
+  <li>Any two of: one request in flight per worker; about a dozen workers at most; wait when told “too many requests”; no fixed timer.</li>
+  <li>Under load the service can return success with no results. Trusting it would silently drop documents from the pool.</li>
+</ol></details>
+</section>
+
+<section class="deeper">
+<h2><span class="tag deep">Go deeper</span></h2>
+<ul>
+  <li><strong>Only BM25 is hosted.</strong> The service offers no dense index. A team that wants dense retrieval over the whole collection must build it, which is a large job. Reranking a deep BM25 pool, as we did, is the cheaper route, and it can never find a document that BM25 missed in all seven queries.</li>
+  <li><strong>Seen in training.</strong> Design an experiment that separates “the model knows this” from “the model read this in the prompt”. One way is to ask the question with no documents at all and compare.</li>
+  <li><strong>Whole documents and citations.</strong> A citation to an 18,000-character document is hard for a reader to check. Compare with RAGTIME, where a judge must find the support inside a news article (<a href="ch19-support.html">Chapter 19</a>).</li>
+  <li><strong>Quality filtering.</strong> The collection was filtered for educational value. What kinds of question will such a collection answer badly? Recent news and opinions are two guesses worth testing.</li>
+  <li><strong>What we do not know.</strong> We could not confirm the total number of documents in the collection, or the average length over all of it. The figures in this chapter describe only the 109,388 documents we stored.</li>
+  <li><strong>Project idea.</strong> Measure copies and near-copies in the top 100 of the BM25 baseline for all 119 narratives. Then remove them before generation and see whether nugget scores change.</li>
+</ul>
+</section>
+</article>
+<nav class="pager" aria-label="Previous and next page"><a href="ch24-rag-track.html">← 24 The TREC RAG track</a><a href="ch26-agents.html">Next: 26 Agents and skills</a></nav>
+<footer class="bookfoot"><span><strong>RAG from Scratch to TREC</strong> · Adisak Sukul, Iowa State University</span><span>Draft of 16 November 2026</span></footer>
+</main>
+</div>
+<script>if(window.matchMedia('(max-width:860px)').matches)document.getElementById('toc').open=false;</script>
+</body>
+</html>
